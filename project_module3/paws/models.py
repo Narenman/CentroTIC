@@ -9,8 +9,8 @@ class Point(models.Model):
     longitude = models.CharField(max_length=25)
 
 class Ellipse(models.Model):
-    semiMajorAxis = models.FloatField()
-    semiMinorAxis = models.FloatField()
+    semi_Major_Axis = models.FloatField()
+    semi_Minor_Axis = models.FloatField()
     orientation = models.FloatField()
     center = models.ForeignKey(Point, on_delete=models.CASCADE)
 
@@ -22,6 +22,8 @@ class Geolocation(models.Model):
     point = models.ForeignKey(Ellipse, on_delete=models.CASCADE)
     confidence = models.IntegerField(default=95)
 
+    def __str__(self):
+        return "Geolocation "+ str(self.confidence)
 
 class AntennaCharacteristics(models.Model):
     """
@@ -32,7 +34,7 @@ class AntennaCharacteristics(models.Model):
     AGL = "AGL"
     AMSL = "AMSL"
     enum_heigtType =  ((AGL, "Above Ground Level"), (AMSL, "AMSL: Above Mean Sea Level"))
-    heightType = models.CharField(max_length=50, choices=enum_heigtType, default=AGL)
+    height_Type = models.CharField(max_length=50, choices=enum_heigtType, default=AGL)
     antenna_direction = models.CharField(max_length=20, blank=True)
     antenna_radiation_pattern = models.CharField(max_length=15, blank=True)
     antenna_gain = models.FloatField(blank=True)
@@ -42,11 +44,14 @@ class FrequencyRange(models.Model):
     Provee informacion adicional que puede ayudar a determinal la disponibilidad del espectro,
     provee las frecuencias en las que el dispositivo puede operar
     """
-    startHz = models.FloatField()
-    stopHz = models.FloatField()
+    start_Hz = models.FloatField()
+    stop_Hz = models.FloatField()
 
-class DeviceCapabilities(models.Model):
-    frequencyRanges = models.ForeignKey(FrequencyRange, on_delete=models.CASCADE)
+    def __str__(self):
+        return str(self.start_Hz)+" - "+ str(self.stop_Hz)+" Hz"
+
+# class DeviceCapabilities(models.Model):
+#     frequencyRanges = models.ForeignKey(FrequencyRange, on_delete=models.CASCADE)
 
 
 class DeviceDescriptor(models.Model):
@@ -54,21 +59,29 @@ class DeviceDescriptor(models.Model):
     Contiene parametros para identificar el dispositivo especifico
 
     """
-    serialNumber = models.CharField(max_length=25)
-    manufacturerId = models.CharField(max_length=25)
-    modelId = models.CharField(max_length=25)
-    rulesetIds = JSONField()
+    serial_Number = models.CharField(max_length=25)
+    manufacturer_Id = models.CharField(max_length=25)
+    model_Id = models.CharField(max_length=25)
+    ruleset_Ids = JSONField()
     anttenna_characteristics = models.ForeignKey(AntennaCharacteristics, on_delete=models.CASCADE)
-    devicecapabilities = models.ForeignKey(DeviceCapabilities, on_delete=models.CASCADE)
+    device_capabilities = models.ForeignKey(FrequencyRange, on_delete=models.CASCADE)
     geolocation = models.ForeignKey(Geolocation, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.serial_Number
 
 class DeviceOwner(models.Model):
     """
     Provee informacion de los propietarios
     """
-    owner = JSONField()
-    operator = JSONField()
-    devicedescriptor = models.ForeignKey(DeviceDescriptor, on_delete=models.CASCADE)
+    company = models.CharField(max_length=50)
+    contact = models.CharField(max_length=50)
+    address = models.CharField(max_length=50)
+    telephone = models.CharField(max_length=50)
+    email = models.EmailField(max_length=254)
+    city = models.CharField(max_length=50)
+    department = models.CharField( max_length=50)
+    device_descriptor = models.ForeignKey(DeviceDescriptor, on_delete=models.CASCADE)
 
 class RulsetInfo(models.Model):
     """
@@ -76,19 +89,19 @@ class RulsetInfo(models.Model):
     """
     authority = models.CharField(max_length=50)
     rulsetId = models.CharField(max_length=50)
-    maxLocationChange = models.FloatField(blank=True)
-    maxPollingSecs = models.FloatField(blank=True)
+    max_Location_Change = models.FloatField(blank=True)
+    max_Polling_Secs = models.FloatField(blank=True)
 
 
 class EventTime(models.Model):
     """ Indica el periodo de tiempo sobre el cual el espectro
     es valido
     """
-    startTime = models.DateTimeField(auto_now=False, auto_now_add=False)
-    stopTime = models.DateTimeField(auto_now=False, auto_now_add=False)
+    start_Time = models.DateTimeField(auto_now=False, auto_now_add=False)
+    stop_Time = models.DateTimeField(auto_now=False, auto_now_add=False)
 
 class Spectrum(models.Model):
-    resolutionBwHz = models.FloatField()
+    resolution_Bw_Hz = models.FloatField()
     profiles = JSONField()
     geolocation = models.ForeignKey(Geolocation, on_delete=models.CASCADE)
 
@@ -113,13 +126,13 @@ class SpectrumSchedule(models.Model):
 class SpectrumSpec(models.Model):
     """Muestra la disponibilidad de espectro para un conjunto de reglas
     """
-    rulsetInfo = models.ForeignKey(RulsetInfo, on_delete=models.CASCADE)
-    spectrumSchedules = models.ForeignKey(SpectrumSchedule, on_delete=models.CASCADE)
-    timeRange = models.ForeignKey(EventTime, on_delete=models.CASCADE)
-    frequencyRanges = JSONField(encoder="")
-    needsSpectrumReport = models.BooleanField()
-    maxTotalBwHz = models.FloatField(blank=True)
-    maxContiguousBwHz = models.FloatField(blank=True)
+    rulset_Info = models.ForeignKey(RulsetInfo, on_delete=models.CASCADE)
+    spectrum_Schedules = models.ForeignKey(SpectrumSchedule, on_delete=models.CASCADE)
+    time_Range = models.ForeignKey(EventTime, on_delete=models.CASCADE)
+    frequency_Ranges = JSONField(encoder="")
+    needs_Spectrum_Report = models.BooleanField()
+    max_Total_BwHz = models.FloatField(blank=True)
+    max_Contiguous_Bw_Hz = models.FloatField(blank=True)
     geolocation = models.ForeignKey(Geolocation, on_delete=models.CASCADE)
 
 class DeviceValidity(models.Model):
