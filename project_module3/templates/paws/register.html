@@ -17,8 +17,20 @@
       <form  action= "{% url 'paws:register' %}" method="POST">
         
         <div class="row">
-          <div  class="col-sm">
         
+          <div class="col-sm">
+            <h3> Descripción del dispositivo </h3>
+            {% bootstrap_form device_descriptor%}
+            
+          </div>
+          <div class="col-sm">
+            <h3> Información del responsable </h3>
+            {% bootstrap_form device_owner%}
+            {% csrf_token %}
+            
+            
+          </div>
+          <div  class="col-sm">
             <h3> Registrar coordenadas</h3>
             {% bootstrap_form point %}
             <h3> Registrar Ellipse </h3>
@@ -33,25 +45,13 @@
             <h3> Rango de frecuencias del dispositivo </h3>
             {% bootstrap_form freq_range%}
             
-          </div>
-
-          <div class="col-sm">
-            <h3> Descripción del dispositivo </h3>
-            {% bootstrap_form device_descriptor%}
-            
-          </div>
-          <div class="col-sm">
-            <h3> Información del responsable </h3>
-            {% bootstrap_form device_owner%}
-            {% csrf_token %}
-            
-            
             {% buttons %}
               <button type="submit" class="btn btn-primary">
               {% bootstrap_icon "star" %} Registrar Dispositivo
               </button>
             {% endbuttons %}
           </div>
+
         </div>
       </form>
 </div>
