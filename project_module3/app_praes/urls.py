@@ -6,7 +6,7 @@ from .apiviews import TemperaturaAPI, HumedadAPI, PresionAtmosfericaAPI, Materia
                       CrearUsuarioAPI, LoginView, SensoresAPI
 
 from rest_framework_swagger.views import get_swagger_view
-from .views import index, medicion_actual, monitoreo_lecturas, control_ESP32
+from .views import index, medicion_actual, monitoreo_lecturas, control_ESP32, hora_local
 
 app_name = "app_praes"
 schema_view = get_swagger_view(title='Estructura API')
@@ -35,4 +35,5 @@ urlpatterns = [
     path('monitoreo_lecturas/', monitoreo_lecturas, name="monitoreo-lecturas"),
     path('control_kit/', control_ESP32, name="control-kit"),
     path('sensores/', SensoresAPI.as_view(), name="sensores-API"),
+    path('hora-local/', hora_local), 
 ]

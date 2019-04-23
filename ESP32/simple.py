@@ -201,4 +201,4 @@ class MQTTClient:
     # the same processing as wait_msg.
     def check_msg(self):
         self.sock.setblocking(False)
-return self.wait_msg()
+        return self.wait_msg()

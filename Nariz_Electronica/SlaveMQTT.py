@@ -1,5 +1,9 @@
 import paho.mqtt.client as mqttClient
 from DataTestSensor import *
+import csv
+import time
+import threading
+import sys
 
 class MQTTSuscriptor():
     def __init__(self, broker_address ="34.73.25.149",
@@ -24,7 +28,25 @@ class MQTTSuscriptor():
 
             if accion == "adquirir-datos":
                 """ Con esta instruccion la nariz comienza a recibir datos """
-                [fecha, valores] = dsensors()
+                print(accion)
+                def imprime(num):
+                    """ Hilo encargado de sensar los datos de la nariz y
+                    almacenarlos en un archivo .csv"""
+                    t = threading.currentThread()
+                    try:
+                        with open('employee_file'+str(num)+'.csv', mode='w') as employee_file:
+                            employee_writer = csv.writer(employee_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+                            while getattr(t, "do_run", True):
+                                print("puta madre")
+                                [fecha, valores] = dsensors()
+                                employee_writer.writerow([fecha, valores])  
+                    except:
+                        pass
+
+                t = threading.Thread(name="almacenar", target=imprime, args=(0, ))
+                t.setDaemon(True)
+                t.start()
+                time.sleep(1)
 
             if accion == "control-electrovalvulas":
                 pass
@@ -32,6 +54,10 @@ class MQTTSuscriptor():
             if accion == "parar":
                 """ Con esta instruccion la nariz desconecta la comunicacion con
                 el broker """
+                print(accion)
+                t.do_run = False
+                t.join()
+                print("Sensado finalizado")
                 client.disconnect()
 
     def comunicacionMQTT(self):

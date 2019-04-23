@@ -1,6 +1,8 @@
 from django.shortcuts import render
 import paho.mqtt.publish as publish
 from .models import Temperatura
+from django.http import JsonResponse
+
 
 # Create your views here.
 def index(request):
@@ -18,7 +20,6 @@ def monitoreo_lecturas(request):
     return render(request, "app_praes/monitoreo_lecturas.html", respuesta)
 
 def control_ESP32(request):
-    
     topico = "UIS/LP/213"
     IP_broker = "34.73.25.149"
     usuario_broker = "pi"
@@ -27,3 +28,10 @@ def control_ESP32(request):
     auth={"username": usuario_broker, "password":password_broker})
     respuesta = {}
     return render(request, "app_praes/control_ESP32.html", respuesta)
+
+def hora_local(request):
+    import time
+    tz = time.localtime()
+    print(tz)
+    resultado = {"GMT-5": tz}
+    return JsonResponse(resultado)
