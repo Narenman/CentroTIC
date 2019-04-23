@@ -2,6 +2,7 @@ from django.shortcuts import render
 import paho.mqtt.publish as publish
 from .models import Temperatura
 from django.http import JsonResponse
+from django.utils import timezone
 
 
 # Create your views here.
@@ -30,8 +31,8 @@ def control_ESP32(request):
     return render(request, "app_praes/control_ESP32.html", respuesta)
 
 def hora_local(request):
-    import time
-    tz = time.localtime()
-    print(tz)
+    # import time
+    # tz = time.localtime()
+    tz = timezone.now()
     resultado = {"GMT-5": tz}
     return JsonResponse(resultado)
