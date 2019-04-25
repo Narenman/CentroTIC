@@ -16,3 +16,17 @@ def datos_json(request):
 
     respuesta = {"datos": datos}
     return JsonResponse(respuesta)
+
+def gui(request):
+    return render(request, "E3Tratos/gui.html", {})
+
+
+def docs(request):
+    return render(request, "E3Tratos/docs.html", {})
+
+def media(request):
+    return render(request, "E3Tratos/media.html", {})
+
+def contact(request):
+	print("hola contcti")
+	return render(request, "E3Tratos/contact.html", {})
