@@ -9,12 +9,12 @@ import micropython
 def sub_cb(topic, msg):
     
     if msg == b"ESP32-LED":
-        p22 = Pin(22, Pin.OUT)   
-        p2 = Pin(2, Pin.OUT)
+        p9 = Pin(9, Pin.OUT)   
+        # p2 = Pin(2, Pin.OUT)
         for i in range(10):
-            p22.on()  
+            p9.on()  
             time.sleep(200e-3)
-            p22.off()
+            p9.off()
             time.sleep(200e-3)
 
                 

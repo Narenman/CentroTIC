@@ -1,17 +1,17 @@
+"""
+Este archivo contiene las funciones MQTT,  enviar a traves de la API
+La URL especificada y la funcion para leer el dato proveniente del ADC.
+"""
 from urequests import urequests
 import utime 
-
 from machine import Pin
 import machine
 import time
 from  umqtt.simple import MQTTClient
 import ubinascii
 import micropython
+from machine import ADC
 
-"""
-Este archivo contiene las funciones MQTT y enviar a traves de la API
-La URL especificada
-"""
 
 def enviar_API(url, fecha, valor, sensor):
     """ Esta funcion se encarga de enviar los datos
@@ -30,6 +30,16 @@ def enviar_API(url, fecha, valor, sensor):
     r.close()
     # podria retornarse el status HTTP para indicar a un led que todo esta  bien
 
+def leer_dato(pin_adc):
+    """ Esta funcion es para leer los
+    datos provenientes de los canales del
+    ADC"""
+    adc = ADC(Pin(pin_adc))
+    adc.atten(ADC.ATTN_11DB)
+    adc.width(ADC.WIDTH_10BIT)
+    adc_pot = adc.read()*3.0/1024
+    return adc_pot
+
 def sub_cb(topic, msg):
     """ Esta es la funcion que se encarga de interpretar todas las 
     acciones enviadas por MQTT, es decir, el menu dado por 
@@ -41,7 +51,7 @@ def sub_cb(topic, msg):
         fecha = utime.localtime()
         url = "http://34.73.25.149/app_praes/temperatura/"
         sensor = 1
-        valor = 1000
+        valor = leer_dato(36)
         enviar_API(url, fecha, valor, sensor)
 
         #encender led para indicar que la comunicacion ha sido correcta        

@@ -8,7 +8,7 @@ def do_connect():
     wlan.active(True)
     if not wlan.isconnected():
         print('connecting to network...')
-        wlan.connect('AndroidAP', 'mzwj9860')
+        wlan.connect('radiogis', 'radio.1359')
         while not wlan.isconnected():
             pass
     print('network config:', wlan.ifconfig())
@@ -29,4 +29,4 @@ rtc.datetime(tm)
 
 """Ejecuta el programa principal de la tarjeta
 """
-import monitoreo_esp32
+import test_full
