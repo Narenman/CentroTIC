@@ -11,6 +11,18 @@ from  umqtt.simple import MQTTClient
 import ubinascii
 import micropython
 from machine import ADC
+import dht
+
+
+def leer_temp_hum(pin):
+    """ esta funcion es para leer los datos asociados
+    al sensor DHT11, sin embargo, la libreria funciona para otros sensores
+    como el DHT22.
+    La funcion retorna valores de temperatura y humedad
+    """
+    d = dht.DHT11(machine.Pin(pin))
+    d.measure()
+    return d.temperature(), d.humidity()
 
 
 def enviar_API(url, fecha, valor, sensor):
