@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'app_praes',
     'paws',
     'E3Tratos',
+    'nariz_electronica2',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_swagger',

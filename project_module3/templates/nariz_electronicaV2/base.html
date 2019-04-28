@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Nariz electronica</title>
+    <title>Protocolo PAWS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="{% static 'js/jquery-3.1.1.min.js'%}"></script>
@@ -18,13 +18,8 @@
     <a class="nav-link active" href="{% url 'main-index' %}"> <img src= "{% static 'centrotic.png' %}" alt="Imagen no encontrada" width=100px height=70px> </a>
   </li>
     <li class="nav-item">
-    <a class="nav-link active" href="#">Mediciones Nariz Electrónica</a>
+    <a class="nav-link active" href="#">Mediciones Nariz Electronica distribuida</a>
   </li>
-
-  <li class="nav-item">
-    <a class="nav-link active" href="{% url 'nariz_electronicaV2:index'%}">Nariz electrónica distribuida</a>
-  </li>
-
  {% if user.is_authenticated %}
     <li class="nav-item"> <a class="nav-link" href="{% url 'logout' %}">SALIR</a> </li>
     {% else %}

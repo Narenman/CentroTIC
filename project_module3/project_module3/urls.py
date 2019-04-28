@@ -27,4 +27,5 @@ urlpatterns = [
     path('E3Tratos/', include('E3Tratos.urls', namespace="E3Tratos")),
     path('', views.main_index, name='main-index'),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('nariz_electronicaV2/', include('nariz_electronica2.urls', namespace="nariz_electronicaV2")),
 ]
