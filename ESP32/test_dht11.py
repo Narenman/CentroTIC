@@ -1,5 +1,5 @@
 import dht
-import machine
+from machine import Pin
 
 def leer_temp_hum(pin):
     """ esta funcion es para leer los datos asociados
@@ -7,10 +7,9 @@ def leer_temp_hum(pin):
     como el DHT22.
     La funcion retorna valores de temperatura y humedad
     """
-    d = dht.DHT11(machine.Pin(pin))
+    d = dht.DHT11(Pin(pin, Pin.IN, Pin.PULL_UP))
     d.measure()
     return d.temperature(), d.humidity()
 
-temperatura, humedad = leer_temp_hum(32)
-print("temperatura ", temperatura)
-print("humedad ", humedad)
+temperatura, humedad = leer_temp_hum(34)
+print("temperatura {}".format(temperatura))

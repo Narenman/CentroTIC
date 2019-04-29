@@ -59,6 +59,9 @@ def sub_cb(topic, msg):
     """
     if msg == b"ESP32-LED":
 
+        temperatura, humedad = leer_temp_hum(32)
+        print(temperatura)
+
         #envio de datos a la API
         fecha = utime.localtime()
         url = "http://34.73.25.149/app_praes/temperatura/"

@@ -1,10 +1,77 @@
 {% extends 'nariz_electronicaV2/base.html' %}
+{% load static %}
+
 {% block body_block %}
 
 <div class="container">
 <div class="jumbotron">
-    <h1> Nariz Electrónica distribuida </h1>
+<h1>SISTEMA EXPERIMENTAL PARA LA DETECCION DEL HUMO DE CANNABIS BASADO EN NARICES ELECTRÓNICAS COMO TERMINAL IoT  </h1>
+
 </div>
-    {% lorem 2 b random %}
+<right>  <p>
+		Proteger la salud de la población estudiantil, docentes y administrativos de la Universidad Industrial de Santander (UIS) resulta ser un compromiso de todos los personajes involucrados en la comunidad (Palacios, 2012) . Es primordial mantener un medio ambiente saludable en las instalaciones de la Universidad, y por ende reducir la exposición a diferentes contaminantes ambientales. Específicamente, en las instalaciones de la Escuela de Ingeniería Eléctrica, Electrónica y de Telecomunicaciones (E3T) de la UIS, los diferentes olores que se generan en la zona boscosa aledaña interfieren en las actividades estudiantiles y en su mayoría se relaciona con el humo de <i>cannabis</i>. 
+	<right/></p>
+
+	<P>
+		Con el fin de sensar y monitorear los diferentes compuestos orgánicos volátiles del ambiente alrededor de la E3T, se formula una propuesta de investigación orientada al desarrollo de un modelo de nariz electrónica que permita detectar huellas odoríficas particulares a nivel exploratorio. Para ello, el prototipo experimental propuesto constará de una etapa de adquisición (hardware), comunicación y procesamiento de datos (software), las cuales constituyen las tres áreas fundamentales de las narices electrónicas: química, electrónica y lógica.
+	</P>
+
+	<P>
+		La etapa química permite acondicionar los volátiles por medio de un sistema neumático que conducirá al módulo de sensado el conjunto de muestras odoríficas que se desea procesar. Allí, se encuentran los sensores de gas dispuestos en una matriz de 2x2 y en una placa que los unifica con la etapa electrónica. Estos módulos (mínimo dos) serán independientes y tendrán la capacidad de comunicarse entre sí y el servidor de la plataforma IoT. 	
+	</P>
+
+	<P>
+		La etapa electrónica constará del acondicionamiento de las señales analógicas de los sensores de gas, para ello se implementará a través de un microcontrolador la conversión de analógico-digital y posteriormente se enviarán los datos por medio de tecnología WiFi. Los datos recolectados serán enviados hacia la plataforma IoT del grupo de investigación RadioGis de la UIS de forma de que tenga acceso al medio, donde serán procesados por medio de análisis de reconocimiento de patrones. Se utilizarán diferentes sensores de gas para adquirir los datos de los olores más prominentes que se presentan durante una semana y se detectarán huellas odoríficas particulares, con el fin de ver cuál de los sensores detecta más rápido el cannabis.
+
+	</P>
+
+	<P>
+		La metodología del diseño experimental se hará teniendo en cuenta tres aspectos importantes: inicialmente se sensara cuando el ambiente este limpio, es decir, donde se garantice la ausencia de volátiles generados por la combustión de cannabis, siendo así el olor de referencia (clase negativa), como segunda premisa se garantizará la presencia de volátiles de cannabis en diferentes condiciones para ello se tendrá en cuenta sólo la duración de la generación del humo y la distancia entre la fuente de olor y módulo de sensado.</P>
+
+	<p>
+		El funcionamiento general de la nariz electrónica implementado en la plataforma IoT de RadioGis. Está conformado de los siguientes módulos: Módulo de recepción y sesión de dispositivos, Modulo de control de acceso, Modulo de gestión de información, Modulo de análisis y procesamientos, Aplicaciones IoT, Capa de usuario, el proyecto se centra en el diseño de Hardware.</p>
+	<p>
+		El software gestiona la información recolectada en la plataforma IoT de una manera remota, su metodología se basa en la comunicación de la terminal móvil con los módulos de recepción que hacen parte de la capa de conectividad. Este módulo usa los protocolos “MQTT” y “Web servicie”. Además, que cuenta con un módulo de control de acceso que asigna a cada dispositivo una etiqueta reconocimiento. La visión del proyecto está orientada a generar una alarma preventiva para informar a la comunidad estudiantil UIS la presencia de contaminantes relacionados con el humo de cannabis a partir del reconocimiento de olores.</p>
+	
+
+	<center><img src="{% static 'nariz_electronicaV2/EN.PNG' %}" width="500"  alt="Prototipo de una nariz electrónica" title="Diseño de una nariz electrónica" /></center>
+
+
+
+
+	<dl>
+		<dt><I>Cannabis</I></dt>
+		<dd>La marihuana llamada científicamente como cannabis sativa es conocida por sus altos componentes químicos de los cuales se pueden llegar a percibir por lo menos 60 cannabinoides, muchos de ellos únicos en su especie. Entre los más importantes debido a su efecto psicoactivo se encuentra el delta-9-tetrahidrocannabinol (THC), el cannabinol y el cannabidiol. Una de las formas de consumo del cannabis es el hachís, adquirido del líquido resinoso de la planta, también se encuentra como un triturado seco de flores, tallos y hojas, así como en aceite. Habitualmente se consume fumada, mezclada con tabaco o en vaporizadores. Usualmente el cannabis contiene entre 1 -5 % de THC(Moya García, 2006).</dd>
+	</dl>
+		
+
+	<H3><I>Cannabis</I></H3>
+
+	<p> <font size="+1">
+		La marihuana llamada científicamente como cannabis sativa es conocida por sus altos componentes químicos de los cuales se pueden llegar a percibir por lo menos 60 cannabinoides, muchos de ellos únicos en su especie. Entre los más importantes debido a su efecto psicoactivo se encuentra el delta-9-tetrahidrocannabinol (THC), el cannabinol y el cannabidiol. Una de las formas de consumo del cannabis es el hachís, adquirido del líquido resinoso de la planta, también se encuentra como un triturado seco de flores, tallos y hojas, así como en aceite. Habitualmente se consume fumada, mezclada con tabaco o en vaporizadores. Usualmente el cannabis contiene entre 1 -5 % de THC(Moya García, 2006). 
+	</font></p>
+
+	<p>
+		Otra forma de autoadministración más común de la marihuana y el hachís consiste en fumarlos. Durante el pirólisis se liberan en el humo más de 150 compuestos, además del THC(Moya García, 2006). Aunque la mayor parte de estas sustancias carece de propiedades psicoactivas, sí puede ejercer efectos fisiológicos.  
+	</p>
+
+
+	<h3> Nariz Electronica  </h3>
+
+	<p> 
+		La nariz electrónica es un dispositivo compuesto de sensores de gas sensibles a ciertos compuestos específicos según su configuración acoplado a un sistema de reconocimiento de patrones como método para procesar los datos resultantes de algún experimento(Manuel, Eduardo, & Mariela, 2014).</p>
+
+	<p>
+		Está compuesta por tres fases como se observa en la figura 1. El proceso químico inicia cuando la muestra odorífica es acondicionada para permitir su paso hacia una matriz de sensores de gas, que al ser resistivos el conjunto de electrodos del cual están compuestos cambian de tamaño alterando su impedancia. Este suceso origina señales que pasan por la etapa de acondicionamiento y procesamiento de selección de datos implementado en una etapa electrónica que entrega la huella digital del compuesto a la fase de reconocimiento de patrones que permite detectar, clasificar e identificar la muestra (Ruiz Jiménez y cols, 2015). </p>
+
+	<center><img src="{% static 'nariz_electronicaV2/E-NOSE.PNG' %}" width="600"  alt=" nariz electrónica" title="Diseño de una nariz electrónica" ></center>
+
+	<P>
+		Actualmente en la Universidad Industrial de Santander (UIS) existe una nariz electrónica basada en resultados de investigaciones previas. Esta nariz consiste en una caja de acrílico en donde se almacena una matriz de sensores de gases químicos, otro compartimiento donde es acumulado el volátil que se desea identificar y por último la etapa de adquisición y control del sistema (Ruiz Jiménez y cols, 2015). </P>
+
+	<H3>Plataformas IoT </H3>
+
+	<P>
+		La necesidad del ser humano ha llevado a modificar el medio que lo rodea para adaptarse a los nuevos cambios que genera la tecnología. Las plataformas IoT son un tema notable en la industria de la información y la comunicación (TIC), la estandarización en IoT significa la importancia de mejorar la interoperabilidad entre diferentes aplicaciones, servicios y usuarios. La mayoría de las plataformas loT tienen una interfaz gráfica basada en un navegador web para la comunicación humana y el control humano de las cosas conectadas a través de Internet (Hejazi, Rajab, Cinkler, & Lengyel, 2018). La figura 2 muestra el esquema del modelo de las capas de la plataforma IoT.</P>
 </div>
 {% endblock  %}

@@ -1,5 +1,18 @@
 from urequests import urequests
 import utime 
+import dht
+import machine
+
+def leer_temp_hum(pin):
+    """ esta funcion es para leer los datos asociados
+    al sensor DHT11, sin embargo, la libreria funciona para otros sensores
+    como el DHT22.
+    La funcion retorna valores de temperatura y humedad
+    """
+    d = dht.DHT11(machine.Pin(pin))
+    d.measure()
+    return d.temperature(), d.humidity()
+
 
 def enviar_API(url, fecha, valor, sensor):
 
@@ -16,7 +29,11 @@ def enviar_API(url, fecha, valor, sensor):
 
 
 fecha = utime.localtime()
+temperatura, humedad = leer_temp_hum(32)
+
+print("temperatura ", temperatura)
+print("humedad ", humedad)
 url = "http://34.73.25.149/app_praes/temperatura/"
-sensor = 1
-valor = 700
+sensor = 2
+valor = temperatura
 enviar_API(url, fecha, valor, sensor)
