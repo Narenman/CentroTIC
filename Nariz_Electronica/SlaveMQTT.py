@@ -4,6 +4,10 @@ import csv
 import time
 import threading
 import sys
+import json
+
+import requests
+
 
 class MQTTSuscriptor():
     def __init__(self, broker_address ="34.73.25.149",
@@ -25,46 +29,42 @@ class MQTTSuscriptor():
 
     def on_message(self, client, userdata, message):
             accion = message.payload.decode()
-
-            if accion == "adquirir-datos":
+            accion = json.loads(accion)
+            if accion["accion"] == "adquirir-datos":
                 """ Con esta instruccion la nariz comienza a recibir datos """
-                print(accion)
-                def imprime(num):
-                    """ Hilo encargado de sensar los datos de la nariz y
-                    almacenarlos en un archivo .csv"""
-                    t = threading.currentThread()
-                    try:
-                        with open('employee_file'+str(num)+'.csv', mode='w') as employee_file:
-                            employee_writer = csv.writer(employee_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-                            while getattr(t, "do_run", True):
-                                print("puta madre")
-                                [fecha, valores] = dsensors()
-                                employee_writer.writerow([fecha, valores])  
-                    except:
-                        pass
+                t1 = time.time()
+                timeout = 0
+                datos = []
+                """ sensado de la informacion"""
 
-                t = threading.Thread(name="almacenar", target=imprime, args=(0, ))
-                t.setDaemon(True)
-                t.start()
-                time.sleep(1)
+                while timeout<=accion["tiempo"]:
+                    [fecha, valores] = dsensors()
+                    datos.append([fecha, valores])
+                    t2 = time.time()
+                    timeout = t2-t1
+                print("fin toma de datos")
+                datos = { "medicion": json.dumps(datos),
+                "analisis": accion["id"]}
 
-            if accion == "control-electrovalvulas":
+                """ uso de la API """
+                r = requests.post("http://192.168.0.110:8000/nariz_electronica/lecturas", data=datos, headers={"Authorization":"Token 252795853d80260e24b897113d855a5a4a91db16"})
+                print(r.status_code)
+                r.close()
+
+            if accion["accion"] == "control-electrovalvulas":
                 pass
 
-            if accion == "parar":
-                """ Con esta instruccion la nariz desconecta la comunicacion con
-                el broker """
-                print(accion)
-                t.do_run = False
-                t.join()
-                print("Sensado finalizado")
-                client.disconnect()
 
     def comunicacionMQTT(self):
         self.client.on_connect= self.on_connect                 # (d) suscriptor
         self.client.on_message= self.on_message                 # (d) suscriptor
         self.client.loop_forever()                              # (e) mantener conexion con el broker
 
+    def __del__(self):
+        self.client.disconnect()
+
 if __name__ == "__main__":
-    objmqtt = MQTTSuscriptor()
-    objmqtt.comunicacionMQTT()
+    while True:
+        objmqtt = MQTTSuscriptor()
+        objmqtt.comunicacionMQTT()
+        del(objmqtt)
