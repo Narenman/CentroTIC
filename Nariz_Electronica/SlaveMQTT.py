@@ -8,7 +8,6 @@ import json
 
 import requests
 
-
 class MQTTSuscriptor():
     def __init__(self, broker_address ="34.73.25.149",
                        port = 1883,
@@ -50,7 +49,7 @@ class MQTTSuscriptor():
                 "analisis": accion["id"]}
 
                 """ uso de la API """
-                r = requests.post("http://192.168.0.110:8000/nariz_electronica/lecturas", data=datos, headers={"Authorization":"Token 252795853d80260e24b897113d855a5a4a91db16"})
+                r = requests.post("http://34.73.25.149/nariz_electronica/lecturas", data=datos, headers={"Authorization":"Token be0f651e344c17b141e10f97f28b4a2fa0cdad7a"})
                 print("HTTP status {}".format(r.status_code))
                 r.close()
 
