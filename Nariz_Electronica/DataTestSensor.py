@@ -71,4 +71,6 @@ def dsensors():
 	values=[dato1, dato2, dato3, dato4, dato5, dato6, dato7, dato8, dato14, dato15, dato16, dato17, dato18, dato19, dato20, dato21]#, dato9, dato10, dato11, dato12, dato13, 0, dato14, dato15, dato16, dato17, dato18, dato19, dato20, dato21, dato22, dato23, dato24, dato25, dato26]
 	dates=time.strftime("%Y-%m-%d %H:%M:%S")
 	
-	return [dates,values]
+	# return [dates,values]
+	return [values]
+

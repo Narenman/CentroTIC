@@ -9,13 +9,20 @@
 <div class="row">
 
     <div class="col-sm">
-    <h3>Nariz Electronica de la UIS versión 1</h3>
-    {% lorem 3 %}
+    <h3>  
+    <a class="nav-link active" href="{% url 'nariz_electronica:toma-datos'%}">Nariz electrónica Version 1</a>
+  </h3>
+  <img class="img-thumbnail" src="{% static 'nariz_electronica.jpeg' %}" alt="imagen no encontrada" height=200px widht=300px>
+    <img class="img-thumbnail" src="{% static 'nariz_electronica1.jpeg' %}" alt="imagen no encontrada" height=200px widht=300px>
+    {% lorem 2 %}
     </div>
 
     <div class="col-sm">
-    <img class="img-thumbnail" src="{% static 'nariz_electronica.jpeg' %}" alt="imagen no encontrada" height=200px widht=300px>
-    <img class="img-thumbnail" src="{% static 'nariz_electronica1.jpeg' %}" alt="imagen no encontrada" height=200px widht=300px>
+       <h3><a class="nav-link active" href="{% url 'nariz_electronicaV2:index'%}">Nariz electrónica Versión 2</a></h3>
+      
+    
+
+    {% lorem 2 %}
     </div>
 
 

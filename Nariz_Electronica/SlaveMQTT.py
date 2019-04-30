@@ -31,6 +31,7 @@ class MQTTSuscriptor():
             accion = message.payload.decode()
             accion = json.loads(accion)
             if accion["accion"] == "adquirir-datos":
+                print(accion)
                 """ Con esta instruccion la nariz comienza a recibir datos """
                 t1 = time.time()
                 timeout = 0
@@ -38,8 +39,10 @@ class MQTTSuscriptor():
                 """ sensado de la informacion"""
 
                 while timeout<=accion["tiempo"]:
-                    [fecha, valores] = dsensors()
-                    datos.append([fecha, valores])
+                    # [fecha, valores] = dsensors()
+                    # datos.append([fecha, valores])
+                    [valores] = dsensors()
+                    datos.append(valores)
                     t2 = time.time()
                     timeout = t2-t1
                 print("fin toma de datos")
@@ -48,7 +51,7 @@ class MQTTSuscriptor():
 
                 """ uso de la API """
                 r = requests.post("http://192.168.0.110:8000/nariz_electronica/lecturas", data=datos, headers={"Authorization":"Token 252795853d80260e24b897113d855a5a4a91db16"})
-                print(r.status_code)
+                print("HTTP status {}".format(r.status_code))
                 r.close()
 
             if accion["accion"] == "control-electrovalvulas":

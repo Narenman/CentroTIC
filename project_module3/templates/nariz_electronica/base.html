@@ -17,18 +17,15 @@
   <li class="nav-item">
     <a class="nav-link active" href="{% url 'main-index' %}"> <img src= "{% static 'centrotic.png' %}" alt="Imagen no encontrada" width=100px height=70px> </a>
   </li>
-  <li class="nav-item">
-    <a class="nav-link active" href="{% url 'nariz_electronica:entrenamiento'%}">Entrenamiento</a>
-  </li>
-  
-  <li class="nav-item">
-    <a class="nav-link active" href="{% url 'nariz_electronica:analisis_nariz'%}">Analisis de nariz electrónica</a>
-  </li>
-
 
   <li class="nav-item">
-    <a class="nav-link active" href="{% url 'nariz_electronicaV2:index'%}">Nariz electrónica distribuida</a>
+    <a class="nav-link active" href="{% url 'nariz_electronica:toma-datos'%}">Versión 1</a>
   </li>
+
+  <li class="nav-item">
+    <a class="nav-link active" href="{% url 'nariz_electronicaV2:index'%}">Versión 2</a>
+  </li>
+
 
  {% if user.is_authenticated %}
     <li class="nav-item"> <a class="nav-link" href="{% url 'logout' %}">SALIR</a> </li>
