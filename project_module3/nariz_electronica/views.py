@@ -43,7 +43,7 @@ def analisis_nariz(request):
         analisis = AnalisisForm(request.POST,)
         accion = {}
         req = request.POST
-        if analisis.is_valid() and float(req["tiempo_medicion_segundos"])<60 and float(req["tiempo_medicion_segundos"])>0:
+        if analisis.is_valid() and float(req["tiempo_medicion_segundos"])<120 and float(req["tiempo_medicion_segundos"])>0:
             analisis.save()
             datos_form = request.POST
             tiempo_medicion = float(datos_form["tiempo_medicion_segundos"])
