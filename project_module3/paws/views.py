@@ -81,12 +81,14 @@ def avail_spectrum(request):
 
     spectrum = SpectrumSpec.objects.all()
     print(spectrum)
-    
-    #formacion de la respuesta AVAIL_SPECTRUM_RESP
-    avail_spectrum_resp = {"serial_Number": device_descriptor[0]["serial_Number"],
-                           "manufacturer_Id":device_descriptor[0]["manufacturer_Id"],
-                           "model_Id": device_descriptor[0]["model_Id"], "ruleset_Ids": device_descriptor[0]["ruleset_Ids"],
-                           "antenna_characteristics":device_descriptor[0]["anttenna_characteristics"],
-                           "device_capabilities":device_descriptor[0]["device_capabilities"]}
+    try:
+        #formacion de la respuesta AVAIL_SPECTRUM_RESP
+        avail_spectrum_resp = {"serial_Number": device_descriptor[0]["serial_Number"],
+                            "manufacturer_Id":device_descriptor[0]["manufacturer_Id"],
+                            "model_Id": device_descriptor[0]["model_Id"], "ruleset_Ids": device_descriptor[0]["ruleset_Ids"],
+                            "antenna_characteristics":device_descriptor[0]["anttenna_characteristics"],
+                            "device_capabilities":device_descriptor[0]["device_capabilities"]}
+    except:
+        avail_spectrum_resp = {}
 
     return JsonResponse(avail_spectrum_resp)
