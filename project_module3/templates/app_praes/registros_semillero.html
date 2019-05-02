@@ -1,0 +1,33 @@
+{% extends "app_praes/base.html" %}
+{% load static %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+
+{% block body_block %}
+<div class="container">
+    <div class="jumbotron">
+        <h1>PRAES (Proyecto Ambiental Escolar) Registro  del semillero</h1>
+      </div>
+
+<div class="row">
+
+     <div class="col-sm">
+    <h2> Registrar semillero </h2>
+    <form  action= "{% url 'app_praes:registro-semillero' %}" method="POST">
+            
+                {% bootstrap_form semillero%}
+                {% csrf_token %}
+                
+                {% buttons %}
+                <button type="submit" class="btn btn-primary">
+                {% bootstrap_icon "star" %} Registrar semillero
+                </button>
+                {% endbuttons %}
+        </form>
+    </div> 
+
+</div>
+</div>
+{% endblock  %}

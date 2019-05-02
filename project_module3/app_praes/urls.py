@@ -6,7 +6,8 @@ from .apiviews import TemperaturaAPI, HumedadAPI, PresionAtmosfericaAPI, Materia
                       CrearUsuarioAPI, LoginView, SensoresAPI
 
 from rest_framework_swagger.views import get_swagger_view
-from .views import index, medicion_actual, monitoreo_lecturas, control_ESP32, hora_local
+from .views import index, medicion_actual, monitoreo_lecturas, control_ESP32, hora_local, monitoreo_lecturas_json,\
+    registros_integrantes, registro_semillero, consultar_semilleros, consultar_integrantes
 
 app_name = "app_praes"
 schema_view = get_swagger_view(title='Estructura API')
@@ -36,4 +37,9 @@ urlpatterns = [
     path('control_kit/', control_ESP32, name="control-kit"),
     path('sensores/', SensoresAPI.as_view(), name="sensores-API"),
     path('hora-local/', hora_local), 
+    path('variables-json/', monitoreo_lecturas_json, name="variables-json"), #para consultas ajax
+    path('registro-integrantes/', registros_integrantes, name="registro-integrantes"),
+    path('registro-semillero/', registro_semillero, name="registro-semillero"),
+    path('consulta-semillero/', consultar_semilleros, name="consulta-semillero"),
+    path('consulta-integrantes/', consultar_integrantes, name="consulta-integrantes"),
 ]
