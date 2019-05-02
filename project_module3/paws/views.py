@@ -1,7 +1,10 @@
 from django.shortcuts import render
+from django.http import JsonResponse
 from .forms import  PointForm, EllipseForm, \
     GeolocationForm, AntennaCharacteristicsForm, \
     FrequencyRangeForm, DeviceDescriptorForm, DeviceOwnerForm
+
+from .models import DeviceDescriptor, Geolocation, SpectrumSpec
 
 # Create your views here.
 def index(request):
@@ -51,7 +54,7 @@ def register(request):
             device_owner.device_descriptor = device_descriptor
             device_owner.save()
 
-            return render(request, "paws/index.html", {})
+            return render(request, "paws/index.html", {"registro": "Registro exitoso de dispositivo"})
 
     respuesta = {"point": point,
                  "ellipse": ellipse,
@@ -62,3 +65,28 @@ def register(request):
                  "device_owner": device_owner}
 
     return render(request, "paws/register.html", respuesta)
+
+def avail_spectrum(request):
+    """Esta funcion se realiza con el fin de retornar AVAIL_SPECTRUM_RESP
+    """
+    #bases de datos que se consultan de acuerdo a las peticiones del maestro
+    device = DeviceDescriptor.objects.all()
+    geolocation = Geolocation.objects.all() 
+    device_descriptor = device.values('serial_Number' ,  'manufacturer_Id' , 
+                        'model_Id', 'ruleset_Ids' ,  'anttenna_characteristics' , 
+                        'device_capabilities', 'geolocation' )
+
+    #base de datos del espectro consultada y filtrada de acuerdo a la informacion
+    #georeferenciada del maestro
+
+    spectrum = SpectrumSpec.objects.all()
+    print(spectrum)
+    
+    #formacion de la respuesta AVAIL_SPECTRUM_RESP
+    avail_spectrum_resp = {"serial_Number": device_descriptor[0]["serial_Number"],
+                           "manufacturer_Id":device_descriptor[0]["manufacturer_Id"],
+                           "model_Id": device_descriptor[0]["model_Id"], "ruleset_Ids": device_descriptor[0]["ruleset_Ids"],
+                           "antenna_characteristics":device_descriptor[0]["anttenna_characteristics"],
+                           "device_capabilities":device_descriptor[0]["device_capabilities"]}
+
+    return JsonResponse(avail_spectrum_resp)
