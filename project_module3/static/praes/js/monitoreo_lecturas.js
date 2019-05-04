@@ -141,7 +141,7 @@ $(document).ready(function(){
                     zoomType: 'x'
                 },
                 title: {
-                    text: 'Presión Atmosférica kPa '
+                    text: 'Presión Atmosférica mbar '
                 },
                 subtitle: {
                     text: document.ontouchstart === undefined ?
@@ -154,7 +154,7 @@ $(document).ready(function(){
                 
                 yAxis: {
                     title: {
-                        text: 'hPa'
+                        text: 'mbar'
                     }
                 },
                 legend: {

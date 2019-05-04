@@ -7,9 +7,10 @@ def leer_temp_hum(pin):
     como el DHT22.
     La funcion retorna valores de temperatura y humedad
     """
-    d = dht.DHT11(Pin(pin, Pin.IN, Pin.PULL_UP))
+    d = dht.DHT22(Pin(pin, Pin.IN, Pin.PULL_UP))
     d.measure()
     return d.temperature(), d.humidity()
 
-temperatura, humedad = leer_temp_hum(34)
+temperatura, humedad = leer_temp_hum(32)
 print("temperatura {}".format(temperatura))
+print("humedad {}".format(humedad))

@@ -16,8 +16,7 @@ def sub_cb(topic, msg):
             time.sleep(200e-3)
             p9.off()
             time.sleep(200e-3)
-
-                
+               
 # Default MQTT server to connect to
 SERVER = "34.73.25.149"
 TOPIC = b"UIS/LP/213"

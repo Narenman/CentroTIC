@@ -3,15 +3,30 @@ Este archivo contiene las funciones MQTT,  enviar a traves de la API
 La URL especificada y la funcion para leer el dato proveniente del ADC.
 """
 from urequests import urequests
-import utime 
-from machine import Pin
-import machine
-import time
 from  umqtt.simple import MQTTClient
+import utime 
+import time
 import ubinascii
 import micropython
+import machine
+from machine import Pin
 from machine import ADC
+from machine import I2C
 import dht
+from bmp180 import BMP180
+
+
+def leer_presion(scl_pin, sda_pin):
+    """ Lee la presion del sensor BMP180 """
+    bus = I2C(scl=Pin(scl_pin), sda=Pin(sda_pin), freq=400000)  # create I2C peripheral at frequency of 400kHz
+    bmp180 = BMP180(bus)
+    bmp180.oversample_sett = 2
+    bmp180.baseline = 101325
+
+    temp = bmp180.temperature
+    p = bmp180.pressure
+    altitude = bmp180.altitude
+    return p
 
 
 def leer_temp_hum(pin):
@@ -20,7 +35,7 @@ def leer_temp_hum(pin):
     como el DHT22.
     La funcion retorna valores de temperatura y humedad
     """
-    d = dht.DHT11(machine.Pin(pin))
+    d = dht.DHT22(Pin(pin, Pin.IN, Pin.PULL_UP))
     d.measure()
     return d.temperature(), d.humidity()
 
@@ -59,15 +74,17 @@ def sub_cb(topic, msg):
     """
     if msg == b"ESP32-LED":
 
-        temperatura, humedad = leer_temp_hum(32)
-        print(temperatura)
+        temperatura, humedad = leer_temp_hum(32) #leer datos del sensor DHT22
+        presion = leer_presion(14,27)#leer datos del sensor BMP180
+
 
         #envio de datos a la API
         fecha = utime.localtime()
-        url = "http://34.73.25.149/app_praes/temperatura/"
-        sensor = 1
-        valor = leer_dato(36)
-        enviar_API(url, fecha, valor, sensor)
+        enviar_API("http://34.73.25.149/app_praes/temperatura/", fecha, temperatura, 2) # envio temperatura al sensor DHT22
+        enviar_API("http://34.73.25.149/app_praes/humedad/", fecha, humedad, 2) # envio humedad al sensor DHT22
+        enviar_API("http://34.73.25.149/app_praes/presion-atmosferica/", fecha, presion, 5) # envio humedad al sensor BMP180
+
+
 
         #encender led para indicar que la comunicacion ha sido correcta        
         p9 = Pin(9, Pin.OUT)   
