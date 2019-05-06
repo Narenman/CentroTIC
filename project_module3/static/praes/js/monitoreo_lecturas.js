@@ -321,7 +321,7 @@ $(document).ready(function(){
                     series: [{
                         type: 'area',
                         name: 'CO2',
-                        data: data.presion,
+                        data: data.co2,
                             }]
                 }); //fin dioxido de carbono
 
@@ -772,7 +772,7 @@ $(document).ready(function(){
                         zoomType: 'x'
                     },
                     title: {
-                        text: 'Compuestos orgánicos volátiles VCO'
+                        text: 'Compuestos orgánicos volátiles TVOC'
                     },
                     subtitle: {
                         text: document.ontouchstart === undefined ?
@@ -824,8 +824,8 @@ $(document).ready(function(){
                     
                     series: [{
                         type: 'area',
-                        name: 'VCO',
-                        data: data.presion,
+                        name: 'TVOC',
+                        data: data.tvoc,
                             }]
                 }); //fin Compuestos organicos volatiles
 
@@ -888,7 +888,7 @@ $(document).ready(function(){
                     series: [{
                         type: 'area',
                         name: 'UV',
-                        data: data.presion,
+                        data: data.luzuv,
                             }]
                 }); //fin UV
 

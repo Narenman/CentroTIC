@@ -41,9 +41,21 @@ def monitoreo_lecturas_json(request):
     pres = PresionAtmosferica.objects.all()
     presion = pres.values("fecha", "valor")
     presion = list(map(lambda datos: [datos["fecha"].timestamp(), datos["valor"]], presion))
+    #sgp30 material organico, tambien lee CO2 pero ese lo leo con otro sensor
+    voc = MaterialOrganico.objects.all()
+    tvoc = voc.values("fecha", "valor")
+    tvoc = list(map(lambda datos: [datos["fecha"].timestamp(), datos["valor"]], tvoc))
+    co2 = CO2.objects.all()
+    CO2_ppm = co2.values("fecha", "valor")
+    CO2_ppm = list(map(lambda datos: [datos["fecha"].timestamp(), datos["valor"]], CO2_ppm))
+    #ML8511 sensor UV
+    uv = LuzUV.objects.all()
+    luzuv = uv.values("fecha", "valor")
+    luzuv = list(map(lambda datos: [datos["fecha"].timestamp(), datos["valor"]], luzuv))
 
     return JsonResponse({"temperatura":temperatura,
-                         "humedad": humedad, "presion": presion})
+                         "humedad": humedad, "presion": presion,
+                         "tvoc": tvoc, "luzuv": luzuv, "co2": CO2_ppm})
 @login_required
 def control_ESP32(request):
     topico = "UIS/LP/213"
