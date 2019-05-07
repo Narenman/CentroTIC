@@ -3,7 +3,7 @@ from machine import I2C, Pin
 
 def leer_sgp30(scl_pin, sda_pin):
     """ esta funcion es para leer los datos del sensor
-    sgp30 y retorna
+    sgp30 y retorna+
     CO2 en ppm
     TVOC en ppb"""
     i2c = I2C(scl=Pin(scl_pin), sda=Pin(sda_pin), freq=400000)

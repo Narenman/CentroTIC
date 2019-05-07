@@ -4,40 +4,24 @@ from django.contrib.postgres.fields import JSONField
 # Create your models here.
 
 
-class Point(models.Model):
-    latitude = models.CharField(max_length=25)
-    longitude = models.CharField(max_length=25)
-
-class Ellipse(models.Model):
-    semi_Major_Axis = models.FloatField()
-    semi_Minor_Axis = models.FloatField()
-    orientation = models.FloatField()
-    center = models.ForeignKey(Point, on_delete=models.CASCADE)
-
-
-class Geolocation(models.Model):
-    """
-    Para expresar las coordenadas en unidades de grados y metros
-    """
-    point = models.ForeignKey(Ellipse, on_delete=models.CASCADE)
-    confidence = models.IntegerField(default=95)
+class Departamento(models.Model):
+    name = models.CharField(max_length=50)
 
     def __str__(self):
-        return "Geolocation "+ str(self.confidence)
+        return self.name
 
-class AntennaCharacteristics(models.Model):
-    """
-    AGL: Above Ground Level (default)
-    AMSL: Above Mean Sea Level)
-    """
-    height = models.FloatField()
-    AGL = "AGL"
-    AMSL = "AMSL"
-    enum_heigtType =  ((AGL, "Above Ground Level"), (AMSL, "AMSL: Above Mean Sea Level"))
-    height_Type = models.CharField(max_length=50, choices=enum_heigtType, default=AGL)
-    antenna_direction = models.CharField(max_length=20, blank=True)
-    antenna_radiation_pattern = models.CharField(max_length=15, blank=True)
-    antenna_gain = models.FloatField(blank=True)
+class Geolocation(models.Model):
+    dane_code= models.IntegerField(primary_key=True)    
+    city = models.CharField(max_length=100)
+    region = models.ForeignKey(Departamento, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = ("Geolocation")
+        verbose_name_plural = ("Geolocations")
+
+    def __str__(self):
+        return self.city
+
 
 class FrequencyRange(models.Model):
     """
@@ -50,9 +34,6 @@ class FrequencyRange(models.Model):
     def __str__(self):
         return str(self.start_Hz)+" - "+ str(self.stop_Hz)+" Hz"
 
-# class DeviceCapabilities(models.Model):
-#     frequencyRanges = models.ForeignKey(FrequencyRange, on_delete=models.CASCADE)
-
 
 class DeviceDescriptor(models.Model):
     """
@@ -63,7 +44,6 @@ class DeviceDescriptor(models.Model):
     manufacturer_Id = models.CharField(max_length=25)
     model_Id = models.CharField(max_length=25)
     ruleset_Ids = JSONField()
-    anttenna_characteristics = models.ForeignKey(AntennaCharacteristics, on_delete=models.CASCADE)
     device_capabilities = models.ForeignKey(FrequencyRange, on_delete=models.CASCADE)
     geolocation = models.ForeignKey(Geolocation, on_delete=models.CASCADE)
 
@@ -76,11 +56,8 @@ class DeviceOwner(models.Model):
     """
     company = models.CharField(max_length=50)
     contact = models.CharField(max_length=50)
-    address = models.CharField(max_length=50)
     telephone = models.CharField(max_length=50)
     email = models.EmailField(max_length=254)
-    city = models.CharField(max_length=50)
-    department = models.CharField( max_length=50)
     device_descriptor = models.ForeignKey(DeviceDescriptor, on_delete=models.CASCADE)
 
 class RulsetInfo(models.Model):
@@ -89,8 +66,6 @@ class RulsetInfo(models.Model):
     """
     authority = models.CharField(max_length=50)
     rulsetId = models.CharField(max_length=50)
-    max_Location_Change = models.FloatField(blank=True)
-    max_Polling_Secs = models.FloatField(blank=True)
 
 
 class EventTime(models.Model):
@@ -101,27 +76,15 @@ class EventTime(models.Model):
     stop_Time = models.DateTimeField(auto_now=False, auto_now_add=False)
 
 class Spectrum(models.Model):
-    resolution_Bw_Hz = models.FloatField()
-    profiles = JSONField()
+    operation = models.CharField(max_length=50)
+    channels = models.IntegerField()
     geolocation = models.ForeignKey(Geolocation, on_delete=models.CASCADE)
-
-class SpectrumProfilePoint(models.Model):
-    hz = models.FloatField()
-    dbm = models.FloatField()
-    
-class SpectrumProfile(models.Model):
-    """Se caracteriza por una lista ordenada de la potencia maxima permitida
-    """
-    list1= models.ForeignKey(SpectrumProfilePoint, on_delete=models.CASCADE)
-    rulsetinfo = models.ForeignKey(RulsetInfo, on_delete=models.CASCADE)
-
 
 class SpectrumSchedule(models.Model):
     """Indica el periodo de tiempo sobre el cual ese espectro esta disponible
     """
     eventTime = models.ForeignKey(EventTime, on_delete=models.CASCADE)
     spectrum = models.ForeignKey(Spectrum, on_delete=models.CASCADE)
-
 
 class SpectrumSpec(models.Model):
     """Muestra la disponibilidad de espectro para un conjunto de reglas
