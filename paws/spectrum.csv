@@ -1,0 +1,5846 @@
+geolocation_id,channels,operation,id
+5001,33,Local sin ánimo de lucro,1
+5001,19,Nacional privado futuro,2
+5001,14,Nacional privado,3
+5001,15,Nacional privado,4
+5001,16,Nacional público,5
+5001,18,Regional público,6
+5001,28,Local con ánimo de lucro,7
+5002,19,Nacional privado futuro,8
+5002,14,Nacional privado,9
+5002,15,Nacional privado,10
+5002,16,Nacional público,11
+5002,18,Regional público,12
+5004,19,Nacional privado futuro,13
+5004,16,Nacional público,14
+5004,18,Regional público,15
+5004,14,Nacional privado,16
+5004,15,Nacional privado,17
+5021,19,Nacional privado futuro,18
+5021,16,Nacional público,19
+5021,18,Regional público,20
+5021,21,Nacional privado,21
+5021,42,Nacional privado,22
+5030,19,Nacional privado futuro,23
+5030,14,Nacional privado,24
+5030,15,Nacional privado,25
+5030,16,Nacional público,26
+5030,18,Regional público,27
+5031,19,Nacional privado futuro,28
+5031,43,Nacional privado,29
+5031,44,Nacional privado,30
+5031,16,Nacional público,31
+5031,18,Regional público,32
+5034,19,Nacional privado futuro,33
+5034,14,Nacional privado,34
+5034,15,Nacional privado,35
+5034,16,Nacional público,36
+5034,18,Regional público,37
+5036,19,Nacional privado futuro,38
+5036,14,Nacional privado,39
+5036,15,Nacional privado,40
+5036,16,Nacional público,41
+5036,18,Regional público,42
+5038,19,Nacional privado futuro,43
+5038,43,Nacional privado,44
+5038,44,Nacional privado,45
+5038,16,Nacional público,46
+5038,18,Regional público,47
+5038,21,Local sin ánimo de lucro,48
+5040,46,Nacional privado futuro,49
+5040,43,Nacional privado,50
+5040,44,Nacional privado,51
+5040,16,Nacional público,52
+5040,18,Regional público,53
+5042,19,Nacional privado futuro,54
+5042,14,Nacional privado,55
+5042,15,Nacional privado,56
+5042,16,Nacional público,57
+5042,18,Regional público,58
+5044,19,Nacional privado futuro,59
+5044,14,Nacional privado,60
+5044,15,Nacional privado,61
+5044,16,Nacional público,62
+5044,18,Regional público,63
+5045,38,Nacional privado futuro,64
+5045,28,Nacional público,65
+5045,27,Regional público,66
+5045,21,Nacional privado,67
+5045,24,Nacional privado,68
+5045,32,Local con ánimo de lucro,69
+5051,33,Nacional privado,70
+5051,32,Nacional privado,71
+5051,19,Nacional privado futuro,72
+5051,16,Nacional público,73
+5051,18,Regional público,74
+5055,18,Regional público,75
+5055,14,Nacional privado,76
+5055,15,Nacional privado,77
+5055,35,Nacional público,78
+5055,19,Nacional privado futuro,79
+5059,19,Nacional privado futuro,80
+5059,14,Nacional privado,81
+5059,15,Nacional privado,82
+5059,16,Nacional público,83
+5059,18,Regional público,84
+5079,33,Local sin ánimo de lucro,85
+5079,19,Nacional privado futuro,86
+5079,14,Nacional privado,87
+5079,15,Nacional privado,88
+5079,16,Nacional público,89
+5079,18,Regional público,90
+5079,28,Local con ánimo de lucro,91
+5086,19,Nacional privado futuro,92
+5086,16,Nacional público,93
+5086,18,Regional público,94
+5086,14,Nacional privado,95
+5086,15,Nacional privado,96
+5088,33,Local sin ánimo de lucro,97
+5088,19,Nacional privado futuro,98
+5088,14,Nacional privado,99
+5088,15,Nacional privado,100
+5088,16,Nacional público,101
+5088,18,Regional público,102
+5088,28,Local con ánimo de lucro,103
+5091,19,Nacional privado futuro,104
+5091,16,Nacional público,105
+5091,18,Regional público,106
+5091,14,Nacional privado,107
+5091,15,Nacional privado,108
+5093,19,Nacional privado futuro,109
+5093,14,Nacional privado,110
+5093,15,Nacional privado,111
+5093,16,Nacional público,112
+5093,18,Regional público,113
+5101,19,Nacional privado futuro,114
+5101,14,Nacional privado,115
+5101,15,Nacional privado,116
+5101,16,Nacional público,117
+5101,18,Regional público,118
+5107,46,Nacional privado futuro,119
+5107,43,Nacional privado,120
+5107,44,Nacional privado,121
+5107,16,Nacional público,122
+5107,18,Regional público,123
+5113,19,Nacional privado futuro,124
+5113,14,Nacional privado,125
+5113,15,Nacional privado,126
+5113,16,Nacional público,127
+5113,18,Regional público,128
+5120,46,Nacional privado futuro,129
+5120,43,Nacional privado,130
+5120,44,Nacional privado,131
+5120,16,Nacional público,132
+5120,18,Regional público,133
+5125,19,Nacional privado futuro,134
+5125,14,Nacional privado,135
+5125,15,Nacional privado,136
+5125,16,Nacional público,137
+5125,18,Regional público,138
+5129,33,Local sin ánimo de lucro,139
+5129,14,Nacional privado,140
+5129,15,Nacional privado,141
+5129,16,Nacional público,142
+5129,18,Regional público,143
+5129,19,Nacional privado futuro,144
+5129,28,Local con ánimo de lucro,145
+5134,43,Nacional privado,146
+5134,25,Nacional privado,147
+5134,16,Nacional público,148
+5134,18,Regional público,149
+5134,19,Nacional privado futuro,150
+5138,19,Nacional privado futuro,151
+5138,14,Nacional privado,152
+5138,15,Nacional privado,153
+5138,16,Nacional público,154
+5138,18,Regional público,155
+5142,19,Nacional privado futuro,156
+5142,14,Nacional privado,157
+5142,15,Nacional privado,158
+5142,16,Nacional público,159
+5142,18,Regional público,160
+5145,38,Nacional público,161
+5145,41,Nacional privado,162
+5145,42,Nacional privado,163
+5145,18,Regional público,164
+5145,27,Nacional privado futuro,165
+5147,38,Nacional privado futuro,166
+5147,28,Nacional público,167
+5147,27,Regional público,168
+5147,21,Nacional privado,169
+5147,24,Nacional privado,170
+5148,19,Nacional privado futuro,171
+5148,14,Nacional privado,172
+5148,15,Nacional privado,173
+5148,16,Nacional público,174
+5148,18,Regional público,175
+5150,19,Nacional privado futuro,176
+5150,16,Nacional público,177
+5150,18,Regional público,178
+5150,43,Nacional privado,179
+5150,25,Nacional privado,180
+5154,19,Nacional privado futuro,181
+5154,43,Nacional privado,182
+5154,44,Nacional privado,183
+5154,16,Nacional público,184
+5154,18,Regional público,185
+5172,38,Nacional privado futuro,186
+5172,28,Nacional público,187
+5172,27,Regional público,188
+5172,21,Nacional privado,189
+5172,24,Nacional privado,190
+5190,19,Nacional privado futuro,191
+5190,16,Nacional público,192
+5190,18,Regional público,193
+5190,14,Nacional privado,194
+5190,15,Nacional privado,195
+5197,19,Nacional privado futuro,196
+5197,18,Regional público,197
+5197,14,Nacional privado,198
+5197,15,Nacional privado,199
+5197,16,Nacional público,200
+5206,19,Nacional privado futuro,201
+5206,16,Nacional público,202
+5206,18,Regional público,203
+5206,14,Nacional privado,204
+5206,15,Nacional privado,205
+5209,19,Nacional privado futuro,206
+5209,16,Nacional público,207
+5209,18,Regional público,208
+5209,14,Nacional privado,209
+5209,15,Nacional privado,210
+5212,33,Local sin ánimo de lucro,211
+5212,19,Nacional privado futuro,212
+5212,14,Nacional privado,213
+5212,15,Nacional privado,214
+5212,16,Nacional público,215
+5212,18,Regional público,216
+5212,28,Local con ánimo de lucro,217
+5234,19,Nacional privado futuro,218
+5234,14,Nacional privado,219
+5234,15,Nacional privado,220
+5234,16,Nacional público,221
+5234,18,Regional público,222
+5237,14,Nacional privado,223
+5237,15,Nacional privado,224
+5237,16,Nacional público,225
+5237,18,Regional público,226
+5237,19,Nacional privado futuro,227
+5240,19,Nacional privado futuro,228
+5240,16,Nacional público,229
+5240,18,Regional público,230
+5240,14,Nacional privado,231
+5240,15,Nacional privado,232
+5250,46,Nacional privado futuro,233
+5250,43,Nacional privado,234
+5250,44,Nacional privado,235
+5250,16,Nacional público,236
+5250,18,Regional público,237
+5264,19,Nacional privado futuro,238
+5264,16,Nacional público,239
+5264,18,Regional público,240
+5264,14,Nacional privado,241
+5264,15,Nacional privado,242
+5266,33,Local sin ánimo de lucro,243
+5266,19,Nacional privado futuro,244
+5266,14,Nacional privado,245
+5266,15,Nacional privado,246
+5266,16,Nacional público,247
+5266,18,Regional público,248
+5266,28,Local con ánimo de lucro,249
+5282,19,Nacional privado futuro,250
+5282,16,Nacional público,251
+5282,18,Regional público,252
+5282,14,Nacional privado,253
+5282,15,Nacional privado,254
+5284,19,Nacional privado futuro,255
+5284,14,Nacional privado,256
+5284,15,Nacional privado,257
+5284,16,Nacional público,258
+5284,18,Regional público,259
+5306,19,Nacional privado futuro,260
+5306,14,Nacional privado,261
+5306,15,Nacional privado,262
+5306,16,Nacional público,263
+5306,18,Regional público,264
+5308,33,Local sin ánimo de lucro,265
+5308,19,Nacional privado futuro,266
+5308,14,Nacional privado,267
+5308,15,Nacional privado,268
+5308,16,Nacional público,269
+5308,18,Regional público,270
+5308,28,Local con ánimo de lucro,271
+5310,19,Nacional privado futuro,272
+5310,16,Nacional público,273
+5310,18,Regional público,274
+5310,21,Nacional privado,275
+5310,42,Nacional privado,276
+5313,19,Nacional privado futuro,277
+5313,16,Nacional público,278
+5313,18,Regional público,279
+5313,14,Nacional privado,280
+5313,15,Nacional privado,281
+5315,19,Nacional privado futuro,282
+5315,49,Nacional privado,283
+5315,45,Nacional privado,284
+5315,16,Nacional público,285
+5315,18,Regional público,286
+5318,19,Nacional privado futuro,287
+5318,14,Nacional privado,288
+5318,15,Nacional privado,289
+5318,16,Nacional público,290
+5318,18,Regional público,291
+5321,19,Nacional privado futuro,292
+5321,14,Nacional privado,293
+5321,15,Nacional privado,294
+5321,16,Nacional público,295
+5321,18,Regional público,296
+5347,19,Nacional privado futuro,297
+5347,16,Nacional público,298
+5347,18,Regional público,299
+5347,14,Nacional privado,300
+5347,15,Nacional privado,301
+5353,14,Nacional privado,302
+5353,15,Nacional privado,303
+5353,16,Nacional público,304
+5353,18,Regional público,305
+5353,19,Nacional privado futuro,306
+5360,33,Local sin ánimo de lucro,307
+5360,19,Nacional privado futuro,308
+5360,14,Nacional privado,309
+5360,15,Nacional privado,310
+5360,16,Nacional público,311
+5360,18,Regional público,312
+5360,28,Local con ánimo de lucro,313
+5361,19,Nacional privado futuro,314
+5361,14,Nacional privado,315
+5361,15,Nacional privado,316
+5361,16,Nacional público,317
+5361,18,Regional público,318
+5364,19,Nacional privado futuro,319
+5364,16,Nacional público,320
+5364,18,Regional público,321
+5364,14,Nacional privado,322
+5364,15,Nacional privado,323
+5368,19,Nacional privado futuro,324
+5368,16,Nacional público,325
+5368,18,Regional público,326
+5368,14,Nacional privado,327
+5368,15,Nacional privado,328
+5376,19,Nacional privado futuro,329
+5376,14,Nacional privado,330
+5376,15,Nacional privado,331
+5376,16,Nacional público,332
+5376,18,Regional público,333
+5380,33,Local sin ánimo de lucro,334
+5380,19,Nacional privado futuro,335
+5380,14,Nacional privado,336
+5380,15,Nacional privado,337
+5380,16,Nacional público,338
+5380,18,Regional público,339
+5380,28,Local con ánimo de lucro,340
+5390,14,Nacional privado,341
+5390,15,Nacional privado,342
+5390,16,Nacional público,343
+5390,18,Regional público,344
+5390,19,Nacional privado futuro,345
+5400,19,Nacional privado futuro,346
+5400,14,Nacional privado,347
+5400,15,Nacional privado,348
+5400,16,Nacional público,349
+5400,18,Regional público,350
+5411,19,Nacional privado futuro,351
+5411,16,Nacional público,352
+5411,18,Regional público,353
+5411,14,Nacional privado,354
+5411,15,Nacional privado,355
+5425,16,Nacional público,356
+5425,18,Regional público,357
+5425,21,Nacional privado,358
+5425,42,Nacional privado,359
+5425,19,Nacional privado futuro,360
+5440,19,Nacional privado futuro,361
+5440,14,Nacional privado,362
+5440,15,Nacional privado,363
+5440,18,Regional público,364
+5440,16,Nacional público,365
+5467,14,Nacional privado,366
+5467,15,Nacional privado,367
+5467,16,Nacional público,368
+5467,18,Regional público,369
+5467,19,Nacional privado futuro,370
+5475,21,Nacional privado,371
+5475,24,Nacional privado,372
+5475,16,Nacional público,373
+5475,18,Regional público,374
+5475,19,Nacional privado futuro,375
+5480,19,Nacional privado futuro,376
+5480,16,Nacional público,377
+5480,18,Regional público,378
+5480,21,Nacional privado,379
+5480,24,Nacional privado,380
+5483,19,Nacional privado futuro,381
+5483,21,Nacional privado,382
+5483,42,Nacional privado,383
+5483,16,Nacional público,384
+5483,18,Regional público,385
+5490,28,Nacional público,386
+5490,27,Regional público,387
+5490,27,Nacional privado futuro,388
+5490,21,Nacional privado,389
+5490,24,Nacional privado,390
+5495,46,Nacional privado futuro,391
+5495,43,Nacional privado,392
+5495,44,Nacional privado,393
+5495,16,Nacional público,394
+5495,18,Regional público,395
+5501,19,Nacional privado futuro,396
+5501,14,Nacional privado,397
+5501,15,Nacional privado,398
+5501,16,Nacional público,399
+5501,18,Regional público,400
+5541,19,Nacional privado futuro,401
+5541,14,Nacional privado,402
+5541,15,Nacional privado,403
+5541,16,Nacional público,404
+5541,18,Regional público,405
+5543,14,Nacional privado,406
+5543,15,Nacional privado,407
+5543,16,Nacional público,408
+5543,18,Regional público,409
+5543,19,Nacional privado futuro,410
+5576,19,Nacional privado futuro,411
+5576,14,Nacional privado,412
+5576,15,Nacional privado,413
+5576,16,Nacional público,414
+5576,18,Regional público,415
+5579,18,Regional público,416
+5579,19,Nacional privado futuro,417
+5579,49,Nacional privado,418
+5579,45,Nacional privado,419
+5579,16,Nacional público,420
+5585,18,Regional público,421
+5585,19,Nacional privado futuro,422
+5585,49,Nacional privado,423
+5585,45,Nacional privado,424
+5585,16,Nacional público,425
+5591,19,Nacional privado futuro,426
+5591,49,Nacional privado,427
+5591,45,Nacional privado,428
+5591,16,Nacional público,429
+5591,18,Regional público,430
+5604,50,Nacional privado futuro,431
+5604,49,Nacional privado,432
+5604,45,Nacional privado,433
+5604,16,Nacional público,434
+5604,18,Regional público,435
+5607,19,Nacional privado futuro,436
+5607,16,Nacional público,437
+5607,18,Regional público,438
+5607,14,Nacional privado,439
+5607,15,Nacional privado,440
+5615,19,Nacional privado futuro,441
+5615,14,Nacional privado,442
+5615,15,Nacional privado,443
+5615,16,Nacional público,444
+5615,18,Regional público,445
+5615,28,Local con ánimo de lucro,446
+5628,19,Nacional privado futuro,447
+5628,16,Nacional público,448
+5628,18,Regional público,449
+5628,14,Nacional privado,450
+5628,15,Nacional privado,451
+5631,33,Local sin ánimo de lucro,452
+5631,19,Nacional privado futuro,453
+5631,14,Nacional privado,454
+5631,15,Nacional privado,455
+5631,16,Nacional público,456
+5631,18,Regional público,457
+5631,28,Local con ánimo de lucro,458
+5642,19,Nacional privado futuro,459
+5642,14,Nacional privado,460
+5642,15,Nacional privado,461
+5642,16,Nacional público,462
+5642,18,Regional público,463
+5647,19,Nacional privado futuro,464
+5647,16,Nacional público,465
+5647,18,Regional público,466
+5647,14,Nacional privado,467
+5647,15,Nacional privado,468
+5649,19,Nacional privado futuro,469
+5649,14,Nacional privado,470
+5649,15,Nacional privado,471
+5649,16,Nacional público,472
+5649,18,Regional público,473
+5652,19,Nacional privado futuro,474
+5652,14,Nacional privado,475
+5652,15,Nacional privado,476
+5652,16,Nacional público,477
+5652,18,Regional público,478
+5656,19,Nacional privado futuro,479
+5656,14,Nacional privado,480
+5656,15,Nacional privado,481
+5656,16,Nacional público,482
+5656,18,Regional público,483
+5658,19,Nacional privado futuro,484
+5658,16,Nacional público,485
+5658,18,Regional público,486
+5658,14,Nacional privado,487
+5658,15,Nacional privado,488
+5659,19,Nacional privado futuro,489
+5659,33,Nacional privado,490
+5659,32,Nacional privado,491
+5659,16,Nacional público,492
+5659,18,Regional público,493
+5660,19,Nacional privado futuro,494
+5660,16,Nacional público,495
+5660,18,Regional público,496
+5660,21,Nacional privado,497
+5660,42,Nacional privado,498
+5664,19,Nacional privado futuro,499
+5664,14,Nacional privado,500
+5664,15,Nacional privado,501
+5664,16,Nacional público,502
+5664,18,Regional público,503
+5665,19,Nacional privado futuro,504
+5665,14,Nacional privado,505
+5665,15,Nacional privado,506
+5665,16,Nacional público,507
+5665,18,Regional público,508
+5667,19,Nacional privado futuro,509
+5667,14,Nacional privado,510
+5667,15,Nacional privado,511
+5667,16,Nacional público,512
+5667,18,Regional público,513
+5670,50,Nacional privado futuro,514
+5670,49,Nacional privado,515
+5670,45,Nacional privado,516
+5670,16,Nacional público,517
+5670,18,Regional público,518
+5674,19,Nacional privado futuro,519
+5674,14,Nacional privado,520
+5674,15,Nacional privado,521
+5674,16,Nacional público,522
+5674,18,Regional público,523
+5679,19,Nacional privado futuro,524
+5679,38,Nacional público,525
+5679,18,Regional público,526
+5679,41,Nacional privado,527
+5679,42,Nacional privado,528
+5686,19,Nacional privado futuro,529
+5686,14,Nacional privado,530
+5686,15,Nacional privado,531
+5686,16,Nacional público,532
+5686,18,Regional público,533
+5690,19,Nacional privado futuro,534
+5690,49,Nacional privado,535
+5690,45,Nacional privado,536
+5690,16,Nacional público,537
+5690,18,Regional público,538
+5697,19,Nacional privado futuro,539
+5697,26,Nacional privado,540
+5697,27,Nacional privado,541
+5697,16,Nacional público,542
+5697,18,Regional público,543
+5736,46,Nacional privado futuro,544
+5736,43,Nacional privado,545
+5736,44,Nacional privado,546
+5736,16,Nacional público,547
+5736,18,Regional público,548
+5756,19,Nacional privado futuro,549
+5756,14,Nacional privado,550
+5756,15,Nacional privado,551
+5756,16,Nacional público,552
+5756,18,Regional público,553
+5761,19,Nacional privado futuro,554
+5761,14,Nacional privado,555
+5761,15,Nacional privado,556
+5761,16,Nacional público,557
+5761,18,Regional público,558
+5789,19,Nacional privado futuro,559
+5789,14,Nacional privado,560
+5789,15,Nacional privado,561
+5789,16,Nacional público,562
+5789,18,Regional público,563
+5790,19,Nacional privado futuro,564
+5790,16,Nacional público,565
+5790,18,Regional público,566
+5790,26,Nacional privado,567
+5790,25,Nacional privado,568
+5792,19,Nacional privado futuro,569
+5792,14,Nacional privado,570
+5792,15,Nacional privado,571
+5792,16,Nacional público,572
+5792,18,Regional público,573
+5809,19,Nacional privado futuro,574
+5809,14,Nacional privado,575
+5809,15,Nacional privado,576
+5809,16,Nacional público,577
+5809,18,Regional público,578
+5819,19,Nacional privado futuro,579
+5819,16,Nacional público,580
+5819,18,Regional público,581
+5819,14,Nacional privado,582
+5819,15,Nacional privado,583
+5837,30,Local sin ánimo de lucro,584
+5837,38,Nacional privado futuro,585
+5837,28,Nacional público,586
+5837,27,Regional público,587
+5837,21,Nacional privado,588
+5837,24,Nacional privado,589
+5837,31,Local con ánimo de lucro,590
+5842,14,Nacional privado,591
+5842,15,Nacional privado,592
+5842,16,Nacional público,593
+5842,18,Regional público,594
+5842,19,Nacional privado futuro,595
+5847,19,Nacional privado futuro,596
+5847,14,Nacional privado,597
+5847,15,Nacional privado,598
+5847,16,Nacional público,599
+5847,18,Regional público,600
+5854,46,Nacional privado futuro,601
+5854,43,Nacional privado,602
+5854,44,Nacional privado,603
+5854,16,Nacional público,604
+5854,18,Regional público,605
+5856,19,Nacional privado futuro,606
+5856,14,Nacional privado,607
+5856,15,Nacional privado,608
+5856,16,Nacional público,609
+5856,18,Regional público,610
+5858,19,Nacional privado futuro,611
+5858,49,Nacional privado,612
+5858,45,Nacional privado,613
+5858,35,Nacional público,614
+5858,18,Regional público,615
+5861,19,Nacional privado futuro,616
+5861,14,Nacional privado,617
+5861,15,Nacional privado,618
+5861,16,Nacional público,619
+5861,18,Regional público,620
+5873,21,Nacional público,621
+5873,14,Nacional privado,622
+5873,15,Nacional privado,623
+5873,18,Regional público,624
+5873,19,Nacional privado futuro,625
+5885,19,Nacional privado futuro,626
+5885,49,Nacional privado,627
+5885,45,Nacional privado,628
+5885,35,Nacional público,629
+5885,18,Regional público,630
+5887,14,Nacional privado,631
+5887,15,Nacional privado,632
+5887,19,Nacional privado futuro,633
+5887,16,Nacional público,634
+5887,18,Regional público,635
+5890,19,Nacional privado futuro,636
+5890,49,Nacional privado,637
+5890,45,Nacional privado,638
+5890,16,Nacional público,639
+5890,18,Regional público,640
+5893,27,Nacional público,641
+5893,19,Nacional privado futuro,642
+5893,49,Nacional privado,643
+5893,45,Nacional privado,644
+5893,18,Regional público,645
+5895,46,Nacional privado futuro,646
+5895,43,Nacional privado,647
+5895,44,Nacional privado,648
+5895,16,Nacional público,649
+5895,18,Regional público,650
+8001,21,Local sin ánimo de lucro,651
+8001,19,Nacional privado futuro,652
+8001,14,Nacional privado,653
+8001,15,Nacional privado,654
+8001,16,Nacional público,655
+8001,17,Regional público,656
+8001,25,Local con ánimo de lucro,657
+8078,38,Nacional privado futuro,658
+8078,16,Nacional público,659
+8078,17,Regional público,660
+8078,21,Local sin ánimo de lucro,661
+8078,34,Nacional privado,662
+8078,32,Nacional privado,663
+8078,22,Local con ánimo de lucro,664
+8137,38,Nacional privado futuro,665
+8137,16,Nacional público,666
+8137,17,Regional público,667
+8137,34,Nacional privado,668
+8137,32,Nacional privado,669
+8141,38,Nacional privado futuro,670
+8141,16,Nacional público,671
+8141,17,Regional público,672
+8141,34,Nacional privado,673
+8141,32,Nacional privado,674
+8296,19,Nacional privado futuro,675
+8296,16,Nacional público,676
+8296,17,Regional público,677
+8296,34,Nacional privado,678
+8296,32,Nacional privado,679
+8296,25,Local con ánimo de lucro,680
+8372,38,Nacional privado futuro,681
+8372,33,Nacional público,682
+8372,48,Regional público,683
+8372,34,Nacional privado,684
+8372,32,Nacional privado,685
+8421,38,Nacional privado futuro,686
+8421,16,Nacional público,687
+8421,17,Regional público,688
+8421,34,Nacional privado,689
+8421,32,Nacional privado,690
+8433,19,Nacional privado futuro,691
+8433,16,Nacional público,692
+8433,17,Regional público,693
+8433,14,Nacional privado,694
+8433,15,Nacional privado,695
+8433,25,Local con ánimo de lucro,696
+8436,38,Nacional privado futuro,697
+8436,16,Nacional público,698
+8436,17,Regional público,699
+8436,34,Nacional privado,700
+8436,32,Nacional privado,701
+8520,19,Nacional privado futuro,702
+8520,16,Nacional público,703
+8520,17,Regional público,704
+8520,14,Nacional privado,705
+8520,15,Nacional privado,706
+8549,38,Nacional privado futuro,707
+8549,16,Nacional público,708
+8549,17,Regional público,709
+8549,34,Nacional privado,710
+8549,32,Nacional privado,711
+8558,38,Nacional privado futuro,712
+8558,16,Nacional público,713
+8558,17,Regional público,714
+8558,34,Nacional privado,715
+8558,32,Nacional privado,716
+8560,38,Nacional privado futuro,717
+8560,16,Nacional público,718
+8560,17,Regional público,719
+8560,34,Nacional privado,720
+8560,32,Nacional privado,721
+8573,38,Nacional privado futuro,722
+8573,33,Nacional público,723
+8573,48,Regional público,724
+8573,34,Nacional privado,725
+8573,32,Nacional privado,726
+8573,25,Local con ánimo de lucro,727
+8606,38,Nacional privado futuro,728
+8606,16,Nacional público,729
+8606,17,Regional público,730
+8606,34,Nacional privado,731
+8606,32,Nacional privado,732
+8634,38,Nacional privado futuro,733
+8634,16,Nacional público,734
+8634,17,Regional público,735
+8634,34,Nacional privado,736
+8634,32,Nacional privado,737
+8634,26,Local con ánimo de lucro,738
+8634,21,Local sin ánimo de lucro,739
+8638,38,Nacional privado futuro,740
+8638,16,Nacional público,741
+8638,17,Regional público,742
+8638,34,Nacional privado,743
+8638,32,Nacional privado,744
+8675,38,Nacional privado futuro,745
+8675,16,Nacional público,746
+8675,17,Regional público,747
+8675,34,Nacional privado,748
+8675,32,Nacional privado,749
+8685,19,Nacional privado futuro,750
+8685,16,Nacional público,751
+8685,17,Regional público,752
+8685,14,Nacional privado,753
+8685,15,Nacional privado,754
+8758,19,Nacional privado futuro,755
+8758,14,Nacional privado,756
+8758,15,Nacional privado,757
+8758,16,Nacional público,758
+8758,17,Regional público,759
+8758,25,Local con ánimo de lucro,760
+8758,21,Local sin ánimo de lucro,761
+8770,38,Nacional privado futuro,762
+8770,16,Nacional público,763
+8770,17,Regional público,764
+8770,34,Nacional privado,765
+8770,32,Nacional privado,766
+8832,38,Nacional privado futuro,767
+8832,16,Nacional público,768
+8832,17,Regional público,769
+8832,34,Nacional privado,770
+8832,32,Nacional privado,771
+8849,38,Nacional privado futuro,772
+8849,16,Nacional público,773
+8849,17,Regional público,774
+8849,34,Nacional privado,775
+8849,32,Nacional privado,776
+11001,29,Local sin ánimo de lucro,777
+11001,30,Local sin ánimo de lucro,778
+11001,19,Nacional privado futuro,779
+11001,14,Nacional privado,780
+11001,15,Nacional privado,781
+11001,19,Nacional privado futuro,782
+11001,28,Regional público,783
+11001,27,Local con ánimo de lucro,784
+11001,16,Nacional público,785
+11001,17,Regional público,786
+11001,28,Regional público,787
+11001,16,Nacional público,788
+11001,19,Nacional privado futuro,789
+11001,17,Regional público,790
+11001,28,Regional público,791
+11001,16,Nacional público,792
+11001,17,Regional público,793
+11001,14,Nacional privado,794
+11001,15,Nacional privado,795
+11001,14,Nacional privado,796
+11001,15,Nacional privado,797
+13001,27,Local sin ánimo de lucro,798
+13001,19,Nacional privado futuro,799
+13001,14,Nacional privado,800
+13001,15,Nacional privado,801
+13001,16,Nacional público,802
+13001,17,Regional público,803
+13001,25,Local con ánimo de lucro,804
+13006,50,Nacional privado futuro,805
+13006,49,Nacional privado,806
+13006,45,Nacional privado,807
+13006,16,Nacional público,808
+13006,17,Regional público,809
+13030,27,Nacional público,810
+13030,29,Regional público,811
+13030,49,Nacional privado,812
+13030,45,Nacional privado,813
+13030,19,Nacional privado futuro,814
+13042,27,Nacional público,815
+13042,29,Regional público,816
+13042,49,Nacional privado,817
+13042,45,Nacional privado,818
+13042,50,Nacional privado futuro,819
+13052,33,Nacional público,820
+13052,48,Regional público,821
+13052,19,Nacional privado futuro,822
+13052,14,Nacional privado,823
+13052,15,Nacional privado,824
+13062,16,Nacional público,825
+13062,17,Regional público,826
+13062,14,Nacional privado,827
+13062,15,Nacional privado,828
+13062,19,Nacional privado futuro,829
+13074,50,Nacional privado futuro,830
+13074,49,Nacional privado,831
+13074,45,Nacional privado,832
+13074,27,Nacional público,833
+13074,29,Regional público,834
+13140,38,Nacional privado futuro,835
+13140,16,Nacional público,836
+13140,17,Regional público,837
+13140,34,Nacional privado,838
+13140,32,Nacional privado,839
+13160,27,Nacional público,840
+13160,29,Regional público,841
+13160,49,Nacional privado,842
+13160,45,Nacional privado,843
+13160,50,Nacional privado futuro,844
+13188,49,Nacional privado,845
+13188,45,Nacional privado,846
+13188,27,Nacional público,847
+13188,17,Regional público,848
+13188,27,Nacional privado futuro,849
+13212,19,Nacional privado futuro,850
+13212,34,Nacional privado,851
+13212,32,Nacional privado,852
+13212,16,Nacional público,853
+13212,17,Regional público,854
+13222,16,Nacional público,855
+13222,17,Regional público,856
+13222,14,Nacional privado,857
+13222,15,Nacional privado,858
+13222,19,Nacional privado futuro,859
+13244,38,Nacional privado futuro,860
+13244,16,Nacional público,861
+13244,17,Regional público,862
+13244,14,Nacional privado,863
+13244,15,Nacional privado,864
+13248,38,Nacional privado futuro,865
+13248,33,Nacional público,866
+13248,48,Regional público,867
+13248,34,Nacional privado,868
+13248,32,Nacional privado,869
+13268,27,Nacional público,870
+13268,29,Regional público,871
+13268,49,Nacional privado,872
+13268,45,Nacional privado,873
+13268,27,Nacional privado futuro,874
+13300,27,Nacional público,875
+13300,29,Regional público,876
+13300,49,Nacional privado,877
+13300,45,Nacional privado,878
+13300,27,Nacional privado futuro,879
+13430,49,Nacional privado,880
+13430,45,Nacional privado,881
+13430,19,Nacional privado futuro,882
+13430,16,Nacional público,883
+13430,17,Regional público,884
+13430,22,Local con ánimo de lucro,885
+13433,38,Nacional privado futuro,886
+13433,16,Nacional público,887
+13433,17,Regional público,888
+13433,34,Nacional privado,889
+13433,32,Nacional privado,890
+13440,50,Nacional privado futuro,891
+13440,49,Nacional privado,892
+13440,45,Nacional privado,893
+13440,27,Nacional público,894
+13440,29,Regional público,895
+13442,38,Nacional privado futuro,896
+13442,16,Nacional público,897
+13442,17,Regional público,898
+13442,14,Nacional privado,899
+13442,15,Nacional privado,900
+13458,43,Nacional privado,901
+13458,25,Nacional privado,902
+13458,34,Nacional público,903
+13458,29,Regional público,904
+13458,27,Nacional privado futuro,905
+13468,50,Nacional privado futuro,906
+13468,49,Nacional privado,907
+13468,45,Nacional privado,908
+13468,27,Nacional público,909
+13468,29,Regional público,910
+13473,50,Nacional privado futuro,911
+13473,49,Nacional privado,912
+13473,45,Nacional privado,913
+13473,27,Nacional público,914
+13473,29,Regional público,915
+13490,26,Nacional privado,916
+13490,28,Nacional privado,917
+13490,34,Nacional público,918
+13490,29,Regional público,919
+13490,27,Nacional privado futuro,920
+13549,50,Nacional privado futuro,921
+13549,49,Nacional privado,922
+13549,45,Nacional privado,923
+13549,27,Nacional público,924
+13549,29,Regional público,925
+13580,27,Nacional público,926
+13580,29,Regional público,927
+13580,49,Nacional privado,928
+13580,45,Nacional privado,929
+13580,27,Nacional privado futuro,930
+13600,50,Nacional privado futuro,931
+13600,49,Nacional privado,932
+13600,45,Nacional privado,933
+13600,27,Nacional público,934
+13600,29,Regional público,935
+13620,38,Nacional privado futuro,936
+13620,16,Nacional público,937
+13620,17,Regional público,938
+13620,34,Nacional privado,939
+13620,32,Nacional privado,940
+13647,38,Nacional privado futuro,941
+13647,16,Nacional público,942
+13647,17,Regional público,943
+13647,34,Nacional privado,944
+13647,32,Nacional privado,945
+13650,50,Nacional privado futuro,946
+13650,49,Nacional privado,947
+13650,45,Nacional privado,948
+13650,27,Nacional público,949
+13650,29,Regional público,950
+13654,38,Nacional privado futuro,951
+13654,16,Nacional público,952
+13654,17,Regional público,953
+13654,14,Nacional privado,954
+13654,15,Nacional privado,955
+13655,16,Nacional público,956
+13655,17,Regional público,957
+13655,43,Nacional privado,958
+13655,25,Nacional privado,959
+13655,19,Nacional privado futuro,960
+13657,38,Nacional privado futuro,961
+13657,16,Nacional público,962
+13657,17,Regional público,963
+13657,14,Nacional privado,964
+13657,15,Nacional privado,965
+13667,50,Nacional privado futuro,966
+13667,49,Nacional privado,967
+13667,45,Nacional privado,968
+13667,27,Nacional público,969
+13667,29,Regional público,970
+13670,50,Nacional privado futuro,971
+13670,49,Nacional privado,972
+13670,45,Nacional privado,973
+13670,27,Nacional público,974
+13670,29,Regional público,975
+13673,38,Nacional privado futuro,976
+13673,16,Nacional público,977
+13673,17,Regional público,978
+13673,34,Nacional privado,979
+13673,32,Nacional privado,980
+13683,38,Nacional privado futuro,981
+13683,16,Nacional público,982
+13683,17,Regional público,983
+13683,14,Nacional privado,984
+13683,15,Nacional privado,985
+13688,50,Nacional privado futuro,986
+13688,49,Nacional privado,987
+13688,45,Nacional privado,988
+13688,27,Nacional público,989
+13688,29,Regional público,990
+13744,50,Nacional privado futuro,991
+13744,49,Nacional privado,992
+13744,45,Nacional privado,993
+13744,27,Nacional público,994
+13744,29,Regional público,995
+13760,38,Nacional privado futuro,996
+13760,16,Nacional público,997
+13760,17,Regional público,998
+13760,34,Nacional privado,999
+13760,32,Nacional privado,1000
+13780,50,Nacional privado futuro,1001
+13780,14,Nacional privado,1002
+13780,15,Nacional privado,1003
+13780,27,Nacional público,1004
+13780,29,Regional público,1005
+13810,49,Nacional privado,1006
+13810,45,Nacional privado,1007
+13810,34,Nacional público,1008
+13810,29,Regional público,1009
+13810,19,Nacional privado futuro,1010
+13836,16,Nacional público,1011
+13836,17,Regional público,1012
+13836,19,Nacional privado futuro,1013
+13836,14,Nacional privado,1014
+13836,15,Nacional privado,1015
+13836,26,Local con ánimo de lucro,1016
+13836,27,Local sin ánimo de lucro,1017
+13838,19,Nacional privado futuro,1018
+13838,14,Nacional privado,1019
+13838,15,Nacional privado,1020
+13838,16,Nacional público,1021
+13838,17,Regional público,1022
+13873,38,Nacional privado futuro,1023
+13873,33,Nacional público,1024
+13873,48,Regional público,1025
+13873,14,Nacional privado,1026
+13873,15,Nacional privado,1027
+13894,19,Nacional privado futuro,1028
+13894,49,Nacional privado,1029
+13894,45,Nacional privado,1030
+13894,16,Nacional público,1031
+13894,17,Regional público,1032
+15001,19,Nacional privado futuro,1033
+15001,23,Local sin ánimo de lucro,1034
+15001,14,Nacional privado,1035
+15001,15,Nacional privado,1036
+15001,17,Regional público,1037
+15001,16,Nacional público,1038
+15001,24,Local con ánimo de lucro,1039
+15022,19,Nacional privado futuro,1040
+15022,16,Nacional público,1041
+15022,17,Regional público,1042
+15022,14,Nacional privado,1043
+15022,15,Nacional privado,1044
+15047,19,Nacional privado futuro,1045
+15047,14,Nacional privado,1046
+15047,15,Nacional privado,1047
+15047,17,Regional público,1048
+15047,16,Nacional público,1049
+15051,29,Nacional privado futuro,1050
+15051,40,Nacional público,1051
+15051,39,Regional público,1052
+15051,43,Nacional privado,1053
+15051,42,Nacional privado,1054
+15087,19,Nacional privado futuro,1055
+15087,16,Nacional público,1056
+15087,17,Regional público,1057
+15087,14,Nacional privado,1058
+15087,15,Nacional privado,1059
+15090,19,Nacional privado futuro,1060
+15090,16,Nacional público,1061
+15090,17,Regional público,1062
+15090,14,Nacional privado,1063
+15090,15,Nacional privado,1064
+15092,19,Nacional privado futuro,1065
+15092,14,Nacional privado,1066
+15092,15,Nacional privado,1067
+15092,16,Nacional público,1068
+15092,18,Regional público,1069
+15097,19,Nacional privado futuro,1070
+15097,16,Nacional público,1071
+15097,17,Regional público,1072
+15097,14,Nacional privado,1073
+15097,15,Nacional privado,1074
+15104,19,Nacional privado futuro,1075
+15104,14,Nacional privado,1076
+15104,15,Nacional privado,1077
+15104,16,Nacional público,1078
+15104,17,Regional público,1079
+15106,47,Nacional privado futuro,1080
+15106,21,Nacional privado,1081
+15106,42,Nacional privado,1082
+15106,38,Nacional público,1083
+15106,39,Regional público,1084
+15109,47,Nacional privado futuro,1085
+15109,21,Nacional privado,1086
+15109,42,Nacional privado,1087
+15109,38,Nacional público,1088
+15109,39,Regional público,1089
+15114,19,Nacional privado futuro,1090
+15114,14,Nacional privado,1091
+15114,15,Nacional privado,1092
+15114,16,Nacional público,1093
+15114,17,Regional público,1094
+15131,47,Nacional privado futuro,1095
+15131,21,Nacional privado,1096
+15131,42,Nacional privado,1097
+15131,35,Nacional público,1098
+15131,39,Regional público,1099
+15135,19,Nacional privado futuro,1100
+15135,16,Nacional público,1101
+15135,17,Regional público,1102
+15135,14,Nacional privado,1103
+15135,15,Nacional privado,1104
+15162,19,Nacional privado futuro,1105
+15162,16,Nacional público,1106
+15162,17,Regional público,1107
+15162,14,Nacional privado,1108
+15162,15,Nacional privado,1109
+15172,16,Nacional público,1110
+15172,18,Regional público,1111
+15172,14,Nacional privado,1112
+15172,15,Nacional privado,1113
+15172,19,Nacional privado futuro,1114
+15176,47,Nacional privado futuro,1115
+15176,21,Nacional privado,1116
+15176,42,Nacional privado,1117
+15176,35,Nacional público,1118
+15176,39,Regional público,1119
+15180,19,Nacional privado futuro,1120
+15180,16,Nacional público,1121
+15180,17,Regional público,1122
+15180,38,Nacional privado,1123
+15180,39,Nacional privado,1124
+15183,19,Nacional privado futuro,1125
+15183,16,Nacional público,1126
+15183,17,Regional público,1127
+15183,38,Nacional privado,1128
+15183,39,Nacional privado,1129
+15185,47,Nacional privado futuro,1130
+15185,16,Nacional público,1131
+15185,17,Regional público,1132
+15185,43,Nacional privado,1133
+15185,46,Nacional privado,1134
+15187,19,Nacional privado futuro,1135
+15187,14,Nacional privado,1136
+15187,15,Nacional privado,1137
+15187,17,Regional público,1138
+15187,16,Nacional público,1139
+15189,27,Nacional privado futuro,1140
+15189,16,Nacional público,1141
+15189,17,Regional público,1142
+15189,21,Nacional privado,1143
+15189,42,Nacional privado,1144
+15204,19,Nacional privado futuro,1145
+15204,14,Nacional privado,1146
+15204,15,Nacional privado,1147
+15204,17,Regional público,1148
+15204,16,Nacional público,1149
+15212,47,Nacional privado futuro,1150
+15212,21,Nacional privado,1151
+15212,42,Nacional privado,1152
+15212,35,Nacional público,1153
+15212,39,Regional público,1154
+15215,19,Nacional privado futuro,1155
+15215,14,Nacional privado,1156
+15215,15,Nacional privado,1157
+15215,16,Nacional público,1158
+15215,17,Regional público,1159
+15218,19,Nacional privado futuro,1160
+15218,16,Nacional público,1161
+15218,17,Regional público,1162
+15218,14,Nacional privado,1163
+15218,15,Nacional privado,1164
+15223,19,Nacional privado futuro,1165
+15223,38,Nacional privado,1166
+15223,39,Nacional privado,1167
+15223,16,Nacional público,1168
+15223,18,Regional público,1169
+15224,43,Nacional privado,1170
+15224,46,Nacional privado,1171
+15224,29,Nacional privado futuro,1172
+15224,40,Nacional público,1173
+15224,39,Regional público,1174
+15226,19,Nacional privado futuro,1175
+15226,14,Nacional privado,1176
+15226,15,Nacional privado,1177
+15226,17,Regional público,1178
+15226,16,Nacional público,1179
+15232,47,Nacional privado futuro,1180
+15232,21,Nacional privado,1181
+15232,42,Nacional privado,1182
+15232,35,Nacional público,1183
+15232,39,Regional público,1184
+15236,14,Nacional privado,1185
+15236,15,Nacional privado,1186
+15236,35,Nacional público,1187
+15236,19,Nacional privado futuro,1188
+15236,39,Regional público,1189
+15238,19,Nacional privado futuro,1190
+15238,14,Nacional privado,1191
+15238,15,Nacional privado,1192
+15238,16,Nacional público,1193
+15238,17,Regional público,1194
+15238,24,Local con ánimo de lucro,1195
+15244,19,Nacional privado futuro,1196
+15244,16,Nacional público,1197
+15244,17,Regional público,1198
+15244,38,Nacional privado,1199
+15244,39,Nacional privado,1200
+15248,19,Nacional privado futuro,1201
+15248,16,Nacional público,1202
+15248,17,Regional público,1203
+15248,38,Nacional privado,1204
+15248,39,Nacional privado,1205
+15272,19,Nacional privado futuro,1206
+15272,14,Nacional privado,1207
+15272,15,Nacional privado,1208
+15272,17,Regional público,1209
+15272,16,Nacional público,1210
+15276,19,Nacional privado futuro,1211
+15276,16,Nacional público,1212
+15276,17,Regional público,1213
+15276,14,Nacional privado,1214
+15276,15,Nacional privado,1215
+15293,43,Nacional privado,1216
+15293,46,Nacional privado,1217
+15293,47,Nacional privado futuro,1218
+15293,35,Nacional público,1219
+15293,39,Regional público,1220
+15296,19,Nacional privado futuro,1221
+15296,14,Nacional privado,1222
+15296,15,Nacional privado,1223
+15296,16,Nacional público,1224
+15296,17,Regional público,1225
+15299,19,Nacional privado futuro,1226
+15299,14,Nacional privado,1227
+15299,15,Nacional privado,1228
+15299,16,Nacional público,1229
+15299,18,Regional público,1230
+15317,19,Nacional privado futuro,1231
+15317,16,Nacional público,1232
+15317,17,Regional público,1233
+15317,14,Nacional privado,1234
+15317,15,Nacional privado,1235
+15322,14,Nacional privado,1236
+15322,15,Nacional privado,1237
+15322,19,Nacional privado futuro,1238
+15322,16,Nacional público,1239
+15322,17,Regional público,1240
+15325,14,Nacional privado,1241
+15325,15,Nacional privado,1242
+15325,19,Nacional privado futuro,1243
+15325,16,Nacional público,1244
+15325,17,Regional público,1245
+15332,19,Nacional privado futuro,1246
+15332,16,Nacional público,1247
+15332,17,Regional público,1248
+15332,38,Nacional privado,1249
+15332,39,Nacional privado,1250
+15362,19,Nacional privado futuro,1251
+15362,14,Nacional privado,1252
+15362,15,Nacional privado,1253
+15362,17,Regional público,1254
+15362,16,Nacional público,1255
+15367,16,Nacional público,1256
+15367,17,Regional público,1257
+15367,14,Nacional privado,1258
+15367,15,Nacional privado,1259
+15367,19,Nacional privado futuro,1260
+15368,19,Nacional privado futuro,1261
+15368,16,Nacional público,1262
+15368,17,Regional público,1263
+15368,14,Nacional privado,1264
+15368,15,Nacional privado,1265
+15377,19,Nacional privado futuro,1266
+15377,14,Nacional privado,1267
+15377,15,Nacional privado,1268
+15377,16,Nacional público,1269
+15377,18,Regional público,1270
+15380,19,Nacional privado futuro,1271
+15380,16,Nacional público,1272
+15380,17,Regional público,1273
+15380,14,Nacional privado,1274
+15380,15,Nacional privado,1275
+15401,47,Nacional privado futuro,1276
+15401,21,Nacional privado,1277
+15401,42,Nacional privado,1278
+15401,35,Nacional público,1279
+15401,39,Regional público,1280
+15403,19,Nacional privado futuro,1281
+15403,16,Nacional público,1282
+15403,17,Regional público,1283
+15403,14,Nacional privado,1284
+15403,15,Nacional privado,1285
+15407,43,Nacional privado,1286
+15407,46,Nacional privado,1287
+15407,30,Nacional privado futuro,1288
+15407,40,Nacional público,1289
+15407,39,Regional público,1290
+15425,14,Nacional privado,1291
+15425,15,Nacional privado,1292
+15425,47,Nacional privado futuro,1293
+15425,16,Nacional público,1294
+15425,17,Regional público,1295
+15442,47,Nacional privado futuro,1296
+15442,21,Nacional privado,1297
+15442,42,Nacional privado,1298
+15442,35,Nacional público,1299
+15442,39,Regional público,1300
+15455,19,Nacional privado futuro,1301
+15455,16,Nacional público,1302
+15455,17,Regional público,1303
+15455,14,Nacional privado,1304
+15455,15,Nacional privado,1305
+15464,19,Nacional privado futuro,1306
+15464,14,Nacional privado,1307
+15464,15,Nacional privado,1308
+15464,16,Nacional público,1309
+15464,18,Regional público,1310
+15466,19,Nacional privado futuro,1311
+15466,14,Nacional privado,1312
+15466,15,Nacional privado,1313
+15466,16,Nacional público,1314
+15466,17,Regional público,1315
+15469,43,Nacional privado,1316
+15469,42,Nacional privado,1317
+15469,45,Nacional privado futuro,1318
+15469,40,Nacional público,1319
+15469,39,Regional público,1320
+15476,19,Nacional privado futuro,1321
+15476,17,Regional público,1322
+15476,16,Nacional público,1323
+15476,14,Nacional privado,1324
+15476,15,Nacional privado,1325
+15480,47,Nacional privado futuro,1326
+15480,21,Nacional privado,1327
+15480,42,Nacional privado,1328
+15480,35,Nacional público,1329
+15480,39,Regional público,1330
+15491,19,Nacional privado futuro,1331
+15491,14,Nacional privado,1332
+15491,15,Nacional privado,1333
+15491,16,Nacional público,1334
+15491,17,Regional público,1335
+15491,16,Nacional público,1336
+15491,17,Regional público,1337
+15494,16,Nacional público,1338
+15494,17,Regional público,1339
+15494,14,Nacional privado,1340
+15494,15,Nacional privado,1341
+15494,19,Nacional privado futuro,1342
+15500,19,Nacional privado futuro,1343
+15500,14,Nacional privado,1344
+15500,15,Nacional privado,1345
+15500,17,Regional público,1346
+15500,16,Nacional público,1347
+15507,43,Nacional privado futuro,1348
+15507,21,Nacional privado,1349
+15507,42,Nacional privado,1350
+15507,35,Nacional público,1351
+15507,39,Regional público,1352
+15511,19,Nacional privado futuro,1353
+15511,16,Nacional público,1354
+15511,18,Regional público,1355
+15511,14,Nacional privado,1356
+15511,15,Nacional privado,1357
+15514,19,Nacional privado futuro,1358
+15514,16,Nacional público,1359
+15514,17,Regional público,1360
+15514,14,Nacional privado,1361
+15514,15,Nacional privado,1362
+15516,19,Nacional privado futuro,1363
+15516,14,Nacional privado,1364
+15516,15,Nacional privado,1365
+15516,17,Regional público,1366
+15516,16,Nacional público,1367
+15518,19,Nacional privado futuro,1368
+15518,14,Nacional privado,1369
+15518,15,Nacional privado,1370
+15518,16,Nacional público,1371
+15518,18,Regional público,1372
+15522,19,Nacional privado futuro,1373
+15522,16,Nacional público,1374
+15522,17,Regional público,1375
+15522,38,Nacional privado,1376
+15522,39,Nacional privado,1377
+15531,43,Nacional privado futuro,1378
+15531,21,Nacional privado,1379
+15531,42,Nacional privado,1380
+15531,35,Nacional público,1381
+15531,39,Regional público,1382
+15533,19,Nacional privado futuro,1383
+15533,38,Nacional privado,1384
+15533,39,Nacional privado,1385
+15533,16,Nacional público,1386
+15533,18,Regional público,1387
+15537,19,Nacional privado futuro,1388
+15537,16,Nacional público,1389
+15537,17,Regional público,1390
+15537,14,Nacional privado,1391
+15537,15,Nacional privado,1392
+15542,19,Nacional privado futuro,1393
+15542,14,Nacional privado,1394
+15542,15,Nacional privado,1395
+15542,16,Nacional público,1396
+15542,17,Regional público,1397
+15550,19,Nacional privado futuro,1398
+15550,38,Nacional privado,1399
+15550,39,Nacional privado,1400
+15550,16,Nacional público,1401
+15550,18,Regional público,1402
+15572,19,Nacional privado futuro,1403
+15572,49,Nacional privado,1404
+15572,45,Nacional privado,1405
+15572,16,Nacional público,1406
+15572,17,Regional público,1407
+15580,47,Nacional privado futuro,1408
+15580,21,Nacional privado,1409
+15580,42,Nacional privado,1410
+15580,35,Nacional público,1411
+15580,39,Regional público,1412
+15599,27,Nacional privado futuro,1413
+15599,16,Nacional público,1414
+15599,17,Regional público,1415
+15599,43,Nacional privado,1416
+15599,46,Nacional privado,1417
+15600,43,Nacional privado,1418
+15600,46,Nacional privado,1419
+15600,30,Nacional privado futuro,1420
+15600,35,Nacional público,1421
+15600,39,Regional público,1422
+15621,19,Nacional privado futuro,1423
+15621,16,Nacional público,1424
+15621,17,Regional público,1425
+15621,14,Nacional privado,1426
+15621,15,Nacional privado,1427
+15632,47,Nacional privado futuro,1428
+15632,21,Nacional privado,1429
+15632,42,Nacional privado,1430
+15632,35,Nacional público,1431
+15632,39,Regional público,1432
+15638,29,Nacional privado futuro,1433
+15638,40,Nacional público,1434
+15638,39,Regional público,1435
+15638,43,Nacional privado,1436
+15638,46,Nacional privado,1437
+15646,43,Nacional privado,1438
+15646,46,Nacional privado,1439
+15646,30,Nacional privado futuro,1440
+15646,40,Nacional público,1441
+15646,39,Regional público,1442
+15660,19,Nacional privado futuro,1443
+15660,16,Nacional público,1444
+15660,17,Regional público,1445
+15660,14,Nacional privado,1446
+15660,15,Nacional privado,1447
+15664,47,Nacional privado futuro,1448
+15664,16,Nacional público,1449
+15664,17,Regional público,1450
+15664,21,Nacional privado,1451
+15664,42,Nacional privado,1452
+15667,19,Nacional privado futuro,1453
+15667,16,Nacional público,1454
+15667,17,Regional público,1455
+15667,14,Nacional privado,1456
+15667,15,Nacional privado,1457
+15673,19,Nacional privado futuro,1458
+15673,16,Nacional público,1459
+15673,17,Regional público,1460
+15673,14,Nacional privado,1461
+15673,15,Nacional privado,1462
+15676,47,Nacional privado futuro,1463
+15676,21,Nacional privado,1464
+15676,42,Nacional privado,1465
+15676,35,Nacional público,1466
+15676,39,Regional público,1467
+15681,47,Nacional privado futuro,1468
+15681,21,Nacional privado,1469
+15681,42,Nacional privado,1470
+15681,35,Nacional público,1471
+15681,39,Regional público,1472
+15686,47,Nacional privado futuro,1473
+15686,21,Nacional privado,1474
+15686,42,Nacional privado,1475
+15686,35,Nacional público,1476
+15686,39,Regional público,1477
+15690,19,Nacional privado futuro,1478
+15690,16,Nacional público,1479
+15690,17,Regional público,1480
+15690,14,Nacional privado,1481
+15690,15,Nacional privado,1482
+15693,19,Nacional privado futuro,1483
+15693,14,Nacional privado,1484
+15693,15,Nacional privado,1485
+15693,17,Regional público,1486
+15693,16,Nacional público,1487
+15696,30,Nacional privado futuro,1488
+15696,16,Nacional público,1489
+15696,17,Regional público,1490
+15696,43,Nacional privado,1491
+15696,46,Nacional privado,1492
+15720,19,Nacional privado futuro,1493
+15720,16,Nacional público,1494
+15720,17,Regional público,1495
+15720,14,Nacional privado,1496
+15720,15,Nacional privado,1497
+15723,19,Nacional privado futuro,1498
+15723,16,Nacional público,1499
+15723,17,Regional público,1500
+15723,14,Nacional privado,1501
+15723,15,Nacional privado,1502
+15740,19,Nacional privado futuro,1503
+15740,14,Nacional privado,1504
+15740,15,Nacional privado,1505
+15740,17,Regional público,1506
+15740,16,Nacional público,1507
+15753,19,Nacional privado futuro,1508
+15753,16,Nacional público,1509
+15753,17,Regional público,1510
+15753,14,Nacional privado,1511
+15753,15,Nacional privado,1512
+15755,19,Nacional privado futuro,1513
+15755,16,Nacional público,1514
+15755,17,Regional público,1515
+15755,14,Nacional privado,1516
+15755,15,Nacional privado,1517
+15757,19,Nacional privado futuro,1518
+15757,16,Nacional público,1519
+15757,17,Regional público,1520
+15757,14,Nacional privado,1521
+15757,15,Nacional privado,1522
+15759,19,Nacional privado futuro,1523
+15759,14,Nacional privado,1524
+15759,15,Nacional privado,1525
+15759,17,Regional público,1526
+15759,16,Nacional público,1527
+15759,24,Local con ánimo de lucro,1528
+15761,14,Nacional privado,1529
+15761,15,Nacional privado,1530
+15761,19,Nacional privado futuro,1531
+15761,16,Nacional público,1532
+15761,17,Regional público,1533
+15762,29,Nacional privado futuro,1534
+15762,40,Nacional público,1535
+15762,39,Regional público,1536
+15762,43,Nacional privado,1537
+15762,46,Nacional privado,1538
+15763,19,Nacional privado futuro,1539
+15763,16,Nacional público,1540
+15763,17,Regional público,1541
+15763,14,Nacional privado,1542
+15763,15,Nacional privado,1543
+15764,19,Nacional privado futuro,1544
+15764,21,Nacional privado,1545
+15764,42,Nacional privado,1546
+15764,17,Regional público,1547
+15764,16,Nacional público,1548
+15774,19,Nacional privado futuro,1549
+15774,14,Nacional privado,1550
+15774,15,Nacional privado,1551
+15774,16,Nacional público,1552
+15774,17,Regional público,1553
+15776,43,Nacional privado,1554
+15776,46,Nacional privado,1555
+15776,30,Nacional privado futuro,1556
+15776,40,Nacional público,1557
+15776,39,Regional público,1558
+15778,14,Nacional privado,1559
+15778,15,Nacional privado,1560
+15778,19,Nacional privado futuro,1561
+15778,16,Nacional público,1562
+15778,17,Regional público,1563
+15790,19,Nacional privado futuro,1564
+15790,16,Nacional público,1565
+15790,17,Regional público,1566
+15790,14,Nacional privado,1567
+15790,15,Nacional privado,1568
+15798,19,Nacional privado futuro,1569
+15798,16,Nacional público,1570
+15798,17,Regional público,1571
+15798,14,Nacional privado,1572
+15798,15,Nacional privado,1573
+15804,16,Nacional público,1574
+15804,17,Regional público,1575
+15804,14,Nacional privado,1576
+15804,15,Nacional privado,1577
+15804,19,Nacional privado futuro,1578
+15806,19,Nacional privado futuro,1579
+15806,14,Nacional privado,1580
+15806,15,Nacional privado,1581
+15806,17,Regional público,1582
+15806,16,Nacional público,1583
+15808,43,Nacional privado,1584
+15808,46,Nacional privado,1585
+15808,30,Nacional privado futuro,1586
+15808,40,Nacional público,1587
+15808,39,Regional público,1588
+15810,16,Nacional público,1589
+15810,17,Regional público,1590
+15810,14,Nacional privado,1591
+15810,15,Nacional privado,1592
+15810,19,Nacional privado futuro,1593
+15814,19,Nacional privado futuro,1594
+15814,14,Nacional privado,1595
+15814,15,Nacional privado,1596
+15814,17,Regional público,1597
+15814,16,Nacional público,1598
+15816,47,Nacional privado futuro,1599
+15816,21,Nacional privado,1600
+15816,42,Nacional privado,1601
+15816,35,Nacional público,1602
+15816,39,Regional público,1603
+15820,19,Nacional privado futuro,1604
+15820,14,Nacional privado,1605
+15820,15,Nacional privado,1606
+15820,16,Nacional público,1607
+15820,17,Regional público,1608
+15822,19,Nacional privado futuro,1609
+15822,14,Nacional privado,1610
+15822,15,Nacional privado,1611
+15822,17,Regional público,1612
+15822,16,Nacional público,1613
+15832,47,Nacional privado futuro,1614
+15832,21,Nacional privado,1615
+15832,42,Nacional privado,1616
+15832,35,Nacional público,1617
+15832,39,Regional público,1618
+15835,16,Nacional público,1619
+15835,17,Regional público,1620
+15835,14,Nacional privado,1621
+15835,15,Nacional privado,1622
+15835,19,Nacional privado futuro,1623
+15837,19,Nacional privado futuro,1624
+15837,14,Nacional privado,1625
+15837,15,Nacional privado,1626
+15837,17,Regional público,1627
+15837,16,Nacional público,1628
+15839,19,Nacional privado futuro,1629
+15839,14,Nacional privado,1630
+15839,15,Nacional privado,1631
+15839,16,Nacional público,1632
+15839,18,Regional público,1633
+15842,19,Nacional privado futuro,1634
+15842,16,Nacional público,1635
+15842,17,Regional público,1636
+15842,14,Nacional privado,1637
+15842,15,Nacional privado,1638
+15861,16,Nacional público,1639
+15861,19,Nacional privado futuro,1640
+15861,17,Regional público,1641
+15861,14,Nacional privado,1642
+15861,15,Nacional privado,1643
+15879,27,Nacional privado futuro,1644
+15879,16,Nacional público,1645
+15879,17,Regional público,1646
+15879,43,Nacional privado,1647
+15879,46,Nacional privado,1648
+15897,19,Nacional privado futuro,1649
+15897,16,Nacional público,1650
+15897,17,Regional público,1651
+15897,14,Nacional privado,1652
+15897,15,Nacional privado,1653
+17001,43,Nacional privado futuro,1654
+17001,43,Nacional privado futuro,1655
+17001,43,Nacional privado futuro,1656
+17001,41,Nacional privado,1657
+17001,42,Nacional privado,1658
+17001,42,Nacional privado,1659
+17001,41,Nacional privado,1660
+17001,41,Nacional privado,1661
+17001,42,Nacional privado,1662
+17001,38,Nacional público,1663
+17001,44,Regional público,1664
+17001,46,Local con ánimo de lucro,1665
+17001,25,Local sin ánimo de lucro,1666
+17013,19,Nacional privado futuro,1667
+17013,14,Nacional privado,1668
+17013,15,Nacional privado,1669
+17013,16,Nacional público,1670
+17013,44,Regional público,1671
+17042,43,Nacional privado futuro,1672
+17042,41,Nacional privado,1673
+17042,42,Nacional privado,1674
+17042,38,Nacional público,1675
+17042,44,Regional público,1676
+17050,43,Nacional privado futuro,1677
+17050,41,Nacional privado,1678
+17050,42,Nacional privado,1679
+17050,38,Nacional público,1680
+17050,44,Regional público,1681
+17088,43,Nacional privado futuro,1682
+17088,41,Nacional privado,1683
+17088,42,Nacional privado,1684
+17088,38,Nacional público,1685
+17088,44,Regional público,1686
+17174,43,Nacional privado futuro,1687
+17174,41,Nacional privado,1688
+17174,42,Nacional privado,1689
+17174,38,Nacional público,1690
+17174,44,Regional público,1691
+17272,43,Nacional privado futuro,1692
+17272,41,Nacional privado,1693
+17272,42,Nacional privado,1694
+17272,38,Nacional público,1695
+17272,44,Regional público,1696
+17380,43,Nacional privado futuro,1697
+17380,41,Nacional privado,1698
+17380,42,Nacional privado,1699
+17380,38,Nacional público,1700
+17380,44,Regional público,1701
+17388,43,Nacional privado futuro,1702
+17388,14,Nacional privado,1703
+17388,15,Nacional privado,1704
+17388,38,Nacional público,1705
+17388,44,Regional público,1706
+17433,50,Nacional privado futuro,1707
+17433,21,Nacional privado,1708
+17433,27,Nacional privado,1709
+17433,16,Nacional público,1710
+17433,44,Regional público,1711
+17442,43,Nacional privado futuro,1712
+17442,41,Nacional privado,1713
+17442,42,Nacional privado,1714
+17442,38,Nacional público,1715
+17442,44,Regional público,1716
+17444,16,Nacional público,1717
+17444,14,Nacional privado,1718
+17444,15,Nacional privado,1719
+17444,44,Regional público,1720
+17444,19,Nacional privado futuro,1721
+17446,43,Nacional privado futuro,1722
+17446,41,Nacional privado,1723
+17446,42,Nacional privado,1724
+17446,38,Nacional público,1725
+17446,44,Regional público,1726
+17486,43,Nacional privado futuro,1727
+17486,41,Nacional privado,1728
+17486,42,Nacional privado,1729
+17486,38,Nacional público,1730
+17486,44,Regional público,1731
+17495,16,Nacional público,1732
+17495,21,Nacional privado,1733
+17495,42,Nacional privado,1734
+17495,44,Regional público,1735
+17495,19,Nacional privado futuro,1736
+17513,19,Nacional privado futuro,1737
+17513,14,Nacional privado,1738
+17513,15,Nacional privado,1739
+17513,27,Nacional público,1740
+17513,44,Regional público,1741
+17524,38,Nacional público,1742
+17524,44,Regional público,1743
+17524,43,Nacional privado futuro,1744
+17524,41,Nacional privado,1745
+17524,42,Nacional privado,1746
+17541,19,Nacional privado futuro,1747
+17541,14,Nacional privado,1748
+17541,15,Nacional privado,1749
+17541,16,Nacional público,1750
+17541,44,Regional público,1751
+17614,43,Nacional privado futuro,1752
+17614,41,Nacional privado,1753
+17614,42,Nacional privado,1754
+17614,38,Nacional público,1755
+17614,44,Regional público,1756
+17616,43,Nacional privado futuro,1757
+17616,41,Nacional privado,1758
+17616,42,Nacional privado,1759
+17616,38,Nacional público,1760
+17616,44,Regional público,1761
+17653,27,Nacional privado futuro,1762
+17653,14,Nacional privado,1763
+17653,15,Nacional privado,1764
+17653,38,Nacional público,1765
+17653,44,Regional público,1766
+17653,36,Local con ánimo de lucro,1767
+17653,26,Local sin ánimo de lucro,1768
+17662,19,Nacional privado futuro,1769
+17662,14,Nacional privado,1770
+17662,15,Nacional privado,1771
+17662,35,Nacional público,1772
+17662,44,Regional público,1773
+17665,38,Nacional público,1774
+17665,44,Regional público,1775
+17665,41,Nacional privado,1776
+17665,42,Nacional privado,1777
+17665,27,Nacional privado futuro,1778
+17777,43,Nacional privado futuro,1779
+17777,41,Nacional privado,1780
+17777,42,Nacional privado,1781
+17777,38,Nacional público,1782
+17777,44,Regional público,1783
+17867,43,Nacional privado futuro,1784
+17867,21,Nacional privado,1785
+17867,42,Nacional privado,1786
+17867,16,Nacional público,1787
+17867,44,Regional público,1788
+17873,43,Nacional privado futuro,1789
+17873,41,Nacional privado,1790
+17873,42,Nacional privado,1791
+17873,38,Nacional público,1792
+17873,44,Regional público,1793
+17877,48,Nacional privado futuro,1794
+17877,14,Nacional privado,1795
+17877,15,Nacional privado,1796
+17877,38,Nacional público,1797
+17877,44,Regional público,1798
+18001,19,Nacional privado futuro,1799
+18001,14,Nacional privado,1800
+18001,15,Nacional privado,1801
+18001,18,Nacional público,1802
+18001,17,Regional público,1803
+18029,19,Nacional privado futuro,1806
+18029,14,Nacional privado,1807
+18029,15,Nacional privado,1808
+18029,18,Nacional público,1809
+18029,17,Regional público,1810
+18094,18,Nacional público,1811
+18094,17,Regional público,1812
+18094,14,Nacional privado,1813
+18094,15,Nacional privado,1814
+18094,19,Nacional privado futuro,1815
+18150,19,Nacional privado futuro,1816
+18150,14,Nacional privado,1817
+18150,15,Nacional privado,1818
+18150,18,Nacional público,1819
+18150,17,Regional público,1820
+18205,28,Nacional privado futuro,1821
+18205,14,Nacional privado,1822
+18205,16,Nacional privado,1823
+18205,18,Nacional público,1824
+18205,20,Regional público,1825
+18247,19,Nacional privado futuro,1826
+18247,14,Nacional privado,1827
+18247,15,Nacional privado,1828
+18247,18,Nacional público,1829
+18247,17,Regional público,1830
+18256,19,Nacional privado futuro,1831
+18256,14,Nacional privado,1832
+18256,15,Nacional privado,1833
+18256,18,Nacional público,1834
+18256,17,Regional público,1835
+18410,19,Nacional privado futuro,1836
+18410,14,Nacional privado,1837
+18410,15,Nacional privado,1838
+18410,18,Nacional público,1839
+18410,17,Regional público,1840
+18460,19,Nacional privado futuro,1841
+18460,14,Nacional privado,1842
+18460,15,Nacional privado,1843
+18460,18,Nacional público,1844
+18460,17,Regional público,1845
+18479,19,Nacional privado futuro,1846
+18479,14,Nacional privado,1847
+18479,15,Nacional privado,1848
+18479,18,Nacional público,1849
+18479,17,Regional público,1850
+18592,19,Nacional privado futuro,1851
+18592,14,Nacional privado,1852
+18592,15,Nacional privado,1853
+18592,18,Nacional público,1854
+18592,17,Regional público,1855
+18610,18,Nacional público,1856
+18610,17,Regional público,1857
+18610,14,Nacional privado,1858
+18610,15,Nacional privado,1859
+18610,19,Nacional privado futuro,1860
+18753,19,Nacional privado futuro,1861
+18753,14,Nacional privado,1862
+18753,15,Nacional privado,1863
+18753,18,Nacional público,1864
+18753,17,Regional público,1865
+18756,18,Nacional público,1866
+18756,17,Regional público,1867
+18756,14,Nacional privado,1868
+18756,15,Nacional privado,1869
+18756,19,Nacional privado futuro,1870
+18785,18,Nacional público,1871
+18785,17,Regional público,1872
+18785,14,Nacional privado,1873
+18785,16,Nacional privado,1874
+18785,19,Nacional privado futuro,1875
+18860,19,Nacional privado futuro,1876
+18860,14,Nacional privado,1877
+18860,15,Nacional privado,1878
+18860,18,Nacional público,1879
+18860,17,Regional público,1880
+19001,25,Local sin ánimo de lucro,1881
+19001,27,Nacional privado futuro,1882
+19001,21,Nacional privado,1883
+19001,22,Nacional privado,1884
+19001,33,Nacional público,1885
+19001,35,Regional público,1886
+19001,23,Local con ánimo de lucro,1887
+19022,27,Nacional privado futuro,1888
+19022,21,Nacional privado,1889
+19022,22,Nacional privado,1890
+19022,33,Nacional público,1891
+19022,17,Regional público,1892
+19050,21,Nacional privado,1893
+19050,22,Nacional privado,1894
+19050,33,Nacional público,1895
+19050,17,Regional público,1896
+19050,27,Nacional privado futuro,1897
+19075,27,Nacional privado futuro,1898
+19075,21,Nacional privado,1899
+19075,22,Nacional privado,1900
+19075,33,Nacional público,1901
+19075,35,Regional público,1902
+19100,29,Nacional privado futuro,1903
+19100,18,Nacional público,1904
+19100,20,Regional público,1905
+19100,21,Nacional privado,1906
+19100,22,Nacional privado,1907
+19110,19,Nacional privado futuro,1908
+19110,16,Nacional público,1909
+19110,17,Regional público,1910
+19110,14,Nacional privado,1911
+19110,15,Nacional privado,1912
+19130,27,Nacional privado futuro,1913
+19130,21,Nacional privado,1914
+19130,22,Nacional privado,1915
+19130,33,Nacional público,1916
+19130,35,Regional público,1917
+19137,27,Nacional privado futuro,1918
+19137,21,Nacional privado,1919
+19137,22,Nacional privado,1920
+19137,33,Nacional público,1921
+19137,35,Regional público,1922
+19142,19,Nacional privado futuro,1923
+19142,14,Nacional privado,1924
+19142,15,Nacional privado,1925
+19142,16,Nacional público,1926
+19142,17,Regional público,1927
+19212,19,Nacional privado futuro,1928
+19212,14,Nacional privado,1929
+19212,15,Nacional privado,1930
+19212,16,Nacional público,1931
+19212,17,Regional público,1932
+19256,27,Nacional privado futuro,1933
+19256,21,Nacional privado,1934
+19256,22,Nacional privado,1935
+19256,33,Nacional público,1936
+19256,35,Regional público,1937
+19290,27,Nacional privado futuro,1938
+19290,21,Nacional privado,1939
+19290,22,Nacional privado,1940
+19290,33,Nacional público,1941
+19290,35,Regional público,1942
+19300,14,Nacional privado,1943
+19300,15,Nacional privado,1944
+19300,16,Nacional público,1945
+19300,17,Regional público,1946
+19300,19,Nacional privado futuro,1947
+19318,27,Nacional privado futuro,1948
+19318,21,Nacional privado,1949
+19318,22,Nacional privado,1950
+19318,18,Nacional público,1951
+19318,20,Regional público,1952
+19355,19,Nacional privado futuro,1953
+19355,14,Nacional privado,1954
+19355,15,Nacional privado,1955
+19355,34,Nacional público,1956
+19355,36,Regional público,1957
+19364,14,Nacional privado,1958
+19364,15,Nacional privado,1959
+19364,16,Nacional público,1960
+19364,35,Regional público,1961
+19364,19,Nacional privado futuro,1962
+19392,27,Nacional privado futuro,1963
+19392,21,Nacional privado,1964
+19392,22,Nacional privado,1965
+19392,33,Nacional público,1966
+19392,35,Regional público,1967
+19397,27,Nacional privado futuro,1968
+19397,33,Nacional público,1969
+19397,17,Regional público,1970
+19397,21,Nacional privado,1971
+19397,22,Nacional privado,1972
+19418,27,Nacional privado futuro,1973
+19418,21,Nacional privado,1974
+19418,22,Nacional privado,1975
+19418,33,Nacional público,1976
+19418,35,Regional público,1977
+19450,27,Nacional privado futuro,1978
+19450,21,Nacional privado,1979
+19450,22,Nacional privado,1980
+19450,33,Nacional público,1981
+19450,35,Regional público,1982
+19455,19,Nacional privado futuro,1983
+19455,14,Nacional privado,1984
+19455,15,Nacional privado,1985
+19455,16,Nacional público,1986
+19455,17,Regional público,1987
+19473,27,Nacional privado futuro,1988
+19473,21,Nacional privado,1989
+19473,22,Nacional privado,1990
+19473,33,Nacional público,1991
+19473,35,Regional público,1992
+19513,19,Nacional privado futuro,1993
+19513,16,Nacional público,1994
+19513,17,Regional público,1995
+19513,14,Nacional privado,1996
+19513,15,Nacional privado,1997
+19517,19,Nacional privado futuro,1998
+19517,14,Nacional privado,1999
+19517,15,Nacional privado,2000
+19517,34,Nacional público,2001
+19517,36,Regional público,2002
+19532,27,Nacional privado futuro,2003
+19532,21,Nacional privado,2004
+19532,22,Nacional privado,2005
+19532,33,Nacional público,2006
+19532,35,Regional público,2007
+19533,14,Nacional privado,2008
+19533,16,Nacional privado,2009
+19533,34,Nacional público,2010
+19533,17,Regional público,2011
+19533,28,Nacional privado futuro,2012
+19548,27,Nacional privado futuro,2013
+19548,21,Nacional privado,2014
+19548,22,Nacional privado,2015
+19548,33,Nacional público,2016
+19548,35,Regional público,2017
+19573,19,Nacional privado futuro,2018
+19573,14,Nacional privado,2019
+19573,15,Nacional privado,2020
+19573,16,Nacional público,2021
+19573,17,Regional público,2022
+19585,27,Nacional privado futuro,2023
+19585,21,Nacional privado,2024
+19585,22,Nacional privado,2025
+19585,33,Nacional público,2026
+19585,35,Regional público,2027
+19622,27,Nacional privado futuro,2028
+19622,21,Nacional privado,2029
+19622,22,Nacional privado,2030
+19622,33,Nacional público,2031
+19622,35,Regional público,2032
+19693,27,Nacional privado futuro,2033
+19693,33,Nacional público,2034
+19693,17,Regional público,2035
+19693,21,Nacional privado,2036
+19693,22,Nacional privado,2037
+19698,19,Nacional privado futuro,2038
+19698,14,Nacional privado,2039
+19698,15,Nacional privado,2040
+19698,16,Nacional público,2041
+19698,17,Regional público,2042
+19701,14,Nacional privado,2043
+19701,16,Nacional privado,2044
+19701,33,Nacional público,2045
+19701,17,Regional público,2046
+19701,28,Nacional privado futuro,2047
+19743,27,Nacional privado futuro,2048
+19743,21,Nacional privado,2049
+19743,22,Nacional privado,2050
+19743,33,Nacional público,2051
+19743,35,Regional público,2052
+19760,27,Nacional privado futuro,2053
+19760,21,Nacional privado,2054
+19760,22,Nacional privado,2055
+19760,33,Nacional público,2056
+19760,35,Regional público,2057
+19780,19,Nacional privado futuro,2058
+19780,14,Nacional privado,2059
+19780,15,Nacional privado,2060
+19780,16,Nacional público,2061
+19780,35,Regional público,2062
+19785,14,Nacional privado,2063
+19785,15,Nacional privado,2064
+19785,33,Nacional público,2065
+19785,17,Regional público,2066
+19785,19,Nacional privado futuro,2067
+19807,27,Nacional privado futuro,2068
+19807,21,Nacional privado,2069
+19807,22,Nacional privado,2070
+19807,33,Nacional público,2071
+19807,35,Regional público,2072
+19809,27,Nacional privado futuro,2073
+19809,21,Nacional privado,2074
+19809,22,Nacional privado,2075
+19809,33,Nacional público,2076
+19809,35,Regional público,2077
+19821,19,Nacional privado futuro,2078
+19821,16,Nacional público,2079
+19821,17,Regional público,2080
+19821,14,Nacional privado,2081
+19821,15,Nacional privado,2082
+19824,27,Nacional privado futuro,2083
+19824,21,Nacional privado,2084
+19824,22,Nacional privado,2085
+19824,33,Nacional público,2086
+19824,35,Regional público,2087
+19845,14,Nacional privado,2088
+19845,15,Nacional privado,2089
+19845,16,Nacional público,2090
+19845,17,Regional público,2091
+19845,19,Nacional privado futuro,2092
+20001,21,Local sin ánimo de lucro,2093
+20001,29,Nacional privado futuro,2094
+20001,35,Nacional privado futuro,2095
+20001,35,Nacional privado futuro,2096
+20001,34,Nacional privado,2097
+20001,32,Nacional privado,2098
+20001,42,Nacional privado futuro,2099
+20001,28,Nacional público,2100
+20001,29,Regional público,2101
+20001,28,Nacional público,2102
+20001,28,Nacional público,2103
+20001,29,Regional público,2104
+20001,29,Regional público,2105
+20001,28,Nacional público,2106
+20001,29,Regional público,2107
+20001,50,Local con ánimo de lucro,2108
+20011,50,Nacional privado futuro,2109
+20011,49,Nacional privado,2110
+20011,45,Nacional privado,2111
+20011,27,Nacional público,2112
+20011,29,Regional público,2113
+20013,21,Local sin ánimo de lucro,2114
+20013,27,Nacional privado futuro,2115
+20013,34,Nacional privado,2116
+20013,32,Nacional privado,2117
+20013,28,Nacional público,2118
+20013,29,Regional público,2119
+20013,36,Local con ánimo de lucro,2120
+20032,50,Nacional privado futuro,2121
+20032,49,Nacional privado,2122
+20032,45,Nacional privado,2123
+20032,28,Nacional público,2124
+20032,29,Regional público,2125
+20045,27,Nacional privado futuro,2126
+20045,34,Nacional privado,2127
+20045,32,Nacional privado,2128
+20045,28,Nacional público,2129
+20045,29,Regional público,2130
+20060,27,Nacional privado futuro,2131
+20060,41,Nacional privado,2132
+20060,38,Nacional privado,2133
+20060,28,Nacional público,2134
+20060,29,Regional público,2135
+20175,27,Nacional privado futuro,2136
+20175,49,Nacional privado,2137
+20175,45,Nacional privado,2138
+20175,28,Nacional público,2139
+20175,29,Regional público,2140
+20178,27,Nacional privado futuro,2141
+20178,21,Nacional privado,2142
+20178,22,Nacional privado,2143
+20178,28,Nacional público,2144
+20178,29,Regional público,2145
+20228,28,Nacional privado futuro,2146
+20228,21,Nacional privado,2147
+20228,22,Nacional privado,2148
+20228,28,Nacional público,2149
+20228,29,Regional público,2150
+20238,27,Nacional privado futuro,2151
+20238,41,Nacional privado,2152
+20238,45,Nacional privado,2153
+20238,28,Nacional público,2154
+20238,48,Regional público,2155
+20250,27,Nacional privado futuro,2156
+20250,49,Nacional privado,2157
+20250,45,Nacional privado,2158
+20250,28,Nacional público,2159
+20250,29,Regional público,2160
+20295,50,Nacional privado futuro,2161
+20295,49,Nacional privado,2162
+20295,45,Nacional privado,2163
+20295,27,Nacional público,2164
+20295,29,Regional público,2165
+20310,50,Nacional privado futuro,2166
+20310,49,Nacional privado,2167
+20310,45,Nacional privado,2168
+20310,27,Nacional público,2169
+20310,29,Regional público,2170
+20383,50,Nacional privado futuro,2171
+20383,49,Nacional privado,2172
+20383,45,Nacional privado,2173
+20383,27,Nacional público,2174
+20383,29,Regional público,2175
+20400,27,Nacional privado futuro,2176
+20400,34,Nacional privado,2177
+20400,32,Nacional privado,2178
+20400,28,Nacional público,2179
+20400,29,Regional público,2180
+20443,21,Local sin ánimo de lucro,2181
+20443,27,Nacional privado futuro,2182
+20443,34,Nacional privado,2183
+20443,32,Nacional privado,2184
+20443,28,Nacional público,2185
+20443,29,Regional público,2186
+20443,36,Local con ánimo de lucro,2187
+20517,50,Nacional privado futuro,2188
+20517,49,Nacional privado,2189
+20517,45,Nacional privado,2190
+20517,34,Nacional público,2191
+20517,29,Regional público,2192
+20550,50,Nacional privado futuro,2193
+20550,49,Nacional privado,2194
+20550,45,Nacional privado,2195
+20550,27,Nacional público,2196
+20550,29,Regional público,2197
+20570,28,Nacional público,2198
+20570,29,Regional público,2199
+20570,14,Nacional privado,2200
+20570,15,Nacional privado,2201
+20570,19,Nacional privado futuro,2202
+20614,19,Nacional privado futuro,2203
+20614,27,Nacional público,2204
+20614,29,Regional público,2205
+20614,14,Nacional privado,2206
+20614,15,Nacional privado,2207
+20621,21,Local sin ánimo de lucro,2208
+20621,27,Nacional privado futuro,2209
+20621,34,Nacional privado,2210
+20621,32,Nacional privado,2211
+20621,28,Nacional público,2212
+20621,29,Regional público,2213
+20621,36,Local con ánimo de lucro,2214
+20710,50,Nacional privado futuro,2215
+20710,49,Nacional privado,2216
+20710,45,Nacional privado,2217
+20710,27,Nacional público,2218
+20710,29,Regional público,2219
+20750,21,Local sin ánimo de lucro,2220
+20750,27,Nacional privado futuro,2221
+20750,34,Nacional privado,2222
+20750,32,Nacional privado,2223
+20750,28,Nacional público,2224
+20750,29,Regional público,2225
+20750,36,Local con ánimo de lucro,2226
+20770,50,Nacional privado futuro,2227
+20770,49,Nacional privado,2228
+20770,45,Nacional privado,2229
+20770,27,Nacional público,2230
+20770,29,Regional público,2231
+20787,50,Nacional privado futuro,2232
+20787,49,Nacional privado,2233
+20787,45,Nacional privado,2234
+20787,27,Nacional público,2235
+20787,29,Regional público,2236
+23001,30,Local sin ánimo de lucro,2237
+23001,19,Nacional privado futuro,2238
+23001,14,Nacional privado,2239
+23001,15,Nacional privado,2240
+23001,16,Nacional público,2241
+23001,17,Regional público,2242
+23001,36,Local con ánimo de lucro,2243
+23068,46,Nacional privado futuro,2244
+23068,43,Nacional privado,2245
+23068,44,Nacional privado,2246
+23068,16,Nacional público,2247
+23068,17,Regional público,2248
+23079,46,Nacional privado futuro,2249
+23079,43,Nacional privado,2250
+23079,44,Nacional privado,2251
+23079,16,Nacional público,2252
+23079,17,Regional público,2253
+23090,19,Nacional privado futuro,2254
+23090,14,Nacional privado,2255
+23090,15,Nacional privado,2256
+23090,16,Nacional público,2257
+23090,17,Regional público,2258
+23162,19,Nacional privado futuro,2259
+23162,14,Nacional privado,2260
+23162,15,Nacional privado,2261
+23162,16,Nacional público,2262
+23162,17,Regional público,2263
+23168,19,Nacional privado futuro,2264
+23168,14,Nacional privado,2265
+23168,15,Nacional privado,2266
+23168,16,Nacional público,2267
+23168,17,Regional público,2268
+23182,19,Nacional privado futuro,2269
+23182,14,Nacional privado,2270
+23182,15,Nacional privado,2271
+23182,16,Nacional público,2272
+23182,17,Regional público,2273
+23189,19,Nacional privado futuro,2274
+23189,14,Nacional privado,2275
+23189,15,Nacional privado,2276
+23189,16,Nacional público,2277
+23189,17,Regional público,2278
+23300,16,Nacional público,2279
+23300,17,Regional público,2280
+23300,14,Nacional privado,2281
+23300,15,Nacional privado,2282
+23300,19,Nacional privado futuro,2283
+23350,16,Nacional público,2284
+23350,17,Regional público,2285
+23350,43,Nacional privado,2286
+23350,25,Nacional privado,2287
+23350,27,Nacional privado futuro,2288
+23417,19,Nacional privado futuro,2289
+23417,14,Nacional privado,2290
+23417,15,Nacional privado,2291
+23417,16,Nacional público,2292
+23417,17,Regional público,2293
+23417,36,Local con ánimo de lucro,2294
+23419,19,Nacional privado futuro,2295
+23419,14,Nacional privado,2296
+23419,15,Nacional privado,2297
+23419,16,Nacional público,2298
+23419,17,Regional público,2299
+23464,19,Nacional privado futuro,2300
+23464,14,Nacional privado,2301
+23464,15,Nacional privado,2302
+23464,16,Nacional público,2303
+23464,17,Regional público,2304
+23466,46,Nacional privado futuro,2305
+23466,43,Nacional privado,2306
+23466,44,Nacional privado,2307
+23466,16,Nacional público,2308
+23466,17,Regional público,2309
+23500,19,Nacional privado futuro,2310
+23500,14,Nacional privado,2311
+23500,15,Nacional privado,2312
+23500,16,Nacional público,2313
+23500,17,Regional público,2314
+23555,19,Nacional privado futuro,2315
+23555,16,Nacional público,2316
+23555,17,Regional público,2317
+23555,14,Nacional privado,2318
+23555,15,Nacional privado,2319
+23570,19,Nacional privado futuro,2320
+23570,16,Nacional público,2321
+23570,17,Regional público,2322
+23570,14,Nacional privado,2323
+23570,15,Nacional privado,2324
+23574,19,Nacional privado futuro,2325
+23574,16,Nacional público,2326
+23574,17,Regional público,2327
+23574,14,Nacional privado,2328
+23574,15,Nacional privado,2329
+23580,27,Nacional privado futuro,2330
+23580,21,Nacional privado,2331
+23580,42,Nacional privado,2332
+23580,34,Nacional público,2333
+23580,29,Regional público,2334
+23586,19,Nacional privado futuro,2335
+23586,14,Nacional privado,2336
+23586,15,Nacional privado,2337
+23586,16,Nacional público,2338
+23586,17,Regional público,2339
+23660,19,Nacional privado futuro,2340
+23660,14,Nacional privado,2341
+23660,15,Nacional privado,2342
+23660,16,Nacional público,2343
+23660,17,Regional público,2344
+23670,19,Nacional privado futuro,2345
+23670,14,Nacional privado,2346
+23670,15,Nacional privado,2347
+23670,16,Nacional público,2348
+23670,17,Regional público,2349
+23672,16,Nacional público,2350
+23672,17,Regional público,2351
+23672,14,Nacional privado,2352
+23672,15,Nacional privado,2353
+23672,19,Nacional privado futuro,2354
+23675,19,Nacional privado futuro,2355
+23675,14,Nacional privado,2356
+23675,15,Nacional privado,2357
+23675,16,Nacional público,2358
+23675,17,Regional público,2359
+23678,19,Nacional privado futuro,2360
+23678,14,Nacional privado,2361
+23678,15,Nacional privado,2362
+23678,16,Nacional público,2363
+23678,17,Regional público,2364
+23682,14,Nacional privado,2365
+23682,15,Nacional privado,2366
+23682,34,Nacional público,2367
+23682,29,Regional público,2368
+23682,19,Nacional privado futuro,2369
+23686,19,Nacional privado futuro,2370
+23686,14,Nacional privado,2371
+23686,15,Nacional privado,2372
+23686,16,Nacional público,2373
+23686,17,Regional público,2374
+23807,19,Nacional privado futuro,2375
+23807,14,Nacional privado,2376
+23807,15,Nacional privado,2377
+23807,34,Nacional público,2378
+23807,29,Regional público,2379
+23815,14,Nacional privado,2380
+23815,15,Nacional privado,2381
+23815,16,Nacional público,2382
+23815,17,Regional público,2383
+23815,19,Nacional privado futuro,2384
+23855,19,Nacional privado futuro,2385
+23855,14,Nacional privado,2386
+23855,15,Nacional privado,2387
+23855,34,Nacional público,2388
+23855,29,Regional público,2389
+25001,19,Nacional privado futuro,2390
+25001,14,Nacional privado,2391
+25001,15,Nacional privado,2392
+25001,16,Nacional público,2393
+25001,17,Regional público,2394
+25019,19,Nacional privado futuro,2395
+25019,14,Nacional privado,2396
+25019,15,Nacional privado,2397
+25019,38,Nacional público,2398
+25019,17,Regional público,2399
+25035,19,Nacional privado futuro,2400
+25035,14,Nacional privado,2401
+25035,15,Nacional privado,2402
+25035,16,Nacional público,2403
+25035,17,Regional público,2404
+25040,19,Nacional privado futuro,2405
+25040,14,Nacional privado,2406
+25040,15,Nacional privado,2407
+25040,16,Nacional público,2408
+25040,17,Regional público,2409
+25053,19,Nacional privado futuro,2410
+25053,46,Nacional privado,2411
+25053,49,Nacional privado,2412
+25053,16,Nacional público,2413
+25053,17,Regional público,2414
+25086,19,Nacional privado futuro,2415
+25086,14,Nacional privado,2416
+25086,15,Nacional privado,2417
+25086,16,Nacional público,2418
+25086,17,Regional público,2419
+25095,19,Nacional privado futuro,2420
+25095,14,Nacional privado,2421
+25095,15,Nacional privado,2422
+25095,16,Nacional público,2423
+25095,17,Regional público,2424
+25099,19,Nacional privado futuro,2425
+25099,16,Nacional público,2426
+25099,17,Regional público,2427
+25099,14,Nacional privado,2428
+25099,15,Nacional privado,2429
+25120,19,Nacional privado futuro,2430
+25120,14,Nacional privado,2431
+25120,15,Nacional privado,2432
+25120,16,Nacional público,2433
+25120,17,Regional público,2434
+25123,19,Nacional privado futuro,2435
+25123,14,Nacional privado,2436
+25123,15,Nacional privado,2437
+25123,16,Nacional público,2438
+25123,17,Regional público,2439
+25126,19,Nacional privado futuro,2440
+25126,16,Nacional público,2441
+25126,17,Regional público,2442
+25126,14,Nacional privado,2443
+25126,15,Nacional privado,2444
+25148,16,Nacional público,2445
+25148,17,Regional público,2446
+25148,14,Nacional privado,2447
+25148,15,Nacional privado,2448
+25148,19,Nacional privado futuro,2449
+25151,19,Nacional privado futuro,2450
+25151,16,Nacional público,2451
+25151,17,Regional público,2452
+25151,14,Nacional privado,2453
+25151,15,Nacional privado,2454
+25154,41,Nacional privado,2455
+25154,44,Nacional privado,2456
+25154,16,Nacional público,2457
+25154,17,Regional público,2458
+25154,19,Nacional privado futuro,2459
+25168,19,Nacional privado futuro,2460
+25168,14,Nacional privado,2461
+25168,15,Nacional privado,2462
+25168,16,Nacional público,2463
+25168,17,Regional público,2464
+25175,19,Nacional privado futuro,2465
+25175,16,Nacional público,2466
+25175,17,Regional público,2467
+25175,14,Nacional privado,2468
+25175,15,Nacional privado,2469
+25175,27,Local con ánimo de lucro,2470
+25178,19,Nacional privado futuro,2471
+25178,16,Nacional público,2472
+25178,17,Regional público,2473
+25178,14,Nacional privado,2474
+25178,15,Nacional privado,2475
+25181,19,Nacional privado futuro,2476
+25181,16,Nacional público,2477
+25181,17,Regional público,2478
+25181,14,Nacional privado,2479
+25181,15,Nacional privado,2480
+25183,19,Nacional privado futuro,2481
+25183,16,Nacional público,2482
+25183,17,Regional público,2483
+25183,14,Nacional privado,2484
+25183,15,Nacional privado,2485
+25200,19,Nacional privado futuro,2486
+25200,14,Nacional privado,2487
+25200,15,Nacional privado,2488
+25200,16,Nacional público,2489
+25200,17,Regional público,2490
+25214,19,Nacional privado futuro,2491
+25214,16,Nacional público,2492
+25214,17,Regional público,2493
+25214,14,Nacional privado,2494
+25214,15,Nacional privado,2495
+25224,41,Nacional privado,2496
+25224,44,Nacional privado,2497
+25224,19,Nacional privado futuro,2498
+25224,16,Nacional público,2499
+25224,17,Regional público,2500
+25245,19,Nacional privado futuro,2501
+25245,14,Nacional privado,2502
+25245,15,Nacional privado,2503
+25245,16,Nacional público,2504
+25245,17,Regional público,2505
+25258,19,Nacional privado futuro,2506
+25258,14,Nacional privado,2507
+25258,15,Nacional privado,2508
+25258,16,Nacional público,2509
+25258,17,Regional público,2510
+25260,16,Nacional público,2511
+25260,17,Regional público,2512
+25260,14,Nacional privado,2513
+25260,15,Nacional privado,2514
+25260,19,Nacional privado futuro,2515
+25269,19,Nacional privado futuro,2516
+25269,16,Nacional público,2517
+25269,17,Regional público,2518
+25269,14,Nacional privado,2519
+25269,15,Nacional privado,2520
+25269,27,Local con ánimo de lucro,2521
+25279,19,Nacional privado futuro,2522
+25279,16,Nacional público,2523
+25279,17,Regional público,2524
+25279,14,Nacional privado,2525
+25279,15,Nacional privado,2526
+25281,19,Nacional privado futuro,2527
+25281,16,Nacional público,2528
+25281,17,Regional público,2529
+25281,14,Nacional privado,2530
+25281,15,Nacional privado,2531
+25286,19,Nacional privado futuro,2532
+25286,16,Nacional público,2533
+25286,17,Regional público,2534
+25286,14,Nacional privado,2535
+25286,15,Nacional privado,2536
+25288,47,Nacional privado futuro,2537
+25288,21,Nacional privado,2538
+25288,42,Nacional privado,2539
+25288,35,Nacional público,2540
+25288,39,Regional público,2541
+25290,19,Nacional privado futuro,2542
+25290,46,Nacional privado,2543
+25290,49,Nacional privado,2544
+25290,16,Nacional público,2545
+25290,17,Regional público,2546
+25290,27,Local con ánimo de lucro,2547
+25293,19,Nacional privado futuro,2548
+25293,16,Nacional público,2549
+25293,17,Regional público,2550
+25293,14,Nacional privado,2551
+25293,15,Nacional privado,2552
+25295,16,Nacional público,2553
+25295,17,Regional público,2554
+25295,14,Nacional privado,2555
+25295,15,Nacional privado,2556
+25295,19,Nacional privado futuro,2557
+25297,19,Nacional privado futuro,2558
+25297,16,Nacional público,2559
+25297,17,Regional público,2560
+25297,14,Nacional privado,2561
+25297,15,Nacional privado,2562
+25299,19,Nacional privado futuro,2563
+25299,16,Nacional público,2564
+25299,17,Regional público,2565
+25299,14,Nacional privado,2566
+25299,15,Nacional privado,2567
+25307,19,Nacional privado futuro,2568
+25307,14,Nacional privado,2569
+25307,15,Nacional privado,2570
+25307,16,Nacional público,2571
+25307,17,Regional público,2572
+25307,29,Local con ánimo de lucro,2573
+25312,19,Nacional privado futuro,2574
+25312,16,Nacional público,2575
+25312,17,Regional público,2576
+25312,46,Nacional privado,2577
+25312,49,Nacional privado,2578
+25317,28,Nacional privado futuro,2579
+25317,40,Nacional público,2580
+25317,39,Regional público,2581
+25317,21,Nacional privado,2582
+25317,42,Nacional privado,2583
+25320,19,Nacional privado futuro,2584
+25320,16,Nacional público,2585
+25320,17,Regional público,2586
+25320,14,Nacional privado,2587
+25320,15,Nacional privado,2588
+25322,16,Nacional público,2589
+25322,17,Regional público,2590
+25322,14,Nacional privado,2591
+25322,15,Nacional privado,2592
+25322,19,Nacional privado futuro,2593
+25324,19,Nacional privado futuro,2594
+25324,14,Nacional privado,2595
+25324,15,Nacional privado,2596
+25324,16,Nacional público,2597
+25324,17,Regional público,2598
+25326,19,Nacional privado futuro,2599
+25326,14,Nacional privado,2600
+25326,15,Nacional privado,2601
+25326,16,Nacional público,2602
+25326,17,Regional público,2603
+25328,19,Nacional privado futuro,2604
+25328,14,Nacional privado,2605
+25328,15,Nacional privado,2606
+25328,16,Nacional público,2607
+25328,17,Regional público,2608
+25335,19,Nacional privado futuro,2609
+25335,16,Nacional público,2610
+25335,18,Regional público,2611
+25335,14,Nacional privado,2612
+25335,15,Nacional privado,2613
+25339,19,Nacional privado futuro,2614
+25339,16,Nacional público,2615
+25339,17,Regional público,2616
+25339,14,Nacional privado,2617
+25339,15,Nacional privado,2618
+25368,19,Nacional privado futuro,2619
+25368,14,Nacional privado,2620
+25368,15,Nacional privado,2621
+25368,16,Nacional público,2622
+25368,17,Regional público,2623
+25372,19,Nacional privado futuro,2624
+25372,16,Nacional público,2625
+25372,17,Regional público,2626
+25372,14,Nacional privado,2627
+25372,15,Nacional privado,2628
+25377,14,Nacional privado,2629
+25377,15,Nacional privado,2630
+25377,19,Nacional privado futuro,2631
+25377,16,Nacional público,2632
+25377,17,Regional público,2633
+25386,19,Nacional privado futuro,2634
+25386,14,Nacional privado,2635
+25386,15,Nacional privado,2636
+25386,16,Nacional público,2637
+25386,17,Regional público,2638
+25394,19,Nacional privado futuro,2639
+25394,14,Nacional privado,2640
+25394,15,Nacional privado,2641
+25394,16,Nacional público,2642
+25394,17,Regional público,2643
+25398,19,Nacional privado futuro,2644
+25398,14,Nacional privado,2645
+25398,15,Nacional privado,2646
+25398,38,Nacional público,2647
+25398,17,Regional público,2648
+25402,19,Nacional privado futuro,2649
+25402,16,Nacional público,2650
+25402,17,Regional público,2651
+25402,14,Nacional privado,2652
+25402,15,Nacional privado,2653
+25407,16,Nacional público,2654
+25407,17,Regional público,2655
+25407,21,Nacional privado,2656
+25407,42,Nacional privado,2657
+25407,19,Nacional privado futuro,2658
+25426,16,Nacional público,2659
+25426,17,Regional público,2660
+25426,14,Nacional privado,2661
+25426,15,Nacional privado,2662
+25426,19,Nacional privado futuro,2663
+25430,19,Nacional privado futuro,2664
+25430,14,Nacional privado,2665
+25430,15,Nacional privado,2666
+25430,16,Nacional público,2667
+25430,17,Regional público,2668
+25436,16,Nacional público,2669
+25436,17,Regional público,2670
+25436,14,Nacional privado,2671
+25436,15,Nacional privado,2672
+25436,19,Nacional privado futuro,2673
+25438,19,Nacional privado futuro,2674
+25438,16,Nacional público,2675
+25438,17,Regional público,2676
+25438,14,Nacional privado,2677
+25438,15,Nacional privado,2678
+25473,19,Nacional privado futuro,2679
+25473,14,Nacional privado,2680
+25473,15,Nacional privado,2681
+25473,16,Nacional público,2682
+25473,17,Regional público,2683
+25483,19,Nacional privado futuro,2684
+25483,14,Nacional privado,2685
+25483,15,Nacional privado,2686
+25483,16,Nacional público,2687
+25483,17,Regional público,2688
+25486,35,Nacional público,2689
+25486,39,Regional público,2690
+25486,14,Nacional privado,2691
+25486,15,Nacional privado,2692
+25486,19,Nacional privado futuro,2693
+25488,19,Nacional privado futuro,2694
+25488,46,Nacional privado,2695
+25488,49,Nacional privado,2696
+25488,16,Nacional público,2697
+25488,17,Regional público,2698
+25489,16,Nacional público,2699
+25489,17,Regional público,2700
+25489,14,Nacional privado,2701
+25489,15,Nacional privado,2702
+25489,19,Nacional privado futuro,2703
+25491,16,Nacional público,2704
+25491,17,Regional público,2705
+25491,14,Nacional privado,2706
+25491,15,Nacional privado,2707
+25491,19,Nacional privado futuro,2708
+25506,19,Nacional privado futuro,2709
+25506,14,Nacional privado,2710
+25506,15,Nacional privado,2711
+25506,16,Nacional público,2712
+25506,17,Regional público,2713
+25513,14,Nacional privado,2714
+25513,15,Nacional privado,2715
+25513,19,Nacional privado futuro,2716
+25513,16,Nacional público,2717
+25513,17,Regional público,2718
+25518,19,Nacional privado futuro,2719
+25518,14,Nacional privado,2720
+25518,15,Nacional privado,2721
+25518,16,Nacional público,2722
+25518,17,Regional público,2723
+25524,19,Nacional privado futuro,2724
+25524,16,Nacional público,2725
+25524,17,Regional público,2726
+25524,46,Nacional privado,2727
+25524,49,Nacional privado,2728
+25530,19,Nacional privado futuro,2729
+25530,16,Nacional público,2730
+25530,17,Regional público,2731
+25530,14,Nacional privado,2732
+25530,15,Nacional privado,2733
+25535,16,Nacional público,2734
+25535,17,Regional público,2735
+25535,46,Nacional privado,2736
+25535,49,Nacional privado,2737
+25535,19,Nacional privado futuro,2738
+25572,43,Nacional privado futuro,2739
+25572,41,Nacional privado,2740
+25572,42,Nacional privado,2741
+25572,38,Nacional público,2742
+25572,18,Regional público,2743
+25580,19,Nacional privado futuro,2744
+25580,46,Nacional privado,2745
+25580,49,Nacional privado,2746
+25580,23,Nacional público,2747
+25580,17,Regional público,2748
+25592,19,Nacional privado futuro,2749
+25592,21,Nacional privado,2750
+25592,42,Nacional privado,2751
+25592,35,Nacional público,2752
+25592,17,Regional público,2753
+25594,19,Nacional privado futuro,2754
+25594,16,Nacional público,2755
+25594,18,Regional público,2756
+25594,14,Nacional privado,2757
+25594,15,Nacional privado,2758
+25596,19,Nacional privado futuro,2759
+25596,14,Nacional privado,2760
+25596,15,Nacional privado,2761
+25596,16,Nacional público,2762
+25596,17,Regional público,2763
+25599,19,Nacional privado futuro,2764
+25599,14,Nacional privado,2765
+25599,15,Nacional privado,2766
+25599,16,Nacional público,2767
+25599,17,Regional público,2768
+25612,19,Nacional privado futuro,2769
+25612,46,Nacional privado,2770
+25612,49,Nacional privado,2771
+25612,16,Nacional público,2772
+25612,17,Regional público,2773
+25645,23,Nacional público,2774
+25645,17,Regional público,2775
+25645,14,Nacional privado,2776
+25645,15,Nacional privado,2777
+25645,19,Nacional privado futuro,2778
+25649,46,Nacional privado,2779
+25649,49,Nacional privado,2780
+25649,16,Nacional público,2781
+25649,17,Regional público,2782
+25649,19,Nacional privado futuro,2783
+25653,19,Nacional privado futuro,2784
+25653,14,Nacional privado,2785
+25653,15,Nacional privado,2786
+25653,16,Nacional público,2787
+25653,17,Regional público,2788
+25658,19,Nacional privado futuro,2789
+25658,16,Nacional público,2790
+25658,17,Regional público,2791
+25658,14,Nacional privado,2792
+25658,15,Nacional privado,2793
+25662,43,Nacional privado futuro,2794
+25662,41,Nacional privado,2795
+25662,42,Nacional privado,2796
+25662,16,Nacional público,2797
+25662,17,Regional público,2798
+25718,16,Nacional público,2799
+25718,17,Regional público,2800
+25718,14,Nacional privado,2801
+25718,15,Nacional privado,2802
+25718,19,Nacional privado futuro,2803
+25736,16,Nacional público,2804
+25736,17,Regional público,2805
+25736,14,Nacional privado,2806
+25736,15,Nacional privado,2807
+25736,19,Nacional privado futuro,2808
+25740,19,Nacional privado futuro,2809
+25740,14,Nacional privado,2810
+25740,15,Nacional privado,2811
+25740,16,Nacional público,2812
+25740,17,Regional público,2813
+25743,50,Nacional privado futuro,2814
+25743,46,Nacional privado,2815
+25743,49,Nacional privado,2816
+25743,16,Nacional público,2817
+25743,17,Regional público,2818
+25745,43,Nacional privado futuro,2819
+25745,21,Nacional privado,2820
+25745,42,Nacional privado,2821
+25745,35,Nacional público,2822
+25745,39,Regional público,2823
+25754,19,Nacional privado futuro,2824
+25754,16,Nacional público,2825
+25754,17,Regional público,2826
+25754,14,Nacional privado,2827
+25754,15,Nacional privado,2828
+25754,34,Local con ánimo de lucro,2829
+25754,39,Local sin ánimo de lucro,2830
+25758,19,Nacional privado futuro,2831
+25758,16,Nacional público,2832
+25758,17,Regional público,2833
+25758,14,Nacional privado,2834
+25758,15,Nacional privado,2835
+25769,19,Nacional privado futuro,2836
+25769,14,Nacional privado,2837
+25769,15,Nacional privado,2838
+25769,16,Nacional público,2839
+25769,17,Regional público,2840
+25772,19,Nacional privado futuro,2841
+25772,16,Nacional público,2842
+25772,17,Regional público,2843
+25772,14,Nacional privado,2844
+25772,15,Nacional privado,2845
+25777,19,Nacional privado futuro,2846
+25777,38,Nacional público,2847
+25777,17,Regional público,2848
+25777,14,Nacional privado,2849
+25777,15,Nacional privado,2850
+25779,47,Nacional privado futuro,2851
+25779,21,Nacional privado,2852
+25779,42,Nacional privado,2853
+25779,35,Nacional público,2854
+25779,39,Regional público,2855
+25781,16,Nacional público,2856
+25781,17,Regional público,2857
+25781,43,Nacional privado,2858
+25781,46,Nacional privado,2859
+25781,19,Nacional privado futuro,2860
+25785,19,Nacional privado futuro,2861
+25785,16,Nacional público,2862
+25785,17,Regional público,2863
+25785,14,Nacional privado,2864
+25785,15,Nacional privado,2865
+25793,16,Nacional público,2866
+25793,17,Regional público,2867
+25793,43,Nacional privado,2868
+25793,46,Nacional privado,2869
+25793,19,Nacional privado futuro,2870
+25797,19,Nacional privado futuro,2871
+25797,14,Nacional privado,2872
+25797,15,Nacional privado,2873
+25797,16,Nacional público,2874
+25797,17,Regional público,2875
+25799,19,Nacional privado futuro,2876
+25799,16,Nacional público,2877
+25799,17,Regional público,2878
+25799,14,Nacional privado,2879
+25799,15,Nacional privado,2880
+25805,50,Nacional privado futuro,2881
+25805,46,Nacional privado,2882
+25805,49,Nacional privado,2883
+25805,16,Nacional público,2884
+25805,17,Regional público,2885
+25807,16,Nacional público,2886
+25807,17,Regional público,2887
+25807,14,Nacional privado,2888
+25807,15,Nacional privado,2889
+25807,19,Nacional privado futuro,2890
+25815,19,Nacional privado futuro,2891
+25815,14,Nacional privado,2892
+25815,15,Nacional privado,2893
+25815,16,Nacional público,2894
+25815,17,Regional público,2895
+25817,19,Nacional privado futuro,2896
+25817,46,Nacional público,2897
+25817,48,Regional público,2898
+25817,14,Nacional privado,2899
+25817,15,Nacional privado,2900
+25823,19,Nacional privado futuro,2901
+25823,14,Nacional privado,2902
+25823,15,Nacional privado,2903
+25823,16,Nacional público,2904
+25823,17,Regional público,2905
+25839,19,Nacional privado futuro,2906
+25839,19,Nacional privado futuro,2907
+25839,16,Nacional público,2908
+25839,16,Nacional público,2909
+25839,17,Regional público,2910
+25839,17,Regional público,2911
+25839,14,Nacional privado,2912
+25839,15,Nacional privado,2913
+25841,19,Nacional privado futuro,2914
+25841,16,Nacional público,2915
+25841,17,Regional público,2916
+25841,14,Nacional privado,2917
+25841,15,Nacional privado,2918
+25843,41,Nacional privado,2919
+25843,44,Nacional privado,2920
+25843,19,Nacional privado futuro,2921
+25843,16,Nacional público,2922
+25843,17,Regional público,2923
+25845,19,Nacional privado futuro,2924
+25845,16,Nacional público,2925
+25845,17,Regional público,2926
+25845,14,Nacional privado,2927
+25845,15,Nacional privado,2928
+25851,16,Nacional público,2929
+25851,17,Regional público,2930
+25851,14,Nacional privado,2931
+25851,15,Nacional privado,2932
+25851,19,Nacional privado futuro,2933
+25862,16,Nacional público,2934
+25862,17,Regional público,2935
+25862,21,Nacional privado,2936
+25862,42,Nacional privado,2937
+25862,19,Nacional privado futuro,2938
+25867,19,Nacional privado futuro,2939
+25867,14,Nacional privado,2940
+25867,15,Nacional privado,2941
+25867,16,Nacional público,2942
+25867,17,Regional público,2943
+25871,19,Nacional privado futuro,2944
+25871,14,Nacional privado,2945
+25871,15,Nacional privado,2946
+25871,16,Nacional público,2947
+25871,17,Regional público,2948
+25873,19,Nacional privado futuro,2949
+25873,16,Nacional público,2950
+25873,17,Regional público,2951
+25873,14,Nacional privado,2952
+25873,15,Nacional privado,2953
+25875,19,Nacional privado futuro,2954
+25875,14,Nacional privado,2955
+25875,15,Nacional privado,2956
+25875,16,Nacional público,2957
+25875,17,Regional público,2958
+25878,19,Nacional privado futuro,2959
+25878,14,Nacional privado,2960
+25878,15,Nacional privado,2961
+25878,16,Nacional público,2962
+25878,17,Regional público,2963
+25885,19,Nacional privado futuro,2964
+25885,14,Nacional privado,2965
+25885,15,Nacional privado,2966
+25885,16,Nacional público,2967
+25885,17,Regional público,2968
+25898,19,Nacional privado futuro,2969
+25898,14,Nacional privado,2970
+25898,15,Nacional privado,2971
+25898,16,Nacional público,2972
+25898,17,Regional público,2973
+25899,19,Nacional privado futuro,2974
+25899,14,Nacional privado,2975
+25899,15,Nacional privado,2976
+25899,16,Nacional público,2977
+25899,17,Regional público,2978
+25899,27,Local con ánimo de lucro,2979
+27001,19,Nacional privado futuro,2980
+27001,21,Nacional público,2981
+27001,25,Regional público,2982
+27001,17,Regional público,2983
+27001,14,Nacional privado,2984
+27001,15,Nacional privado,2985
+27001,30,Local con ánimo de lucro,2986
+27001,33,Local sin ánimo de lucro,2987
+27006,27,Nacional privado futuro,2988
+27006,34,Nacional público,2989
+27006,17,Regional público,2990
+27006,14,Nacional privado,2991
+27006,15,Nacional privado,2992
+27025,14,Nacional privado,2993
+27025,15,Nacional privado,2994
+27025,16,Nacional público,2995
+27025,17,Regional público,2996
+27025,19,Nacional privado futuro,2997
+27050,21,Nacional público,2998
+27050,17,Regional público,2999
+27050,14,Nacional privado,3000
+27050,15,Nacional privado,3001
+27050,19,Nacional privado futuro,3002
+27073,21,Nacional público,3003
+27073,17,Regional público,3004
+27073,14,Nacional privado,3005
+27073,15,Nacional privado,3006
+27073,19,Nacional privado futuro,3007
+27075,19,Nacional privado futuro,3008
+27075,16,Nacional público,3009
+27075,18,Regional público,3010
+27075,17,Regional público,3011
+27075,14,Nacional privado,3012
+27075,15,Nacional privado,3013
+27077,19,Nacional privado futuro,3014
+27077,14,Nacional privado,3015
+27077,15,Nacional privado,3016
+27077,21,Nacional público,3017
+27077,17,Regional público,3018
+27099,27,Nacional privado futuro,3019
+27099,21,Nacional público,3020
+27099,17,Regional público,3021
+27099,14,Nacional privado,3022
+27099,15,Nacional privado,3023
+27135,21,Nacional público,3024
+27135,14,Nacional privado,3025
+27135,15,Nacional privado,3026
+27135,19,Nacional privado futuro,3027
+27150,14,Nacional privado,3028
+27150,15,Nacional privado,3029
+27150,16,Nacional público,3030
+27150,17,Regional público,3031
+27150,19,Nacional privado futuro,3032
+27160,21,Nacional público,3033
+27160,17,Regional público,3034
+27160,14,Nacional privado,3035
+27160,15,Nacional privado,3036
+27160,19,Nacional privado futuro,3037
+27205,19,Nacional privado futuro,3038
+27205,21,Nacional público,3039
+27205,17,Regional público,3040
+27205,14,Nacional privado,3041
+27205,15,Nacional privado,3042
+27245,19,Nacional privado futuro,3043
+27245,16,Nacional público,3044
+27245,18,Regional público,3045
+27245,17,Regional público,3046
+27245,14,Nacional privado,3047
+27245,15,Nacional privado,3048
+27250,14,Nacional privado,3049
+27250,15,Nacional privado,3050
+27250,38,Nacional público,3051
+27250,17,Regional público,3052
+27250,19,Nacional privado futuro,3053
+27361,19,Nacional privado futuro,3054
+27361,21,Nacional público,3055
+27361,25,Regional público,3056
+27361,17,Regional público,3057
+27361,14,Nacional privado,3058
+27361,15,Nacional privado,3059
+27372,19,Nacional privado futuro,3060
+27372,16,Nacional público,3061
+27372,17,Regional público,3062
+27372,14,Nacional privado,3063
+27372,15,Nacional privado,3064
+27413,21,Nacional público,3065
+27413,17,Regional público,3066
+27413,14,Nacional privado,3067
+27413,15,Nacional privado,3068
+27413,19,Nacional privado futuro,3069
+27425,21,Nacional público,3070
+27425,17,Regional público,3071
+27425,14,Nacional privado,3072
+27425,15,Nacional privado,3073
+27425,19,Nacional privado futuro,3074
+27430,21,Nacional público,3075
+27430,17,Regional público,3076
+27430,14,Nacional privado,3077
+27430,15,Nacional privado,3078
+27430,19,Nacional privado futuro,3079
+27450,14,Nacional privado,3080
+27450,15,Nacional privado,3081
+27450,21,Nacional público,3082
+27450,17,Regional público,3083
+27450,19,Nacional privado futuro,3084
+27491,14,Nacional privado,3085
+27491,15,Nacional privado,3086
+27491,38,Nacional público,3087
+27491,17,Regional público,3088
+27491,19,Nacional privado futuro,3089
+27495,14,Nacional privado,3090
+27495,15,Nacional privado,3091
+27495,21,Nacional público,3092
+27495,17,Regional público,3093
+27495,19,Nacional privado futuro,3094
+27580,14,Nacional privado,3095
+27580,15,Nacional privado,3096
+27580,21,Nacional público,3097
+27580,17,Regional público,3098
+27580,19,Nacional privado futuro,3099
+27600,21,Nacional público,3100
+27600,17,Regional público,3101
+27600,14,Nacional privado,3102
+27600,15,Nacional privado,3103
+27600,19,Nacional privado futuro,3104
+27615,38,Nacional privado futuro,3105
+27615,28,Nacional público,3106
+27615,27,Regional público,3107
+27615,21,Nacional privado,3108
+27615,24,Nacional privado,3109
+27660,14,Nacional privado,3110
+27660,15,Nacional privado,3111
+27660,38,Nacional público,3112
+27660,17,Regional público,3113
+27660,19,Nacional privado futuro,3114
+27745,14,Nacional privado,3115
+27745,15,Nacional privado,3116
+27745,38,Nacional público,3117
+27745,17,Regional público,3118
+27745,19,Nacional privado futuro,3119
+27787,21,Nacional público,3120
+27787,17,Regional público,3121
+27787,19,Nacional privado futuro,3122
+27787,14,Nacional privado,3123
+27787,15,Nacional privado,3124
+27800,28,Nacional público,3125
+27800,27,Regional público,3126
+27800,21,Nacional privado,3127
+27800,24,Nacional privado,3128
+27800,27,Nacional privado futuro,3129
+27810,21,Nacional público,3130
+27810,17,Regional público,3131
+27810,14,Nacional privado,3132
+27810,15,Nacional privado,3133
+27810,19,Nacional privado futuro,3134
+41001,26,Local sin ánimo de lucro,3135
+41001,19,Nacional privado futuro,3136
+41001,19,Nacional privado futuro,3137
+41001,21,Nacional privado,3138
+41001,22,Nacional privado,3139
+41001,16,Nacional público,3140
+41001,17,Regional público,3141
+41001,18,Nacional público,3142
+41001,17,Regional público,3143
+41001,23,Local con ánimo de lucro,3144
+41006,19,Nacional privado futuro,3145
+41006,18,Nacional público,3146
+41006,17,Regional público,3147
+41006,14,Nacional privado,3148
+41006,15,Nacional privado,3149
+41013,19,Nacional privado futuro,3150
+41013,14,Nacional privado,3151
+41013,15,Nacional privado,3152
+41013,18,Nacional público,3153
+41013,17,Regional público,3154
+41016,19,Nacional privado futuro,3155
+41016,21,Nacional privado,3156
+41016,22,Nacional privado,3157
+41016,16,Nacional público,3158
+41016,17,Regional público,3159
+41020,19,Nacional privado futuro,3160
+41020,14,Nacional privado,3161
+41020,15,Nacional privado,3162
+41020,18,Nacional público,3163
+41020,17,Regional público,3164
+41026,19,Nacional privado futuro,3165
+41026,14,Nacional privado,3166
+41026,15,Nacional privado,3167
+41026,18,Nacional público,3168
+41026,17,Regional público,3169
+41078,19,Nacional privado futuro,3170
+41078,21,Nacional privado,3171
+41078,22,Nacional privado,3172
+41078,16,Nacional público,3173
+41078,17,Regional público,3174
+41132,21,Nacional privado,3175
+41132,22,Nacional privado,3176
+41132,16,Nacional público,3177
+41132,17,Regional público,3178
+41132,30,Nacional privado futuro,3179
+41206,19,Nacional privado futuro,3180
+41206,16,Nacional público,3181
+41206,17,Regional público,3182
+41206,14,Nacional privado,3183
+41206,15,Nacional privado,3184
+41244,18,Nacional público,3185
+41244,17,Regional público,3186
+41244,21,Nacional privado,3187
+41244,22,Nacional privado,3188
+41244,27,Nacional privado futuro,3189
+41298,19,Nacional privado futuro,3190
+41298,18,Nacional público,3191
+41298,17,Regional público,3192
+41298,14,Nacional privado,3193
+41298,15,Nacional privado,3194
+41306,19,Nacional privado futuro,3195
+41306,14,Nacional privado,3196
+41306,15,Nacional privado,3197
+41306,18,Nacional público,3198
+41306,17,Regional público,3199
+41319,18,Nacional público,3200
+41319,17,Regional público,3201
+41319,14,Nacional privado,3202
+41319,15,Nacional privado,3203
+41319,19,Nacional privado futuro,3204
+41349,21,Nacional privado,3205
+41349,22,Nacional privado,3206
+41349,16,Nacional público,3207
+41349,17,Regional público,3208
+41349,30,Nacional privado futuro,3209
+41357,21,Nacional privado,3210
+41357,22,Nacional privado,3211
+41357,16,Nacional público,3212
+41357,17,Regional público,3213
+41357,30,Nacional privado futuro,3214
+41359,19,Nacional privado futuro,3215
+41359,14,Nacional privado,3216
+41359,15,Nacional privado,3217
+41359,18,Nacional público,3218
+41359,17,Regional público,3219
+41378,27,Nacional privado futuro,3220
+41378,18,Nacional público,3221
+41378,17,Regional público,3222
+41378,21,Nacional privado,3223
+41378,22,Nacional privado,3224
+41396,19,Nacional privado futuro,3225
+41396,14,Nacional privado,3226
+41396,15,Nacional privado,3227
+41396,18,Nacional público,3228
+41396,17,Regional público,3229
+41483,19,Nacional privado futuro,3230
+41483,18,Nacional público,3231
+41483,17,Regional público,3232
+41483,14,Nacional privado,3233
+41483,15,Nacional privado,3234
+41503,18,Nacional público,3235
+41503,17,Regional público,3236
+41503,14,Nacional privado,3237
+41503,15,Nacional privado,3238
+41503,19,Nacional privado futuro,3239
+41518,32,Nacional privado futuro,3240
+41518,21,Nacional privado,3241
+41518,22,Nacional privado,3242
+41518,16,Nacional público,3243
+41518,17,Regional público,3244
+41524,19,Nacional privado futuro,3245
+41524,21,Nacional privado,3246
+41524,22,Nacional privado,3247
+41524,16,Nacional público,3248
+41524,17,Regional público,3249
+41530,18,Nacional público,3250
+41530,17,Regional público,3251
+41530,21,Nacional privado,3252
+41530,22,Nacional privado,3253
+41530,27,Nacional privado futuro,3254
+41548,19,Nacional privado futuro,3255
+41548,14,Nacional privado,3256
+41548,15,Nacional privado,3257
+41548,18,Nacional público,3258
+41548,17,Regional público,3259
+41551,19,Nacional privado futuro,3260
+41551,14,Nacional privado,3261
+41551,15,Nacional privado,3262
+41551,18,Nacional público,3263
+41551,17,Regional público,3264
+41551,23,Local con ánimo de lucro,3265
+41615,18,Nacional público,3266
+41615,17,Regional público,3267
+41615,21,Nacional privado,3268
+41615,22,Nacional privado,3269
+41615,27,Nacional privado futuro,3270
+41660,18,Nacional público,3271
+41660,17,Regional público,3272
+41660,14,Nacional privado,3273
+41660,15,Nacional privado,3274
+41660,19,Nacional privado futuro,3275
+41668,19,Nacional privado futuro,3276
+41668,14,Nacional privado,3277
+41668,15,Nacional privado,3278
+41668,18,Nacional público,3279
+41668,17,Regional público,3280
+41676,19,Nacional privado futuro,3281
+41676,16,Nacional público,3282
+41676,17,Regional público,3283
+41676,21,Nacional privado,3284
+41676,22,Nacional privado,3285
+41770,18,Nacional público,3286
+41770,17,Regional público,3287
+41770,14,Nacional privado,3288
+41770,15,Nacional privado,3289
+41770,19,Nacional privado futuro,3290
+41791,18,Nacional público,3291
+41791,17,Regional público,3292
+41791,21,Nacional privado,3293
+41791,22,Nacional privado,3294
+41791,28,Nacional privado futuro,3295
+41797,32,Nacional privado futuro,3296
+41797,18,Nacional público,3297
+41797,17,Regional público,3298
+41797,21,Nacional privado,3299
+41797,22,Nacional privado,3300
+41799,19,Nacional privado futuro,3301
+41799,18,Nacional público,3302
+41799,17,Regional público,3303
+41799,21,Nacional privado,3304
+41799,22,Nacional privado,3305
+41799,16,Nacional público,3306
+41799,17,Regional público,3307
+41801,19,Nacional privado futuro,3308
+41801,18,Nacional público,3309
+41801,17,Regional público,3310
+41801,21,Nacional privado,3311
+41801,22,Nacional privado,3312
+41807,19,Nacional privado futuro,3313
+41807,14,Nacional privado,3314
+41807,15,Nacional privado,3315
+41807,18,Nacional público,3316
+41807,17,Regional público,3317
+41872,19,Nacional privado futuro,3318
+41872,21,Nacional privado,3319
+41872,22,Nacional privado,3320
+41872,16,Nacional público,3321
+41872,17,Regional público,3322
+41885,19,Nacional privado futuro,3323
+41885,21,Nacional privado,3324
+41885,22,Nacional privado,3325
+41885,16,Nacional público,3326
+41885,17,Regional público,3327
+44001,21,Local sin ánimo de lucro,3328
+44001,38,Nacional privado futuro,3329
+44001,34,Nacional privado,3330
+44001,32,Nacional privado,3331
+44001,33,Nacional público,3332
+44001,48,Regional público,3333
+44001,30,Local con ánimo de lucro,3334
+44035,27,Nacional privado futuro,3335
+44035,28,Nacional público,3336
+44035,48,Regional público,3337
+44035,34,Nacional privado,3338
+44035,32,Nacional privado,3339
+44078,27,Nacional privado futuro,3340
+44078,34,Nacional privado,3341
+44078,32,Nacional privado,3342
+44078,33,Nacional público,3343
+44078,48,Regional público,3344
+44090,38,Nacional privado futuro,3345
+44090,33,Nacional público,3346
+44090,48,Regional público,3347
+44090,34,Nacional privado,3348
+44090,32,Nacional privado,3349
+44098,27,Nacional privado futuro,3350
+44098,33,Nacional público,3351
+44098,29,Regional público,3352
+44098,34,Nacional privado,3353
+44098,32,Nacional privado,3354
+44110,27,Nacional privado futuro,3355
+44110,34,Nacional privado,3356
+44110,32,Nacional privado,3357
+44110,33,Nacional público,3358
+44110,48,Regional público,3359
+44279,27,Nacional privado futuro,3360
+44279,34,Nacional privado,3361
+44279,32,Nacional privado,3362
+44279,33,Nacional público,3363
+44279,48,Regional público,3364
+44378,33,Nacional público,3365
+44378,48,Regional público,3366
+44378,34,Nacional privado,3367
+44378,32,Nacional privado,3368
+44378,27,Nacional privado futuro,3369
+44420,27,Nacional privado futuro,3370
+44420,28,Nacional público,3371
+44420,29,Regional público,3372
+44420,34,Nacional privado,3373
+44420,32,Nacional privado,3374
+44430,27,Nacional privado futuro,3375
+44430,34,Nacional privado,3376
+44430,32,Nacional privado,3377
+44430,33,Nacional público,3378
+44430,48,Regional público,3379
+44430,30,Local con ánimo de lucro,3380
+44560,38,Nacional privado futuro,3381
+44560,34,Nacional privado,3382
+44560,32,Nacional privado,3383
+44560,33,Nacional público,3384
+44560,48,Regional público,3385
+44650,27,Nacional privado futuro,3386
+44650,14,Nacional privado,3387
+44650,15,Nacional privado,3388
+44650,33,Nacional público,3389
+44650,29,Regional público,3390
+44847,34,Nacional privado,3391
+44847,32,Nacional privado,3392
+44847,33,Nacional público,3393
+44847,48,Regional público,3394
+44847,27,Nacional privado futuro,3395
+44847,30,Local con ánimo de lucro,3396
+44855,27,Nacional privado futuro,3397
+44855,34,Nacional privado,3398
+44855,32,Nacional privado,3399
+44855,33,Nacional público,3400
+44855,48,Regional público,3401
+44874,27,Nacional privado futuro,3402
+44874,34,Nacional privado,3403
+44874,32,Nacional privado,3404
+44874,33,Nacional público,3405
+44874,48,Regional público,3406
+47001,19,Nacional privado futuro,3407
+47001,19,Nacional privado futuro,3408
+47001,14,Nacional privado,3409
+47001,15,Nacional privado,3410
+47001,16,Nacional público,3411
+47001,17,Regional público,3412
+47001,14,Nacional privado,3413
+47001,15,Nacional privado,3414
+47001,30,Local con ánimo de lucro,3415
+47001,27,Local sin ánimo de lucro,3416
+47030,27,Nacional privado futuro,3417
+47030,16,Nacional público,3418
+47030,29,Regional público,3419
+47030,41,Nacional privado,3420
+47030,38,Nacional privado,3421
+47053,34,Nacional privado,3422
+47053,32,Nacional privado,3423
+47053,16,Nacional público,3424
+47053,17,Regional público,3425
+47053,27,Nacional privado futuro,3426
+47058,27,Nacional privado futuro,3427
+47058,27,Nacional público,3428
+47058,29,Regional público,3429
+47058,34,Nacional privado,3430
+47058,32,Nacional privado,3431
+47161,38,Nacional privado futuro,3432
+47161,16,Nacional público,3433
+47161,17,Regional público,3434
+47161,34,Nacional privado,3435
+47161,32,Nacional privado,3436
+47170,27,Nacional privado futuro,3437
+47170,28,Nacional público,3438
+47170,29,Regional público,3439
+47170,34,Nacional privado,3440
+47170,32,Nacional privado,3441
+47189,14,Nacional privado,3442
+47189,15,Nacional privado,3443
+47189,30,Local con ánimo de lucro,3444
+47189,16,Nacional público,3445
+47189,17,Regional público,3446
+47189,19,Nacional privado futuro,3447
+47205,38,Nacional privado futuro,3448
+47205,16,Nacional público,3449
+47205,17,Regional público,3450
+47205,34,Nacional privado,3451
+47205,32,Nacional privado,3452
+47245,50,Nacional privado futuro,3453
+47245,49,Nacional privado,3454
+47245,45,Nacional privado,3455
+47245,27,Nacional público,3456
+47245,29,Regional público,3457
+47258,38,Nacional privado futuro,3458
+47258,16,Nacional público,3459
+47258,17,Regional público,3460
+47258,34,Nacional privado,3461
+47258,32,Nacional privado,3462
+47268,38,Nacional privado futuro,3463
+47268,16,Nacional público,3464
+47268,17,Regional público,3465
+47268,34,Nacional privado,3466
+47268,32,Nacional privado,3467
+47288,27,Nacional privado futuro,3468
+47288,16,Nacional público,3469
+47288,17,Regional público,3470
+47288,34,Nacional privado,3471
+47288,32,Nacional privado,3472
+47318,50,Nacional privado futuro,3473
+47318,49,Nacional privado,3474
+47318,45,Nacional privado,3475
+47318,27,Nacional público,3476
+47318,29,Regional público,3477
+47460,27,Nacional privado futuro,3478
+47460,28,Nacional público,3479
+47460,48,Regional público,3480
+47460,34,Nacional privado,3481
+47460,32,Nacional privado,3482
+47541,38,Nacional privado futuro,3483
+47541,16,Nacional público,3484
+47541,17,Regional público,3485
+47541,34,Nacional privado,3486
+47541,32,Nacional privado,3487
+47545,49,Nacional privado,3488
+47545,45,Nacional privado,3489
+47545,27,Nacional público,3490
+47545,29,Regional público,3491
+47545,27,Nacional privado futuro,3492
+47551,27,Nacional privado futuro,3493
+47551,16,Nacional público,3494
+47551,29,Regional público,3495
+47551,34,Nacional privado,3496
+47551,32,Nacional privado,3497
+47555,19,Nacional privado futuro,3498
+47555,14,Nacional privado,3499
+47555,15,Nacional privado,3500
+47555,16,Nacional público,3501
+47555,17,Regional público,3502
+47570,38,Nacional privado futuro,3503
+47570,16,Nacional público,3504
+47570,17,Regional público,3505
+47570,34,Nacional privado,3506
+47570,32,Nacional privado,3507
+47605,38,Nacional privado futuro,3508
+47605,16,Nacional público,3509
+47605,17,Regional público,3510
+47605,34,Nacional privado,3511
+47605,32,Nacional privado,3512
+47660,27,Nacional privado futuro,3513
+47660,16,Nacional público,3514
+47660,17,Regional público,3515
+47660,34,Nacional privado,3516
+47660,32,Nacional privado,3517
+47675,38,Nacional privado futuro,3518
+47675,16,Nacional público,3519
+47675,17,Regional público,3520
+47675,34,Nacional privado,3521
+47675,32,Nacional privado,3522
+47692,50,Nacional privado futuro,3523
+47692,49,Nacional privado,3524
+47692,45,Nacional privado,3525
+47692,27,Nacional público,3526
+47692,29,Regional público,3527
+47703,50,Nacional privado futuro,3528
+47703,49,Nacional privado,3529
+47703,45,Nacional privado,3530
+47703,27,Nacional público,3531
+47703,29,Regional público,3532
+47707,34,Nacional privado,3533
+47707,32,Nacional privado,3534
+47707,27,Nacional público,3535
+47707,29,Regional público,3536
+47707,27,Nacional privado futuro,3537
+47720,14,Nacional privado,3538
+47720,15,Nacional privado,3539
+47720,33,Nacional público,3540
+47720,29,Regional público,3541
+47720,19,Nacional privado futuro,3542
+47745,19,Nacional privado futuro,3543
+47745,16,Nacional público,3544
+47745,17,Regional público,3545
+47745,14,Nacional privado,3546
+47745,15,Nacional privado,3547
+47798,19,Nacional privado futuro,3548
+47798,16,Nacional público,3549
+47798,17,Regional público,3550
+47798,34,Nacional privado,3551
+47798,32,Nacional privado,3552
+47960,38,Nacional privado futuro,3553
+47960,33,Nacional público,3554
+47960,48,Regional público,3555
+47960,34,Nacional privado,3556
+47960,32,Nacional privado,3557
+47980,38,Nacional privado futuro,3558
+47980,33,Nacional público,3559
+47980,48,Regional público,3560
+47980,34,Nacional privado,3561
+47980,32,Nacional privado,3562
+50001,19,Nacional privado futuro,3563
+50001,16,Nacional público,3564
+50001,17,Regional público,3565
+50001,14,Nacional privado,3566
+50001,15,Nacional privado,3567
+50001,24,Local con ánimo de lucro,3568
+50001,25,Local sin ánimo de lucro,3569
+50006,19,Nacional privado futuro,3570
+50006,16,Nacional público,3571
+50006,17,Regional público,3572
+50006,14,Nacional privado,3573
+50006,25,Local sin ánimo de lucro,3574
+50006,15,Nacional privado,3575
+50006,24,Local con ánimo de lucro,3576
+50110,19,Nacional privado futuro,3577
+50110,16,Nacional público,3578
+50110,17,Regional público,3579
+50110,14,Nacional privado,3580
+50110,15,Nacional privado,3581
+50124,19,Nacional privado futuro,3582
+50124,16,Nacional público,3583
+50124,17,Regional público,3584
+50124,14,Nacional privado,3585
+50124,15,Nacional privado,3586
+50150,19,Nacional privado futuro,3587
+50150,16,Nacional público,3588
+50150,17,Regional público,3589
+50150,14,Nacional privado,3590
+50150,15,Nacional privado,3591
+50223,19,Nacional privado futuro,3592
+50223,16,Nacional público,3593
+50223,17,Regional público,3594
+50223,14,Nacional privado,3595
+50223,15,Nacional privado,3596
+50226,19,Nacional privado futuro,3597
+50226,16,Nacional público,3598
+50226,17,Regional público,3599
+50226,14,Nacional privado,3600
+50226,15,Nacional privado,3601
+50245,19,Nacional privado futuro,3602
+50245,16,Nacional público,3603
+50245,17,Regional público,3604
+50245,14,Nacional privado,3605
+50245,15,Nacional privado,3606
+50251,19,Nacional privado futuro,3607
+50251,16,Nacional público,3608
+50251,17,Regional público,3609
+50251,14,Nacional privado,3610
+50251,15,Nacional privado,3611
+50270,19,Nacional privado futuro,3612
+50270,16,Nacional público,3613
+50270,17,Regional público,3614
+50270,14,Nacional privado,3615
+50270,15,Nacional privado,3616
+50287,19,Nacional privado futuro,3617
+50287,16,Nacional público,3618
+50287,17,Regional público,3619
+50287,14,Nacional privado,3620
+50287,15,Nacional privado,3621
+50313,19,Nacional privado futuro,3622
+50313,16,Nacional público,3623
+50313,17,Regional público,3624
+50313,14,Nacional privado,3625
+50313,15,Nacional privado,3626
+50318,19,Nacional privado futuro,3627
+50318,16,Nacional público,3628
+50318,17,Regional público,3629
+50318,14,Nacional privado,3630
+50318,15,Nacional privado,3631
+50325,14,Nacional privado,3632
+50325,15,Nacional privado,3633
+50325,16,Nacional público,3634
+50325,19,Nacional privado futuro,3635
+50325,17,Regional público,3636
+50330,14,Nacional privado,3637
+50330,15,Nacional privado,3638
+50330,16,Nacional público,3639
+50330,19,Nacional privado futuro,3640
+50330,17,Regional público,3641
+50350,14,Nacional privado,3642
+50350,15,Nacional privado,3643
+50350,16,Nacional público,3644
+50350,19,Nacional privado futuro,3645
+50350,17,Regional público,3646
+50370,14,Nacional privado,3647
+50370,15,Nacional privado,3648
+50370,16,Nacional público,3649
+50370,19,Nacional privado futuro,3650
+50370,17,Regional público,3651
+50400,14,Nacional privado,3652
+50400,15,Nacional privado,3653
+50400,16,Nacional público,3654
+50400,19,Nacional privado futuro,3655
+50400,17,Regional público,3656
+50450,14,Nacional privado,3657
+50450,15,Nacional privado,3658
+50450,16,Nacional público,3659
+50450,19,Nacional privado futuro,3660
+50450,17,Regional público,3661
+50568,19,Nacional privado futuro,3662
+50568,14,Nacional privado,3663
+50568,15,Nacional privado,3664
+50568,16,Nacional público,3665
+50568,17,Regional público,3666
+50573,19,Nacional privado futuro,3667
+50573,16,Nacional público,3668
+50573,17,Regional público,3669
+50573,14,Nacional privado,3670
+50573,15,Nacional privado,3671
+50577,19,Nacional privado futuro,3672
+50577,14,Nacional privado,3673
+50577,15,Nacional privado,3674
+50577,16,Nacional público,3675
+50577,17,Regional público,3676
+50590,19,Nacional privado futuro,3677
+50590,14,Nacional privado,3678
+50590,15,Nacional privado,3679
+50590,16,Nacional público,3680
+50590,17,Regional público,3681
+50606,19,Nacional privado futuro,3682
+50606,16,Nacional público,3683
+50606,17,Regional público,3684
+50606,14,Nacional privado,3685
+50606,15,Nacional privado,3686
+50680,19,Nacional privado futuro,3687
+50680,16,Nacional público,3688
+50680,17,Regional público,3689
+50680,14,Nacional privado,3690
+50680,15,Nacional privado,3691
+50683,19,Nacional privado futuro,3692
+50683,16,Nacional público,3693
+50683,17,Regional público,3694
+50683,14,Nacional privado,3695
+50683,15,Nacional privado,3696
+50686,19,Nacional privado futuro,3697
+50686,16,Nacional público,3698
+50686,17,Regional público,3699
+50686,14,Nacional privado,3700
+50686,15,Nacional privado,3701
+50689,19,Nacional privado futuro,3702
+50689,16,Nacional público,3703
+50689,17,Regional público,3704
+50689,14,Nacional privado,3705
+50689,15,Nacional privado,3706
+50711,19,Nacional privado futuro,3707
+50711,14,Nacional privado,3708
+50711,15,Nacional privado,3709
+50711,16,Nacional público,3710
+50711,17,Regional público,3711
+52001,26,Local sin ánimo de lucro,3712
+52001,28,Nacional privado futuro,3713
+52001,14,Nacional privado,3714
+52001,16,Nacional privado,3715
+52001,18,Nacional público,3716
+52001,20,Regional público,3717
+52001,36,Local con ánimo de lucro,3718
+52019,28,Nacional privado futuro,3719
+52019,18,Nacional público,3720
+52019,20,Regional público,3721
+52019,14,Nacional privado,3722
+52019,16,Nacional privado,3723
+52022,30,Nacional privado futuro,3724
+52022,18,Nacional público,3725
+52022,20,Regional público,3726
+52022,14,Nacional privado,3727
+52022,16,Nacional privado,3728
+52036,27,Nacional privado futuro,3729
+52036,18,Nacional público,3730
+52036,20,Regional público,3731
+52036,14,Nacional privado,3732
+52036,16,Nacional privado,3733
+52051,28,Nacional privado futuro,3734
+52051,14,Nacional privado,3735
+52051,16,Nacional privado,3736
+52051,18,Nacional público,3737
+52051,20,Regional público,3738
+52079,28,Nacional privado futuro,3739
+52079,14,Nacional privado,3740
+52079,16,Nacional privado,3741
+52079,18,Nacional público,3742
+52079,20,Regional público,3743
+52083,21,Nacional privado,3744
+52083,22,Nacional privado,3745
+52083,33,Nacional público,3746
+52083,17,Regional público,3747
+52083,27,Nacional privado futuro,3748
+52110,28,Nacional privado futuro,3749
+52110,18,Nacional público,3750
+52110,20,Regional público,3751
+52110,14,Nacional privado,3752
+52110,16,Nacional privado,3753
+52203,28,Nacional privado futuro,3754
+52203,14,Nacional privado,3755
+52203,16,Nacional privado,3756
+52203,18,Nacional público,3757
+52203,20,Regional público,3758
+52207,28,Nacional privado futuro,3759
+52207,14,Nacional privado,3760
+52207,16,Nacional privado,3761
+52207,18,Nacional público,3762
+52207,20,Regional público,3763
+52210,18,Nacional público,3764
+52210,20,Regional público,3765
+52210,14,Nacional privado,3766
+52210,16,Nacional privado,3767
+52210,19,Nacional privado futuro,3768
+52215,28,Nacional privado futuro,3769
+52215,14,Nacional privado,3770
+52215,16,Nacional privado,3771
+52215,18,Nacional público,3772
+52215,20,Regional público,3773
+52224,30,Nacional privado futuro,3774
+52224,18,Nacional público,3775
+52224,20,Regional público,3776
+52224,14,Nacional privado,3777
+52224,16,Nacional privado,3778
+52227,28,Nacional privado futuro,3779
+52227,14,Nacional privado,3780
+52227,16,Nacional privado,3781
+52227,18,Nacional público,3782
+52227,20,Regional público,3783
+52233,27,Nacional privado futuro,3784
+52233,21,Nacional privado,3785
+52233,22,Nacional privado,3786
+52233,18,Nacional público,3787
+52233,20,Regional público,3788
+52240,27,Nacional privado futuro,3789
+52240,33,Nacional público,3790
+52240,35,Regional público,3791
+52240,14,Nacional privado,3792
+52240,16,Nacional privado,3793
+52250,27,Nacional privado futuro,3794
+52250,21,Nacional privado,3795
+52250,22,Nacional privado,3796
+52250,18,Nacional público,3797
+52250,20,Regional público,3798
+52254,18,Nacional público,3799
+52254,20,Regional público,3800
+52254,14,Nacional privado,3801
+52254,22,Nacional privado,3802
+52254,27,Nacional privado futuro,3803
+52256,27,Nacional privado futuro,3804
+52256,18,Nacional público,3805
+52256,17,Regional público,3806
+52256,21,Nacional privado,3807
+52256,22,Nacional privado,3808
+52258,17,Regional público,3809
+52258,18,Nacional público,3810
+52258,28,Nacional privado futuro,3811
+52258,14,Nacional privado,3812
+52258,16,Nacional privado,3813
+52260,28,Nacional privado futuro,3814
+52260,14,Nacional privado,3815
+52260,16,Nacional privado,3816
+52260,18,Nacional público,3817
+52260,20,Regional público,3818
+52287,28,Nacional privado futuro,3819
+52287,14,Nacional privado,3820
+52287,16,Nacional privado,3821
+52287,18,Nacional público,3822
+52287,20,Regional público,3823
+52317,28,Nacional privado futuro,3824
+52317,14,Nacional privado,3825
+52317,16,Nacional privado,3826
+52317,18,Nacional público,3827
+52317,20,Regional público,3828
+52320,28,Nacional privado futuro,3829
+52320,14,Nacional privado,3830
+52320,16,Nacional privado,3831
+52320,18,Nacional público,3832
+52320,20,Regional público,3833
+52323,28,Nacional privado futuro,3834
+52323,14,Nacional privado,3835
+52323,16,Nacional privado,3836
+52323,18,Nacional público,3837
+52323,20,Regional público,3838
+52352,28,Nacional privado futuro,3839
+52352,14,Nacional privado,3840
+52352,16,Nacional privado,3841
+52352,18,Nacional público,3842
+52352,20,Regional público,3843
+52354,28,Nacional privado futuro,3844
+52354,14,Nacional privado,3845
+52354,16,Nacional privado,3846
+52354,18,Nacional público,3847
+52354,20,Regional público,3848
+52356,26,Local sin ánimo de lucro,3849
+52356,28,Nacional privado futuro,3850
+52356,14,Nacional privado,3851
+52356,16,Nacional privado,3852
+52356,18,Nacional público,3853
+52356,20,Regional público,3854
+52356,32,Local con ánimo de lucro,3855
+52378,27,Nacional privado futuro,3856
+52378,33,Nacional público,3857
+52378,17,Regional público,3858
+52378,21,Nacional privado,3859
+52378,22,Nacional privado,3860
+52381,28,Nacional privado futuro,3861
+52381,18,Nacional público,3862
+52381,17,Regional público,3863
+52381,14,Nacional privado,3864
+52381,16,Nacional privado,3865
+52385,18,Nacional público,3866
+52385,20,Regional público,3867
+52385,14,Nacional privado,3868
+52385,16,Nacional privado,3869
+52385,28,Nacional privado futuro,3870
+52390,27,Nacional privado futuro,3871
+52390,21,Nacional privado,3872
+52390,22,Nacional privado,3873
+52390,18,Nacional público,3874
+52390,20,Regional público,3875
+52399,27,Nacional privado futuro,3876
+52399,21,Nacional privado,3877
+52399,22,Nacional privado,3878
+52399,18,Nacional público,3879
+52399,20,Regional público,3880
+52405,21,Nacional privado,3881
+52405,22,Nacional privado,3882
+52405,33,Nacional público,3883
+52405,35,Regional público,3884
+52405,27,Nacional privado futuro,3885
+52411,14,Nacional privado,3886
+52411,16,Nacional privado,3887
+52411,33,Nacional público,3888
+52411,35,Regional público,3889
+52411,28,Nacional privado futuro,3890
+52418,28,Nacional privado futuro,3891
+52418,14,Nacional privado,3892
+52418,16,Nacional privado,3893
+52418,18,Nacional público,3894
+52418,20,Regional público,3895
+52427,28,Nacional privado futuro,3896
+52427,14,Nacional privado,3897
+52427,16,Nacional privado,3898
+52427,18,Nacional público,3899
+52427,20,Regional público,3900
+52435,28,Nacional privado futuro,3901
+52435,18,Nacional público,3902
+52435,20,Regional público,3903
+52435,14,Nacional privado,3904
+52435,16,Nacional privado,3905
+52473,27,Nacional privado futuro,3906
+52473,21,Nacional privado,3907
+52473,22,Nacional privado,3908
+52473,18,Nacional público,3909
+52473,20,Regional público,3910
+52480,14,Nacional privado,3911
+52480,22,Nacional privado,3912
+52480,18,Nacional público,3913
+52480,20,Regional público,3914
+52480,27,Nacional privado futuro,3915
+52490,19,Nacional privado futuro,3916
+52490,14,Nacional privado,3917
+52490,15,Nacional privado,3918
+52490,18,Nacional público,3919
+52490,20,Regional público,3920
+52506,28,Nacional privado futuro,3921
+52506,14,Nacional privado,3922
+52506,16,Nacional privado,3923
+52506,18,Nacional público,3924
+52506,20,Regional público,3925
+52520,27,Nacional privado futuro,3926
+52520,21,Nacional privado,3927
+52520,22,Nacional privado,3928
+52520,18,Nacional público,3929
+52520,20,Regional público,3930
+52540,14,Nacional privado,3931
+52540,15,Nacional privado,3932
+52540,18,Nacional público,3933
+52540,20,Regional público,3934
+52540,19,Nacional privado futuro,3935
+52560,28,Nacional privado futuro,3936
+52560,14,Nacional privado,3937
+52560,16,Nacional privado,3938
+52560,18,Nacional público,3939
+52560,20,Regional público,3940
+52565,27,Nacional privado futuro,3941
+52565,21,Nacional privado,3942
+52565,22,Nacional privado,3943
+52565,18,Nacional público,3944
+52565,20,Regional público,3945
+52573,28,Nacional privado futuro,3946
+52573,14,Nacional privado,3947
+52573,16,Nacional privado,3948
+52573,18,Nacional público,3949
+52573,20,Regional público,3950
+52585,28,Nacional privado futuro,3951
+52585,14,Nacional privado,3952
+52585,16,Nacional privado,3953
+52585,18,Nacional público,3954
+52585,20,Regional público,3955
+52612,28,Nacional privado futuro,3956
+52612,18,Nacional público,3957
+52612,20,Regional público,3958
+52612,14,Nacional privado,3959
+52612,16,Nacional privado,3960
+52621,28,Nacional privado futuro,3961
+52621,14,Nacional privado,3962
+52621,16,Nacional privado,3963
+52621,18,Nacional público,3964
+52621,20,Regional público,3965
+52678,27,Nacional privado futuro,3966
+52678,14,Nacional privado,3967
+52678,16,Nacional privado,3968
+52678,18,Nacional público,3969
+52678,20,Regional público,3970
+52683,19,Nacional privado futuro,3971
+52683,14,Nacional privado,3972
+52683,16,Nacional privado,3973
+52683,18,Nacional público,3974
+52683,20,Regional público,3975
+52685,27,Nacional privado futuro,3976
+52685,21,Nacional privado,3977
+52685,22,Nacional privado,3978
+52685,18,Nacional público,3979
+52685,20,Regional público,3980
+52687,30,Nacional privado futuro,3981
+52687,33,Nacional público,3982
+52687,35,Regional público,3983
+52687,14,Nacional privado,3984
+52687,15,Nacional privado,3985
+52693,28,Nacional privado futuro,3986
+52693,14,Nacional privado,3987
+52693,16,Nacional privado,3988
+52693,18,Nacional público,3989
+52693,20,Regional público,3990
+52694,18,Nacional público,3991
+52694,20,Regional público,3992
+52694,14,Nacional privado,3993
+52694,16,Nacional privado,3994
+52694,28,Nacional privado futuro,3995
+52696,27,Nacional privado futuro,3996
+52696,21,Nacional privado,3997
+52696,22,Nacional privado,3998
+52696,33,Nacional público,3999
+52696,20,Regional público,4000
+52699,28,Nacional privado futuro,4001
+52699,14,Nacional privado,4002
+52699,16,Nacional privado,4003
+52699,18,Nacional público,4004
+52699,20,Regional público,4005
+52720,28,Nacional privado futuro,4006
+52720,14,Nacional privado,4007
+52720,16,Nacional privado,4008
+52720,18,Nacional público,4009
+52720,20,Regional público,4010
+52786,27,Nacional privado futuro,4011
+52786,33,Nacional público,4012
+52786,35,Regional público,4013
+52786,21,Nacional privado,4014
+52786,22,Nacional privado,4015
+52788,27,Nacional privado futuro,4016
+52788,18,Nacional público,4017
+52788,20,Regional público,4018
+52788,14,Nacional privado,4019
+52788,16,Nacional privado,4020
+52835,28,Nacional privado futuro,4021
+52835,14,Nacional privado,4022
+52835,16,Nacional privado,4023
+52835,18,Nacional público,4024
+52835,20,Regional público,4025
+52835,30,Local con ánimo de lucro,4026
+52838,28,Nacional privado futuro,4027
+52838,14,Nacional privado,4028
+52838,16,Nacional privado,4029
+52838,18,Nacional público,4030
+52838,20,Regional público,4031
+52885,28,Nacional privado futuro,4032
+52885,14,Nacional privado,4033
+52885,16,Nacional privado,4034
+52885,18,Nacional público,4035
+52885,20,Regional público,4036
+54001,42,Local sin ánimo de lucro,4037
+54001,44,Nacional privado futuro,4038
+54001,38,Nacional privado,4039
+54001,39,Nacional privado,4040
+54001,40,Nacional público,4041
+54001,41,Regional público,4042
+54001,33,Local con ánimo de lucro,4043
+54003,50,Nacional privado futuro,4044
+54003,49,Nacional privado,4045
+54003,45,Nacional privado,4046
+54003,27,Nacional público,4047
+54003,41,Regional público,4048
+54051,28,Nacional privado futuro,4049
+54051,36,Nacional público,4050
+54051,42,Regional público,4051
+54051,38,Nacional privado,4052
+54051,39,Nacional privado,4053
+54099,28,Nacional privado futuro,4054
+54099,36,Nacional público,4055
+54099,42,Regional público,4056
+54099,38,Nacional privado,4057
+54099,39,Nacional privado,4058
+54109,44,Nacional privado futuro,4059
+54109,38,Nacional privado,4060
+54109,39,Nacional privado,4061
+54109,40,Nacional público,4062
+54109,41,Regional público,4063
+54125,36,Nacional público,4064
+54125,42,Regional público,4065
+54125,14,Nacional privado,4066
+54125,15,Nacional privado,4067
+54125,19,Nacional privado futuro,4068
+54128,50,Nacional privado futuro,4069
+54128,49,Nacional privado,4070
+54128,45,Nacional privado,4071
+54128,27,Nacional público,4072
+54128,41,Regional público,4073
+54172,28,Nacional privado futuro,4074
+54172,36,Nacional público,4075
+54172,42,Regional público,4076
+54172,38,Nacional privado,4077
+54172,39,Nacional privado,4078
+54174,28,Nacional privado futuro,4079
+54174,36,Nacional público,4080
+54174,42,Regional público,4081
+54174,38,Nacional privado,4082
+54174,39,Nacional privado,4083
+54206,28,Nacional privado futuro,4084
+54206,27,Nacional público,4085
+54206,41,Regional público,4086
+54206,26,Nacional privado,4087
+54206,24,Nacional privado,4088
+54223,28,Nacional privado futuro,4089
+54223,36,Nacional público,4090
+54223,42,Regional público,4091
+54223,38,Nacional privado,4092
+54223,39,Nacional privado,4093
+54239,28,Nacional privado futuro,4094
+54239,36,Nacional público,4095
+54239,42,Regional público,4096
+54239,38,Nacional privado,4097
+54239,39,Nacional privado,4098
+54245,27,Nacional privado futuro,4099
+54245,41,Nacional privado,4100
+54245,47,Nacional privado,4101
+54245,16,Nacional público,4102
+54245,17,Regional público,4103
+54250,44,Nacional privado futuro,4104
+54250,38,Nacional privado,4105
+54250,39,Nacional privado,4106
+54250,40,Nacional público,4107
+54250,41,Regional público,4108
+54261,44,Nacional privado futuro,4109
+54261,38,Nacional privado,4110
+54261,39,Nacional privado,4111
+54261,40,Nacional público,4112
+54261,41,Regional público,4113
+54261,33,Local con ánimo de lucro,4114
+54313,27,Nacional privado futuro,4115
+54313,40,Nacional público,4116
+54313,41,Regional público,4117
+54313,38,Nacional privado,4118
+54313,39,Nacional privado,4119
+54344,50,Nacional privado futuro,4120
+54344,49,Nacional privado,4121
+54344,45,Nacional privado,4122
+54344,27,Nacional público,4123
+54344,41,Regional público,4124
+54347,38,Nacional privado,4125
+54347,39,Nacional privado,4126
+54347,36,Nacional público,4127
+54347,28,Nacional privado futuro,4128
+54347,41,Regional público,4129
+54377,28,Nacional privado futuro,4130
+54377,14,Nacional privado,4131
+54377,30,Nacional privado,4132
+54377,36,Nacional público,4133
+54377,42,Regional público,4134
+54385,27,Nacional público,4135
+54385,41,Regional público,4136
+54385,49,Nacional privado,4137
+54385,45,Nacional privado,4138
+54385,50,Nacional privado futuro,4139
+54398,50,Nacional privado futuro,4140
+54398,49,Nacional privado,4141
+54398,45,Nacional privado,4142
+54398,27,Nacional público,4143
+54398,41,Regional público,4144
+54405,42,Local sin ánimo de lucro,4145
+54405,44,Nacional privado futuro,4146
+54405,38,Nacional privado,4147
+54405,39,Nacional privado,4148
+54405,40,Nacional público,4149
+54405,41,Regional público,4150
+54405,33,Local con ánimo de lucro,4151
+54418,14,Nacional privado,4152
+54418,15,Nacional privado,4153
+54418,40,Nacional público,4154
+54418,19,Nacional privado futuro,4155
+54418,41,Regional público,4156
+54480,28,Nacional privado futuro,4157
+54480,36,Nacional público,4158
+54480,42,Regional público,4159
+54480,38,Nacional privado,4160
+54480,39,Nacional privado,4161
+54498,16,Nacional público,4162
+54498,17,Regional público,4163
+54498,19,Nacional privado futuro,4164
+54498,14,Nacional privado,4165
+54498,15,Nacional privado,4166
+54518,16,Nacional público,4167
+54518,19,Nacional privado futuro,4168
+54518,17,Regional público,4169
+54518,14,Nacional privado,4170
+54518,15,Nacional privado,4171
+54518,21,Local con ánimo de lucro,4172
+54520,28,Nacional privado futuro,4173
+54520,36,Nacional público,4174
+54520,42,Regional público,4175
+54520,38,Nacional privado,4176
+54520,39,Nacional privado,4177
+54553,40,Nacional público,4178
+54553,41,Regional público,4179
+54553,38,Nacional privado,4180
+54553,33,Local con ánimo de lucro,4181
+54553,39,Nacional privado,4182
+54553,44,Nacional privado futuro,4183
+54599,40,Nacional público,4184
+54599,41,Regional público,4185
+54599,38,Nacional privado,4186
+54599,39,Nacional privado,4187
+54599,44,Nacional privado futuro,4188
+54660,38,Nacional privado,4189
+54660,39,Nacional privado,4190
+54660,40,Nacional público,4191
+54660,27,Nacional privado futuro,4192
+54660,41,Regional público,4193
+54670,27,Nacional público,4194
+54670,41,Regional público,4195
+54670,38,Nacional privado,4196
+54670,39,Nacional privado,4197
+54670,50,Nacional privado futuro,4198
+54673,44,Nacional privado futuro,4199
+54673,38,Nacional privado,4200
+54673,39,Nacional privado,4201
+54673,40,Nacional público,4202
+54673,41,Regional público,4203
+54673,33,Local con ánimo de lucro,4204
+54680,40,Nacional público,4205
+54680,41,Regional público,4206
+54680,38,Nacional privado,4207
+54680,39,Nacional privado,4208
+54680,44,Nacional privado futuro,4209
+54720,19,Nacional privado futuro,4210
+54720,14,Nacional privado,4211
+54720,15,Nacional privado,4212
+54720,40,Nacional público,4213
+54720,41,Regional público,4214
+54743,44,Nacional privado futuro,4215
+54743,38,Nacional privado,4216
+54743,39,Nacional privado,4217
+54743,36,Nacional público,4218
+54743,42,Regional público,4219
+54743,36,Nacional público,4220
+54743,42,Regional público,4221
+54743,14,Nacional privado,4222
+54743,15,Nacional privado,4223
+54800,38,Nacional privado,4224
+54800,39,Nacional privado,4225
+54800,40,Nacional público,4226
+54800,27,Nacional privado futuro,4227
+54800,41,Regional público,4228
+54810,44,Nacional privado futuro,4229
+54810,38,Nacional privado,4230
+54810,39,Nacional privado,4231
+54810,40,Nacional público,4232
+54810,41,Regional público,4233
+54820,28,Nacional privado futuro,4234
+54820,14,Nacional privado,4235
+54820,30,Nacional privado,4236
+54820,36,Nacional público,4237
+54820,42,Regional público,4238
+54871,26,Nacional privado,4239
+54871,28,Nacional privado,4240
+54871,40,Nacional público,4241
+54871,27,Nacional privado futuro,4242
+54871,41,Regional público,4243
+54874,44,Nacional privado futuro,4244
+54874,38,Nacional privado,4245
+54874,39,Nacional privado,4246
+54874,40,Nacional público,4247
+54874,41,Regional público,4248
+54874,33,Local con ánimo de lucro,4249
+63001,19,Nacional privado futuro,4250
+63001,38,Nacional público,4251
+63001,44,Regional público,4252
+63001,14,Nacional privado,4253
+63001,15,Nacional privado,4254
+63001,35,Local con ánimo de lucro,4255
+63001,24,Local sin ánimo de lucro,4256
+63111,19,Nacional privado futuro,4257
+63111,14,Nacional privado,4258
+63111,15,Nacional privado,4259
+63111,38,Nacional público,4260
+63111,44,Regional público,4261
+63130,19,Nacional privado futuro,4262
+63130,14,Nacional privado,4263
+63130,15,Nacional privado,4264
+63130,38,Nacional público,4265
+63130,44,Regional público,4266
+63190,19,Nacional privado futuro,4267
+63190,14,Nacional privado,4268
+63190,15,Nacional privado,4269
+63190,38,Nacional público,4270
+63190,44,Regional público,4271
+63212,19,Nacional privado futuro,4272
+63212,14,Nacional privado,4273
+63212,15,Nacional privado,4274
+63212,38,Nacional público,4275
+63212,44,Regional público,4276
+63272,19,Nacional privado futuro,4277
+63272,14,Nacional privado,4278
+63272,15,Nacional privado,4279
+63272,38,Nacional público,4280
+63272,44,Regional público,4281
+63302,38,Nacional público,4282
+63302,44,Regional público,4283
+63302,14,Nacional privado,4284
+63302,15,Nacional privado,4285
+63302,19,Nacional privado futuro,4286
+63401,19,Nacional privado futuro,4287
+63401,14,Nacional privado,4288
+63401,15,Nacional privado,4289
+63401,38,Nacional público,4290
+63401,44,Regional público,4291
+63470,19,Nacional privado futuro,4292
+63470,14,Nacional privado,4293
+63470,15,Nacional privado,4294
+63470,38,Nacional público,4295
+63470,44,Regional público,4296
+63548,38,Nacional público,4297
+63548,44,Regional público,4298
+63548,14,Nacional privado,4299
+63548,15,Nacional privado,4300
+63548,19,Nacional privado futuro,4301
+63594,19,Nacional privado futuro,4302
+63594,14,Nacional privado,4303
+63594,15,Nacional privado,4304
+63594,38,Nacional público,4305
+63594,44,Regional público,4306
+63690,19,Nacional privado futuro,4307
+63690,14,Nacional privado,4308
+63690,15,Nacional privado,4309
+63690,38,Nacional público,4310
+63690,44,Regional público,4311
+66001,19,Nacional privado futuro,4312
+66001,43,Nacional privado futuro,4313
+66001,19,Nacional privado futuro,4314
+66001,14,Nacional privado,4315
+66001,15,Nacional privado,4316
+66001,41,Nacional privado,4317
+66001,42,Nacional privado,4318
+66001,14,Nacional privado,4319
+66001,15,Nacional privado,4320
+66001,38,Nacional público,4321
+66001,44,Regional público,4322
+66001,46,Local con ánimo de lucro,4323
+66001,23,Local sin ánimo de lucro,4324
+66045,38,Nacional público,4325
+66045,44,Regional público,4326
+66045,14,Nacional privado,4327
+66045,15,Nacional privado,4328
+66045,19,Nacional privado futuro,4329
+66075,43,Nacional privado futuro,4330
+66075,41,Nacional privado,4331
+66075,42,Nacional privado,4332
+66075,38,Nacional público,4333
+66075,44,Regional público,4334
+66088,48,Nacional privado futuro,4335
+66088,38,Nacional público,4336
+66088,44,Regional público,4337
+66088,14,Nacional privado,4338
+66088,15,Nacional privado,4339
+66170,19,Nacional privado futuro,4340
+66170,43,Nacional privado futuro,4341
+66170,19,Nacional privado futuro,4342
+66170,14,Nacional privado,4343
+66170,15,Nacional privado,4344
+66170,41,Nacional privado,4345
+66170,42,Nacional privado,4346
+66170,14,Nacional privado,4347
+66170,15,Nacional privado,4348
+66170,38,Nacional público,4349
+66170,44,Regional público,4350
+66170,46,Local con ánimo de lucro,4351
+66170,23,Local sin ánimo de lucro,4352
+66318,48,Nacional privado futuro,4353
+66318,14,Nacional privado,4354
+66318,15,Nacional privado,4355
+66318,38,Nacional público,4356
+66318,44,Regional público,4357
+66383,38,Nacional público,4358
+66383,44,Regional público,4359
+66383,14,Nacional privado,4360
+66383,15,Nacional privado,4361
+66383,19,Nacional privado futuro,4362
+66400,43,Nacional privado futuro,4363
+66400,41,Nacional privado,4364
+66400,42,Nacional privado,4365
+66400,38,Nacional público,4366
+66400,44,Regional público,4367
+66400,46,Local con ánimo de lucro,4368
+66440,43,Nacional privado futuro,4369
+66440,41,Nacional privado,4370
+66440,42,Nacional privado,4371
+66440,38,Nacional público,4372
+66440,44,Regional público,4373
+66456,38,Nacional público,4374
+66456,44,Regional público,4375
+66456,14,Nacional privado,4376
+66456,15,Nacional privado,4377
+66456,19,Nacional privado futuro,4378
+66572,14,Nacional privado,4379
+66572,15,Nacional privado,4380
+66572,21,Nacional público,4381
+66572,44,Regional público,4382
+66572,19,Nacional privado futuro,4383
+66594,43,Nacional privado futuro,4384
+66594,41,Nacional privado,4385
+66594,42,Nacional privado,4386
+66594,38,Nacional público,4387
+66594,44,Regional público,4388
+66682,43,Nacional privado futuro,4389
+66682,41,Nacional privado,4390
+66682,42,Nacional privado,4391
+66682,38,Nacional público,4392
+66682,44,Regional público,4393
+66687,43,Nacional privado futuro,4394
+66687,41,Nacional privado,4395
+66687,42,Nacional privado,4396
+66687,38,Nacional público,4397
+66687,44,Regional público,4398
+68001,31,Local sin ánimo de lucro,4399
+68001,19,Nacional privado futuro,4400
+68001,14,Nacional privado,4401
+68001,15,Nacional privado,4402
+68001,16,Nacional público,4403
+68001,17,Regional público,4404
+68001,25,Local con ánimo de lucro,4405
+68013,21,Nacional privado,4406
+68013,42,Nacional privado,4407
+68013,35,Nacional público,4408
+68013,44,Regional público,4409
+68013,43,Nacional privado futuro,4410
+68020,21,Nacional privado,4411
+68020,42,Nacional privado,4412
+68020,35,Nacional público,4413
+68020,43,Nacional privado futuro,4414
+68020,44,Regional público,4415
+68051,50,Nacional privado futuro,4416
+68051,49,Nacional privado,4417
+68051,45,Nacional privado,4418
+68051,27,Nacional público,4419
+68051,41,Regional público,4420
+68077,45,Nacional privado futuro,4421
+68077,21,Nacional privado,4422
+68077,42,Nacional privado,4423
+68077,35,Nacional público,4424
+68077,44,Regional público,4425
+68079,41,Nacional privado,4426
+68079,45,Nacional privado,4427
+68079,27,Nacional privado futuro,4428
+68079,16,Nacional público,4429
+68079,18,Regional público,4430
+68081,33,Local sin ánimo de lucro,4431
+68081,50,Nacional privado futuro,4432
+68081,49,Nacional privado,4433
+68081,45,Nacional privado,4434
+68081,27,Nacional público,4435
+68081,41,Regional público,4436
+68081,22,Local con ánimo de lucro,4437
+68092,50,Nacional privado futuro,4438
+68092,49,Nacional privado,4439
+68092,45,Nacional privado,4440
+68092,27,Nacional público,4441
+68092,41,Regional público,4442
+68101,47,Nacional privado futuro,4443
+68101,21,Nacional privado,4444
+68101,42,Nacional privado,4445
+68101,35,Nacional público,4446
+68101,44,Regional público,4447
+68121,41,Nacional privado,4448
+68121,45,Nacional privado,4449
+68121,16,Nacional público,4450
+68121,18,Regional público,4451
+68121,27,Nacional privado futuro,4452
+68132,14,Nacional privado,4453
+68132,15,Nacional privado,4454
+68132,16,Nacional público,4455
+68132,19,Nacional privado futuro,4456
+68132,17,Regional público,4457
+68147,16,Nacional público,4458
+68147,17,Regional público,4459
+68147,14,Nacional privado,4460
+68147,15,Nacional privado,4461
+68147,19,Nacional privado futuro,4462
+68152,16,Nacional público,4463
+68152,17,Regional público,4464
+68152,14,Nacional privado,4465
+68152,15,Nacional privado,4466
+68152,19,Nacional privado futuro,4467
+68160,14,Nacional privado,4468
+68160,15,Nacional privado,4469
+68160,16,Nacional público,4470
+68160,19,Nacional privado futuro,4471
+68160,17,Regional público,4472
+68162,16,Nacional público,4473
+68162,17,Regional público,4474
+68162,14,Nacional privado,4475
+68162,15,Nacional privado,4476
+68162,19,Nacional privado futuro,4477
+68167,27,Nacional privado futuro,4478
+68167,16,Nacional público,4479
+68167,17,Regional público,4480
+68167,26,Nacional privado,4481
+68167,28,Nacional privado,4482
+68169,19,Nacional privado futuro,4483
+68169,16,Nacional público,4484
+68169,17,Regional público,4485
+68169,14,Nacional privado,4486
+68169,15,Nacional privado,4487
+68176,41,Nacional privado,4488
+68176,45,Nacional privado,4489
+68176,16,Nacional público,4490
+68176,18,Regional público,4491
+68176,27,Nacional privado futuro,4492
+68179,21,Nacional privado,4493
+68179,42,Nacional privado,4494
+68179,35,Nacional público,4495
+68179,44,Regional público,4496
+68179,43,Nacional privado futuro,4497
+68190,50,Nacional privado futuro,4498
+68190,49,Nacional privado,4499
+68190,45,Nacional privado,4500
+68190,27,Nacional público,4501
+68190,41,Regional público,4502
+68207,16,Nacional público,4503
+68207,17,Regional público,4504
+68207,14,Nacional privado,4505
+68207,15,Nacional privado,4506
+68207,19,Nacional privado futuro,4507
+68209,21,Nacional privado,4508
+68209,42,Nacional privado,4509
+68209,16,Nacional público,4510
+68209,43,Nacional privado futuro,4511
+68209,44,Regional público,4512
+68211,27,Nacional privado futuro,4513
+68211,16,Nacional público,4514
+68211,17,Regional público,4515
+68211,43,Nacional privado,4516
+68211,25,Nacional privado,4517
+68217,27,Nacional privado futuro,4518
+68217,16,Nacional público,4519
+68217,17,Regional público,4520
+68217,21,Nacional privado,4521
+68217,42,Nacional privado,4522
+68229,27,Nacional privado futuro,4523
+68229,16,Nacional público,4524
+68229,18,Regional público,4525
+68229,41,Nacional privado,4526
+68229,45,Nacional privado,4527
+68235,26,Nacional privado,4528
+68235,28,Nacional privado,4529
+68235,16,Nacional público,4530
+68235,27,Nacional privado futuro,4531
+68235,17,Regional público,4532
+68245,27,Nacional privado futuro,4533
+68245,16,Nacional público,4534
+68245,17,Regional público,4535
+68245,21,Nacional privado,4536
+68245,42,Nacional privado,4537
+68250,49,Nacional privado,4538
+68250,45,Nacional privado,4539
+68250,35,Nacional público,4540
+68250,43,Nacional privado futuro,4541
+68250,44,Regional público,4542
+68255,27,Nacional público,4543
+68255,41,Regional público,4544
+68255,26,Nacional privado,4545
+68255,28,Nacional privado,4546
+68255,50,Nacional privado futuro,4547
+68264,26,Nacional privado,4548
+68264,28,Nacional privado,4549
+68264,16,Nacional público,4550
+68264,27,Nacional privado futuro,4551
+68264,17,Regional público,4552
+68266,19,Nacional privado futuro,4553
+68266,14,Nacional privado,4554
+68266,15,Nacional privado,4555
+68266,16,Nacional público,4556
+68266,17,Regional público,4557
+68271,47,Nacional privado futuro,4558
+68271,21,Nacional privado,4559
+68271,42,Nacional privado,4560
+68271,35,Nacional público,4561
+68271,44,Regional público,4562
+68276,31,Local sin ánimo de lucro,4563
+68276,19,Nacional privado futuro,4564
+68276,14,Nacional privado,4565
+68276,15,Nacional privado,4566
+68276,16,Nacional público,4567
+68276,17,Regional público,4568
+68276,25,Local con ánimo de lucro,4569
+68296,41,Nacional privado,4570
+68296,45,Nacional privado,4571
+68296,27,Nacional privado futuro,4572
+68296,16,Nacional público,4573
+68296,18,Regional público,4574
+68298,16,Nacional público,4575
+68298,17,Regional público,4576
+68298,43,Nacional privado,4577
+68298,46,Nacional privado,4578
+68298,43,Nacional privado futuro,4579
+68307,31,Local sin ánimo de lucro,4580
+68307,19,Nacional privado futuro,4581
+68307,14,Nacional privado,4582
+68307,15,Nacional privado,4583
+68307,16,Nacional público,4584
+68307,17,Regional público,4585
+68307,25,Local con ánimo de lucro,4586
+68318,21,Nacional privado,4587
+68318,42,Nacional privado,4588
+68318,16,Nacional público,4589
+68318,27,Nacional privado futuro,4590
+68318,17,Regional público,4591
+68320,27,Nacional privado futuro,4592
+68320,16,Nacional público,4593
+68320,18,Regional público,4594
+68320,21,Nacional privado,4595
+68320,42,Nacional privado,4596
+68322,21,Nacional privado,4597
+68322,42,Nacional privado,4598
+68322,35,Nacional público,4599
+68322,44,Regional público,4600
+68322,43,Nacional privado futuro,4601
+68324,21,Nacional privado,4602
+68324,42,Nacional privado,4603
+68324,35,Nacional público,4604
+68324,44,Regional público,4605
+68324,43,Nacional privado futuro,4606
+68327,47,Nacional privado futuro,4607
+68327,21,Nacional privado,4608
+68327,42,Nacional privado,4609
+68327,35,Nacional público,4610
+68327,44,Regional público,4611
+68344,41,Nacional privado,4612
+68344,45,Nacional privado,4613
+68344,27,Nacional privado futuro,4614
+68344,16,Nacional público,4615
+68344,18,Regional público,4616
+68368,47,Nacional privado futuro,4617
+68368,21,Nacional privado,4618
+68368,42,Nacional privado,4619
+68368,35,Nacional público,4620
+68368,44,Regional público,4621
+68370,14,Nacional privado,4622
+68370,15,Nacional privado,4623
+68370,16,Nacional público,4624
+68370,19,Nacional privado futuro,4625
+68370,17,Regional público,4626
+68377,47,Nacional privado futuro,4627
+68377,21,Nacional privado,4628
+68377,42,Nacional privado,4629
+68377,35,Nacional público,4630
+68377,44,Regional público,4631
+68385,26,Nacional privado,4632
+68385,28,Nacional privado,4633
+68385,35,Nacional público,4634
+68385,27,Nacional privado futuro,4635
+68385,44,Regional público,4636
+68397,21,Nacional privado,4637
+68397,42,Nacional privado,4638
+68397,35,Nacional público,4639
+68397,44,Regional público,4640
+68397,43,Nacional privado futuro,4641
+68406,50,Nacional privado futuro,4642
+68406,49,Nacional privado,4643
+68406,45,Nacional privado,4644
+68406,16,Nacional público,4645
+68406,17,Regional público,4646
+68418,19,Nacional privado futuro,4647
+68418,16,Nacional público,4648
+68418,17,Regional público,4649
+68418,14,Nacional privado,4650
+68418,15,Nacional privado,4651
+68425,19,Nacional privado futuro,4652
+68425,16,Nacional público,4653
+68425,14,Nacional privado,4654
+68425,15,Nacional privado,4655
+68425,17,Regional público,4656
+68432,19,Nacional privado futuro,4657
+68432,14,Nacional privado,4658
+68432,15,Nacional privado,4659
+68432,16,Nacional público,4660
+68432,17,Regional público,4661
+68444,50,Nacional privado futuro,4662
+68444,49,Nacional privado,4663
+68444,45,Nacional privado,4664
+68444,27,Nacional público,4665
+68444,41,Regional público,4666
+68464,14,Nacional privado,4667
+68464,15,Nacional privado,4668
+68464,16,Nacional público,4669
+68464,19,Nacional privado futuro,4670
+68464,18,Regional público,4671
+68468,16,Nacional público,4672
+68468,17,Regional público,4673
+68468,14,Nacional privado,4674
+68468,15,Nacional privado,4675
+68468,19,Nacional privado futuro,4676
+68498,21,Nacional privado,4677
+68498,42,Nacional privado,4678
+68498,16,Nacional público,4679
+68498,43,Nacional privado futuro,4680
+68498,17,Regional público,4681
+68500,29,Nacional privado futuro,4682
+68500,16,Nacional público,4683
+68500,17,Regional público,4684
+68500,26,Nacional privado,4685
+68500,28,Nacional privado,4686
+68502,14,Nacional privado,4687
+68502,15,Nacional privado,4688
+68502,16,Nacional público,4689
+68502,19,Nacional privado futuro,4690
+68502,17,Regional público,4691
+68522,41,Nacional privado,4692
+68522,45,Nacional privado,4693
+68522,27,Nacional privado futuro,4694
+68522,16,Nacional público,4695
+68522,18,Regional público,4696
+68524,35,Nacional público,4697
+68524,44,Regional público,4698
+68524,21,Nacional privado,4699
+68524,42,Nacional privado,4700
+68524,27,Nacional privado futuro,4701
+68533,16,Nacional público,4702
+68533,18,Regional público,4703
+68533,14,Nacional privado,4704
+68533,15,Nacional privado,4705
+68533,19,Nacional privado futuro,4706
+68547,31,Local sin ánimo de lucro,4707
+68547,19,Nacional privado futuro,4708
+68547,21,Nacional privado,4709
+68547,22,Nacional privado,4710
+68547,16,Nacional público,4711
+68547,17,Regional público,4712
+68547,25,Local con ánimo de lucro,4713
+68549,41,Nacional privado,4714
+68549,45,Nacional privado,4715
+68549,16,Nacional público,4716
+68549,18,Regional público,4717
+68549,27,Nacional privado futuro,4718
+68572,21,Nacional privado,4719
+68572,42,Nacional privado,4720
+68572,47,Nacional privado futuro,4721
+68572,35,Nacional público,4722
+68572,44,Regional público,4723
+68573,50,Nacional privado futuro,4724
+68573,49,Nacional privado,4725
+68573,45,Nacional privado,4726
+68573,27,Nacional público,4727
+68573,41,Regional público,4728
+68575,50,Nacional privado futuro,4729
+68575,49,Nacional privado,4730
+68575,45,Nacional privado,4731
+68575,27,Nacional público,4732
+68575,41,Regional público,4733
+68615,50,Nacional privado futuro,4734
+68615,49,Nacional privado,4735
+68615,45,Nacional privado,4736
+68615,16,Nacional público,4737
+68615,17,Regional público,4738
+68655,50,Nacional privado futuro,4739
+68655,49,Nacional privado,4740
+68655,45,Nacional privado,4741
+68655,27,Nacional público,4742
+68655,41,Regional público,4743
+68669,27,Nacional privado futuro,4744
+68669,16,Nacional público,4745
+68669,17,Regional público,4746
+68669,21,Nacional privado,4747
+68669,42,Nacional privado,4748
+68673,21,Nacional privado,4749
+68673,42,Nacional privado,4750
+68673,35,Nacional público,4751
+68673,44,Regional público,4752
+68673,43,Nacional privado futuro,4753
+68679,41,Nacional privado,4754
+68679,45,Nacional privado,4755
+68679,27,Nacional privado futuro,4756
+68679,16,Nacional público,4757
+68679,18,Regional público,4758
+68682,14,Nacional privado,4759
+68682,15,Nacional privado,4760
+68682,16,Nacional público,4761
+68682,19,Nacional privado futuro,4762
+68682,17,Regional público,4763
+68684,19,Nacional privado futuro,4764
+68684,14,Nacional privado,4765
+68684,15,Nacional privado,4766
+68684,16,Nacional público,4767
+68684,17,Regional público,4768
+68686,19,Nacional privado futuro,4769
+68686,14,Nacional privado,4770
+68686,15,Nacional privado,4771
+68686,16,Nacional público,4772
+68686,17,Regional público,4773
+68689,19,Nacional privado futuro,4774
+68689,14,Nacional privado,4775
+68689,15,Nacional privado,4776
+68689,16,Nacional público,4777
+68689,17,Regional público,4778
+68705,14,Nacional privado,4779
+68705,15,Nacional privado,4780
+68705,16,Nacional público,4781
+68705,19,Nacional privado futuro,4782
+68705,17,Regional público,4783
+68720,21,Nacional privado,4784
+68720,42,Nacional privado,4785
+68720,16,Nacional público,4786
+68720,43,Nacional privado futuro,4787
+68720,17,Regional público,4788
+68745,41,Nacional privado,4789
+68745,45,Nacional privado,4790
+68745,16,Nacional público,4791
+68745,27,Nacional privado futuro,4792
+68745,17,Regional público,4793
+68755,41,Nacional privado,4794
+68755,45,Nacional privado,4795
+68755,27,Nacional privado futuro,4796
+68755,35,Nacional público,4797
+68755,44,Regional público,4798
+68770,21,Nacional privado,4799
+68770,42,Nacional privado,4800
+68770,35,Nacional público,4801
+68770,44,Regional público,4802
+68770,43,Nacional privado futuro,4803
+68773,47,Nacional privado futuro,4804
+68773,21,Nacional privado,4805
+68773,42,Nacional privado,4806
+68773,35,Nacional público,4807
+68773,44,Regional público,4808
+68780,19,Nacional privado futuro,4809
+68780,16,Nacional público,4810
+68780,17,Regional público,4811
+68780,14,Nacional privado,4812
+68780,15,Nacional privado,4813
+68820,19,Nacional privado futuro,4814
+68820,16,Nacional público,4815
+68820,17,Regional público,4816
+68820,14,Nacional privado,4817
+68820,15,Nacional privado,4818
+68855,26,Nacional privado,4819
+68855,28,Nacional privado,4820
+68855,16,Nacional público,4821
+68855,27,Nacional privado futuro,4822
+68855,17,Regional público,4823
+68861,47,Nacional privado futuro,4824
+68861,21,Nacional privado,4825
+68861,42,Nacional privado,4826
+68861,35,Nacional público,4827
+68861,44,Regional público,4828
+68867,43,Nacional privado,4829
+68867,25,Nacional privado,4830
+68867,16,Nacional público,4831
+68867,19,Nacional privado futuro,4832
+68867,17,Regional público,4833
+68872,16,Nacional público,4834
+68872,18,Regional público,4835
+68872,49,Nacional privado,4836
+68872,45,Nacional privado,4837
+68872,19,Nacional privado futuro,4838
+68895,50,Nacional privado futuro,4839
+68895,49,Nacional privado,4840
+68895,45,Nacional privado,4841
+68895,16,Nacional público,4842
+68895,17,Regional público,4843
+70001,19,Nacional privado futuro,4844
+70001,14,Nacional privado,4845
+70001,15,Nacional privado,4846
+70001,16,Nacional público,4847
+70001,17,Regional público,4848
+70001,30,Local con ánimo de lucro,4849
+70001,22,Local sin ánimo de lucro,4850
+70110,19,Nacional privado futuro,4851
+70110,49,Nacional privado,4852
+70110,45,Nacional privado,4853
+70110,16,Nacional público,4854
+70110,17,Regional público,4855
+70124,50,Nacional privado futuro,4856
+70124,49,Nacional privado,4857
+70124,45,Nacional privado,4858
+70124,16,Nacional público,4859
+70124,29,Regional público,4860
+70204,19,Nacional privado futuro,4861
+70204,14,Nacional privado,4862
+70204,15,Nacional privado,4863
+70204,16,Nacional público,4864
+70204,17,Regional público,4865
+70215,19,Nacional privado futuro,4866
+70215,14,Nacional privado,4867
+70215,15,Nacional privado,4868
+70215,16,Nacional público,4869
+70215,17,Regional público,4870
+70221,14,Nacional privado,4871
+70221,15,Nacional privado,4872
+70221,16,Nacional público,4873
+70221,17,Regional público,4874
+70221,19,Nacional privado futuro,4875
+70230,19,Nacional privado futuro,4876
+70230,14,Nacional privado,4877
+70230,15,Nacional privado,4878
+70230,16,Nacional público,4879
+70230,17,Regional público,4880
+70233,16,Nacional público,4881
+70233,17,Regional público,4882
+70233,14,Nacional privado,4883
+70233,15,Nacional privado,4884
+70233,19,Nacional privado futuro,4885
+70235,49,Nacional privado,4886
+70235,45,Nacional privado,4887
+70235,27,Nacional público,4888
+70235,17,Regional público,4889
+70235,19,Nacional privado futuro,4890
+70265,50,Nacional privado futuro,4891
+70265,49,Nacional privado,4892
+70265,45,Nacional privado,4893
+70265,16,Nacional público,4894
+70265,17,Regional público,4895
+70400,50,Nacional privado futuro,4896
+70400,49,Nacional privado,4897
+70400,45,Nacional privado,4898
+70400,16,Nacional público,4899
+70400,17,Regional público,4900
+70418,19,Nacional privado futuro,4901
+70418,14,Nacional privado,4902
+70418,15,Nacional privado,4903
+70418,16,Nacional público,4904
+70418,17,Regional público,4905
+70429,46,Nacional privado futuro,4906
+70429,49,Nacional privado,4907
+70429,45,Nacional privado,4908
+70429,16,Nacional público,4909
+70429,17,Regional público,4910
+70473,19,Nacional privado futuro,4911
+70473,14,Nacional privado,4912
+70473,15,Nacional privado,4913
+70473,16,Nacional público,4914
+70473,17,Regional público,4915
+70508,19,Nacional privado futuro,4916
+70508,14,Nacional privado,4917
+70508,15,Nacional privado,4918
+70508,16,Nacional público,4919
+70508,17,Regional público,4920
+70523,14,Nacional privado,4921
+70523,15,Nacional privado,4922
+70523,16,Nacional público,4923
+70523,17,Regional público,4924
+70523,19,Nacional privado futuro,4925
+70670,16,Nacional público,4926
+70670,17,Regional público,4927
+70670,14,Nacional privado,4928
+70670,15,Nacional privado,4929
+70670,19,Nacional privado futuro,4930
+70678,50,Nacional privado futuro,4931
+70678,49,Nacional privado,4932
+70678,45,Nacional privado,4933
+70678,27,Nacional público,4934
+70678,29,Regional público,4935
+70702,19,Nacional privado futuro,4936
+70702,49,Nacional privado,4937
+70702,45,Nacional privado,4938
+70702,16,Nacional público,4939
+70702,17,Regional público,4940
+70708,50,Nacional privado futuro,4941
+70708,43,Nacional privado,4942
+70708,44,Nacional privado,4943
+70708,16,Nacional público,4944
+70708,17,Regional público,4945
+70713,19,Nacional privado futuro,4946
+70713,14,Nacional privado,4947
+70713,15,Nacional privado,4948
+70713,16,Nacional público,4949
+70713,17,Regional público,4950
+70717,19,Nacional privado futuro,4951
+70717,49,Nacional privado,4952
+70717,45,Nacional privado,4953
+70717,16,Nacional público,4954
+70717,17,Regional público,4955
+70742,19,Nacional privado futuro,4956
+70742,14,Nacional privado,4957
+70742,15,Nacional privado,4958
+70742,16,Nacional público,4959
+70742,17,Regional público,4960
+70771,50,Nacional privado futuro,4961
+70771,49,Nacional privado,4962
+70771,45,Nacional privado,4963
+70771,27,Nacional público,4964
+70771,29,Regional público,4965
+70820,19,Nacional privado futuro,4966
+70820,14,Nacional privado,4967
+70820,15,Nacional privado,4968
+70820,16,Nacional público,4969
+70820,17,Regional público,4970
+70823,19,Nacional privado futuro,4971
+70823,14,Nacional privado,4972
+70823,15,Nacional privado,4973
+70823,16,Nacional público,4974
+70823,17,Regional público,4975
+73001,27,Nacional privado futuro,4976
+73001,19,Nacional privado futuro,4977
+73001,21,Nacional privado,4978
+73001,22,Nacional privado,4979
+73001,23,Nacional público,4980
+73001,24,Regional público,4981
+73001,46,Nacional privado,4982
+73001,49,Nacional privado,4983
+73001,16,Nacional público,4984
+73001,17,Regional público,4985
+73001,28,Local con ánimo de lucro,4986
+73001,33,Local sin ánimo de lucro,4987
+73024,19,Nacional privado futuro,4988
+73024,14,Nacional privado,4989
+73024,15,Nacional privado,4990
+73024,16,Nacional público,4991
+73024,17,Regional público,4992
+73026,19,Nacional privado futuro,4993
+73026,46,Nacional privado,4994
+73026,49,Nacional privado,4995
+73026,16,Nacional público,4996
+73026,17,Regional público,4997
+73030,16,Nacional público,4998
+73030,17,Regional público,4999
+73030,14,Nacional privado,5000
+73030,15,Nacional privado,5001
+73030,19,Nacional privado futuro,5002
+73043,19,Nacional privado futuro,5003
+73043,46,Nacional privado,5004
+73043,49,Nacional privado,5005
+73043,16,Nacional público,5006
+73043,17,Regional público,5007
+73055,19,Nacional privado futuro,5008
+73055,14,Nacional privado,5009
+73055,15,Nacional privado,5010
+73055,16,Nacional público,5011
+73055,17,Regional público,5012
+73067,19,Nacional privado futuro,5013
+73067,16,Nacional público,5014
+73067,18,Regional público,5015
+73067,14,Nacional privado,5016
+73067,15,Nacional privado,5017
+73124,19,Nacional privado futuro,5018
+73124,14,Nacional privado,5019
+73124,15,Nacional privado,5020
+73124,38,Nacional público,5021
+73124,28,Regional público,5022
+73148,19,Nacional privado futuro,5023
+73148,14,Nacional privado,5024
+73148,15,Nacional privado,5025
+73148,16,Nacional público,5026
+73148,17,Regional público,5027
+73152,19,Nacional privado futuro,5028
+73152,46,Nacional privado,5029
+73152,49,Nacional privado,5030
+73152,16,Nacional público,5031
+73152,17,Regional público,5032
+73168,19,Nacional privado futuro,5033
+73168,46,Nacional privado,5034
+73168,49,Nacional privado,5035
+73168,16,Nacional público,5036
+73168,17,Regional público,5037
+73200,19,Nacional privado futuro,5038
+73200,46,Nacional privado,5039
+73200,49,Nacional privado,5040
+73200,16,Nacional público,5041
+73200,17,Regional público,5042
+73217,19,Nacional privado futuro,5043
+73217,14,Nacional privado,5044
+73217,15,Nacional privado,5045
+73217,16,Nacional público,5046
+73217,17,Regional público,5047
+73226,19,Nacional privado futuro,5048
+73226,14,Nacional privado,5049
+73226,15,Nacional privado,5050
+73226,16,Nacional público,5051
+73226,17,Regional público,5052
+73236,19,Nacional privado futuro,5053
+73236,14,Nacional privado,5054
+73236,15,Nacional privado,5055
+73236,16,Nacional público,5056
+73236,17,Regional público,5057
+73268,19,Nacional privado futuro,5058
+73268,14,Nacional privado,5059
+73268,15,Nacional privado,5060
+73268,16,Nacional público,5061
+73268,17,Regional público,5062
+73270,19,Nacional privado futuro,5063
+73270,14,Nacional privado,5064
+73270,15,Nacional privado,5065
+73270,35,Nacional público,5066
+73270,17,Regional público,5067
+73275,19,Nacional privado futuro,5068
+73275,14,Nacional privado,5069
+73275,15,Nacional privado,5070
+73275,16,Nacional público,5071
+73275,17,Regional público,5072
+73283,19,Nacional privado futuro,5073
+73283,14,Nacional privado,5074
+73283,15,Nacional privado,5075
+73283,16,Nacional público,5076
+73283,17,Regional público,5077
+73319,19,Nacional privado futuro,5078
+73319,14,Nacional privado,5079
+73319,15,Nacional privado,5080
+73319,16,Nacional público,5081
+73319,17,Regional público,5082
+73347,19,Nacional privado futuro,5083
+73347,14,Nacional privado,5084
+73347,15,Nacional privado,5085
+73347,16,Nacional público,5086
+73347,17,Regional público,5087
+73349,50,Nacional privado futuro,5088
+73349,38,Nacional público,5089
+73349,14,Nacional privado,5090
+73349,15,Nacional privado,5091
+73349,18,Regional público,5092
+73352,19,Nacional privado futuro,5093
+73352,46,Nacional privado,5094
+73352,49,Nacional privado,5095
+73352,16,Nacional público,5096
+73352,17,Regional público,5097
+73408,19,Nacional privado futuro,5098
+73408,14,Nacional privado,5099
+73408,15,Nacional privado,5100
+73408,16,Nacional público,5101
+73408,17,Regional público,5102
+73411,19,Nacional privado futuro,5103
+73411,14,Nacional privado,5104
+73411,15,Nacional privado,5105
+73411,16,Nacional público,5106
+73411,17,Regional público,5107
+73443,19,Nacional privado futuro,5108
+73443,14,Nacional privado,5109
+73443,15,Nacional privado,5110
+73443,16,Nacional público,5111
+73443,17,Regional público,5112
+73449,19,Nacional privado futuro,5113
+73449,14,Nacional privado,5114
+73449,15,Nacional privado,5115
+73449,16,Nacional público,5116
+73449,17,Regional público,5117
+73461,19,Nacional privado futuro,5118
+73461,46,Nacional privado,5119
+73461,42,Nacional privado,5120
+73461,16,Nacional público,5121
+73461,17,Regional público,5122
+73483,19,Nacional privado futuro,5123
+73483,14,Nacional privado,5124
+73483,15,Nacional privado,5125
+73483,16,Nacional público,5126
+73483,17,Regional público,5127
+73504,19,Nacional privado futuro,5128
+73504,14,Nacional privado,5129
+73504,15,Nacional privado,5130
+73504,16,Nacional público,5131
+73504,17,Regional público,5132
+73520,16,Nacional público,5133
+73520,17,Regional público,5134
+73520,46,Nacional privado,5135
+73520,42,Nacional privado,5136
+73520,19,Nacional privado futuro,5137
+73547,19,Nacional privado futuro,5138
+73547,14,Nacional privado,5139
+73547,15,Nacional privado,5140
+73547,16,Nacional público,5141
+73547,17,Regional público,5142
+73555,19,Nacional privado futuro,5143
+73555,16,Nacional público,5144
+73555,18,Regional público,5145
+73555,14,Nacional privado,5146
+73555,15,Nacional privado,5147
+73563,19,Nacional privado futuro,5148
+73563,16,Nacional público,5149
+73563,17,Regional público,5150
+73563,14,Nacional privado,5151
+73563,15,Nacional privado,5152
+73585,19,Nacional privado futuro,5153
+73585,14,Nacional privado,5154
+73585,15,Nacional privado,5155
+73585,16,Nacional público,5156
+73585,17,Regional público,5157
+73616,19,Nacional privado futuro,5158
+73616,16,Nacional público,5159
+73616,18,Regional público,5160
+73616,14,Nacional privado,5161
+73616,15,Nacional privado,5162
+73616,16,Nacional público,5163
+73616,18,Regional público,5164
+73622,19,Nacional privado futuro,5165
+73622,46,Nacional privado,5166
+73622,49,Nacional privado,5167
+73622,16,Nacional público,5168
+73622,18,Regional público,5169
+73624,19,Nacional privado futuro,5170
+73624,14,Nacional privado,5171
+73624,15,Nacional privado,5172
+73624,16,Nacional público,5173
+73624,17,Regional público,5174
+73671,19,Nacional privado futuro,5175
+73671,46,Nacional privado,5176
+73671,49,Nacional privado,5177
+73671,16,Nacional público,5178
+73671,17,Regional público,5179
+73675,19,Nacional privado futuro,5180
+73675,16,Nacional público,5181
+73675,17,Regional público,5182
+73675,14,Nacional privado,5183
+73675,15,Nacional privado,5184
+73678,19,Nacional privado futuro,5185
+73678,46,Nacional privado,5186
+73678,49,Nacional privado,5187
+73678,16,Nacional público,5188
+73678,17,Regional público,5189
+73686,19,Nacional privado futuro,5190
+73686,46,Nacional privado,5191
+73686,42,Nacional privado,5192
+73686,16,Nacional público,5193
+73686,17,Regional público,5194
+73770,19,Nacional privado futuro,5195
+73770,14,Nacional privado,5196
+73770,15,Nacional privado,5197
+73770,23,Nacional público,5198
+73770,24,Regional público,5199
+73854,19,Nacional privado futuro,5200
+73854,14,Nacional privado,5201
+73854,15,Nacional privado,5202
+73854,16,Nacional público,5203
+73854,17,Regional público,5204
+73861,19,Nacional privado futuro,5205
+73861,46,Nacional privado,5206
+73861,49,Nacional privado,5207
+73861,16,Nacional público,5208
+73861,17,Regional público,5209
+73870,43,Nacional privado futuro,5210
+73870,46,Nacional privado,5211
+73870,49,Nacional privado,5212
+73870,38,Nacional público,5213
+73870,18,Regional público,5214
+73873,19,Nacional privado futuro,5215
+73873,16,Nacional público,5216
+73873,18,Regional público,5217
+73873,14,Nacional privado,5218
+73873,15,Nacional privado,5219
+76001,19,Nacional privado futuro,5220
+76001,19,Nacional privado futuro,5221
+76001,14,Nacional privado,5222
+76001,15,Nacional privado,5223
+76001,16,Nacional público,5224
+76001,17,Regional público,5225
+76001,14,Nacional privado,5226
+76001,15,Nacional privado,5227
+76001,16,Nacional público,5228
+76001,17,Regional público,5229
+76001,19,Nacional privado futuro,5230
+76001,14,Nacional privado,5231
+76001,15,Nacional privado,5232
+76001,16,Nacional público,5233
+76001,17,Regional público,5234
+76001,29,Local sin ánimo de lucro,5235
+76020,19,Nacional privado futuro,5236
+76020,14,Nacional privado,5237
+76020,15,Nacional privado,5238
+76020,38,Nacional público,5239
+76020,17,Regional público,5240
+76036,19,Nacional privado futuro,5241
+76036,14,Nacional privado,5242
+76036,15,Nacional privado,5243
+76036,16,Nacional público,5244
+76036,17,Regional público,5245
+76036,39,Local con ánimo de lucro,5246
+76036,21,Local sin ánimo de lucro,5247
+76041,19,Nacional privado futuro,5248
+76041,14,Nacional privado,5249
+76041,15,Nacional privado,5250
+76041,38,Nacional público,5251
+76041,17,Regional público,5252
+76054,38,Nacional público,5253
+76054,17,Regional público,5254
+76054,14,Nacional privado,5255
+76054,15,Nacional privado,5256
+76054,19,Nacional privado futuro,5257
+76100,19,Nacional privado futuro,5258
+76100,16,Nacional público,5259
+76100,17,Regional público,5260
+76100,14,Nacional privado,5261
+76100,15,Nacional privado,5262
+76109,22,Local sin ánimo de lucro,5263
+76109,19,Nacional privado futuro,5264
+76109,16,Nacional público,5265
+76109,17,Regional público,5266
+76109,14,Nacional privado,5267
+76109,15,Nacional privado,5268
+76109,30,Local con ánimo de lucro,5269
+76111,19,Nacional privado futuro,5270
+76111,16,Nacional público,5271
+76111,17,Regional público,5272
+76111,14,Nacional privado,5273
+76111,15,Nacional privado,5274
+76111,36,Local con ánimo de lucro,5275
+76113,19,Nacional privado futuro,5276
+76113,14,Nacional privado,5277
+76113,15,Nacional privado,5278
+76113,16,Nacional público,5279
+76113,17,Regional público,5280
+76113,39,Local con ánimo de lucro,5281
+76113,21,Local sin ánimo de lucro,5282
+76122,19,Nacional privado futuro,5283
+76122,14,Nacional privado,5284
+76122,15,Nacional privado,5285
+76122,38,Nacional público,5286
+76122,17,Regional público,5287
+76126,19,Nacional privado futuro,5288
+76126,16,Nacional público,5289
+76126,17,Regional público,5290
+76126,14,Nacional privado,5291
+76126,15,Nacional privado,5292
+76130,19,Nacional privado futuro,5293
+76130,14,Nacional privado,5294
+76130,15,Nacional privado,5295
+76130,16,Nacional público,5296
+76130,17,Regional público,5297
+76147,19,Nacional privado futuro,5298
+76147,14,Nacional privado,5299
+76147,15,Nacional privado,5300
+76147,38,Nacional público,5301
+76147,29,Local con ánimo de lucro,5302
+76147,17,Regional público,5303
+76233,19,Nacional privado futuro,5304
+76233,14,Nacional privado,5305
+76233,15,Nacional privado,5306
+76233,16,Nacional público,5307
+76233,17,Regional público,5308
+76243,19,Nacional privado futuro,5309
+76243,14,Nacional privado,5310
+76243,15,Nacional privado,5311
+76243,38,Nacional público,5312
+76243,17,Regional público,5313
+76246,38,Nacional público,5314
+76246,14,Nacional privado,5315
+76246,15,Nacional privado,5316
+76246,17,Regional público,5317
+76246,19,Nacional privado futuro,5318
+76248,19,Nacional privado futuro,5319
+76248,16,Nacional público,5320
+76248,17,Regional público,5321
+76248,14,Nacional privado,5322
+76248,15,Nacional privado,5323
+76250,38,Nacional público,5324
+76250,17,Regional público,5325
+76250,14,Nacional privado,5326
+76250,15,Nacional privado,5327
+76250,19,Nacional privado futuro,5328
+76275,19,Nacional privado futuro,5329
+76275,14,Nacional privado,5330
+76275,15,Nacional privado,5331
+76275,16,Nacional público,5332
+76275,17,Regional público,5333
+76306,19,Nacional privado futuro,5334
+76306,16,Nacional público,5335
+76306,17,Regional público,5336
+76306,14,Nacional privado,5337
+76306,15,Nacional privado,5338
+76318,19,Nacional privado futuro,5339
+76318,16,Nacional público,5340
+76318,17,Regional público,5341
+76318,14,Nacional privado,5342
+76318,15,Nacional privado,5343
+76364,19,Nacional privado futuro,5344
+76364,14,Nacional privado,5345
+76364,15,Nacional privado,5346
+76364,16,Nacional público,5347
+76364,17,Regional público,5348
+76364,27,Local con ánimo de lucro,5349
+76377,19,Nacional privado futuro,5350
+76377,16,Nacional público,5351
+76377,17,Regional público,5352
+76377,14,Nacional privado,5353
+76377,15,Nacional privado,5354
+76400,19,Nacional privado futuro,5355
+76400,14,Nacional privado,5356
+76400,15,Nacional privado,5357
+76400,38,Nacional público,5358
+76400,17,Regional público,5359
+76403,19,Nacional privado futuro,5360
+76403,14,Nacional privado,5361
+76403,15,Nacional privado,5362
+76403,38,Nacional público,5363
+76403,17,Regional público,5364
+76497,19,Nacional privado futuro,5365
+76497,14,Nacional privado,5366
+76497,15,Nacional privado,5367
+76497,38,Nacional público,5368
+76497,17,Regional público,5369
+76520,19,Nacional privado futuro,5371
+76520,14,Nacional privado,5372
+76520,15,Nacional privado,5373
+76520,16,Nacional público,5374
+76520,17,Regional público,5375
+76563,19,Nacional privado futuro,5377
+76563,14,Nacional privado,5378
+76563,15,Nacional privado,5379
+76563,16,Nacional público,5380
+76563,17,Regional público,5381
+76606,14,Nacional privado,5382
+76606,15,Nacional privado,5383
+76606,16,Nacional público,5384
+76606,17,Regional público,5385
+76606,19,Nacional privado futuro,5386
+76616,19,Nacional privado futuro,5387
+76616,16,Nacional público,5388
+76616,17,Regional público,5389
+76616,14,Nacional privado,5390
+76616,15,Nacional privado,5391
+76616,39,Local con ánimo de lucro,5392
+76616,21,Local sin ánimo de lucro,5393
+76622,19,Nacional privado futuro,5394
+76622,14,Nacional privado,5395
+76622,15,Nacional privado,5396
+76622,16,Nacional público,5397
+76622,17,Regional público,5398
+76670,19,Nacional privado futuro,5399
+76670,16,Nacional público,5400
+76670,17,Regional público,5401
+76670,14,Nacional privado,5402
+76670,15,Nacional privado,5403
+76736,19,Nacional privado futuro,5404
+76736,14,Nacional privado,5405
+76736,15,Nacional privado,5406
+76736,38,Nacional público,5407
+76736,17,Regional público,5408
+76823,19,Nacional privado futuro,5409
+76823,14,Nacional privado,5410
+76823,15,Nacional privado,5411
+76823,38,Nacional público,5412
+76823,17,Regional público,5413
+76828,19,Nacional privado futuro,5414
+76828,14,Nacional privado,5415
+76828,15,Nacional privado,5416
+76828,16,Nacional público,5417
+76828,17,Regional público,5418
+76828,39,Local con ánimo de lucro,5419
+76828,21,Local sin ánimo de lucro,5420
+76834,19,Nacional privado futuro,5421
+76834,14,Nacional privado,5422
+76834,15,Nacional privado,5423
+76834,16,Nacional público,5424
+76834,17,Regional público,5425
+76834,39,Local con ánimo de lucro,5426
+76834,21,Local sin ánimo de lucro,5427
+76845,19,Nacional privado futuro,5428
+76845,14,Nacional privado,5429
+76845,15,Nacional privado,5430
+76845,38,Nacional público,5431
+76845,17,Regional público,5432
+76863,38,Nacional público,5433
+76863,17,Regional público,5434
+76863,14,Nacional privado,5435
+76863,15,Nacional privado,5436
+76863,19,Nacional privado futuro,5437
+76869,19,Nacional privado futuro,5438
+76869,16,Nacional público,5439
+76869,17,Regional público,5440
+76869,14,Nacional privado,5441
+76869,15,Nacional privado,5442
+76890,19,Nacional privado futuro,5443
+76890,16,Nacional público,5444
+76890,17,Regional público,5445
+76890,14,Nacional privado,5446
+76890,15,Nacional privado,5447
+76892,19,Nacional privado futuro,5449
+76892,16,Nacional público,5450
+76892,17,Regional público,5451
+76892,14,Nacional privado,5452
+76892,15,Nacional privado,5453
+76895,19,Nacional privado futuro,5455
+76895,14,Nacional privado,5456
+76895,15,Nacional privado,5457
+76895,16,Nacional público,5458
+76895,17,Regional público,5459
+81001,26,Nacional público,5460
+81001,28,Regional público,5461
+81001,36,Nacional privado futuro,5462
+81001,22,Nacional privado,5463
+81001,24,Nacional privado,5464
+81001,30,Local con ánimo de lucro,5465
+81001,32,Local sin ánimo de lucro,5466
+81065,36,Nacional privado futuro,5467
+81065,28,Nacional privado,5468
+81065,30,Nacional privado,5469
+81065,22,Nacional público,5470
+81065,24,Regional público,5471
+81220,22,Nacional privado,5472
+81220,24,Nacional privado,5473
+81220,34,Nacional público,5474
+81220,28,Nacional privado futuro,5475
+81220,32,Regional público,5476
+81300,36,Nacional privado futuro,5477
+81300,26,Nacional público,5478
+81300,28,Regional público,5479
+81300,22,Nacional privado,5480
+81300,24,Nacional privado,5481
+81591,14,Nacional privado,5482
+81591,15,Nacional privado,5483
+81591,34,Nacional público,5484
+81591,19,Nacional privado futuro,5485
+81591,32,Regional público,5486
+81736,36,Nacional privado futuro,5487
+81736,32,Local sin ánimo de lucro,5488
+81736,22,Nacional privado,5489
+81736,24,Nacional privado,5490
+81736,26,Nacional público,5491
+81736,28,Regional público,5492
+81794,19,Nacional privado futuro,5493
+81794,14,Nacional privado,5494
+81794,15,Nacional privado,5495
+81794,16,Nacional público,5496
+81794,17,Regional público,5497
+85001,19,Nacional privado futuro,5498
+85001,21,Local sin ánimo de lucro,5499
+85001,14,Nacional privado,5500
+85001,15,Nacional privado,5501
+85001,16,Nacional público,5502
+85001,17,Regional público,5503
+85001,28,Local con ánimo de lucro,5504
+85010,19,Nacional privado futuro,5505
+85010,16,Nacional público,5506
+85010,17,Regional público,5507
+85010,14,Nacional privado,5508
+85010,15,Nacional privado,5509
+85015,14,Nacional privado,5510
+85015,15,Nacional privado,5511
+85015,16,Nacional público,5512
+85015,19,Nacional privado futuro,5513
+85015,17,Regional público,5514
+85125,19,Nacional privado futuro,5515
+85125,16,Nacional público,5516
+85125,17,Regional público,5517
+85125,14,Nacional privado,5518
+85125,15,Nacional privado,5519
+85136,19,Nacional privado futuro,5520
+85136,16,Nacional público,5521
+85136,17,Regional público,5522
+85136,38,Nacional privado,5523
+85136,39,Nacional privado,5524
+85139,19,Nacional privado futuro,5525
+85139,14,Nacional privado,5526
+85139,15,Nacional privado,5527
+85139,16,Nacional público,5528
+85139,17,Regional público,5529
+85162,19,Nacional privado futuro,5530
+85162,14,Nacional privado,5531
+85162,15,Nacional privado,5532
+85162,16,Nacional público,5533
+85162,17,Regional público,5534
+85225,19,Nacional privado futuro,5535
+85225,16,Nacional público,5536
+85225,17,Regional público,5537
+85225,14,Nacional privado,5538
+85225,15,Nacional privado,5539
+85230,19,Nacional privado futuro,5540
+85230,16,Nacional público,5541
+85230,17,Regional público,5542
+85230,14,Nacional privado,5543
+85230,15,Nacional privado,5544
+85250,14,Nacional privado,5545
+85250,15,Nacional privado,5546
+85250,19,Nacional privado futuro,5547
+85250,16,Nacional público,5548
+85250,17,Regional público,5549
+85263,19,Nacional privado futuro,5550
+85263,16,Nacional público,5551
+85263,17,Regional público,5552
+85263,14,Nacional privado,5553
+85263,15,Nacional privado,5554
+85279,14,Nacional privado,5555
+85279,15,Nacional privado,5556
+85279,16,Nacional público,5557
+85279,19,Nacional privado futuro,5558
+85279,17,Regional público,5559
+85300,19,Nacional privado futuro,5560
+85300,14,Nacional privado,5561
+85300,15,Nacional privado,5562
+85300,16,Nacional público,5563
+85300,17,Regional público,5564
+85315,19,Nacional privado futuro,5565
+85315,16,Nacional público,5566
+85315,17,Regional público,5567
+85315,14,Nacional privado,5568
+85315,15,Nacional privado,5569
+85325,19,Nacional privado futuro,5570
+85325,16,Nacional público,5571
+85325,17,Regional público,5572
+85325,14,Nacional privado,5573
+85325,15,Nacional privado,5574
+85400,19,Nacional privado futuro,5575
+85400,16,Nacional público,5576
+85400,17,Regional público,5577
+85400,38,Nacional privado,5578
+85400,39,Nacional privado,5579
+85410,19,Nacional privado futuro,5580
+85410,16,Nacional público,5581
+85410,17,Regional público,5582
+85410,14,Nacional privado,5583
+85410,15,Nacional privado,5584
+85430,19,Nacional privado futuro,5585
+85430,16,Nacional público,5586
+85430,17,Regional público,5587
+85430,14,Nacional privado,5588
+85430,15,Nacional privado,5589
+85440,19,Nacional privado futuro,5590
+85440,16,Nacional público,5591
+85440,17,Regional público,5592
+85440,14,Nacional privado,5593
+85440,15,Nacional privado,5594
+86001,28,Nacional privado futuro,5595
+86001,14,Nacional privado,5596
+86001,16,Nacional privado,5597
+86001,18,Nacional público,5598
+86001,20,Regional público,5599
+86219,27,Nacional privado futuro,5600
+86219,18,Nacional público,5601
+86219,17,Regional público,5602
+86219,14,Nacional privado,5603
+86219,16,Nacional privado,5604
+86320,28,Nacional privado futuro,5605
+86320,14,Nacional privado,5606
+86320,16,Nacional privado,5607
+86320,36,Nacional público,5608
+86320,32,Regional público,5609
+86568,28,Nacional privado futuro,5610
+86568,14,Nacional privado,5611
+86568,16,Nacional privado,5612
+86568,18,Nacional público,5613
+86568,20,Regional público,5614
+86569,28,Nacional privado futuro,5615
+86569,14,Nacional privado,5616
+86569,16,Nacional privado,5617
+86569,18,Nacional público,5618
+86569,20,Regional público,5619
+86571,28,Nacional privado futuro,5620
+86571,14,Nacional privado,5621
+86571,16,Nacional privado,5622
+86571,18,Nacional público,5623
+86571,20,Regional público,5624
+86573,28,Nacional privado futuro,5625
+86573,14,Nacional privado,5626
+86573,16,Nacional privado,5627
+86573,36,Nacional público,5628
+86573,32,Regional público,5629
+86749,27,Nacional privado futuro,5630
+86749,18,Nacional público,5631
+86749,17,Regional público,5632
+86749,14,Nacional privado,5633
+86749,16,Nacional privado,5634
+86755,18,Nacional público,5635
+86755,20,Regional público,5636
+86755,14,Nacional privado,5637
+86755,16,Nacional privado,5638
+86755,28,Nacional privado futuro,5639
+86757,28,Nacional privado futuro,5640
+86757,36,Nacional público,5641
+86757,32,Regional público,5642
+86757,14,Nacional privado,5643
+86757,16,Nacional privado,5644
+86760,27,Nacional privado futuro,5645
+86760,18,Nacional público,5646
+86760,17,Regional público,5647
+86760,14,Nacional privado,5648
+86760,16,Nacional privado,5649
+86865,28,Nacional privado futuro,5650
+86865,14,Nacional privado,5651
+86865,16,Nacional privado,5652
+86865,36,Nacional público,5653
+86865,32,Regional público,5654
+86885,28,Nacional privado futuro,5655
+86885,14,Nacional privado,5656
+86885,16,Nacional privado,5657
+86885,18,Nacional público,5658
+86885,20,Regional público,5659
+88001,22,Nacional público,5660
+88001,23,Regional público,5661
+88001,27,Nacional privado futuro,5662
+88001,26,Nacional privado,5663
+88001,25,Nacional privado,5664
+88001,29,Local con ánimo de lucro,5665
+88001,28,Local sin ánimo de lucro,5666
+88564,35,Nacional privado futuro,5667
+88564,26,Nacional privado,5668
+88564,25,Nacional privado,5669
+88564,22,Nacional público,5670
+88564,23,Regional público,5671
+91001,36,Nacional privado futuro,5672
+91001,14,Nacional privado,5673
+91001,22,Nacional privado,5674
+91001,16,Nacional público,5675
+91001,18,Regional público,5676
+91001,26,Local con ánimo de lucro,5677
+91001,24,Local sin ánimo de lucro,5678
+91263,14,Nacional privado,5679
+91263,15,Nacional privado,5680
+91263,16,Nacional público,5681
+91263,28,Nacional privado futuro,5682
+91263,18,Regional público,5683
+91405,14,Nacional privado,5684
+91405,15,Nacional privado,5685
+91405,16,Nacional público,5686
+91405,19,Nacional privado futuro,5687
+91405,18,Regional público,5688
+91407,14,Nacional privado,5689
+91407,15,Nacional privado,5690
+91407,16,Nacional público,5691
+91407,28,Nacional privado futuro,5692
+91407,18,Regional público,5693
+91430,14,Nacional privado,5694
+91430,15,Nacional privado,5695
+91430,16,Nacional público,5696
+91430,19,Nacional privado futuro,5697
+91430,18,Regional público,5698
+91460,14,Nacional privado,5699
+91460,15,Nacional privado,5700
+91460,16,Nacional público,5701
+91460,19,Nacional privado futuro,5702
+91460,18,Regional público,5703
+91530,14,Nacional privado,5704
+91530,15,Nacional privado,5705
+91530,16,Nacional público,5706
+91530,28,Nacional privado futuro,5707
+91530,18,Regional público,5708
+91536,14,Nacional privado,5709
+91536,22,Nacional privado,5710
+91536,16,Nacional público,5711
+91536,28,Nacional privado futuro,5712
+91536,18,Regional público,5713
+91540,28,Nacional privado futuro,5714
+91540,16,Nacional público,5715
+91540,18,Regional público,5716
+91540,14,Nacional privado,5717
+91540,22,Nacional privado,5718
+91669,14,Nacional privado,5719
+91669,15,Nacional privado,5720
+91669,16,Nacional público,5721
+91669,19,Nacional privado futuro,5722
+91669,18,Regional público,5723
+91798,14,Nacional privado,5724
+91798,22,Nacional privado,5725
+91798,16,Nacional público,5726
+91798,28,Nacional privado futuro,5727
+91798,18,Regional público,5728
+94001,28,Nacional privado futuro,5729
+94001,22,Nacional privado,5730
+94001,24,Nacional privado,5731
+94001,34,Nacional público,5732
+94001,32,Regional público,5733
+94001,36,Local con ánimo de lucro,5734
+94001,26,Local sin ánimo de lucro,5735
+94343,14,Nacional privado,5736
+94343,15,Nacional privado,5737
+94343,16,Nacional público,5738
+94343,19,Nacional privado futuro,5739
+94343,18,Regional público,5740
+94663,14,Nacional privado,5741
+94663,15,Nacional privado,5742
+94663,16,Nacional público,5743
+94663,19,Nacional privado futuro,5744
+94663,18,Regional público,5745
+94883,22,Nacional privado,5746
+94883,24,Nacional privado,5747
+94883,34,Nacional público,5748
+94883,28,Nacional privado futuro,5749
+94883,32,Regional público,5750
+94884,22,Nacional privado,5751
+94884,24,Nacional privado,5752
+94884,34,Nacional público,5753
+94884,28,Nacional privado futuro,5754
+94884,32,Regional público,5755
+94885,22,Nacional privado,5756
+94885,24,Nacional privado,5757
+94885,34,Nacional público,5758
+94885,28,Nacional privado futuro,5759
+94885,32,Regional público,5760
+94886,22,Nacional privado,5761
+94886,24,Nacional privado,5762
+94886,34,Nacional público,5763
+94886,28,Nacional privado futuro,5764
+94886,32,Regional público,5765
+94887,22,Nacional privado,5766
+94887,24,Nacional privado,5767
+94887,16,Nacional público,5768
+94887,28,Nacional privado futuro,5769
+94887,18,Regional público,5770
+94888,14,Nacional privado,5771
+94888,22,Nacional privado,5772
+94888,16,Nacional público,5773
+94888,19,Nacional privado futuro,5774
+94888,18,Regional público,5775
+95001,19,Nacional privado futuro,5776
+95001,14,Nacional privado,5777
+95001,15,Nacional privado,5778
+95001,16,Nacional público,5779
+95001,17,Regional público,5780
+95001,24,Local con ánimo de lucro,5781
+95001,21,Local sin ánimo de lucro,5782
+95015,19,Nacional privado futuro,5783
+95015,16,Nacional público,5784
+95015,17,Regional público,5785
+95015,14,Nacional privado,5786
+95015,15,Nacional privado,5787
+95025,19,Nacional privado futuro,5788
+95025,16,Nacional público,5789
+95025,17,Regional público,5790
+95025,14,Nacional privado,5791
+95025,15,Nacional privado,5792
+95200,19,Nacional privado futuro,5793
+95200,16,Nacional público,5794
+95200,17,Regional público,5795
+95200,14,Nacional privado,5796
+95200,15,Nacional privado,5797
+97001,28,Nacional privado futuro,5798
+97001,14,Nacional privado,5799
+97001,22,Nacional privado,5800
+97001,16,Nacional público,5801
+97001,18,Regional público,5802
+97001,24,Local con ánimo de lucro,5803
+97001,26,Local sin ánimo de lucro,5804
+97161,14,Nacional privado,5805
+97161,15,Nacional privado,5806
+97161,16,Nacional público,5807
+97161,19,Nacional privado futuro,5808
+97161,18,Regional público,5809
+97511,14,Nacional privado,5810
+97511,15,Nacional privado,5811
+97511,16,Nacional público,5812
+97511,28,Nacional privado futuro,5813
+97511,18,Regional público,5814
+97666,14,Nacional privado,5815
+97666,22,Nacional privado,5816
+97666,16,Nacional público,5817
+97666,28,Nacional privado futuro,5818
+97666,18,Regional público,5819
+97777,14,Nacional privado,5820
+97777,22,Nacional privado,5821
+97777,16,Nacional público,5822
+97777,19,Nacional privado futuro,5823
+97777,18,Regional público,5824
+97889,14,Nacional privado,5825
+97889,22,Nacional privado,5826
+97889,16,Nacional público,5827
+97889,28,Nacional privado futuro,5828
+97889,18,Regional público,5829
+99001,28,Nacional privado futuro,5830
+99001,22,Nacional privado,5831
+99001,24,Nacional privado,5832
+99001,34,Nacional público,5833
+99001,32,Regional público,5834
+99001,36,Local con ánimo de lucro,5835
+99001,26,Local sin ánimo de lucro,5836
+99524,22,Nacional privado,5837
+99524,24,Nacional privado,5838
+99524,34,Nacional público,5839
+99524,28,Nacional privado futuro,5840
+99524,32,Regional público,5841
+99624,14,Nacional privado,5842
+99624,15,Nacional privado,5843
+99624,34,Nacional público,5844
+99624,19,Nacional privado futuro,5845
+99624,17,Regional público,5846
+99773,22,Nacional privado,5847
+99773,24,Nacional privado,5848
+99773,34,Nacional público,5849
+99773,28,Nacional privado futuro,5850
+99773,32,Regional público,5851

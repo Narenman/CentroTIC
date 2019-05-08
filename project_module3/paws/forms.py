@@ -20,7 +20,7 @@ class DeviceDescriptorForm(forms.ModelForm):
     
     class Meta:
         model = DeviceDescriptor
-        fields = ["serial_Number", "manufacturer_Id", "model_Id", "ruleset_Ids",]
+        fields = ["serial_Number", "manufacturer_Id", "model_Id", "ruleset_Ids","geolocation"]
 
 
 class DeviceOwnerForm(forms.ModelForm):

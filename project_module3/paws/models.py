@@ -43,7 +43,7 @@ class DeviceDescriptor(models.Model):
     serial_Number = models.CharField(max_length=25)
     manufacturer_Id = models.CharField(max_length=25)
     model_Id = models.CharField(max_length=25)
-    ruleset_Ids = JSONField()
+    ruleset_Ids = models.CharField(max_length=25)
     device_capabilities = models.ForeignKey(FrequencyRange, on_delete=models.CASCADE)
     geolocation = models.ForeignKey(Geolocation, on_delete=models.CASCADE)
 
@@ -59,6 +59,9 @@ class DeviceOwner(models.Model):
     telephone = models.CharField(max_length=50)
     email = models.EmailField(max_length=254)
     device_descriptor = models.ForeignKey(DeviceDescriptor, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.contact
 
 class RulsetInfo(models.Model):
     """
@@ -102,3 +105,6 @@ class DeviceValidity(models.Model):
     deviceDesc = models.ForeignKey(DeviceDescriptor, on_delete=models.CASCADE)
     isValid = models.BooleanField()
     reason = models.CharField(max_length=150)
+
+    def __str__(self):
+        return self.reason
