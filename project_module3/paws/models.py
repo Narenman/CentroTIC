@@ -78,9 +78,18 @@ class EventTime(models.Model):
     start_Time = models.DateTimeField(auto_now=False, auto_now_add=False)
     stop_Time = models.DateTimeField(auto_now=False, auto_now_add=False)
 
+class Frequency(models.Model):
+    """ Relaciona los canales del PTTV con la frecuencia inicial en MHz """
+    channels = models.IntegerField(primary_key=True)
+    frequency = models.FloatField()
+
+    def __str__(self):
+        return "chanel "+str(self.channels)
+    
+
 class Spectrum(models.Model):
     operation = models.CharField(max_length=50)
-    channels = models.IntegerField()
+    channels = models.ForeignKey(Frequency, on_delete=models.CASCADE)
     geolocation = models.ForeignKey(Geolocation, on_delete=models.CASCADE)
 
 class SpectrumSchedule(models.Model):
