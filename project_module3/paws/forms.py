@@ -1,7 +1,6 @@
 from django import forms 
-from .models import DeviceDescriptor, Geolocation, FrequencyRange, DeviceOwner
-
-
+from .models import DeviceDescriptor, Geolocation, FrequencyRange, \
+     DeviceOwner, DeviceValidity
 
 class GeolocationForm(forms.ModelForm):
     
@@ -28,3 +27,11 @@ class DeviceOwnerForm(forms.ModelForm):
     class Meta:
         model = DeviceOwner
         fields = ("company", "contact", "telephone", "email")
+
+
+class DeviceValidityForm(forms.ModelForm):
+    
+    class Meta:
+        model = DeviceValidity
+        fields = ("reason","isValid")
+    

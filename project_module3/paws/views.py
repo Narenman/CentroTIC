@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from .forms import  GeolocationForm, \
+from .forms import  GeolocationForm, DeviceValidityForm, \
     FrequencyRangeForm, DeviceDescriptorForm, DeviceOwnerForm
 
 from .models import DeviceDescriptor, Geolocation, SpectrumSpec, DeviceValidity
@@ -20,13 +20,16 @@ def register(request):
     freq_range = FrequencyRangeForm()
     device_descriptor = DeviceDescriptorForm()
     device_owner = DeviceOwnerForm()
+    device_validity = DeviceValidityForm()
     print(request.POST)
     if request.POST:
         freq_range = FrequencyRangeForm(request.POST)
         device_descriptor = DeviceDescriptorForm(request.POST)
         device_owner = DeviceOwnerForm(request.POST)
+        
+        device_validity = DeviceValidityForm(request.POST)
 
-        if  freq_range.is_valid() and device_descriptor.is_valid() and device_owner.is_valid():
+        if device_validity.is_valid() or freq_range.is_valid() and device_descriptor.is_valid() and device_owner.is_valid():
 
             device_descriptor = device_descriptor.save(commit=False)
             device_descriptor.device_capabilities = freq_range.save()
@@ -35,12 +38,16 @@ def register(request):
             device_owner = device_owner.save(commit=False)
             device_owner.device_descriptor = device_descriptor
             device_owner.save()
+            # device_validity = device_validity.save(commit=False)
+            # device_validity.device_descriptor = device_descriptor
+            # device_validity.save()
 
             return render(request, "paws/registro_exitoso.html", {"registro": "Registro exitoso de dispositivo"})
 
     respuesta = {"freq_range": freq_range,
                  "device_descriptor": device_descriptor,
-                 "device_owner": device_owner}
+                 "device_owner": device_owner,
+                 "device_validity":device_validity,}
 
     return render(request, "paws/register.html", respuesta)
 
