@@ -21,7 +21,7 @@
             <tbody>
             {% for dat in devices %}    
                  <tr>
-                <th scope="row">{{dat.deviceDesc}}</th>
+                <th scope="row">{{dat.serial}}</th>
                 <td>{{dat.geolocation.city}}</td>
                 <td>{{dat.isValid}}</td>
                 <td>{{dat.reason}}</td>

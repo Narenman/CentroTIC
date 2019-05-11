@@ -3,7 +3,9 @@ from django.http import JsonResponse
 from .forms import  GeolocationForm, DeviceValidityForm, \
     FrequencyRangeForm, DeviceDescriptorForm, DeviceOwnerForm
 
-from .models import DeviceDescriptor, Geolocation, SpectrumSpec, DeviceValidity
+from .models import DeviceDescriptor, Geolocation, SpectrumSpec, DeviceValidity, \
+    Spectrum
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 def index(request):
@@ -26,7 +28,6 @@ def register(request):
         freq_range = FrequencyRangeForm(request.POST)
         device_descriptor = DeviceDescriptorForm(request.POST)
         device_owner = DeviceOwnerForm(request.POST)
-        
         device_validity = DeviceValidityForm(request.POST)
 
         if device_validity.is_valid() or freq_range.is_valid() and device_descriptor.is_valid() and device_owner.is_valid():
@@ -38,11 +39,12 @@ def register(request):
             device_owner = device_owner.save(commit=False)
             device_owner.device_descriptor = device_descriptor
             device_owner.save()
-            # device_validity = device_validity.save(commit=False)
-            # device_validity.device_descriptor = device_descriptor
-            # device_validity.save()
 
-            return render(request, "paws/registro_exitoso.html", {"registro": "Registro exitoso de dispositivo"})
+            device_validity = device_validity.save(commit=False)
+            device_validity.deviceDesc = device_descriptor
+            device_validity.save()
+
+            return render(request, "paws/registro_exitoso.html", {"registro": "Registro exitoso de dispositivo", "info_reg":request.POST})
 
     respuesta = {"freq_range": freq_range,
                  "device_descriptor": device_descriptor,
@@ -51,19 +53,25 @@ def register(request):
 
     return render(request, "paws/register.html", respuesta)
 
+@csrf_exempt
 def avail_spectrum(request):
     """Esta funcion se realiza con el fin de retornar AVAIL_SPECTRUM_RESP
     """
+    master_data = request.POST
+
     #bases de datos que se consultan de acuerdo a las peticiones del maestro
-    device = DeviceDescriptor.objects.all()
-    geolocation = Geolocation.objects.all() 
-    device_descriptor = device.values('serial_Number' ,  'manufacturer_Id' , 
-                        'model_Id','device_capabilities', 'geolocation' )
+    device = DeviceDescriptor.objects.filter(serial_Number=master_data["serial_Number"]).filter(ruleset_Ids=master_data["ruleset_Ids"]).filter(model_Id=master_data["model_Id"])
+    if len(device)==1:
+        device = device[0]
+        # print(device.geolocation.pk)
+        spectrum = Spectrum.objects.filter(geolocation=device.geolocation.pk)
+        print(spectrum)
+    else:
+        print("Informacion repetida")
 
     #base de datos del espectro consultada y filtrada de acuerdo a la informacion
     #georeferenciada del maestro
 
-    spectrum = SpectrumSpec.objects.all()
     try:
         #formacion de la respuesta AVAIL_SPECTRUM_RESP
         avail_spectrum_resp = {"serial_Number": device_descriptor[0]["serial_Number"],
@@ -71,22 +79,19 @@ def avail_spectrum(request):
                             "model_Id": device_descriptor[0]["model_Id"], "ruleset_Ids": device_descriptor[0]["ruleset_Ids"],
                             "device_capabilities":device_descriptor[0]["device_capabilities"]}
     except:
-        avail_spectrum_resp = {}
+        avail_spectrum_resp = {"avail_spectrum_resp":device.serial_Number}
 
     return JsonResponse(avail_spectrum_resp)
 
+
 def dispositivos_validados(request):
-    dispositivos = DeviceValidity.objects.all()
-    devices = dispositivos.values("deviceDesc", "isValid", "reason")
-    disp = list(map(lambda devices: devices["deviceDesc"], devices))
-    devicesdescp = DeviceDescriptor.objects.filter(pk__in=disp)
-    geo_device=devicesdescp.values("geolocation")
+    devicevalidity = DeviceValidity.objects.all()
+    devices = devicevalidity.values("deviceDesc", "isValid", "reason")
+    for data in devices:
+        id_deviceDesc = data["deviceDesc"]
+        devicesDesc = DeviceDescriptor.objects.get(pk=id_deviceDesc)
+        data.update({"geolocation": devicesDesc.geolocation , "serial":devicesDesc.serial_Number})
+        print(devicesDesc.geolocation)
 
-    geolocation = Geolocation.objects.filter(pk__in=geo_device)
-    geo_device = geolocation.values("city")
-
-    for i in range(len(devices)):
-        devices[i]["deviceDesc"]=devicesdescp[i]
-        devices[i].update({"geolocation": geo_device[i]})
-    print(devices)
+    # print(devices)
     return render(request, "paws/dispositivos_validados.html", {"devices": devices})
