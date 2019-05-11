@@ -144,6 +144,6 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS =[os.path.join(BASE_DIR, 'static'),]
-#STATIC_ROOT = '/home/gestion_procesos/back_demoIoT/staticfiles'
+#STATIC_ROOT = '/home/luismiguel/back_centrotic/staticfiles'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL  = '/'

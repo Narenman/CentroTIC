@@ -51,7 +51,7 @@ def enviar_API(url, fecha, valor, sensor):
         "valor": valor,
         "sensor": sensor
     }
-    r = urequests.post(url, json=pyload, headers={"Authorization": " Token d2865cc229825bd3b05d765f11f21b6b80c0fff6"})
+    r = urequests.post(url, json=pyload, headers={"Authorization": " Token 9a74a56ab171cacdee5654cfc2ebd126694e1bf0"})
     print(r.content)
     print(r.status_code)
     r.close()
@@ -80,9 +80,9 @@ def sub_cb(topic, msg):
 
         #envio de datos a la API
         fecha = utime.localtime()
-        enviar_API("http://34.73.25.149/app_praes/temperatura/", fecha, temperatura, 2) # envio temperatura al sensor DHT22
-        enviar_API("http://34.73.25.149/app_praes/humedad/", fecha, humedad, 2) # envio humedad al sensor DHT22
-        enviar_API("http://34.73.25.149/app_praes/presion-atmosferica/", fecha, presion, 5) # envio humedad al sensor BMP180
+        enviar_API("http://34.74.6.16/app_praes/temperatura/", fecha, temperatura, 2) # envio temperatura al sensor DHT22
+        enviar_API("http://34.74.6.16/app_praes/humedad/", fecha, humedad, 2) # envio humedad al sensor DHT22
+        enviar_API("http://34.74.6.16/app_praes/presion-atmosferica/", fecha, presion, 5) # envio humedad al sensor BMP180
 
 
 
@@ -96,7 +96,7 @@ def sub_cb(topic, msg):
 
                 
 # Default MQTT server to connect to
-SERVER = "34.73.25.149"
+SERVER = "34.74.6.16"
 TOPIC = b"UIS/LP/213"
 CLIENT_ID = ubinascii.hexlify(machine.unique_id())
 print("client id {}".format(CLIENT_ID))
