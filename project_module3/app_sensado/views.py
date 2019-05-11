@@ -17,7 +17,7 @@ def main_index(request):
 def accion_raspberry(request):
     import paho.mqtt.publish as publish
     topico = "UIS/LP/213"
-    IP_broker = "192.168.0.108"
+    IP_broker = "34.74.6.16"
     usuario_broker = "pi"
     password_broker = "raspberry"
     publish.single(topico, "LED-ON-OFF", port=1883, hostname=IP_broker,

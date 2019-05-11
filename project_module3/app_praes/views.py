@@ -59,7 +59,7 @@ def monitoreo_lecturas_json(request):
 @login_required
 def control_ESP32(request):
     topico = "UIS/LP/213"
-    IP_broker = "34.73.25.149"
+    IP_broker = "34.74.6.16"
     usuario_broker = "pi"
     password_broker = "raspberry"
     publish.single(topico, "ESP32-LED", port=1883, hostname=IP_broker,
