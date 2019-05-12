@@ -1,6 +1,6 @@
 from django import forms 
 from .models import DeviceDescriptor, Geolocation, FrequencyRange, \
-     DeviceOwner, DeviceValidity
+     DeviceOwner, DeviceValidity, Spectrum
 
 class GeolocationForm(forms.ModelForm):
     
@@ -35,3 +35,8 @@ class DeviceValidityForm(forms.ModelForm):
         model = DeviceValidity
         fields = ("reason","isValid")
     
+class SpectrumForm(forms.ModelForm):
+    
+    class Meta:
+        model = Spectrum
+        fields = ("geolocation",)

@@ -12,11 +12,11 @@ AVAIL_SPECTRUM_REQ
 """
 #esta informacion deberia enviarla el esclavo a 
 #traves de MQTT
-AVAIL_SPECTRUM_REQ = {"serial_Number":"USRPE310",
-                      "ruleset_Ids":"xxxxx",
-                      "model_Id":"xxxx",
-                      "manufacturer_Id":"xxxxx",
-                      "dane_code":5266,
+AVAIL_SPECTRUM_REQ = {"serial_Number":"e310-f5ab-ao0x",
+                      "ruleset_Ids":"prototipo PAWS",
+                      "model_Id":"USRP E310",
+                      "manufacturer_Id":"Ettus Research",
+                      "dane_code":68001,
                       "contact": "mario",
                       "email":"luismiguel@radiogis.uis.edu.co"}
 

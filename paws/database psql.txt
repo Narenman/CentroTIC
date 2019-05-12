@@ -2,10 +2,10 @@ Actualizacion de la base de datos en psql:
 
 * sudo su postgres
 * psql centrotic
-* copy paws_departamento(id, name) FROM '/home/luismiguel/CentroTIC/paws/departamentos.csv' DELIMITER ',' CSV HEADER;
-* copy paws_geolocation(dane_code, city,region_id) FROM '/home/luismiguel/CentroTIC/paws/geolocation.csv' DELIMITER ',' CSV HEADER;
-* copy paws_frequency(channels, frequency) FROM '/home/luismiguel/CentroTIC/paws/canales_frecuencia.csv' DELIMITER ',' CSV HEADER;
-* copy paws_spectrum(id,operation,channels_id,geolocation_id) FROM '/home/luismiguel/CentroTIC/paws/spectrum.csv' DELIMITER ',' CSV HEADER;
+* copy paws_departamento(id, name) FROM '/home/luismiguel/Centrotic/paws/departamentos.csv' DELIMITER ',' CSV HEADER;
+* copy paws_geolocation(dane_code, city,region_id) FROM '/home/luismiguel/Centrotic/paws/geolocation.csv' DELIMITER ',' CSV HEADER;
+* copy paws_frequency(channels, frequency) FROM '/home/luismiguel/Centrotic/paws/canales_frecuencia.csv' DELIMITER ',' CSV HEADER;
+* copy paws_spectrum(id,operation,channels_id,geolocation_id) FROM '/home/luismiguel/Centrotic/paws/spectrum.csv' DELIMITER ',' CSV HEADER;
 
 
 

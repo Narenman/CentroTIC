@@ -1,0 +1,58 @@
+{% extends 'paws/base.html' %}
+{% load static %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% block body_block %}
+
+<div class="container">
+
+    <img class="img-fluid" src="{% static 'TVWS2.png' %}" alt="Imagen no encontrada">
+
+    <div class="row">
+        <div class="col-sm">
+        <h3> Canales ocupados en {{ciudad}} ({{departamento}}) </h3>
+            <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"># Canal</th>
+                        <th scope="col">Operación</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for canal in canales_ocupados %}
+                    
+                      <tr>
+                        <th scope="row">{{canal.channels}}</th>
+                        <td>{{canal.operation}}</td>
+                       
+                      </tr>
+                    {% endfor %}
+        
+                    </tbody>
+                  </table>
+        </div>
+
+        <div class="col-sm">
+              <form  action= "{% url 'paws:canales-regiones' %}" method="POST">
+       
+             {% csrf_token %}
+        
+       
+            <h3> Seleccione Región</h3>
+            {% bootstrap_form spectrum_form%}
+            
+            {% buttons %}
+              <button type="submit" class="btn btn-primary">
+              {% bootstrap_icon "star" %} Consultar
+              </button>
+            {% endbuttons %}
+      </form>
+            {% lorem 3 b random %}
+        </div>
+
+    </div>
+</div>
+
+{% endblock  %}

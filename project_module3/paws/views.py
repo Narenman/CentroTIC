@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from .forms import  GeolocationForm, DeviceValidityForm, \
-    FrequencyRangeForm, DeviceDescriptorForm, DeviceOwnerForm
+    FrequencyRangeForm, DeviceDescriptorForm, DeviceOwnerForm, SpectrumForm
 
 from .models import DeviceDescriptor, Geolocation, SpectrumSpec, DeviceValidity, \
-    Spectrum
+    Spectrum, Frequency
 from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
@@ -56,32 +56,48 @@ def register(request):
 @csrf_exempt
 def avail_spectrum(request):
     """Esta funcion se realiza con el fin de retornar AVAIL_SPECTRUM_RESP
+    para dar respuesta a las peticiones del maestro
     """
-    master_data = request.POST
-
+    master_data = request.POST # donde se encuentran las peticiones del maestro
     #bases de datos que se consultan de acuerdo a las peticiones del maestro
     device = DeviceDescriptor.objects.filter(serial_Number=master_data["serial_Number"]).filter(ruleset_Ids=master_data["ruleset_Ids"]).filter(model_Id=master_data["model_Id"])
+    # print(device)
+    
     if len(device)==1:
         device = device[0]
         # print(device.geolocation.pk)
+        #consulta de los canales ocupados por regiones
         spectrum = Spectrum.objects.filter(geolocation=device.geolocation.pk)
-        print(spectrum)
+        ocuppied_channels = [] #lista de los canales ocupados
+        for data in spectrum:
+            start_freq = Frequency.objects.get(pk=data.channels.pk)
+            ocuppied_channels.append(start_freq.frequency)
+        #consulta de todos los canales para seleccionar los canales libres
+        all_channels = Frequency.objects.all()
+        all_channels = all_channels.values("frequency")
+        all_channels = list(map(lambda table: table["frequency"], all_channels))
+        #comparacion de canales para extraer los canales libres
+        free_channels = []
+        for i in all_channels:
+            if i in ocuppied_channels:
+                pass
+            else:
+                free_channels.append(i)
     else:
-        print("Informacion repetida")
+        print("informacion repetida o inexistente")
 
     #base de datos del espectro consultada y filtrada de acuerdo a la informacion
     #georeferenciada del maestro
 
-    try:
-        #formacion de la respuesta AVAIL_SPECTRUM_RESP
-        avail_spectrum_resp = {"serial_Number": device_descriptor[0]["serial_Number"],
-                            "manufacturer_Id":device_descriptor[0]["manufacturer_Id"],
-                            "model_Id": device_descriptor[0]["model_Id"], "ruleset_Ids": device_descriptor[0]["ruleset_Ids"],
-                            "device_capabilities":device_descriptor[0]["device_capabilities"]}
-    except:
-        avail_spectrum_resp = {"avail_spectrum_resp":device.serial_Number}
-
+    #formacion de la respuesta AVAIL_SPECTRUM_RESP
+    avail_spectrum_resp = {"serial_Number": device.serial_Number,
+                        "manufacturer_Id":device.manufacturer_Id,
+                        "model_Id": device.model_Id, "ruleset_Ids": device.ruleset_Ids,
+                        "free_spectra":free_channels,
+                        }
     return JsonResponse(avail_spectrum_resp)
+
+
 
 
 def dispositivos_validados(request):
@@ -91,7 +107,20 @@ def dispositivos_validados(request):
         id_deviceDesc = data["deviceDesc"]
         devicesDesc = DeviceDescriptor.objects.get(pk=id_deviceDesc)
         data.update({"geolocation": devicesDesc.geolocation , "serial":devicesDesc.serial_Number})
-        print(devicesDesc.geolocation)
-
+        # print(devicesDesc.geolocation)
     # print(devices)
     return render(request, "paws/dispositivos_validados.html", {"devices": devices})
+
+def canales_regiones(request):
+    spectrum_form = SpectrumForm()
+    if request.POST:
+        spectrum = Spectrum.objects.filter(geolocation=request.POST["geolocation"])
+        spectrum = spectrum.values("operation", "channels")
+        geolocation = Geolocation.objects.get(pk=request.POST["geolocation"])
+        print(geolocation.region)
+        datos = {"canales_ocupados": spectrum, "spectrum_form": spectrum_form,
+            "ciudad": geolocation.city, "departamento": geolocation.region}
+    else:
+        datos = {"spectrum_form": spectrum_form}
+    return render(request, "paws/canales_regiones.html",datos)
+    
