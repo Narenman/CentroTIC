@@ -7,6 +7,7 @@ from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 
 
+
 class TemperaturaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Temperatura

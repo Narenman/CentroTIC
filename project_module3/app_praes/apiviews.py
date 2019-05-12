@@ -5,6 +5,7 @@ from rest_framework import permissions
 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
+from rest_framework.authtoken.models import Token
 
 from .models import Temperatura, Humedad, PresionAtmosferica, MaterialParticulado, NO2, \
       Polvo, O3, SO2, CO, CO2, MetanoPropanoCO, LuzUV, MaterialOrganico, CH4, Anemometro, Sensores
@@ -27,6 +28,20 @@ from .serializers import TemperaturaSerializer, HumedadSerializer, PresionAtmosf
 #         return Response(sensores)
 
 # Clases para el administrador centroTIC
+
+# class LoginView(APIView):
+#     permission_classes = (permissions.IsAdminUser,)
+
+#     def post(self, request,):
+#         username = request.data.get("username")
+#         password = request.data.get("password")
+#         user = authenticate(username=username, password=password)
+#         if user:
+#             return Response({"token": user.auth_token.key})
+#         else:
+#             return Response({"error": "Wrong Credentials"}, status=status.HTTP_400_BAD_REQUEST)
+
+
 class LoginView(APIView):
     """ Esta API es para ver los usuarios registrados hasta el momento
     en la aplicacion del CENTROTIC

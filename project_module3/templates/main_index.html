@@ -7,9 +7,10 @@
         <div class="col-sm">
         {% if user.is_authenticated %}
         <h1>Hola {{user.username}} </h1>
+        {{user.auth_toke.key}}
         {% else %}
         {% endif %}
-            {% comment %} {% lorem 2 %} {% endcomment %}
+            {% lorem 2 %}
         </div>
         <div class="col-sm">
             {% lorem 2 %}

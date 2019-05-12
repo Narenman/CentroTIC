@@ -2,12 +2,12 @@ from django.shortcuts import render
 from .models import Temperatura, Humedad, Gases, Sensores
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
-
+from rest_framework.authtoken.models import Token
 from datetime import timedelta
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 
-
-# Create your views here.
+# Create your views here. f
 def index(request):
     return render(request, "app_sensado/index.html", {})
 
