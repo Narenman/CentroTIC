@@ -20,7 +20,7 @@ AVAIL_SPECTRUM_REQ = {"serial_Number":"e310-f5ab-ao0x",
                       "contact": "mario",
                       "email":"luismiguel@radiogis.uis.edu.co"}
 
-r = requests.post("http://127.0.0.1:8000/paws/avail-spectrum", data=AVAIL_SPECTRUM_REQ)
+r = requests.post("http://34.74.6.16/paws/avail-spectrum", data=AVAIL_SPECTRUM_REQ)
 if r.status_code==200:
     print("HTTP status ok. {}".format(r.status_code))
     AVAIL_SPECTRUM_RESP = r.text
