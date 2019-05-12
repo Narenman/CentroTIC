@@ -7,7 +7,7 @@ from .apiviews import TemperaturaAPI, HumedadAPI, PresionAtmosfericaAPI, Materia
 
 from rest_framework_swagger.views import get_swagger_view
 from .views import index, medicion_actual, monitoreo_lecturas, control_ESP32, hora_local, monitoreo_lecturas_json,\
-    registros_integrantes, registro_semillero, consultar_semilleros, consultar_integrantes
+    registros_integrantes, registro_semillero, consultar_semilleros, consultar_integrantes, consulta_temperatura
 
 app_name = "app_praes"
 schema_view = get_swagger_view(title='Estructura API')
@@ -42,4 +42,6 @@ urlpatterns = [
     path('registro-semillero/', registro_semillero, name="registro-semillero"),
     path('consulta-semillero/', consultar_semilleros, name="consulta-semillero"),
     path('consulta-integrantes/', consultar_integrantes, name="consulta-integrantes"),
+    #consultas graficas
+    path('json-temperatura/',consulta_temperatura, name="consulta-temperatura"), 
 ]

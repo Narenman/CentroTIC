@@ -53,9 +53,42 @@ def monitoreo_lecturas_json(request):
     luzuv = uv.values("fecha", "valor")
     luzuv = list(map(lambda datos: [datos["fecha"].timestamp(), datos["valor"]], luzuv))
 
-    return JsonResponse({"temperatura":temperatura,
+    #monoxido de carbono
+    co=CO.objects.all()
+    co = co.values("fecha", "valor")
+    co = list(map(lambda datos: [datos["fecha"].timestamp(), datos["valor"]], co))
+    #metano CH4
+    ch4 = CH4.objects.all()
+    ch4 = ch4.values("fecha","valor")
+    ch4 = list(map(lambda datos: [datos["fecha"].timestamp(), datos["valor"]], ch4))
+    #particulas de polvo
+    polvo = Polvo.objects.all()
+    polvo = polvo.values("fecha", "valor")
+    polvo = list(map(lambda datos: [datos["fecha"].timestamp(), datos["valor"]],polvo))
+    #so2 dioxido de azufre
+    so2 = SO2.objects.all()
+    so2 = so2.values("fecha", "valor")
+    so2 = list(map(lambda datos: [datos["fecha"].timestamp(), datos["valor"]],so2))
+    #no2 dioxido de nitrogeno
+    no2 = NO2.objects.all()
+    no2 = no2.values("fecha", "valor")
+    no2 = list(map(lambda datos: [datos["fecha"].timestamp(), datos["valor"]],no2))
+    #o3 ozono
+    o3 = O3.objects.all()
+    o3 = o3.values("fecha", "valor")
+    o3 = list(map(lambda datos: [datos["fecha"].timestamp(), datos["valor"]],o3))
+    #propano C3H8
+    c3h8 = MetanoPropanoCO.objects.all()
+    c3h8 = c3h8.values("fecha", "valor")
+    c3h8 = list(map(lambda datos: [datos["fecha"].timestamp(), datos["valor"]],c3h8))
+
+
+    variables = {"temperatura":temperatura,
                          "humedad": humedad, "presion": presion,
-                         "tvoc": tvoc, "luzuv": luzuv, "co2": CO2_ppm})
+                         "tvoc": tvoc, "luzuv": luzuv, "co2": CO2_ppm,
+                         "co":co, "ch4":ch4, "polvo":polvo, "so2":so2,
+                         "no2":no2, "o3":o3, "c3h8":c3h8}
+    return JsonResponse(variables)
 @login_required
 def control_ESP32(request):
     topico = "UIS/LP/213"
@@ -120,3 +153,12 @@ def consultar_integrantes(request):
         integrantes = []
     return render(request, "app_praes/consulta_integrantes.html", {"integrantes": integrantes,
                                                                    "consulta": consulta})
+
+#Consulta de las variables ambientales individuales
+@csrf_exempt
+def consulta_temperatura(request):
+    temperatura = Temperatura.objects.all()
+    temperatura = temperatura.values("fecha", "valor")
+    temperatura = list(map(lambda datos: [datos["fecha"].timestamp(), datos["valor"]], temperatura))
+
+    return JsonResponse({"temperatura": temperatura})

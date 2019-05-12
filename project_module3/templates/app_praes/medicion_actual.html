@@ -3,34 +3,89 @@
 {% block body_block %}
 
 <div class="container">
-<h1> Última medición</h1> 
+<h1> Información de Variables ambientales</h1> 
 
 <div class="row">
     <div class=col>
         <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action">Temperatura</a>
-        <a href="#" class="list-group-item list-group-item-action">Humedad Relativa</a>
-        <a href="#" class="list-group-item list-group-item-action">Monóxido de Carbono CO</a>
-        <a href="#" class="list-group-item list-group-item-action">Dióxido de Carbono CO2</a>
-        <a href="#" class="list-group-item list-group-item-action">Metano CH4</a>
-        <a href="#" class="list-group-item list-group-item-action">Material particulado PM2.5- PM10</a>
-        <a href="#" class="list-group-item list-group-item-action">Partículas de polvo</a>
-        <a href="#" class="list-group-item list-group-item-action">Velocidad del viento</a>
-        <a href="#" class="list-group-item list-group-item-action">Dióxido de Azufre SO2</a>
-        <a href="#" class="list-group-item list-group-item-action">Dióxido de Nitrógeno NO2</a>
-        <a href="#" class="list-group-item list-group-item-action">Ozono O3</a>
-        <a href="#" class="list-group-item list-group-item-action">Presión Atmosférica</a>
-        <a href="#" class="list-group-item list-group-item-action">Material Orgánico</a>
-        <a href="#" class="list-group-item list-group-item-action">Luz Ultravioleta</a>
-        <a href="#" class="list-group-item list-group-item-action">Propano</a>
+            
+            <a href="#" onclick="toggle_visibility('temperatura');" class="list-group-item list-group-item-action">Temperatura</a>
+            <a href="#" onclick="toggle_visibility('humedad');" class="list-group-item list-group-item-action">Humedad Relativa</a>
+            <a href="#" onclick="toggle_visibility('presion');" class="list-group-item list-group-item-action">Presión atmosférica</a>
+            <a href="#" onclick="toggle_visibility('uv');" class="list-group-item list-group-item-action">Luz Ultravioleta</a>
+            <p></p>
+            <h4>Calidad del Aire</h4>
+            <a href="#" onclick="toggle_visibility('co');" class="list-group-item list-group-item-action">Monóxido de Carbono CO</a>
+            <a href="#" onclick="toggle_visibility('co2');" class="list-group-item list-group-item-action">Dióxido de Carbono CO2</a>
+            <a href="#" onclick="toggle_visibility('ch4');" class="list-group-item list-group-item-action">Metano CH4</a>
+            <a href="#" onclick="toggle_visibility('polvo');" class="list-group-item list-group-item-action">Polvo</a>
+            <a href="#" onclick="toggle_visibility('so2');" class="list-group-item list-group-item-action">Dióxido de azufre SO2</a>
+            <a href="#" onclick="toggle_visibility('no2');" class="list-group-item list-group-item-action">Dióxido de Nitrógeno NO2</a>
+            <a href="#" onclick="toggle_visibility('o3');" class="list-group-item list-group-item-action">Ozono O3</a>
+            <a href="#" onclick="toggle_visibility('tvoc');" class="list-group-item list-group-item-action">Material orgánico volátil</a>
+            <a href="#" onclick="toggle_visibility('lpg');" class="list-group-item list-group-item-action">Gas Licuado del petróleo</a>
+
         </div>
     </div>
 
-    <div class="col">
-    {% lorem 1 %}
+    <div class="col-sm-9">
+        <div id="temperatura">
+            <h2>La temperatura es importante</h2> 
+            {% lorem 1 b random %}
+            <p></p>
+
+        <button type="button" class="btn btn-outline-success" id="graficar_temp">Ver gráfica</button>
+
+        <div id="grafica_temperatura" style="min-width: 300px; height: 320px; margin: 0 auto"></div>
+
+        </div>
+        <div id="humedad">
+            <p>Informacion de la humedad </p>
+            {% lorem 1 b random %}
+        </div>
+        <div id="presion">
+                <p>Informacion de la presion </p>
+        </div>
+        <div id="uv">
+                <p>Informacion de la luz Ultravioleta </p>
+        </div>
+        <div id="co">
+                <p>Informacion de la CO </p>
+        </div>
+        <div id="co2">
+            <p>Informacion de la CO2 </p>
+        </div>
+
+        <div id="ch4">
+                <p>Informacion de la CH4 </p>
+        </div>
+        <div id="polvo">
+                <p>Informacion del polvo </p>
+        </div>
+        <div id="so2">
+                <p>Informacion del so2 </p>
+        </div>
+        <div id="no2">
+                <p>Informacion del no2 </p>
+        </div>
+        <div id="o3">
+                <p>Informacion del o3 </p>
+        </div>
+        <div id="tvoc">
+                <p>Informacion del material organico volatil </p>
+        </div>
+        <div id="lpg">
+                <p>Informacion del lpg </p>
+        </div>
     </div>
 </div>
 
 </div>
+<script src="{% static 'praes/js/medicion_actual.js' %}"></script>
+<script src="{% static 'praes/js/temperatura.js' %}"></script>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
 
 {% endblock  %}

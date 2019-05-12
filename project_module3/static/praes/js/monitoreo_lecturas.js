@@ -194,7 +194,7 @@ $(document).ready(function(){
                 series: [{
                     type: 'area',
                     name: 'Presion',
-                    data: data.presion,
+                    data: data.presion, 
                         }]
             }); //fin presion
 
@@ -258,7 +258,7 @@ $(document).ready(function(){
                     series: [{
                         type: 'area',
                         name: 'CO',
-                        data: data.presion,
+                        data: data.co,
                             }]
                 }); //fin CO
 
@@ -384,72 +384,72 @@ $(document).ready(function(){
                     series: [{
                         type: 'area',
                         name: 'metano',
-                        data: data.presion,
+                        data: data.ch4,
                             }]
                 }); //fin metano
 
                 // material paraticulado
-                Highcharts.chart('grafica_PM', {
-                    chart: {
-                        zoomType: 'x'
-                    },
-                    title: {
-                        text: 'PM2.5-PM10'
-                    },
-                    subtitle: {
-                        text: document.ontouchstart === undefined ?
-                                'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
-                    },
-                    xAxis: {
-                        type: 'datetime',
+                // Highcharts.chart('grafica_PM', {
+                //     chart: {
+                //         zoomType: 'x'
+                //     },
+                //     title: {
+                //         text: 'PM2.5-PM10'
+                //     },
+                //     subtitle: {
+                //         text: document.ontouchstart === undefined ?
+                //                 'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+                //     },
+                //     xAxis: {
+                //         type: 'datetime',
                         
-                    },
+                //     },
                     
-                    yAxis: {
-                        title: {
-                            text: 'ug/m^3'
-                        }
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    plotOptions: {
-                        area: {
-                            fillColor: {
-                                linearGradient: {
-                                    x1: 0,
-                                    y1: 0,
-                                    x2: 0,
-                                    y2: 1
-                                },
-                                stops: [
-                                    [0, Highcharts.getOptions().colors[0]],
-                                    [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                                ]
-                            },
-                            marker: {
-                                radius: 2
-                            },
-                            lineWidth: 1,
-                            states: {
-                                hover: {
-                                    lineWidth: 1
-                                }
-                            },
-                            threshold: null
-                        }
-                    },
+                //     yAxis: {
+                //         title: {
+                //             text: 'ug/m^3'
+                //         }
+                //     },
+                //     legend: {
+                //         enabled: false
+                //     },
+                //     plotOptions: {
+                //         area: {
+                //             fillColor: {
+                //                 linearGradient: {
+                //                     x1: 0,
+                //                     y1: 0,
+                //                     x2: 0,
+                //                     y2: 1
+                //                 },
+                //                 stops: [
+                //                     [0, Highcharts.getOptions().colors[0]],
+                //                     [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                //                 ]
+                //             },
+                //             marker: {
+                //                 radius: 2
+                //             },
+                //             lineWidth: 1,
+                //             states: {
+                //                 hover: {
+                //                     lineWidth: 1
+                //                 }
+                //             },
+                //             threshold: null
+                //         }
+                //     },
     
-                    time: {
-                        timezone: 'America/Bogota'
-                    },
+                //     time: {
+                //         timezone: 'America/Bogota'
+                //     },
                     
-                    series: [{
-                        type: 'area',
-                        name: 'PM',
-                        data: data.presion,
-                            }]
-                }); //fin material particulado
+                //     series: [{
+                //         type: 'area',
+                //         name: 'PM',
+                //         data: data.presion,
+                //             }]
+                // }); //fin material particulado
 
                 // polvo
                 Highcharts.chart('grafica_polvo', {
@@ -510,72 +510,72 @@ $(document).ready(function(){
                     series: [{
                         type: 'area',
                         name: 'polvo',
-                        data: data.presion,
+                        data: data.polvo,
                             }]
                 }); //fin polvo
 
                 // velocidad_viento
-                Highcharts.chart('grafica_velocidad_viento', {
-                    chart: {
-                        zoomType: 'x'
-                    },
-                    title: {
-                        text: 'Velocidad viento'
-                    },
-                    subtitle: {
-                        text: document.ontouchstart === undefined ?
-                                'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
-                    },
-                    xAxis: {
-                        type: 'datetime',
+                // Highcharts.chart('grafica_velocidad_viento', {
+                //     chart: {
+                //         zoomType: 'x'
+                //     },
+                //     title: {
+                //         text: 'Velocidad viento'
+                //     },
+                //     subtitle: {
+                //         text: document.ontouchstart === undefined ?
+                //                 'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+                //     },
+                //     xAxis: {
+                //         type: 'datetime',
                         
-                    },
+                //     },
                     
-                    yAxis: {
-                        title: {
-                            text: 'm/s'
-                        }
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    plotOptions: {
-                        area: {
-                            fillColor: {
-                                linearGradient: {
-                                    x1: 0,
-                                    y1: 0,
-                                    x2: 0,
-                                    y2: 1
-                                },
-                                stops: [
-                                    [0, Highcharts.getOptions().colors[0]],
-                                    [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                                ]
-                            },
-                            marker: {
-                                radius: 2
-                            },
-                            lineWidth: 1,
-                            states: {
-                                hover: {
-                                    lineWidth: 1
-                                }
-                            },
-                            threshold: null
-                        }
-                    },
+                //     yAxis: {
+                //         title: {
+                //             text: 'm/s'
+                //         }
+                //     },
+                //     legend: {
+                //         enabled: false
+                //     },
+                //     plotOptions: {
+                //         area: {
+                //             fillColor: {
+                //                 linearGradient: {
+                //                     x1: 0,
+                //                     y1: 0,
+                //                     x2: 0,
+                //                     y2: 1
+                //                 },
+                //                 stops: [
+                //                     [0, Highcharts.getOptions().colors[0]],
+                //                     [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                //                 ]
+                //             },
+                //             marker: {
+                //                 radius: 2
+                //             },
+                //             lineWidth: 1,
+                //             states: {
+                //                 hover: {
+                //                     lineWidth: 1
+                //                 }
+                //             },
+                //             threshold: null
+                //         }
+                //     },
     
-                    time: {
-                        timezone: 'America/Bogota'
-                    },
+                //     time: {
+                //         timezone: 'America/Bogota'
+                //     },
                     
-                    series: [{
-                        type: 'area',
-                        name: 'viento',
-                        data: data.presion,
-                            }]
-                }); //fin velociadad_viento
+                //     series: [{
+                //         type: 'area',
+                //         name: 'viento',
+                //         data: data.presion,
+                //             }]
+                // }); //fin velociadad_viento
 
                 // SO2
                 Highcharts.chart('grafica_SO2', {
@@ -636,7 +636,7 @@ $(document).ready(function(){
                     series: [{
                         type: 'area',
                         name: 'SO2',
-                        data: data.presion,
+                        data: data.so2,
                             }]
                 }); //fin dioxido de azufre
 
@@ -699,7 +699,7 @@ $(document).ready(function(){
                     series: [{
                         type: 'area',
                         name: 'NO2',
-                        data: data.presion,
+                        data: data.no2,
                             }]
                 }); //fin NO2
 
@@ -762,7 +762,7 @@ $(document).ready(function(){
                     series: [{
                         type: 'area',
                         name: 'O3',
-                        data: data.presion,
+                        data: data.o3,
                             }]
                 }); //fin O3
 
@@ -892,13 +892,13 @@ $(document).ready(function(){
                             }]
                 }); //fin UV
 
-                // propano
+                // LPG
                 Highcharts.chart('grafica_propano', {
                     chart: {
                         zoomType: 'x'
                     },
                     title: {
-                        text: 'Gas propano'
+                        text: 'Gases inflamables'
                     },
                     subtitle: {
                         text: document.ontouchstart === undefined ?
@@ -951,9 +951,9 @@ $(document).ready(function(){
                     series: [{
                         type: 'area',
                         name: 'propano',
-                        data: data.presion,
+                        data: data.c3h8,
                             }]
-                }); //fin propano
+                }); //LPG
 
            } //fin success
         }); // fin ajax

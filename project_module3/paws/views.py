@@ -101,6 +101,7 @@ def avail_spectrum(request):
 
 
 def dispositivos_validados(request):
+    """Consulta la lista de dispositivos validados y no validados """
     devicevalidity = DeviceValidity.objects.all()
     devices = devicevalidity.values("deviceDesc", "isValid", "reason")
     for data in devices:
@@ -112,12 +113,15 @@ def dispositivos_validados(request):
     return render(request, "paws/dispositivos_validados.html", {"devices": devices})
 
 def canales_regiones(request):
-    spectrum_form = SpectrumForm()
+    """ Como informacion util del lado del cliente, para el maestro
+    se necesita hacer otro proceso
+    """
+    spectrum_form = SpectrumForm() # este formulario es para mostrar la lista de regiones a partir de codigo DANE
     if request.POST:
-        spectrum = Spectrum.objects.filter(geolocation=request.POST["geolocation"])
+        spectrum = Spectrum.objects.filter(geolocation=request.POST["geolocation"]) # filtra el espectro de acuerdo al codigo DANE
         spectrum = spectrum.values("operation", "channels")
         geolocation = Geolocation.objects.get(pk=request.POST["geolocation"])
-        print(geolocation.region)
+        # print(geolocation.region)
         datos = {"canales_ocupados": spectrum, "spectrum_form": spectrum_form,
             "ciudad": geolocation.city, "departamento": geolocation.region}
     else:
