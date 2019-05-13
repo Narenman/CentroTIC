@@ -233,7 +233,7 @@ def sub_cb(topic, msg):
     """
     p9 = Pin(9, Pin.OUT) #pin para LED indicador
     
-    if msg == b"1 medida":
+    if msg == b"1 medicion":
         sensado()
         """encender led para indicar que la comunicacion ha sido correcta"""        
         p9.on()  
@@ -253,7 +253,19 @@ def sub_cb(topic, msg):
             t2 = time.time()
             timming = t2-t1
 
-    if msg == b"ESP32-LED":
+    if msg == b"1 minuto":
+        timming = 0
+        t1 = time.time()
+        while timming<=60:
+            sensado()
+            p9.on()  
+            time.sleep(100e-3)
+            p9.off()
+            time.sleep(100e-3)
+            t2 = time.time()
+            timming = t2-t1
+
+    if msg == b"5 minutos":
         timming = 0
         t1 = time.time()
         while timming<=60:

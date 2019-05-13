@@ -5,7 +5,8 @@ Este proyecto hace referencia a las aplicaciones de:
 * Diplomado IoT
 * KIT PRAES
 * Protocolo PAWS con SDR
-* Nariz Electronica
+* Nariz Electronica Version I
+* Nariz Electronica Version II
 * Sistemas GRIPV
 * E3Tratos
 

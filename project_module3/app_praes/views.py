@@ -10,9 +10,25 @@ from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.utils.datastructures import MultiValueDictKeyError
-
+import time
 
 # Create your views here.
+
+@login_required
+@csrf_exempt
+def control_ESP32(request):
+    topico = "UIS/LP/213"
+    IP_broker = "34.74.6.16"
+    usuario_broker = "pi"
+    password_broker = "raspberry"
+    try:
+        control = request.POST["info"]
+        publish.single(topico, control, port=1883, hostname=IP_broker, auth={"username": usuario_broker, "password":password_broker})
+        
+    except:
+        pass
+    return render(request, "app_praes/control_ESP32.html", {})
+
 def index(request):
     respuesta = {}
     return render(request, "app_praes/index.html", respuesta)
@@ -89,17 +105,6 @@ def monitoreo_lecturas_json(request):
                          "co":co, "ch4":ch4, "polvo":polvo, "so2":so2,
                          "no2":no2, "o3":o3, "c3h8":c3h8}
     return JsonResponse(variables)
-@login_required
-def control_ESP32(request):
-    topico = "UIS/LP/213"
-    IP_broker = "34.74.6.16"
-    usuario_broker = "pi"
-    password_broker = "raspberry"
-
-    publish.single(topico, "ESP32-LED", port=1883, hostname=IP_broker, auth={"username": usuario_broker, "password":password_broker})
-
-    respuesta = {}
-    return render(request, "app_praes/control_ESP32.html", respuesta)
 
 def hora_local(request):
     """ para sincronizar la hora del servidor con la ESP32"""
