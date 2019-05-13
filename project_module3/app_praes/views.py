@@ -24,6 +24,7 @@ def control_ESP32(request):
     try:
         control = request.POST["info"]
         publish.single(topico, control, port=1883, hostname=IP_broker, auth={"username": usuario_broker, "password":password_broker})
+        print(control)
         
     except:
         pass
