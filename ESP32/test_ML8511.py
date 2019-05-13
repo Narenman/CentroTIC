@@ -13,7 +13,10 @@ def leer_dato_uv(pin_adc):
     adc.atten(ADC.ATTN_11DB)
     adc.width(ADC.WIDTH_10BIT)
     y = adc.read()*3.3/1024
-    x = (y-1.0)/0.1625
+    if y < 1:
+        x = 0
+    else:
+        x = (y-1.0)/0.1625
     return x
 
 print(leer_dato_uv(33))

@@ -95,8 +95,9 @@ def control_ESP32(request):
     IP_broker = "34.74.6.16"
     usuario_broker = "pi"
     password_broker = "raspberry"
-    publish.single(topico, "ESP32-LED", port=1883, hostname=IP_broker,
-    auth={"username": usuario_broker, "password":password_broker})
+
+    publish.single(topico, "ESP32-LED", port=1883, hostname=IP_broker, auth={"username": usuario_broker, "password":password_broker})
+
     respuesta = {}
     return render(request, "app_praes/control_ESP32.html", respuesta)
 

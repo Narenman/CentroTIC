@@ -1,9 +1,9 @@
 from machine import ADC
 from machine import Pin
-import utime
+import utime 
 
 def leer_polvo(DPIN, APIN):
-    """Definicion de pines
+    """Definici0n de pines
     para el sensor de polvo GP2Y1010AU0F
     """
     p13 = Pin(DPIN, Pin.OUT)

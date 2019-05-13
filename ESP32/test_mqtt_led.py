@@ -18,7 +18,7 @@ def sub_cb(topic, msg):
             time.sleep(200e-3)
                
 # Default MQTT server to connect to
-SERVER = "34.73.25.149"
+SERVER = "34.74.6.16"
 TOPIC = b"UIS/LP/213"
 CLIENT_ID = ubinascii.hexlify(machine.unique_id())
 print("client id {}".format(CLIENT_ID))

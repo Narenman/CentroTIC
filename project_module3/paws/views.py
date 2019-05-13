@@ -56,7 +56,7 @@ def register(request):
 @csrf_exempt
 def avail_spectrum(request):
     """Esta funcion se realiza con el fin de retornar AVAIL_SPECTRUM_RESP
-    para dar respuesta a las peticiones del maestro
+    para dar respuesta a las peticiones del maestro sd
     """
     master_data = request.POST # donde se encuentran las peticiones del maestro
     #bases de datos que se consultan de acuerdo a las peticiones del maestro
