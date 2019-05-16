@@ -142,20 +142,20 @@ def sensado():
     IP_SERVER = "34.74.6.16"
 
     """definicion de pines """
+    # pin_MQ7 = 36
+    # pin_MQ9 = 39 
+    # pin_MQ131 = 34
     # pin_dht22 = 32
+    # Apin_ML8511 = 33
+    # pin_sda_sgp30 = 25
+    # pin_scl_sgp30 = 26
     # pin_scl_bmp180 = 14
     # pin_sda_bmp180 = 27
-    # pin_MQ7 = 36
-    # pin_MQ131 = 34
     # pin_MQ4 = 35
-    # pin_MQ9 = 39 
     # Dpin_polvo = 13
-    # Apin_polvo = 34
-    # Apin_ML8511 = 33
-    # pin_scl_sgp30 = 26
-    # pin_sda_sgp30 = 25
-    # pin_MiCs2714 = 34
-    pin_ULPSM = 34
+    # Apin_polvo = 0
+    # pin_MiCs2714 = 4
+    pin_ULPSM = 15
 
 
     """sensado de variables"""
