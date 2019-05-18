@@ -6,13 +6,15 @@ from rest_framework.authtoken.models import Token
 from datetime import timedelta
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-
+from rest_framework.authtoken.models import Token
 # Create your views here. f
 def index(request):
     return render(request, "app_sensado/index.html", {})
 
 def main_index(request):
-    return render(request, "main_index.html", {})
+    token = Token.objects.all().last()
+    print(token)
+    return render(request, "main_index.html", {"token": token})
 
 def accion_raspberry(request):
     import paho.mqtt.publish as publish

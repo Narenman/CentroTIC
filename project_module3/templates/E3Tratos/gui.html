@@ -47,27 +47,25 @@
 							<table>
 								<tr class="t-name">
 									<th></th>	
-									<th>Temperatura</th>
-									<th>Presión</th>
-									<th>Humedad</th>
-									<th>Co2</th>
+									<th><p>1. Temperatura</p></th>
+									<th> <p>2. Presión</p></th>
+									<th>3. Metano</th>
+									<th>4. Co2</th>
 								</tr>
 								<tr class="t-val">
 									<th></th>
-									<th id="v_temp">t00.00</th>
+									<th id="v_temp">000.00</th>
 									<th id="v_pres">000.00</th>
 									<th id="v_hum">000.00</th>
 									<th id="v_co2">000.00</th>
 								</tr>
 								<tr>
 									<td class="bor">Máx</td>
-									<td id="v_tempma">tma0.00</td>			
+									<td id="v_tempma">00	0.00</td>			
 									<td id="v_prema">000.00</td>			
 									<td id="v_humma">000.00</td>
 									<td id="v_co2ma">000.00</td>												
 								</tr>
-
-
 
 								<tr>
 									<td class="bor">Mín</td>
@@ -80,7 +78,7 @@
 
 								<tr>
 									<td class="bor">Media</td>
-									<td id="v_tempme">300.00</td>	
+									<td id="v_tempme">000.00</td>	
 									<td id="v_preme">000.00</td>	
 									<td id="v_humme">000.00</td>
 									<td id="v_co2me">000.00</td>	
@@ -95,10 +93,10 @@
 							<table>
 								<tr class="t-name">
 									<th></th>
-									<th>Radiación U-V</th>
-									<th>PM2.5</th>
-									<th>Humedad</th>
-									<th>Co2</th>
+									<th>5. Mat. Part. </th>
+									<th>6. ---</th>
+									<th>7. ---</th>
+									<th>8. ---</th>
 								</tr>
 								<tr class="t-val">
 									<th></th>
@@ -145,21 +143,25 @@
 						<table class="table-3">
 							<tr class="t-name-2">
 								<th>[°C] Temp. Interna</th>
-								<td>000.00</td>
+								<td id="v_tempINS">000.00</td>
 								
 							</tr>
 							<tr>
 								<th>[%] Humed. Interna</th>
-								<td>000.00</td>
+								<td id="v_humINS">000.00</td>
 							</tr>
 
 							<tr>
 								<th>[DD] Longitud</th>
-								<td>000.00</td>
+								<td id="v_lng">000.00</td>
 							</tr>
 							<tr>
 								<th>[DD] Latitud</th>
-								<td>000.00</td>
+								<td id="v_lat">000.00</td>
+							</tr>
+							<tr>
+								<th>Disitancia</th>
+								<td id="v_distancia">00.00.00</td>
 							</tr>
 							<tr>
 								<th id="_altura">[m] Altura</th>
@@ -169,6 +171,12 @@
 							<tr>
 								<th id="_altitud">[m] Altitud</th>
 								<td  id="v_altitud">000.00</td>
+							</tr>
+							<tr>
+								<th colspan="2" id="_tvuelo">Tiempo de vuelo</th>
+							</tr>
+							<tr>
+								<td colspan="2" id="v_tvuelo">00:00:00</td>
 							</tr>
 						</table>
 						
@@ -185,9 +193,6 @@
     				
 				</div>
 
-				
-
-	
 			<!--</div>
 
 			<div class="data-container-bottom">-->
@@ -199,35 +204,44 @@
 
 
 				<div class="gstation box">
-					<h5> estación terrena info</h5>
-					<div >
+					<h5>Actitud</h5>
+					<div>
 						<table class="table-3">
-							<tr class="t3">
-								<th>Hora Local</th>
-								<td id='v_horalocal'>00.00.00</td>
-							</tr>
+							<!--<tr class="t3">
+								<th colspan="6" class="_angulos">[°] ángulos</th>
+							</tr>-->
 							<tr>
-								<th>Disitancia</th>
-								<td>00.00.00</td>
-							</tr>
-							<tr>
-								<th colspan="2" id="_tvuelo">Tiempo de vuelo</th>
-							</tr>
-							<tr>
-								<td colspan="2" id="v_tvuelo">00:00:00</td>
+								<td id='_X'>X:</td>
+								<td id='v_X'>00</td>
+								<td id='_Y'>Y:</td>
+								<td id='v_Y'>00</td>
+								<td id='_Z'>Z:</td>
+								<td id='v_Z'>00</td>
 							</tr>
 						</table>
+
+						<div id='attitude'></div>
 						
 					</div>
 				</div>
 
 				<div class="videostrm box">
-					<h5>transmisión de video</h5>
-					<div class="videoframe">
-						
-					</div>
+					<h5>transmisión de imagenes</h5>
+					<div class="videoframe"></div>
 					
 				</div>
+
+				<div class="box"></div>
+				<div class="box">
+					<table class="table-4 table-3">
+						<tr class="t4">
+							<th>Hora Local</th>
+							<td id='v_horalocal'>00.00.00</td>
+						</tr>
+					</table>
+				</div>
+				
+				<div class="box"></div>
 
 			</div>
 
@@ -239,13 +253,23 @@
 
 
 </body>
-<script src="{% static 'E3Tratos/assets/js/apimaps.js' %}"></script>
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeAmVudOtIX9_du7kSu3kLY6z07IgeqpI&callback=initMap">
-</script>
-<script src="{% static 'E3Tratos/assets/js/myget.js' %}"></script>
-<script type="application/javascript" src="{% static 'E3Tratos/assets/js/chartjs.js' %}"></script>
+
+<!--<script src="{% static 'E3Tratos/assets/js/jslib/three.js' %}"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/103/three.js"></script>
+<script src="{% static 'E3Tratos/assets/js/jslib/DDSLoader.js' %}"></script>
+<script src="{% static 'E3Tratos/assets/js/jslib/MTLLoader.js' %}"></script>
+<script src="{% static 'E3Tratos/assets/js/jslib/OBJLoader.js' %}"></script>
 <script src="{% static 'E3Tratos/assets/js/switch_gui.js' %}"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeAmVudOtIX9_du7kSu3kLY6z07IgeqpI&callback=initMap"> </script>
+<script src="{% static 'E3Tratos/assets/js/apimaps.js' %}"></script>
+<script src="{% static 'E3Tratos/assets/js/myget.js' %}"></script>
+
+<script src="{% static 'E3Tratos/assets/js/myrender.js' %}"></script>
+
+
+
+<script type="application/javascript" src="{% static 'E3Tratos/assets/js/chartjs.js' %}"></script>
+
 <script src="{% static 'E3Tratos/assets/js/chart.js' %}"></script>
 </html>
 

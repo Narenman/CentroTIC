@@ -23,13 +23,21 @@ function myswitch (){
 
 }
 
+function datev(thetime){
+	if (thetime<10) {
+		return '0'+ thetime;
+	}
+	else{return thetime}
+}
 
 function mydatetime(){
   var v_horalocal = document.getElementById('v_horalocal');
   var today = new Date();
-  v_horalocal.innerHTML = today.getHours() +':'+ today.getMinutes()+':'+ today.getSeconds();
+
+  v_horalocal.innerHTML = datev(today.getHours()) +':'+ datev(today.getMinutes())+':'+datev(today.getSeconds());
   setTimeout(mydatetime, 1000);
 
+  return datev(today.getHours()) +':'+ datev(today.getMinutes())+':'+datev(today.getSeconds());
 }
 
 

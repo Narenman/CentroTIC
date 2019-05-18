@@ -7,9 +7,15 @@
         <div class="col-sm">
         {% if user.is_authenticated %}
         <h1>Hola {{user.username}} </h1>
-        {{user.auth_toke.key}}
+        <h2>Su token para el uso de las API es</h2> <h3> {{token}}</h3>
+        {{user.accessToken}}
+
+        <p> Para usar en los dispositivos debe crear la cabecera de la siguiente forma: </p>
+
+        headers={"Authorization": " Token {{token}}"}
         {% else %}
         {% endif %}
+        <p></p>
             {% lorem 2 %}
         </div>
         <div class="col-sm">

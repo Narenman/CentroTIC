@@ -65,7 +65,10 @@ body{
 
 }
 
-
+#attitude{
+	width: 100%;
+	text-align: center;
+}
 .ptemp{
 	width: 97.5%;
 
@@ -155,7 +158,9 @@ table{
 .table-3 td{
 	text-align: center;
 }
-
+._angulos{
+	text-align: center;
+}
 .videoframe{
 
 }

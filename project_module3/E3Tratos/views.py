@@ -10,7 +10,7 @@ def index(request):
 
 @csrf_exempt
 def datos_json(request):
-    var = Variables.objects.all()
+    var = Variables.objects.all().last()
     datos = var.values("fecha", "variables")
     datos = list(map(lambda datos: [datos["fecha"], datos["variables"]], datos))
 
@@ -28,5 +28,5 @@ def media(request):
     return render(request, "E3Tratos/media.html", {})
 
 def contact(request):
-	print("hola contcti")
+	print("hola contacto")
 	return render(request, "E3Tratos/contact.html", {})
