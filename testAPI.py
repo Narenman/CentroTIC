@@ -12,8 +12,8 @@ pyload = {
     "sensor": 1
 }
 
-# # para obtener el token de un usuario se realiza lo siguiente
-# data = {"username": "luismiguel", "password": "1uis2016"}
+# # para obtener el token de un usuario se realiza lo siguiente prueba
+# data = {"username": "luismiguel", "password": "1uis2016"} 
 
 # r = requests.post("http://127.0.0.1:8000/app_praes/login/", data=data)
 # print("token del usuario luismiguel {}" .format(r.text))
