@@ -15,6 +15,34 @@ def index(request):
 def documentacion_registro(request):
     return render(request, "paws/recomendacion_registro.html", {})
 
+def dispositivos_validados(request):
+    """Consulta la lista de dispositivos validados y no validados """
+    devicevalidity = DeviceValidity.objects.all()
+    devices = devicevalidity.values("deviceDesc", "isValid", "reason")
+    for data in devices:
+        id_deviceDesc = data["deviceDesc"]
+        devicesDesc = DeviceDescriptor.objects.get(pk=id_deviceDesc)
+        data.update({"geolocation": devicesDesc.geolocation , "serial":devicesDesc.serial_Number})
+        # print(devicesDesc.geolocation)
+    # print(devices)
+    return render(request, "paws/dispositivos_validados.html", {"devices": devices})
+
+def canales_regiones(request):
+    """ Como informacion util del lado del cliente, para el maestro
+    se necesita hacer otro proceso
+    """
+    spectrum_form = SpectrumForm() # este formulario es para mostrar la lista de regiones a partir de codigo DANE
+    if request.POST:
+        spectrum = Spectrum.objects.filter(geolocation=request.POST["geolocation"]) # filtra el espectro de acuerdo al codigo DANE
+        spectrum = spectrum.values("operation", "channels")
+        geolocation = Geolocation.objects.get(pk=request.POST["geolocation"])
+        # print(geolocation.region)
+        datos = {"canales_ocupados": spectrum, "spectrum_form": spectrum_form,
+            "ciudad": geolocation.city, "departamento": geolocation.region}
+    else:
+        datos = {"spectrum_form": spectrum_form}
+    return render(request, "paws/canales_regiones.html",datos)
+
 def register(request):
     """ esta funcion se encarga de realizar el 
     REGISTRATION_REQ mediante un formulario web
@@ -97,34 +125,28 @@ def avail_spectrum(request):
                         }
     return JsonResponse(avail_spectrum_resp)
 
-
-
-
-def dispositivos_validados(request):
-    """Consulta la lista de dispositivos validados y no validados """
-    devicevalidity = DeviceValidity.objects.all()
-    devices = devicevalidity.values("deviceDesc", "isValid", "reason")
-    for data in devices:
-        id_deviceDesc = data["deviceDesc"]
-        devicesDesc = DeviceDescriptor.objects.get(pk=id_deviceDesc)
-        data.update({"geolocation": devicesDesc.geolocation , "serial":devicesDesc.serial_Number})
-        # print(devicesDesc.geolocation)
-    # print(devices)
-    return render(request, "paws/dispositivos_validados.html", {"devices": devices})
-
-def canales_regiones(request):
-    """ Como informacion util del lado del cliente, para el maestro
-    se necesita hacer otro proceso
-    """
-    spectrum_form = SpectrumForm() # este formulario es para mostrar la lista de regiones a partir de codigo DANE
-    if request.POST:
-        spectrum = Spectrum.objects.filter(geolocation=request.POST["geolocation"]) # filtra el espectro de acuerdo al codigo DANE
-        spectrum = spectrum.values("operation", "channels")
-        geolocation = Geolocation.objects.get(pk=request.POST["geolocation"])
-        # print(geolocation.region)
-        datos = {"canales_ocupados": spectrum, "spectrum_form": spectrum_form,
-            "ciudad": geolocation.city, "departamento": geolocation.region}
+@csrf_exempt
+def spectrum_use_resp(request):
+    msg_master = request.POST
+    # validacion de la existencia del dispositivo
+    device = DeviceDescriptor.objects.filter(serial_Number=msg_master["serial_Number"]).filter(ruleset_Ids=msg_master["ruleset_Ids"]).filter(model_Id=msg_master["model_Id"]).count()
+    if device == 1 :
+        # informacion relacionada con el espectro
+        spectra_use = float(msg_master["spectra_use"])
+        frequency = Frequency.objects.filter(frequency=spectra_use)
+        frequency = frequency.values("channels", "frequency")
+        if len(frequency)==1:
+            frequency = frequency[0]
+            channels = frequency["channels"]
+            last_pk = Spectrum.objects.all().latest('pk')
+            spectrum = Spectrum.objects.create(pk=last_pk.id+1, operation=msg_master["operation"], channels_id= channels, geolocation_id=msg_master["dane_code"])
+            msg_to_master = {"info": "information ok"}
+        else:
+            msg_to_master = {"info": "not valid information"}
     else:
-        datos = {"spectrum_form": spectrum_form}
-    return render(request, "paws/canales_regiones.html",datos)
+        msg_to_master = {"info": "not valid information"}
+    return JsonResponse(msg_to_master)
     
+@csrf_exempt
+def delete_channel_paws(request):
+    return JsonResponse({})

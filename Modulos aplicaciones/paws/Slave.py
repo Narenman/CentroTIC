@@ -2,6 +2,7 @@ import paho.mqtt.client as mqttClient
 import paho.mqtt.publish as publish
 import json
 import numpy
+import time
 
 def avail_spectrum_request():
     """Este metodo se ejecuta en el esclavo-SDR para preguntarle al maestro
@@ -97,3 +98,8 @@ if __name__ == "__main__":
     avail_spectrum_request() # solicitud al maestro del espectro disponible
     suscriptor_MQTT()
     print(chosen_channel)
+    """ el esclavo se queda transmitiendo durante un tiempo """
+    event_time = 5
+    time.sleep(event_time)
+    # cuando termina de transmitir debe notificar al maestro que 
+    # ya no esta usando esa frecuencia para borrarla de la base de datos
