@@ -149,4 +149,10 @@ def spectrum_use_resp(request):
     
 @csrf_exempt
 def delete_channel_paws(request):
-    return JsonResponse({})
+    msg_from_master = request.POST
+    pk_channel = Frequency.objects.filter(frequency=msg_from_master["freq_used"])
+    pk_channel = pk_channel[0].pk
+    spectrum = Spectrum.objects.filter(channels=pk_channel).filter(geolocation=msg_from_master["dane_code"])
+    if len(spectrum)==1:
+        spectrum.delete()
+    return JsonResponse({"delete": "delete ok"})

@@ -99,7 +99,19 @@ if __name__ == "__main__":
     suscriptor_MQTT()
     print(chosen_channel)
     """ el esclavo se queda transmitiendo durante un tiempo """
-    event_time = 5
+    event_time = 45
+    print("transmitiendo ....")
     time.sleep(event_time)
     # cuando termina de transmitir debe notificar al maestro que 
     # ya no esta usando esa frecuencia para borrarla de la base de datos
+    IP_broker = "34.74.6.16"
+    usuario_broker = "pi"
+    password_broker = "raspberry"
+    SPECTRUM_DELETE_NOTIFY = { "serial_Number": "e310-f5ab-ao0x",
+                                "ruleset_Ids": "prototipo PAWS",
+                                "model_Id": "USRP E310",
+                                "manufacturer_Id": "Ettus Research",
+                                "dane_code": 68001,
+                                "freq_used": chosen_channel,}
+    publish.single("UIS/PAWS", json.dumps(SPECTRUM_DELETE_NOTIFY), port=1883, hostname=IP_broker, auth={"username": usuario_broker, "password":password_broker})
+    print("fin transmision ...")
