@@ -6,7 +6,7 @@ import json
 def no_use_notify(serial_Number, ruleset_Ids, model_Id, manufacturer_Id,dane_code,chosen_channel):
     """ Este metodo es para eliminar los canales cuando el dispositivo en blanco deja de transmitir
     """
-    URL = "http://127.0.0.1:8080/paws/delete-channel-paws"
+    URL = "http://34.74.6.16/paws/delete-channel-paws"
     AVAIL_SPECTRUM_REQ = {"serial_Number": serial_Number,
                             "ruleset_Ids": ruleset_Ids,
                             "model_Id": model_Id,
@@ -76,7 +76,7 @@ def avail_spectrum_notify(serial_Number, ruleset_Ids, model_Id, manufacturer_Id,
     # contact = "mario"
     # email = "luismiguel@radiogis.uis.edu.co"
 
-    URL = "http://127.0.0.1:8080/paws/spectrum-use-resp"
+    URL = "http://34.74.6.16/paws/spectrum-use-resp"
     SPECTRUM_USE_NOTIFY = {"serial_Number": serial_Number,
                             "ruleset_Ids": ruleset_Ids,
                             "model_Id": model_Id,
@@ -162,7 +162,6 @@ def suscriptor_MQTT_USE_NOTIFY():
         spectra_use = slave_msg["spectra_use"]
         operation  = "dispositivo PAWS"
         print("canal escogido {}".format(spectra_use))
-        print("notificacion recibida...\n{}".format(slave_msg))
         
         """ Comunicacion entre maestro-servidor para notificar el uso del espectro utilizado"""
         AVAIL_SPECTRUM_RESP = avail_spectrum_notify(serial_Number,ruleset_Ids,model_Id,manufacturer_Id,dane_code, spectra_use, operation)
@@ -195,7 +194,7 @@ def suscriptor_MQTT_DELETE_NOTIFY():
     def on_message(client, userdata, message):
         # comunicacion entre el esclavo-maestro
         slave_msg = json.loads(message.payload.decode())
-        
+
         serial_Number = slave_msg["serial_Number"]
         ruleset_Ids = slave_msg["ruleset_Ids"]
         model_Id = slave_msg["model_Id"]
