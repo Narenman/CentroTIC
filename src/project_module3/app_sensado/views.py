@@ -13,7 +13,6 @@ def index(request):
 
 def main_index(request):
     token = Token.objects.all().last()
-    print(token)
     return render(request, "main_index.html", {"token": token})
 
 def accion_raspberry(request):
