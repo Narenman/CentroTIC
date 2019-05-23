@@ -8,6 +8,15 @@ $(document).ready(function(){
             dataType: 'json',
             success: function (data){
                    // temperatura
+                   for (var i=0; i<data.temperatura.length; i++){
+                    var year = data.temperatura[i][0].slice(0, 4)
+                    var month = parseInt(data.temperatura[i][0].slice(5, 7))-1
+                    var day = data.temperatura[i][0].slice(8, 10)
+                    var hour = data.temperatura[i][0].slice(11,13)
+                    var minute = data.temperatura[i][0].slice(14,16)
+                    var second = data.temperatura[i][0].slice(17,18)
+                    data.temperatura[i][0]=Date.UTC(year,month,day,hour,minute, second) 
+                        }
                    Highcharts.chart('grafica_temperatura', {
                     chart: {
                         zoomType: 'x'
@@ -82,7 +91,16 @@ $(document).ready(function(){
                 data: {},
                 dataType: 'json',
                 success: function (data){
-                       // temperatura
+                       // humedad
+                       for (var i=0; i<data.humedad.length; i++){
+                        var year = data.humedad[i][0].slice(0, 4)
+                        var month = parseInt(data.humedad[i][0].slice(5, 7))-1
+                        var day = data.humedad[i][0].slice(8, 10)
+                        var hour = data.humedad[i][0].slice(11,13)
+                        var minute = data.humedad[i][0].slice(14,16)
+                        var second = data.humedad[i][0].slice(17,18)
+                        data.humedad[i][0]=Date.UTC(year,month,day,hour,minute, second) 
+                            }
                        Highcharts.chart('grafica_humedad', {
                         chart: {
                             zoomType: 'x'
@@ -156,7 +174,16 @@ $(document).ready(function(){
                     data: {},
                     dataType: 'json',
                     success: function (data){
-                           // temperatura
+                           // presion
+                           for (var i=0; i<data.presion.length; i++){
+                            var year = data.presion[i][0].slice(0, 4)
+                            var month = parseInt(data.presion[i][0].slice(5, 7))-1
+                            var day = data.presion[i][0].slice(8, 10)
+                            var hour = data.presion[i][0].slice(11,13)
+                            var minute = data.presion[i][0].slice(14,16)
+                            var second = data.presion[i][0].slice(17,18)
+                            data.presion[i][0]=Date.UTC(year,month,day,hour,minute, second) 
+                                }
                            Highcharts.chart('grafica_presion', {
                             chart: {
                                 zoomType: 'x'
@@ -230,7 +257,16 @@ $(document).ready(function(){
                         data: {},
                         dataType: 'json',
                         success: function (data){
-                               // temperatura
+                               // luzuv
+                               for (var i=0; i<data.luzuv.length; i++){
+                                var year = data.luzuv[i][0].slice(0, 4)
+                                var month = parseInt(data.o3[i][0].slice(5, 7))-1
+                                var day = data.luzuv[i][0].slice(8, 10)
+                                var hour = data.luzuv[i][0].slice(11,13)
+                                var minute = data.luzuv[i][0].slice(14,16)
+                                var second = data.luzuv[i][0].slice(17,18)
+                                data.luzuv[i][0]=Date.UTC(year,month,day,hour,minute, second) 
+                                    }
                                Highcharts.chart('grafica_luzuv', {
                                 chart: {
                                     zoomType: 'x'
@@ -305,6 +341,15 @@ $(document).ready(function(){
                         dataType: 'json',
                         success: function (data){
                                // co
+                               for (var i=0; i<data.co.length; i++){
+                                var year = data.co[i][0].slice(0, 4)
+                                var month = parseInt(data.co[i][0].slice(5, 7))-1
+                                var day = data.co[i][0].slice(8, 10)
+                                var hour = data.co[i][0].slice(11,13)
+                                var minute = data.co[i][0].slice(14,16)
+                                var second = data.co[i][0].slice(17,18)
+                                data.co[i][0]=Date.UTC(year,month,day,hour,minute, second) 
+                                    }
                                Highcharts.chart('grafica_co', {
                                 chart: {
                                     zoomType: 'x'
@@ -379,6 +424,15 @@ $(document).ready(function(){
                     dataType: 'json',
                     success: function (data){
                            // co2
+                           for (var i=0; i<data.co2.length; i++){
+                            var year = data.co2[i][0].slice(0, 4)
+                            var month = parseInt(data.co2[i][0].slice(5, 7))-1
+                            var day = data.co2[i][0].slice(8, 10)
+                            var hour = data.co2[i][0].slice(11,13)
+                            var minute = data.co2[i][0].slice(14,16)
+                            var second = data.co2[i][0].slice(17,18)
+                            data.co2[i][0]=Date.UTC(year,month,day,hour,minute, second) 
+                                }
                            Highcharts.chart('grafica_co2', {
                             chart: {
                                 zoomType: 'x'
@@ -452,7 +506,16 @@ $(document).ready(function(){
                     data: {},
                     dataType: 'json',
                     success: function (data){
-                           // co2
+                           // ch4
+                           for (var i=0; i<data.ch4.length; i++){
+                            var year = data.ch4[i][0].slice(0, 4)
+                            var month = parseInt(data.ch4[i][0].slice(5, 7))-1
+                            var day = data.ch4[i][0].slice(8, 10)
+                            var hour = data.ch4[i][0].slice(11,13)
+                            var minute = data.ch4[i][0].slice(14,16)
+                            var second = data.ch4[i][0].slice(17,18)
+                            data.ch4[i][0]=Date.UTC(year,month,day,hour,minute, second) 
+                                }
                            Highcharts.chart('grafica_ch4', {
                             chart: {
                                 zoomType: 'x'
@@ -526,7 +589,16 @@ $(document).ready(function(){
                     data: {},
                     dataType: 'json',
                     success: function (data){
-                           // co2
+                           // polvo
+                           for (var i=0; i<data.polvo.length; i++){
+                            var year = data.polvo[i][0].slice(0, 4)
+                            var month = parseInt(data.polvo[i][0].slice(5, 7))-1
+                            var day = data.polvo[i][0].slice(8, 10)
+                            var hour = data.polvo[i][0].slice(11,13)
+                            var minute = data.polvo[i][0].slice(14,16)
+                            var second = data.polvo[i][0].slice(17,18)
+                            data.polvo[i][0]=Date.UTC(year,month,day,hour,minute, second) 
+                                }
                            Highcharts.chart('grafica_polvo', {
                             chart: {
                                 zoomType: 'x'
@@ -600,7 +672,16 @@ $(document).ready(function(){
                     data: {},
                     dataType: 'json',
                     success: function (data){
-                           // co2
+                           // so2
+                           for (var i=0; i<data.so2.length; i++){
+                            var year = data.so2[i][0].slice(0, 4)
+                            var month = parseInt(data.so2[i][0].slice(5, 7))-1
+                            var day = data.so2[i][0].slice(8, 10)
+                            var hour = data.so2[i][0].slice(11,13)
+                            var minute = data.so2[i][0].slice(14,16)
+                            var second = data.so2[i][0].slice(17,18)
+                            data.so2[i][0]=Date.UTC(year,month,day,hour,minute, second) 
+                                }
                            Highcharts.chart('grafica_so2', {
                             chart: {
                                 zoomType: 'x'
@@ -675,6 +756,15 @@ $(document).ready(function(){
                     dataType: 'json',
                     success: function (data){
                            // no2
+                           for (var i=0; i<data.no2.length; i++){
+                            var year = data.no2[i][0].slice(0, 4)
+                            var month = parseInt(data.no2[i][0].slice(5, 7))-1
+                            var day = data.no2[i][0].slice(8, 10)
+                            var hour = data.no2[i][0].slice(11,13)
+                            var minute = data.no2[i][0].slice(14,16)
+                            var second = data.no2[i][0].slice(17,18)
+                            data.no2[i][0]=Date.UTC(year,month,day,hour,minute, second) 
+                                }
                            Highcharts.chart('grafica_no2', {
                             chart: {
                                 zoomType: 'x'
@@ -748,7 +838,16 @@ $(document).ready(function(){
                     data: {},
                     dataType: 'json',
                     success: function (data){
-                           // no2
+                           // o3
+                           for (var i=0; i<data.o3.length; i++){
+                            var year = data.o3[i][0].slice(0, 4)
+                            var month = parseInt(data.o3[i][0].slice(5, 7))-1
+                            var day = data.o3[i][0].slice(8, 10)
+                            var hour = data.o3[i][0].slice(11,13)
+                            var minute = data.o3[i][0].slice(14,16)
+                            var second = data.o3[i][0].slice(17,18)
+                            data.o3[i][0]=Date.UTC(year,month,day,hour,minute, second) 
+                                }
                            Highcharts.chart('grafica_o3', {
                             chart: {
                                 zoomType: 'x'
@@ -822,7 +921,16 @@ $(document).ready(function(){
                     data: {},
                     dataType: 'json',
                     success: function (data){
-                           // no2
+                           // tvoc
+                           for (var i=0; i<data.tvoc.length; i++){
+                            var year = data.tvoc[i][0].slice(0, 4)
+                            var month = parseInt(data.o3[i][0].slice(5, 7))-1
+                            var day = data.tvoc[i][0].slice(8, 10)
+                            var hour = data.tvoc[i][0].slice(11,13)
+                            var minute = data.tvoc[i][0].slice(14,16)
+                            var second = data.tvoc[i][0].slice(17,18)
+                            data.tvoc[i][0]=Date.UTC(year,month,day,hour,minute, second) 
+                                }
                            Highcharts.chart('grafica_tvoc', {
                             chart: {
                                 zoomType: 'x'
@@ -896,7 +1004,16 @@ $(document).ready(function(){
                     data: {},
                     dataType: 'json',
                     success: function (data){
-                           // no2
+                           // lpg
+                           for (var i=0; i<data.c3h8.length; i++){
+                            var year = data.c3h8[i][0].slice(0, 4)
+                            var month = parseInt(data.c3h8[i][0].slice(5, 7))-1
+                            var day = data.c3h8[i][0].slice(8, 10)
+                            var hour = data.c3h8[i][0].slice(11,13)
+                            var minute = data.c3h8[i][0].slice(14,16)
+                            var second = data.c3h8[i][0].slice(17,18)
+                            data.c3h8[i][0]=Date.UTC(year,month,day,hour,minute, second) 
+                                }
                            Highcharts.chart('grafica_lpg', {
                             chart: {
                                 zoomType: 'x'

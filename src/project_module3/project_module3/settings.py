@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'E3Tratos',
     'nariz_electronica',
     'nariz_electronica2',
+    'piscicultura',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_swagger',

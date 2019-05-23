@@ -7,9 +7,10 @@
     <div class="row">
         <div class="col-sm">
             <p>{{ control1 }}</p>
-            <p>{% lorem 1 %}</p>
+            <p>Esta sección contiene 4 instrucciones para la toma de datos del kit ambiental, con sólo dar click el sistema 
+            se encarga de hacer automaticamente la recolección de los datos</p>
             <img src="{% static 'esp32.jpeg' %}" alt="Imagen no encontrada" width="300px" height="250px">
-
+            <img src="{% static 'KIT_ambientalV3.jpg'%}" class="rounded" width="300px" height="200px" alt="imagen no encontrada">
             </div>
         <div class="col-sm">
 
@@ -24,6 +25,6 @@
     </div>
 
 </div>
+<script src="{% static 'js/jquery-3.4.1.min.js'%}"></script>
 <script src= "{% static 'praes/js/control_kit.js' %}" ></script>
- <link rel="stylesheet" href="{% static 'praes/css/cronometro.css' %}" type="text/css" media="all" />
 {% endblock  %}

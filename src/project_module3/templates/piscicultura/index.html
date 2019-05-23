@@ -1,0 +1,12 @@
+{% extends 'piscicultura/base.html' %}
+{% load static %}
+
+{% block body_block %}
+<div class="container">
+    <div class="jumbtron"> 
+        <h1> Piscicultura </h1>
+        <p> {% lorem 2 b random %} </p>
+        <img src="{% static 'piscicultura/piscicultura.jpg'%}" alt="imagen no encontrada" class="img-thumbnail">
+    </div>
+</div>
+{% endblock  %}
