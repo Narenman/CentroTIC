@@ -10,11 +10,9 @@ def index(request):
 
 @csrf_exempt
 def datos_json(request):
-    var = Variables.objects.all()
-    datos = var.values("fecha", "variables")
-    datos = list(map(lambda datos: [datos["fecha"], datos["variables"]], datos))
-
-    respuesta = {"datos": datos}
+    var = Variables.objects.last()
+    respuesta = {"datos": [var.fecha, var.variables]}
+    print(respuesta)
     return JsonResponse(respuesta)
 
 def gui(request):
@@ -30,3 +28,11 @@ def media(request):
 def contact(request):
 	print("hola contacto")
 	return render(request, "E3Tratos/contact.html", {})
+
+@csrf_exempt
+def datos_json_all(request):
+    var = Variables.objects.all()
+    datos = var.values("fecha", "variables")
+    datos = list(map(lambda datos: [datos["fecha"], datos["variables"]], datos))
+    respuesta = {"datos": datos}
+    return JsonResponse(respuesta)
