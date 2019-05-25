@@ -100,7 +100,7 @@ $(document).ready(function(){
                             }
                     for (var i=0; i<data.tvoc.length; i++){
                         var year = data.tvoc[i][0].slice(0, 4)
-                        var month = parseInt(data.o3[i][0].slice(5, 7))-1
+                        var month = parseInt(data.tvoc[i][0].slice(5, 7))-1
                         var day = data.tvoc[i][0].slice(8, 10)
                         var hour = data.tvoc[i][0].slice(11,13)
                         var minute = data.tvoc[i][0].slice(14,16)
@@ -109,7 +109,7 @@ $(document).ready(function(){
                             }
                     for (var i=0; i<data.luzuv.length; i++){
                         var year = data.luzuv[i][0].slice(0, 4)
-                        var month = parseInt(data.o3[i][0].slice(5, 7))-1
+                        var month = parseInt(data.luzuv[i][0].slice(5, 7))-1
                         var day = data.luzuv[i][0].slice(8, 10)
                         var hour = data.luzuv[i][0].slice(11,13)
                         var minute = data.luzuv[i][0].slice(14,16)

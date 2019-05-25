@@ -48,3 +48,9 @@ Estos comandos se ejecutan después de tener todo instalado
 
 ## Nota importante
 Para acceder a los archivos desde linux sólo requiere ingresar a la consola de git bash ``cd /vagrant/src/`` y encontrará el proyecto django que ejecutará
+
+Para acceder a la base de datos desde windows por dbeaver es necesario activar algunos permisos en nuestra máquina vagrant, realizaremos lo siguiente:
+
+* ``sudo nano /etc/postgresql/9.5/main/postgresql.conf`` y cambiar la linea **listen_addresses = 'localhost'** por **listen_addresses = '*'** 
+* ``sudo nano /etc/postgresql/9.5/main/pg_hba.conf ``	y buscar el comentario **# IPv4 local connections:** y cambiar la linea del localhost por 0.0.0.0/0 como se muestra a continuación **host all all 0.0.0.0/0 md5**
+* Reiniciar el servidor de base de datos ``sudo systemctl restart postgresql``
