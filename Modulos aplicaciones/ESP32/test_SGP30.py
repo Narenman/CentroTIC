@@ -11,4 +11,5 @@ def leer_sgp30(scl_pin, sda_pin):
     co2eq, tvoc = sgp30.iaq_measure()
     return co2eq, tvoc
 
-print(leer_sgp30(26,25))
+co2eq, tvoc = leer_sgp30(26,25)
+print("CO2 {} ppm\ntvoc {} ppm".format(co2eq, tvoc))

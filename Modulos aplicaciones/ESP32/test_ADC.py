@@ -13,6 +13,6 @@ def leer_dato(pin_adc):
     return adc_pot
 
 while True:
-    print(leer_dato(36))
+    print(leer_dato(32))
     time.sleep(300e-3)
 

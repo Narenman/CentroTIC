@@ -1,8 +1,7 @@
-from urequests import urequests
+import urequests
 import utime 
-import dht
 import machine
-
+import ujson
 
 def enviar_API(url, fecha, valor, sensor):
     """ esta funcion se encarga de enviar los datos a la API"""
@@ -12,14 +11,15 @@ def enviar_API(url, fecha, valor, sensor):
         "valor": valor,
         "sensor": sensor
     }
-    r = urequests.post(url, json=pyload, headers={"Authorization": " Token d2865cc229825bd3b05d765f11f21b6b80c0fff6"})
+    r = urequests.post(url, json=pyload, headers={"Authorization": " Token 9a74a56ab171cacdee5654cfc2ebd126694e1bf0",
+                                                    "Content-Type": "application/json"})
     print(r.content)
     print(r.status_code)
     r.close()
 
 
 fecha = utime.localtime()
-url = "http://34.73.25.149/app_praes/temperatura/"
-sensor = 2
+url = "http://34.74.6.16/app_praes/temperatura/"
+sensor = 1
 valor = 1000
 enviar_API(url, fecha, valor, sensor)
