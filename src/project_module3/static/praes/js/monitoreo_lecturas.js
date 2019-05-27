@@ -8,33 +8,33 @@ $(document).ready(function(){
             dataType: 'json',
             success: function (data){
                    // conversion de los datos del tiempo a epoch
-                    for (var i=0; i<data.temperatura.length; i++){
-                        var year = data.temperatura[i][0].slice(0, 4)
-                        var month = parseInt(data.temperatura[i][0].slice(5, 7))-1
-                        var day = data.temperatura[i][0].slice(8, 10)
-                        var hour = data.temperatura[i][0].slice(11,13)
-                        var minute = data.temperatura[i][0].slice(14,16)
-                        var second = data.temperatura[i][0].slice(17,18)
-                        data.temperatura[i][0]=Date.UTC(year,month,day,hour,minute, second) 
-                            }
-                    for (var i=0; i<data.humedad.length; i++){
-                        var year = data.humedad[i][0].slice(0, 4)
-                        var month = parseInt(data.humedad[i][0].slice(5, 7))-1
-                        var day = data.humedad[i][0].slice(8, 10)
-                        var hour = data.humedad[i][0].slice(11,13)
-                        var minute = data.humedad[i][0].slice(14,16)
-                        var second = data.humedad[i][0].slice(17,18)
-                        data.humedad[i][0]=Date.UTC(year,month,day,hour,minute, second) 
-                            }
-                    for (var i=0; i<data.presion.length; i++){
-                        var year = data.presion[i][0].slice(0, 4)
-                        var month = parseInt(data.presion[i][0].slice(5, 7))-1
-                        var day = data.presion[i][0].slice(8, 10)
-                        var hour = data.presion[i][0].slice(11,13)
-                        var minute = data.presion[i][0].slice(14,16)
-                        var second = data.presion[i][0].slice(17,18)
-                        data.presion[i][0]=Date.UTC(year,month,day,hour,minute, second) 
-                            }
+                    // for (var i=0; i<data.temperatura.length; i++){
+                    //     var year = data.temperatura[i][0].slice(0, 4)
+                    //     var month = parseInt(data.temperatura[i][0].slice(5, 7))-1
+                    //     var day = data.temperatura[i][0].slice(8, 10)
+                    //     var hour = data.temperatura[i][0].slice(11,13)
+                    //     var minute = data.temperatura[i][0].slice(14,16)
+                    //     var second = data.temperatura[i][0].slice(17,18)
+                    //     data.temperatura[i][0]=Date.UTC(year,month,day,hour,minute, second) 
+                    //         }
+                    // for (var i=0; i<data.humedad.length; i++){
+                    //     var year = data.humedad[i][0].slice(0, 4)
+                    //     var month = parseInt(data.humedad[i][0].slice(5, 7))-1
+                    //     var day = data.humedad[i][0].slice(8, 10)
+                    //     var hour = data.humedad[i][0].slice(11,13)
+                    //     var minute = data.humedad[i][0].slice(14,16)
+                    //     var second = data.humedad[i][0].slice(17,18)
+                    //     data.humedad[i][0]=Date.UTC(year,month,day,hour,minute, second) 
+                    //         }
+                    // for (var i=0; i<data.presion.length; i++){
+                    //     var year = data.presion[i][0].slice(0, 4)
+                    //     var month = parseInt(data.presion[i][0].slice(5, 7))-1
+                    //     var day = data.presion[i][0].slice(8, 10)
+                    //     var hour = data.presion[i][0].slice(11,13)
+                    //     var minute = data.presion[i][0].slice(14,16)
+                    //     var second = data.presion[i][0].slice(17,18)
+                    //     data.presion[i][0]=Date.UTC(year,month,day,hour,minute, second) 
+                    //         }
                     for (var i=0; i<data.co.length; i++){
                         var year = data.co[i][0].slice(0, 4)
                         var month = parseInt(data.co[i][0].slice(5, 7))-1
@@ -44,15 +44,15 @@ $(document).ready(function(){
                         var second = data.co[i][0].slice(17,18)
                         data.co[i][0]=Date.UTC(year,month,day,hour,minute, second) 
                             }
-                    for (var i=0; i<data.co2.length; i++){
-                        var year = data.co2[i][0].slice(0, 4)
-                        var month = parseInt(data.co2[i][0].slice(5, 7))-1
-                        var day = data.co2[i][0].slice(8, 10)
-                        var hour = data.co2[i][0].slice(11,13)
-                        var minute = data.co2[i][0].slice(14,16)
-                        var second = data.co2[i][0].slice(17,18)
-                        data.co2[i][0]=Date.UTC(year,month,day,hour,minute, second) 
-                            }
+                    // for (var i=0; i<data.co2.length; i++){
+                    //     var year = data.co2[i][0].slice(0, 4)
+                    //     var month = parseInt(data.co2[i][0].slice(5, 7))-1
+                    //     var day = data.co2[i][0].slice(8, 10)
+                    //     var hour = data.co2[i][0].slice(11,13)
+                    //     var minute = data.co2[i][0].slice(14,16)
+                    //     var second = data.co2[i][0].slice(17,18)
+                    //     data.co2[i][0]=Date.UTC(year,month,day,hour,minute, second) 
+                    //         }
                     for (var i=0; i<data.ch4.length; i++){
                         var year = data.ch4[i][0].slice(0, 4)
                         var month = parseInt(data.ch4[i][0].slice(5, 7))-1
@@ -62,33 +62,33 @@ $(document).ready(function(){
                         var second = data.ch4[i][0].slice(17,18)
                         data.ch4[i][0]=Date.UTC(year,month,day,hour,minute, second) 
                             }
-                    for (var i=0; i<data.polvo.length; i++){
-                        var year = data.polvo[i][0].slice(0, 4)
-                        var month = parseInt(data.polvo[i][0].slice(5, 7))-1
-                        var day = data.polvo[i][0].slice(8, 10)
-                        var hour = data.polvo[i][0].slice(11,13)
-                        var minute = data.polvo[i][0].slice(14,16)
-                        var second = data.polvo[i][0].slice(17,18)
-                        data.polvo[i][0]=Date.UTC(year,month,day,hour,minute, second) 
-                            }
-                    for (var i=0; i<data.so2.length; i++){
-                        var year = data.so2[i][0].slice(0, 4)
-                        var month = parseInt(data.so2[i][0].slice(5, 7))-1
-                        var day = data.so2[i][0].slice(8, 10)
-                        var hour = data.so2[i][0].slice(11,13)
-                        var minute = data.so2[i][0].slice(14,16)
-                        var second = data.so2[i][0].slice(17,18)
-                        data.so2[i][0]=Date.UTC(year,month,day,hour,minute, second) 
-                            }
-                    for (var i=0; i<data.no2.length; i++){
-                        var year = data.no2[i][0].slice(0, 4)
-                        var month = parseInt(data.no2[i][0].slice(5, 7))-1
-                        var day = data.no2[i][0].slice(8, 10)
-                        var hour = data.no2[i][0].slice(11,13)
-                        var minute = data.no2[i][0].slice(14,16)
-                        var second = data.no2[i][0].slice(17,18)
-                        data.no2[i][0]=Date.UTC(year,month,day,hour,minute, second) 
-                            }
+                    // for (var i=0; i<data.polvo.length; i++){
+                    //     var year = data.polvo[i][0].slice(0, 4)
+                    //     var month = parseInt(data.polvo[i][0].slice(5, 7))-1
+                    //     var day = data.polvo[i][0].slice(8, 10)
+                    //     var hour = data.polvo[i][0].slice(11,13)
+                    //     var minute = data.polvo[i][0].slice(14,16)
+                    //     var second = data.polvo[i][0].slice(17,18)
+                    //     data.polvo[i][0]=Date.UTC(year,month,day,hour,minute, second) 
+                    //         }
+                    // for (var i=0; i<data.so2.length; i++){
+                    //     var year = data.so2[i][0].slice(0, 4)
+                    //     var month = parseInt(data.so2[i][0].slice(5, 7))-1
+                    //     var day = data.so2[i][0].slice(8, 10)
+                    //     var hour = data.so2[i][0].slice(11,13)
+                    //     var minute = data.so2[i][0].slice(14,16)
+                    //     var second = data.so2[i][0].slice(17,18)
+                    //     data.so2[i][0]=Date.UTC(year,month,day,hour,minute, second) 
+                    //         }
+                    // for (var i=0; i<data.no2.length; i++){
+                    //     var year = data.no2[i][0].slice(0, 4)
+                    //     var month = parseInt(data.no2[i][0].slice(5, 7))-1
+                    //     var day = data.no2[i][0].slice(8, 10)
+                    //     var hour = data.no2[i][0].slice(11,13)
+                    //     var minute = data.no2[i][0].slice(14,16)
+                    //     var second = data.no2[i][0].slice(17,18)
+                    //     data.no2[i][0]=Date.UTC(year,month,day,hour,minute, second) 
+                    //         }
                     for (var i=0; i<data.o3.length; i++){
                         var year = data.o3[i][0].slice(0, 4)
                         var month = parseInt(data.o3[i][0].slice(5, 7))-1
@@ -98,15 +98,15 @@ $(document).ready(function(){
                         var second = data.o3[i][0].slice(17,18)
                         data.o3[i][0]=Date.UTC(year,month,day,hour,minute, second) 
                             }
-                    for (var i=0; i<data.tvoc.length; i++){
-                        var year = data.tvoc[i][0].slice(0, 4)
-                        var month = parseInt(data.tvoc[i][0].slice(5, 7))-1
-                        var day = data.tvoc[i][0].slice(8, 10)
-                        var hour = data.tvoc[i][0].slice(11,13)
-                        var minute = data.tvoc[i][0].slice(14,16)
-                        var second = data.tvoc[i][0].slice(17,18)
-                        data.tvoc[i][0]=Date.UTC(year,month,day,hour,minute, second) 
-                            }
+                    // for (var i=0; i<data.tvoc.length; i++){
+                    //     var year = data.tvoc[i][0].slice(0, 4)
+                    //     var month = parseInt(data.tvoc[i][0].slice(5, 7))-1
+                    //     var day = data.tvoc[i][0].slice(8, 10)
+                    //     var hour = data.tvoc[i][0].slice(11,13)
+                    //     var minute = data.tvoc[i][0].slice(14,16)
+                    //     var second = data.tvoc[i][0].slice(17,18)
+                    //     data.tvoc[i][0]=Date.UTC(year,month,day,hour,minute, second) 
+                    //         }
                     for (var i=0; i<data.luzuv.length; i++){
                         var year = data.luzuv[i][0].slice(0, 4)
                         var month = parseInt(data.luzuv[i][0].slice(5, 7))-1
@@ -125,198 +125,198 @@ $(document).ready(function(){
                         var second = data.c3h8[i][0].slice(17,18)
                         data.c3h8[i][0]=Date.UTC(year,month,day,hour,minute, second) 
                             }
-                   Highcharts.chart('grafica_temperatura', {
-                    chart: {
-                        zoomType: 'x'
-                    },
-                    title: {
-                        text: 'Temperatura °C'
-                    },
-                    subtitle: {
-                        text: document.ontouchstart === undefined ?
-                                'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
-                    },
-                    xAxis: {
-                        type: 'datetime',
-                        labels: {
-                          format: '{value:%l:%M %p}'
-                        }
+            //        Highcharts.chart('grafica_temperatura', {
+            //         chart: {
+            //             zoomType: 'x'
+            //         },
+            //         title: {
+            //             text: 'Temperatura °C'
+            //         },
+            //         subtitle: {
+            //             text: document.ontouchstart === undefined ?
+            //                     'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+            //         },
+            //         xAxis: {
+            //             type: 'datetime',
+            //             labels: {
+            //               format: '{value:%l:%M %p}'
+            //             }
                         
-                    },
+            //         },
                     
-                    yAxis: {
-                        title: {
-                            text: 'Temperatura °C'
-                        }
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    plotOptions: {
-                        area: {
-                            fillColor: {
-                                linearGradient: {
-                                    x1: 0,
-                                    y1: 0,
-                                    x2: 0,
-                                    y2: 1
-                                },
-                                stops: [
-                                    [0, Highcharts.getOptions().colors[0]],
-                                    [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                                ]
-                            },
-                            marker: {
-                                radius: 2
-                            },
-                            lineWidth: 1,
-                            states: {
-                                hover: {
-                                    lineWidth: 1
-                                }
-                            },
-                            threshold: null
-                        }
-                    },
+            //         yAxis: {
+            //             title: {
+            //                 text: 'Temperatura °C'
+            //             }
+            //         },
+            //         legend: {
+            //             enabled: false
+            //         },
+            //         plotOptions: {
+            //             area: {
+            //                 fillColor: {
+            //                     linearGradient: {
+            //                         x1: 0,
+            //                         y1: 0,
+            //                         x2: 0,
+            //                         y2: 1
+            //                     },
+            //                     stops: [
+            //                         [0, Highcharts.getOptions().colors[0]],
+            //                         [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+            //                     ]
+            //                 },
+            //                 marker: {
+            //                     radius: 2
+            //                 },
+            //                 lineWidth: 1,
+            //                 states: {
+            //                     hover: {
+            //                         lineWidth: 1
+            //                     }
+            //                 },
+            //                 threshold: null
+            //             }
+            //         },
         
-                    time: {
-                        timezone: 'America/Bogota'
-                    },
+            //         time: {
+            //             timezone: 'America/Bogota'
+            //         },
                     
-                    series: [{
-                        type: 'area',
-                        name: 'Temperatura',
-                        data: data.temperatura,
-                            }]
-                }); //fin temperatura
+            //         series: [{
+            //             type: 'area',
+            //             name: 'Temperatura',
+            //             data: data.temperatura,
+            //                 }]
+            //     }); //fin temperatura
 
 
-                   // humedad
-                   Highcharts.chart('grafica_humedad', {
-                    chart: {
-                        zoomType: 'x'
-                    },
-                    title: {
-                        text: 'Humedad %'
-                    },
-                    subtitle: {
-                        text: document.ontouchstart === undefined ?
-                                'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
-                    },
-                    xAxis: {
-                        type: 'datetime',
+            //        // humedad
+            //        Highcharts.chart('grafica_humedad', {
+            //         chart: {
+            //             zoomType: 'x'
+            //         },
+            //         title: {
+            //             text: 'Humedad %'
+            //         },
+            //         subtitle: {
+            //             text: document.ontouchstart === undefined ?
+            //                     'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+            //         },
+            //         xAxis: {
+            //             type: 'datetime',
                         
-                    },
+            //         },
                     
-                    yAxis: {
-                        title: {
-                            text: 'Humedad %'
-                        }
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    plotOptions: {
-                        area: {
-                            fillColor: {
-                                linearGradient: {
-                                    x1: 0,
-                                    y1: 0,
-                                    x2: 0,
-                                    y2: 1
-                                },
-                                stops: [
-                                    [0, Highcharts.getOptions().colors[0]],
-                                    [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                                ]
-                            },
-                            marker: {
-                                radius: 2
-                            },
-                            lineWidth: 1,
-                            states: {
-                                hover: {
-                                    lineWidth: 1
-                                }
-                            },
-                            threshold: null
-                        }
-                    },
+            //         yAxis: {
+            //             title: {
+            //                 text: 'Humedad %'
+            //             }
+            //         },
+            //         legend: {
+            //             enabled: false
+            //         },
+            //         plotOptions: {
+            //             area: {
+            //                 fillColor: {
+            //                     linearGradient: {
+            //                         x1: 0,
+            //                         y1: 0,
+            //                         x2: 0,
+            //                         y2: 1
+            //                     },
+            //                     stops: [
+            //                         [0, Highcharts.getOptions().colors[0]],
+            //                         [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+            //                     ]
+            //                 },
+            //                 marker: {
+            //                     radius: 2
+            //                 },
+            //                 lineWidth: 1,
+            //                 states: {
+            //                     hover: {
+            //                         lineWidth: 1
+            //                     }
+            //                 },
+            //                 threshold: null
+            //             }
+            //         },
         
-                    time: {
-                        timezone: 'America/Bogota'
-                    },
+            //         time: {
+            //             timezone: 'America/Bogota'
+            //         },
                     
-                    series: [{
-                        type: 'area',
-                        name: 'Humedad',
-                        data: data.humedad,
-                            }]
-                }); //fin humedad
+            //         series: [{
+            //             type: 'area',
+            //             name: 'Humedad',
+            //             data: data.humedad,
+            //                 }]
+            //     }); //fin humedad
 
 
-                // presion
-                Highcharts.chart('grafica_presion', {
-                chart: {
-                    zoomType: 'x'
-                },
-                title: {
-                    text: 'Presión Atmosférica mbar '
-                },
-                subtitle: {
-                    text: document.ontouchstart === undefined ?
-                            'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
-                },
-                xAxis: {
-                    type: 'datetime',
+            //     // presion
+            //     Highcharts.chart('grafica_presion', {
+            //     chart: {
+            //         zoomType: 'x'
+            //     },
+            //     title: {
+            //         text: 'Presión Atmosférica mbar '
+            //     },
+            //     subtitle: {
+            //         text: document.ontouchstart === undefined ?
+            //                 'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+            //     },
+            //     xAxis: {
+            //         type: 'datetime',
                     
-                },
+            //     },
                 
-                yAxis: {
-                    title: {
-                        text: 'mbar'
-                    }
-                },
-                legend: {
-                    enabled: false
-                },
-                plotOptions: {
-                    area: {
-                        fillColor: {
-                            linearGradient: {
-                                x1: 0,
-                                y1: 0,
-                                x2: 0,
-                                y2: 1
-                            },
-                            stops: [
-                                [0, Highcharts.getOptions().colors[0]],
-                                [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                            ]
-                        },
-                        marker: {
-                            radius: 2
-                        },
-                        lineWidth: 1,
-                        states: {
-                            hover: {
-                                lineWidth: 1
-                            }
-                        },
-                        threshold: null
-                    }
-                },
+            //     yAxis: {
+            //         title: {
+            //             text: 'mbar'
+            //         }
+            //     },
+            //     legend: {
+            //         enabled: false
+            //     },
+            //     plotOptions: {
+            //         area: {
+            //             fillColor: {
+            //                 linearGradient: {
+            //                     x1: 0,
+            //                     y1: 0,
+            //                     x2: 0,
+            //                     y2: 1
+            //                 },
+            //                 stops: [
+            //                     [0, Highcharts.getOptions().colors[0]],
+            //                     [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+            //                 ]
+            //             },
+            //             marker: {
+            //                 radius: 2
+            //             },
+            //             lineWidth: 1,
+            //             states: {
+            //                 hover: {
+            //                     lineWidth: 1
+            //                 }
+            //             },
+            //             threshold: null
+            //         }
+            //     },
 
-                time: {
-                    timezone: 'America/Bogota'
-                },
+            //     time: {
+            //         timezone: 'America/Bogota'
+            //     },
                 
-                series: [{
-                    type: 'area',
-                    name: 'Presion',
-                    data: data.presion, 
-                        }]
-            }); //fin presion
+            //     series: [{
+            //         type: 'area',
+            //         name: 'Presion',
+            //         data: data.presion, 
+            //             }]
+            // }); //fin presion
 
 
                 // CO
@@ -382,68 +382,68 @@ $(document).ready(function(){
                             }]
                 }); //fin CO
 
-                // dioxido de carbono
-                Highcharts.chart('grafica_CO2', {
-                    chart: {
-                        zoomType: 'x'
-                    },
-                    title: {
-                        text: 'Dióxido de carbono'
-                    },
-                    subtitle: {
-                        text: document.ontouchstart === undefined ?
-                                'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
-                    },
-                    xAxis: {
-                        type: 'datetime',
+                // // dioxido de carbono
+                // Highcharts.chart('grafica_CO2', {
+                //     chart: {
+                //         zoomType: 'x'
+                //     },
+                //     title: {
+                //         text: 'Dióxido de carbono'
+                //     },
+                //     subtitle: {
+                //         text: document.ontouchstart === undefined ?
+                //                 'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+                //     },
+                //     xAxis: {
+                //         type: 'datetime',
                         
-                    },
+                //     },
                     
-                    yAxis: {
-                        title: {
-                            text: 'ppm'
-                        }
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    plotOptions: {
-                        area: {
-                            fillColor: {
-                                linearGradient: {
-                                    x1: 0,
-                                    y1: 0,
-                                    x2: 0,
-                                    y2: 1
-                                },
-                                stops: [
-                                    [0, Highcharts.getOptions().colors[0]],
-                                    [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                                ]
-                            },
-                            marker: {
-                                radius: 2
-                            },
-                            lineWidth: 1,
-                            states: {
-                                hover: {
-                                    lineWidth: 1
-                                }
-                            },
-                            threshold: null
-                        }
-                    },
+                //     yAxis: {
+                //         title: {
+                //             text: 'ppm'
+                //         }
+                //     },
+                //     legend: {
+                //         enabled: false
+                //     },
+                //     plotOptions: {
+                //         area: {
+                //             fillColor: {
+                //                 linearGradient: {
+                //                     x1: 0,
+                //                     y1: 0,
+                //                     x2: 0,
+                //                     y2: 1
+                //                 },
+                //                 stops: [
+                //                     [0, Highcharts.getOptions().colors[0]],
+                //                     [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                //                 ]
+                //             },
+                //             marker: {
+                //                 radius: 2
+                //             },
+                //             lineWidth: 1,
+                //             states: {
+                //                 hover: {
+                //                     lineWidth: 1
+                //                 }
+                //             },
+                //             threshold: null
+                //         }
+                //     },
     
-                    time: {
-                        timezone: 'America/Bogota'
-                    },
+                //     time: {
+                //         timezone: 'America/Bogota'
+                //     },
                     
-                    series: [{
-                        type: 'area',
-                        name: 'CO2',
-                        data: data.co2,
-                            }]
-                }); //fin dioxido de carbono
+                //     series: [{
+                //         type: 'area',
+                //         name: 'CO2',
+                //         data: data.co2,
+                //             }]
+                // }); //fin dioxido de carbono
 
                 // metano
                 Highcharts.chart('grafica_CH4', {
@@ -571,68 +571,68 @@ $(document).ready(function(){
                 //             }]
                 // }); //fin material particulado
 
-                // polvo
-                Highcharts.chart('grafica_polvo', {
-                    chart: {
-                        zoomType: 'x'
-                    },
-                    title: {
-                        text: 'Polvo'
-                    },
-                    subtitle: {
-                        text: document.ontouchstart === undefined ?
-                                'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
-                    },
-                    xAxis: {
-                        type: 'datetime',
+                // // polvo
+                // Highcharts.chart('grafica_polvo', {
+                //     chart: {
+                //         zoomType: 'x'
+                //     },
+                //     title: {
+                //         text: 'Polvo'
+                //     },
+                //     subtitle: {
+                //         text: document.ontouchstart === undefined ?
+                //                 'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+                //     },
+                //     xAxis: {
+                //         type: 'datetime',
                         
-                    },
+                //     },
                     
-                    yAxis: {
-                        title: {
-                            text: 'mg/m^3'
-                        }
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    plotOptions: {
-                        area: {
-                            fillColor: {
-                                linearGradient: {
-                                    x1: 0,
-                                    y1: 0,
-                                    x2: 0,
-                                    y2: 1
-                                },
-                                stops: [
-                                    [0, Highcharts.getOptions().colors[0]],
-                                    [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                                ]
-                            },
-                            marker: {
-                                radius: 2
-                            },
-                            lineWidth: 1,
-                            states: {
-                                hover: {
-                                    lineWidth: 1
-                                }
-                            },
-                            threshold: null
-                        }
-                    },
+                //     yAxis: {
+                //         title: {
+                //             text: 'mg/m^3'
+                //         }
+                //     },
+                //     legend: {
+                //         enabled: false
+                //     },
+                //     plotOptions: {
+                //         area: {
+                //             fillColor: {
+                //                 linearGradient: {
+                //                     x1: 0,
+                //                     y1: 0,
+                //                     x2: 0,
+                //                     y2: 1
+                //                 },
+                //                 stops: [
+                //                     [0, Highcharts.getOptions().colors[0]],
+                //                     [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                //                 ]
+                //             },
+                //             marker: {
+                //                 radius: 2
+                //             },
+                //             lineWidth: 1,
+                //             states: {
+                //                 hover: {
+                //                     lineWidth: 1
+                //                 }
+                //             },
+                //             threshold: null
+                //         }
+                //     },
     
-                    time: {
-                        timezone: 'America/Bogota'
-                    },
+                //     time: {
+                //         timezone: 'America/Bogota'
+                //     },
                     
-                    series: [{
-                        type: 'area',
-                        name: 'polvo',
-                        data: data.polvo,
-                            }]
-                }); //fin polvo
+                //     series: [{
+                //         type: 'area',
+                //         name: 'polvo',
+                //         data: data.polvo,
+                //             }]
+                // }); //fin polvo
 
                 // velocidad_viento
                 // Highcharts.chart('grafica_velocidad_viento', {
@@ -697,131 +697,131 @@ $(document).ready(function(){
                 //             }]
                 // }); //fin velociadad_viento
 
-                // SO2
-                Highcharts.chart('grafica_SO2', {
-                    chart: {
-                        zoomType: 'x'
-                    },
-                    title: {
-                        text: 'Dióxido de azufre SO2'
-                    },
-                    subtitle: {
-                        text: document.ontouchstart === undefined ?
-                                'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
-                    },
-                    xAxis: {
-                        type: 'datetime',
+                // // SO2
+                // Highcharts.chart('grafica_SO2', {
+                //     chart: {
+                //         zoomType: 'x'
+                //     },
+                //     title: {
+                //         text: 'Dióxido de azufre SO2'
+                //     },
+                //     subtitle: {
+                //         text: document.ontouchstart === undefined ?
+                //                 'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+                //     },
+                //     xAxis: {
+                //         type: 'datetime',
                         
-                    },
+                //     },
                     
-                    yAxis: {
-                        title: {
-                            text: 'ppm'
-                        }
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    plotOptions: {
-                        area: {
-                            fillColor: {
-                                linearGradient: {
-                                    x1: 0,
-                                    y1: 0,
-                                    x2: 0,
-                                    y2: 1
-                                },
-                                stops: [
-                                    [0, Highcharts.getOptions().colors[0]],
-                                    [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                                ]
-                            },
-                            marker: {
-                                radius: 2
-                            },
-                            lineWidth: 1,
-                            states: {
-                                hover: {
-                                    lineWidth: 1
-                                }
-                            },
-                            threshold: null
-                        }
-                    },
+                //     yAxis: {
+                //         title: {
+                //             text: 'ppm'
+                //         }
+                //     },
+                //     legend: {
+                //         enabled: false
+                //     },
+                //     plotOptions: {
+                //         area: {
+                //             fillColor: {
+                //                 linearGradient: {
+                //                     x1: 0,
+                //                     y1: 0,
+                //                     x2: 0,
+                //                     y2: 1
+                //                 },
+                //                 stops: [
+                //                     [0, Highcharts.getOptions().colors[0]],
+                //                     [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                //                 ]
+                //             },
+                //             marker: {
+                //                 radius: 2
+                //             },
+                //             lineWidth: 1,
+                //             states: {
+                //                 hover: {
+                //                     lineWidth: 1
+                //                 }
+                //             },
+                //             threshold: null
+                //         }
+                //     },
     
-                    time: {
-                        timezone: 'America/Bogota'
-                    },
+                //     time: {
+                //         timezone: 'America/Bogota'
+                //     },
                     
-                    series: [{
-                        type: 'area',
-                        name: 'SO2',
-                        data: data.so2,
-                            }]
-                }); //fin dioxido de azufre
+                //     series: [{
+                //         type: 'area',
+                //         name: 'SO2',
+                //         data: data.so2,
+                //             }]
+                // }); //fin dioxido de azufre
 
-                // NO2
-                Highcharts.chart('grafica_NO2', {
-                    chart: {
-                        zoomType: 'x'
-                    },
-                    title: {
-                        text: 'Dióxido de Nitrógeno NO2'
-                    },
-                    subtitle: {
-                        text: document.ontouchstart === undefined ?
-                                'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
-                    },
-                    xAxis: {
-                        type: 'datetime',
+                // // NO2
+                // Highcharts.chart('grafica_NO2', {
+                //     chart: {
+                //         zoomType: 'x'
+                //     },
+                //     title: {
+                //         text: 'Dióxido de Nitrógeno NO2'
+                //     },
+                //     subtitle: {
+                //         text: document.ontouchstart === undefined ?
+                //                 'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+                //     },
+                //     xAxis: {
+                //         type: 'datetime',
                         
-                    },
+                //     },
                     
-                    yAxis: {
-                        title: {
-                            text: 'ppm'
-                        }
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    plotOptions: {
-                        area: {
-                            fillColor: {
-                                linearGradient: {
-                                    x1: 0,
-                                    y1: 0,
-                                    x2: 0,
-                                    y2: 1
-                                },
-                                stops: [
-                                    [0, Highcharts.getOptions().colors[0]],
-                                    [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                                ]
-                            },
-                            marker: {
-                                radius: 2
-                            },
-                            lineWidth: 1,
-                            states: {
-                                hover: {
-                                    lineWidth: 1
-                                }
-                            },
-                            threshold: null
-                        }
-                    },
+                //     yAxis: {
+                //         title: {
+                //             text: 'ppm'
+                //         }
+                //     },
+                //     legend: {
+                //         enabled: false
+                //     },
+                //     plotOptions: {
+                //         area: {
+                //             fillColor: {
+                //                 linearGradient: {
+                //                     x1: 0,
+                //                     y1: 0,
+                //                     x2: 0,
+                //                     y2: 1
+                //                 },
+                //                 stops: [
+                //                     [0, Highcharts.getOptions().colors[0]],
+                //                     [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                //                 ]
+                //             },
+                //             marker: {
+                //                 radius: 2
+                //             },
+                //             lineWidth: 1,
+                //             states: {
+                //                 hover: {
+                //                     lineWidth: 1
+                //                 }
+                //             },
+                //             threshold: null
+                //         }
+                //     },
     
-                    time: {
-                        timezone: 'America/Bogota'
-                    },
+                //     time: {
+                //         timezone: 'America/Bogota'
+                //     },
                     
-                    series: [{
-                        type: 'area',
-                        name: 'NO2',
-                        data: data.no2,
-                            }]
-                }); //fin NO2
+                //     series: [{
+                //         type: 'area',
+                //         name: 'NO2',
+                //         data: data.no2,
+                //             }]
+                // }); //fin NO2
 
                 // O3
                 Highcharts.chart('grafica_O3', {
@@ -886,68 +886,68 @@ $(document).ready(function(){
                             }]
                 }); //fin O3
 
-                // compuestos organicos volatiles
-                Highcharts.chart('grafica_compuesto_organico', {
-                    chart: {
-                        zoomType: 'x'
-                    },
-                    title: {
-                        text: 'Compuestos orgánicos volátiles TVOC'
-                    },
-                    subtitle: {
-                        text: document.ontouchstart === undefined ?
-                                'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
-                    },
-                    xAxis: {
-                        type: 'datetime',
+                // // compuestos organicos volatiles
+                // Highcharts.chart('grafica_compuesto_organico', {
+                //     chart: {
+                //         zoomType: 'x'
+                //     },
+                //     title: {
+                //         text: 'Compuestos orgánicos volátiles TVOC'
+                //     },
+                //     subtitle: {
+                //         text: document.ontouchstart === undefined ?
+                //                 'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+                //     },
+                //     xAxis: {
+                //         type: 'datetime',
                         
-                    },
+                //     },
                     
-                    yAxis: {
-                        title: {
-                            text: 'ppm'
-                        }
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    plotOptions: {
-                        area: {
-                            fillColor: {
-                                linearGradient: {
-                                    x1: 0,
-                                    y1: 0,
-                                    x2: 0,
-                                    y2: 1
-                                },
-                                stops: [
-                                    [0, Highcharts.getOptions().colors[0]],
-                                    [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                                ]
-                            },
-                            marker: {
-                                radius: 2
-                            },
-                            lineWidth: 1,
-                            states: {
-                                hover: {
-                                    lineWidth: 1
-                                }
-                            },
-                            threshold: null
-                        }
-                    },
+                //     yAxis: {
+                //         title: {
+                //             text: 'ppm'
+                //         }
+                //     },
+                //     legend: {
+                //         enabled: false
+                //     },
+                //     plotOptions: {
+                //         area: {
+                //             fillColor: {
+                //                 linearGradient: {
+                //                     x1: 0,
+                //                     y1: 0,
+                //                     x2: 0,
+                //                     y2: 1
+                //                 },
+                //                 stops: [
+                //                     [0, Highcharts.getOptions().colors[0]],
+                //                     [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                //                 ]
+                //             },
+                //             marker: {
+                //                 radius: 2
+                //             },
+                //             lineWidth: 1,
+                //             states: {
+                //                 hover: {
+                //                     lineWidth: 1
+                //                 }
+                //             },
+                //             threshold: null
+                //         }
+                //     },
     
-                    time: {
-                        timezone: 'America/Bogota'
-                    },
+                //     time: {
+                //         timezone: 'America/Bogota'
+                //     },
                     
-                    series: [{
-                        type: 'area',
-                        name: 'TVOC',
-                        data: data.tvoc,
-                            }]
-                }); //fin Compuestos organicos volatiles
+                //     series: [{
+                //         type: 'area',
+                //         name: 'TVOC',
+                //         data: data.tvoc,
+                //             }]
+                // }); //fin Compuestos organicos volatiles
 
                 // UV
                 Highcharts.chart('grafica_UV', {

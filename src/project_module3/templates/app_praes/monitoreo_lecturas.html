@@ -4,8 +4,8 @@
 
 <div class="container">
 
-    <h1>Monitoreo Ambiental de 13 variables</h1>
-    <div class="row">
+    <h1>Monitoreo 5 variables</h1>
+    {% comment %} <div class="row">
 
         <div class="col">
                 <div id="grafica_temperatura" style="min-width: 300px; height: 250px; margin: 0 auto"></div>
@@ -18,14 +18,17 @@
         <div class="col">
                 <div id="grafica_presion" style="min-width: 300px; height: 250px; margin: 0 auto"></div>
         </div>  
-    </div>
+    </div> {% endcomment %}
 
     <div class="row">
         <div class="col">
                 <div id="grafica_CO" style="min-width: 300px; height: 250px; margin: 0 auto"></div>
         </div>  
-        <div class="col">
+        {% comment %} <div class="col">
                 <div id="grafica_CO2" style="min-width: 300px; height: 250px; margin: 0 auto"></div>
+        </div>   {% endcomment %}
+        <div class="col">
+                <div id="grafica_O3" style="min-width: 300px; height: 250px; margin: 0 auto"></div>
         </div>  
         <div class="col">
                 <div id="grafica_CH4" style="min-width: 300px; height: 250px; margin: 0 auto"></div>
@@ -33,23 +36,20 @@
     </div>
 
 
-    <div class="row">
+    {% comment %} <div class="row">
         <div class="col">
                 <div id="grafica_SO2" style="min-width: 300px; height: 250px; margin: 0 auto"></div>
         </div>  
         <div class="col">
                 <div id="grafica_NO2" style="min-width: 300px; height: 250px; margin: 0 auto"></div>
-        </div>  
-        <div class="col">
-                <div id="grafica_O3" style="min-width: 300px; height: 250px; margin: 0 auto"></div>
-        </div>  
-    </div>
+        </div> 
+    </div> {% endcomment %}
 
 
     <div class="row">
-        <div class="col">
+        {% comment %} <div class="col">
                 <div id="grafica_compuesto_organico" style="min-width: 300px; height: 250px; margin: 0 auto"></div>
-        </div>  
+        </div>   {% endcomment %}
         <div class="col">
                 <div id="grafica_UV" style="min-width: 300px; height: 250px; margin: 0 auto"></div>
         </div>  
@@ -58,11 +58,11 @@
         </div>  
     </div>
 
-    <div class="row">
+    {% comment %} <div class="row">
         <div class="col">
                 <div id="grafica_polvo" style="min-width: 300px; height: 250px; margin: 0 auto"></div>
         </div>  
-    </div>
+    </div> {% endcomment %}
 
 </div>
 <script src= "{% static 'praes/js/monitoreo_lecturas.js' %}" ></script>
