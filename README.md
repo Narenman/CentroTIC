@@ -40,6 +40,7 @@ Usuarios Windows
 * Clonar el repositorio `` git clone https://github.com/LuisDiazM/CentroTIC.git ``
 * ``cd CentroTIC``
 * ``vagrant init``
+* Reemplazar el contenido del archivo Vagrantfile creado por el init, por el contenido del archivo vagrant de este repositorio.
 Estos comandos se ejecutan después de tener todo instalado
 * ``vagrant up``
 * ``vagrant ssh`` 
