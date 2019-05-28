@@ -9,15 +9,17 @@
             <p>{{ control1 }}</p>
             <p>Esta sección contiene 4 instrucciones para la toma de datos del kit ambiental, con sólo dar click el sistema 
             se encarga de hacer automaticamente la recolección de los datos</p>
-            <img src="{% static 'esp32.jpeg' %}" alt="Imagen no encontrada" width="300px" height="250px">
-            <img src="{% static 'KIT_ambientalV3.jpg'%}" class="rounded" width="300px" height="200px" alt="imagen no encontrada">
+            <img src="{% static 'esp32.jpeg' %}" alt="Imagen no encontrada" width="500px" height="400px">
             </div>
         <div class="col-sm">
-
+<h3> Control del tiempo de sensado </h3>
         <ul class="list-unstyled">
             <li > <button type="button" class="btn btn-primary" id="control1s">Una Medicion</button></li>
+            <p> </p>
             <li > <button type="button" class="btn btn-info" id="control30s">Medir 30 segundos</button></li>
+            <p> </p>
             <li > <button type="button" class="btn btn-warning" id="control1m">Medir 1 minuto</button></li>
+            <p> </p>
             <li > <button type="button" class="btn btn-danger" id="control5m">Medir 5 minutos</button></li>
         </ul>
 

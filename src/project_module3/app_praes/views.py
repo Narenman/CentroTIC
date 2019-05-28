@@ -251,4 +251,4 @@ def consulta_lpg(request):
     lpg = MetanoPropanoCO.objects.all()
     lpg  = lpg.values("fecha", "valor")
     lpg  = list(map(lambda datos: [datos["fecha"], datos["valor"]], lpg ))
-    return JsonResponse({"lpg": lpg})
+    return JsonResponse({"c3h8": lpg})
