@@ -10,4 +10,5 @@ urlpatterns = [
     path("entrenamiento", views.entrenamiento, name="entrenamiento"),
     path("seleccion_entrenamiento", views.recolectar_datos_entrenamiento, name="seleccion-entrenamiento"),
     path("toma_datos", views.toma_datos, name="toma-datos"),
+    path("evaluacion_clasificadores", views.evaluacion_clasificadores, name="evaluacion-clasificadores"),
 ]

@@ -6,11 +6,10 @@ from .models import Analisis, Lecturas
 from django.http import JsonResponse
 
 import paho.mqtt.publish as publish
-import time
 import json
 import csv
 from django.contrib.auth.decorators import login_required
-
+import pandas as pd
 
 # Create your views here.
 def index(request):
@@ -43,7 +42,7 @@ def analisis_nariz(request):
         analisis = AnalisisForm(request.POST,)
         accion = {}
         req = request.POST
-        if analisis.is_valid() and float(req["tiempo_medicion_segundos"])<120 and float(req["tiempo_medicion_segundos"])>0:
+        if analisis.is_valid() and float(req["tiempo_medicion_segundos"])<360 and float(req["tiempo_medicion_segundos"])>0:
             analisis.save()
             datos_form = request.POST
             tiempo_medicion = float(datos_form["tiempo_medicion_segundos"])
@@ -57,7 +56,7 @@ def analisis_nariz(request):
             """
 
             topico = "UIS/NARIZ/PRINCIPAL"
-            IP_broker = "34.73.25.149"
+            IP_broker = "34.74.6.16"
             usuario_broker = "pi"
             password_broker = "raspberry"
             publish.single(topico, accion, port=1883, hostname=IP_broker,
@@ -93,4 +92,13 @@ def recolectar_datos_entrenamiento(request):
     return render(request, "nariz_electronica/seleccion_entrenamiento.html", respuesta)
 
 def toma_datos(request):
+    """ Es la interfaz para recolectar los datos del entrenamiento o para registrar el analisis """
     return render(request, "nariz_electronica/toma_datos.html", {})
+
+def evaluacion_clasificadores(request):
+    lecturas = Lecturas.objects.last()
+    datos = lecturas.medicion
+    lista_sensores = ["S1","S2","S3","S4","S5","S6","S7","S8","S9","S10","S11","S12","S13","S14","S15","S16"]
+    datos = pd.DataFrame(data=datos, columns=lista_sensores)
+    print(datos)
+    return render(request, "nariz_electronica/evaluacion_clasificadores.html",{})
