@@ -50,7 +50,7 @@ class MQTTSuscriptor():
                 "analisis": accion["id"]}
 
                 """ uso de la API """
-                r = requests.post("http://192.168.0.101:8000/nariz_electronica/lecturas", data=datos, headers={"Authorization":"Token 38fdc0c1fa605c6444a7b6523866c7c4147e9f18"})
+                r = requests.post("http://34.74.6.16/nariz_electronica/lecturas", data=datos, headers={"Authorization":"Token 38fdc0c1fa605c6444a7b6523866c7c4147e9f18"})
                 print("HTTP status {}".format(r.status_code))
                 r.close()
 
@@ -70,7 +70,7 @@ class MQTTSuscriptor():
                     timeout = t2-t1
                 print("fin toma de datos para clasificar")
                 datos = {"medicion": json.dumps(datos)}
-                url = "http://192.168.0.101:8000/nariz_electronica/clasificar_datos"
+                url = "http://34.74.6.16/nariz_electronica/clasificar_datos"
                 r = requests.post(url, data=datos)
                 print("HTTP status {}".format(r.status_code))
                 r.close()
