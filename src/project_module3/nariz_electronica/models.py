@@ -29,4 +29,14 @@ class Lecturas(models.Model):
     en la base de datos"""
     medicion = JSONField(encoder="")
     analisis = models.ForeignKey(Analisis, on_delete=models.CASCADE)
-    
+
+class DatosEvaluar(models.Model):
+
+    medicion = JSONField(encoder="")
+
+    def __str__(self):
+        return "medicion datos"
+
+
+
+

@@ -376,7 +376,7 @@ $(document).ready(function(){
                     },
                     
                     series: [{
-                        type: 'area',
+                        type: 'line',
                         name: 'CO',
                         data: data.co,
                             }]
@@ -502,7 +502,7 @@ $(document).ready(function(){
                     },
                     
                     series: [{
-                        type: 'area',
+                        type: 'line',
                         name: 'metano',
                         data: data.ch4,
                             }]
@@ -880,7 +880,7 @@ $(document).ready(function(){
                     },
                     
                     series: [{
-                        type: 'area',
+                        type: 'line',
                         name: 'O3',
                         data: data.o3,
                             }]
@@ -1006,7 +1006,7 @@ $(document).ready(function(){
                     },
                     
                     series: [{
-                        type: 'area',
+                        type: 'line',
                         name: 'UV',
                         data: data.luzuv,
                             }]
@@ -1069,7 +1069,7 @@ $(document).ready(function(){
                     },
                     
                     series: [{
-                        type: 'area',
+                        type: 'line',
                         name: 'propano',
                         data: data.c3h8,
                             }]

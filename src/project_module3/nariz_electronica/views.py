@@ -2,9 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import EntrenamientoForm, AnalisisForm, Seleccion_entrenamientoForm
 from django.urls import reverse
-from .models import Analisis, Lecturas
+from .models import Analisis, Lecturas, DatosEvaluar
 from django.http import JsonResponse
-
+import time
 import paho.mqtt.publish as publish
 import json
 import csv
@@ -95,10 +95,41 @@ def toma_datos(request):
     """ Es la interfaz para recolectar los datos del entrenamiento o para registrar el analisis """
     return render(request, "nariz_electronica/toma_datos.html", {})
 
+#existen 6 casos de uso de aplicaciones de la nariz electronica
 def evaluacion_clasificadores(request):
-    lecturas = Lecturas.objects.last()
-    datos = lecturas.medicion
-    lista_sensores = ["S1","S2","S3","S4","S5","S6","S7","S8","S9","S10","S11","S12","S13","S14","S15","S16"]
-    datos = pd.DataFrame(data=datos, columns=lista_sensores)
-    print(datos)
+    # lecturas = Lecturas.objects.last()
+    # datos = lecturas.medicion
+    # lista_sensores = ["S1","S2","S3","S4","S5","S6","S7","S8","S9","S10","S11","S12","S13","S14","S15","S16"]
+    # datos = pd.DataFrame(data=datos, columns=lista_sensores)
+    # print(datos)
     return render(request, "nariz_electronica/evaluacion_clasificadores.html",{})
+
+# para la version 1 de la nariz
+# necesitamos deteccion de maderas, rocas y triatominos
+def clasificacion_maderas(request):
+    """Esta vista se encarga pasar el dato recolectado por la nariz electronica v1 y evaluarlo con 
+    el modelo entrenado para la nariz """
+
+    #envio de informacion a la nariz para que inicie el escaneo de la muestra
+    topico = "UIS/NARIZ/PRINCIPAL"
+    IP_broker = "34.74.6.16"
+    usuario_broker = "pi"
+    password_broker = "raspberry"
+    accion = {"accion": "clasificacion-datos"}
+    publish.single(topico, json.dumps(accion), port=1883, hostname=IP_broker,
+    auth={"username": usuario_broker, "password":password_broker})
+
+    #se necesita pausar el servidor mientras llegan nuevos datos a la base de datos
+    time.sleep(6)
+    #despues de enviar los datos se realiza la consulta
+    try:
+        lecturas = DatosEvaluar.objects.last()
+        lecturas = lecturas.medicion
+        lista_sensores = ["S1","S2","S3","S4","S5","S6","S7","S8","S9","S10","S11","S12","S13","S14","S15","S16"]
+        datos = pd.DataFrame(data=lecturas, columns=lista_sensores)
+        """ Aqui se carga el codigo de la clasificacion """
+        
+    except:
+        pass
+
+    return render(request,"nariz_electronica/clasificacion_maderas.html",{})

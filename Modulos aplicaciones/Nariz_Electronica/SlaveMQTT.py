@@ -29,6 +29,7 @@ class MQTTSuscriptor():
     def on_message(self, client, userdata, message):
             accion = message.payload.decode()
             accion = json.loads(accion)
+
             if accion["accion"] == "adquirir-datos":
                 print(accion)
                 """ Con esta instruccion la nariz comienza a recibir datos """
@@ -49,12 +50,30 @@ class MQTTSuscriptor():
                 "analisis": accion["id"]}
 
                 """ uso de la API """
-                r = requests.post("http://192.168.0.105:8000/nariz_electronica/lecturas", data=datos, headers={"Authorization":"Token 38fdc0c1fa605c6444a7b6523866c7c4147e9f18"})
+                r = requests.post("http://192.168.0.101:8000/nariz_electronica/lecturas", data=datos, headers={"Authorization":"Token 38fdc0c1fa605c6444a7b6523866c7c4147e9f18"})
                 print("HTTP status {}".format(r.status_code))
                 r.close()
 
             if accion["accion"] == "control-electrovalvulas":
                 pass
+
+            if accion["accion"] == "clasificacion-datos":
+                """ esta accion es para realizar el escaneo de la muestra para enviar al clasificador"""
+                print("tomando datos ...")
+                t1 = time.time()
+                timeout = 0
+                datos = []
+                while timeout<=5:
+                    [valores] = dsensors()
+                    datos.append(valores)
+                    t2 = time.time()
+                    timeout = t2-t1
+                print("fin toma de datos para clasificar")
+                datos = {"medicion": json.dumps(datos)}
+                url = "http://192.168.0.101:8000/nariz_electronica/clasificar_datos"
+                r = requests.post(url, data=datos)
+                print("HTTP status {}".format(r.status_code))
+                r.close()
 
 
     def comunicacionMQTT(self):

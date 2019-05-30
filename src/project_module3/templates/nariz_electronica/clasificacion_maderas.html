@@ -1,0 +1,11 @@
+{% extends 'nariz_electronica/baseV1.html' %}
+{% load static %}
+{% block body_block %}
+<div class="container">
+<h1> Resultado de la clasificación de maderas </h1>
+{{datos}}
+<canvas id="myChart"></canvas>
+</div>
+
+<script src= "{% static 'nariz_electronicaV1/js/graficas_nariz.js' %}" ></script>
+{% endblock  %}

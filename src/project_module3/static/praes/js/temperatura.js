@@ -73,7 +73,7 @@ $(document).ready(function(){
                     },
                     
                     series: [{
-                        type: 'area',
+                        type: 'line',
                         name: 'Temperatura',
                         data: data.temperatura,
                             }]
@@ -157,7 +157,7 @@ $(document).ready(function(){
                         },
                         
                         series: [{
-                            type: 'area',
+                            type: 'line',
                             name: 'Humedad',
                             data: data.humedad,
                                 }]
@@ -240,7 +240,7 @@ $(document).ready(function(){
                             },
                             
                             series: [{
-                                type: 'area',
+                                type: 'line',
                                 name: 'presion',
                                 data: data.presion,
                                     }]
@@ -323,7 +323,7 @@ $(document).ready(function(){
                                 },
                                 
                                 series: [{
-                                    type: 'area',
+                                    type: 'line',
                                     name: 'luzuv',
                                     data: data.luzuv,
                                         }]
@@ -406,7 +406,7 @@ $(document).ready(function(){
                                 },
                                 
                                 series: [{
-                                    type: 'area',
+                                    type: 'line',
                                     name: 'co',
                                     data: data.co,
                                         }]
@@ -489,7 +489,7 @@ $(document).ready(function(){
                             },
                             
                             series: [{
-                                type: 'area',
+                                type: 'line',
                                 name: 'co2',
                                 data: data.co2,
                                     }]
@@ -572,7 +572,7 @@ $(document).ready(function(){
                             },
                             
                             series: [{
-                                type: 'area',
+                                type: 'line',
                                 name: 'ch4',
                                 data: data.ch4,
                                     }]
@@ -655,7 +655,7 @@ $(document).ready(function(){
                             },
                             
                             series: [{
-                                type: 'area',
+                                type: 'line',
                                 name: 'polvo',
                                 data: data.polvo,
                                     }]
@@ -738,7 +738,7 @@ $(document).ready(function(){
                             },
                             
                             series: [{
-                                type: 'area',
+                                type: 'line',
                                 name: 'so2',
                                 data: data.so2,
                                     }]
@@ -821,7 +821,7 @@ $(document).ready(function(){
                             },
                             
                             series: [{
-                                type: 'area',
+                                type: 'line',
                                 name: 'no2',
                                 data: data.no2,
                                     }]
@@ -904,7 +904,7 @@ $(document).ready(function(){
                             },
                             
                             series: [{
-                                type: 'area',
+                                type: 'line',
                                 name: 'o3',
                                 data: data.o3,
                                     }]
@@ -987,7 +987,7 @@ $(document).ready(function(){
                             },
                             
                             series: [{
-                                type: 'area',
+                                type: 'line',
                                 name: 'tvoc',
                                 data: data.tvoc,
                                     }]
@@ -1070,7 +1070,7 @@ $(document).ready(function(){
                             },
                             
                             series: [{
-                                type: 'area',
+                                type: 'line',
                                 name: 'lpg',
                                 data: data.lpg,
                                     }]
