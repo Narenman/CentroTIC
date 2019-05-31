@@ -1,12 +1,16 @@
 
 from .models import Temperatura, Humedad, PresionAtmosferica, \
                     MaterialParticulado, NO2, Polvo, O3, SO2, CO, CO2, \
-                    MetanoPropanoCO, LuzUV, MaterialOrganico, CH4, Anemometro, Sensores
+                    MetanoPropanoCO, LuzUV, MaterialOrganico, CH4, Anemometro, Sensores, KitNariz
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 
 
+class KitNarizSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = KitNariz
+        fields = "__all__"
 
 class TemperaturaSerializer(serializers.ModelSerializer):
     class Meta:

@@ -2,18 +2,19 @@ from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import permissions
+from rest_framework import status
 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
 
 from .models import Temperatura, Humedad, PresionAtmosferica, MaterialParticulado, NO2, \
-      Polvo, O3, SO2, CO, CO2, MetanoPropanoCO, LuzUV, MaterialOrganico, CH4, Anemometro, Sensores
+      Polvo, O3, SO2, CO, CO2, MetanoPropanoCO, LuzUV, MaterialOrganico, CH4, Anemometro, Sensores, KitNariz
 from .serializers import TemperaturaSerializer, HumedadSerializer, PresionAtmosfericaSerializer, \
       MaterialParticuladoSerializer, NO2Serializer, PolvoSerializer, O3Serializer, SO2Serializer, \
       COSerializer, CO2Serializer, MetanoPropanoCOSerializer, LuzUVSerializer,\
-      MaterialOrganicoSerializer, CH4Serializer, AnemometroSerializer, UserSerializer, SensoresSerializer
-
+      MaterialOrganicoSerializer, CH4Serializer, AnemometroSerializer, UserSerializer, SensoresSerializer, KitNarizSerializer
+import pandas as pd
 
 
 # class SensoresAPI(APIView):
@@ -40,6 +41,29 @@ from .serializers import TemperaturaSerializer, HumedadSerializer, PresionAtmosf
 #             return Response({"token": user.auth_token.key})
 #         else:
 #             return Response({"error": "Wrong Credentials"}, status=status.HTTP_400_BAD_REQUEST)
+
+class KitNarizAPI(APIView):
+    """
+    Lista el ultimo valor sensado por el kit praes en modo nariz.
+    """
+    authentication_classes = ()
+    permission_classes = ()
+    def get(self, request, format=None):
+        snippets = KitNariz.objects.last()
+        serializer = KitNarizSerializer(snippets, many=False)
+        datos = serializer.data
+        #retorna los datos por sensores para poder graficarlos
+        lista_sensores = ["S1","S2","S3","S4",]
+        datos = pd.DataFrame(data=datos["medicion"], columns=lista_sensores)
+        respuesta = {"S1":datos["S1"], "S2":datos["S2"], "S3":datos["S3"], "S4":datos["S4"],}
+        return Response(respuesta)
+
+    def post(self, request, format=None):
+        serializer = KitNarizSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class LoginView(APIView):

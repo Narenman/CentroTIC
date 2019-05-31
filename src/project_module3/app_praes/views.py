@@ -2,9 +2,10 @@ from django.shortcuts import render
 import paho.mqtt.publish as publish
 from .models import Temperatura, Humedad, PresionAtmosferica, MaterialParticulado, NO2, \
     Polvo, O3, SO2, CO, CO2, MetanoPropanoCO, LuzUV, MaterialOrganico, CH4, Anemometro, \
-    Semillero, Integrantes, Kit
+    Semillero, Integrantes, Kit, Asociacion
 from .forms import IntegrantesForm, SemilleroForm, ConsultaSemilleroForm, ConsultaIntegrantesForm
-
+from numpy import random
+import json
 from django.http import JsonResponse
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
@@ -23,8 +24,21 @@ def control_ESP32(request):
     password_broker = "raspberry"
     try:
         control = request.POST["info"]
-        publish.single(topico, control, port=1883, hostname=IP_broker, auth={"username": usuario_broker, "password":password_broker})
-        print(control)
+        to_esp = {}
+        if control == "modo-nariz":
+            var_as = random.randint(1,100)
+            asociacion = Asociacion(asociacion=var_as)
+            asociacion.save()
+            to_esp.update({"asociacion":asociacion.pk, "control":control})
+            to_esp = json.dumps(to_esp)
+            print(to_esp)
+            publish.single(topico, to_esp, port=1883, hostname=IP_broker, auth={"username": usuario_broker, "password":password_broker})
+
+        else:
+            to_esp.update({"asociacion":-20, "control":control})
+            to_esp = json.dumps(to_esp)
+            publish.single(topico, to_esp, port=1883, hostname=IP_broker, auth={"username": usuario_broker, "password":password_broker})
+            print(to_esp)
         
     except:
         pass

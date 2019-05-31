@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.postgres.fields import JSONField
+
 # Create your models here.
 
 class Departamento(models.Model):
@@ -161,3 +163,17 @@ class Integrantes(models.Model):
     def __str__(self):
         return self.nombre
 
+
+class Asociacion(models.Model):
+    asociacion = models.IntegerField(default=0)
+    def __str__(self):
+        return "asociacion "+str(self.asociacion)
+    
+
+class KitNariz(models.Model):
+
+    medicion = JSONField(encoder="",)
+    asociacion = models.ForeignKey(Asociacion, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "modo nariz"+str(self.pk)

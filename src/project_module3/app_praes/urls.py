@@ -3,7 +3,7 @@ from rest_framework.authtoken import views
 from .apiviews import TemperaturaAPI, HumedadAPI, PresionAtmosfericaAPI, MaterialParticuladoAPI, \
                       NO2API, PolvoAPI, O3API, SO2API, COAPI, CO2API, MetanoPropanoCOAPI, \
                       LuzUVAPI, MaterialOrganicoAPI, CH4API, AnemometroAPI, \
-                      CrearUsuarioAPI, LoginView, SensoresAPI
+                      CrearUsuarioAPI, LoginView, SensoresAPI, KitNarizAPI
 
 from rest_framework_swagger.views import get_swagger_view
 from .views import index, medicion_actual, monitoreo_lecturas, control_ESP32, hora_local, monitoreo_lecturas_json,\
@@ -60,5 +60,6 @@ urlpatterns = [
     path('json-o3/', consulta_o3, name="consulta-o3"),
     path('json-tvoc/', consulta_tvoc, name="consulta-tvoc"),
     path('json-lpg/', consulta_lpg, name="consulta-lpg"),
-    path("token/", views.obtain_auth_token, name="token")
+    path("token/", views.obtain_auth_token, name="token"),
+    path("modo-nariz/", KitNarizAPI.as_view(), name="modo-nariz"),
 ]

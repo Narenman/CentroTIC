@@ -56,4 +56,18 @@ $(document).ready(function(){
      
     }); // fin evento
 
+    $("#modo-nariz").click(function(event){
+        $.ajax({
+            type: "POST",
+            url: "/app_praes/control_kit/",
+            data: {"info":"modo-nariz"},
+            dataType: 'json',
+            success: function (data){
+
+            }//sucess
+        }); //fin ajax
+
+     
+    }); // fin evento
+
 });

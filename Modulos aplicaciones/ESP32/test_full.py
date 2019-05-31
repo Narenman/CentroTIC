@@ -10,35 +10,36 @@ import ubinascii
 import micropython
 import machine
 from machine import Pin, ADC, I2C
+import ujson
 # import dht
 # from bmp180 import BMP180
 # import adafruit_sgp30
 
-def leer_so2(pin_adc):
-    """ Esta funcion es para leer los
-    datos del sensor ULPSM-SO2"""
-    """ Lectura del canal analogico """
-    adc = ADC(Pin(pin_adc))
-    adc.atten(ADC.ATTN_11DB)
-    adc.width(ADC.WIDTH_10BIT)
-    Vo = adc.read()*3.3/1024
-    """ Conversion del voltaje a ppm"""
-    if Vo == 0 or Vo<1.58877:
-        ppm = 0
-    else:
-        M = 0.0494
-        ppm = 1/M*(Vo-1.58877)
-    return ppm
+# def leer_so2(pin_adc):
+#     """ Esta funcion es para leer los
+#     datos del sensor ULPSM-SO2"""
+#     """ Lectura del canal analogico """
+#     adc = ADC(Pin(pin_adc))
+#     adc.atten(ADC.ATTN_11DB)
+#     adc.width(ADC.WIDTH_10BIT)
+#     Vo = adc.read()*3.3/1024
+#     """ Conversion del voltaje a ppm"""
+#     if Vo == 0 or Vo<1.58877:
+#         ppm = 0
+#     else:
+#         M = 0.0494
+#         ppm = 1/M*(Vo-1.58877)
+#     return ppm
 
-def leer_sgp30(scl_pin, sda_pin):
-    """ esta funcion es para leer los datos del sensor
-    sgp30 y retorna+
-    CO2 en ppm
-    TVOC en ppb"""
-    i2c = I2C(scl=Pin(scl_pin), sda=Pin(sda_pin), freq=400000)
-    sgp30 = adafruit_sgp30.Adafruit_SGP30(i2c)
-    co2eq, tvoc = sgp30.iaq_measure()
-    return co2eq, tvoc
+# def leer_sgp30(scl_pin, sda_pin):
+#     """ esta funcion es para leer los datos del sensor
+#     sgp30 y retorna+
+#     CO2 en ppm
+#     TVOC en ppb"""
+#     i2c = I2C(scl=Pin(scl_pin), sda=Pin(sda_pin), freq=400000)
+#     sgp30 = adafruit_sgp30.Adafruit_SGP30(i2c)
+#     co2eq, tvoc = sgp30.iaq_measure()
+#     return co2eq, tvoc
 
 def leer_dato_uv(pin_adc):
     """ Esta funcion es para leer los
@@ -57,23 +58,23 @@ def leer_dato_uv(pin_adc):
         x = (y-1.0)/0.1625
     return x
 
-def leer_polvo(DPIN, APIN):
-    """Definici0n de pines
-    para el sensor de polvo GP2Y1010AU0F
-    """
-    p13 = Pin(DPIN, Pin.OUT)
-    adc = ADC(Pin(APIN))
-    adc.atten(ADC.ATTN_11DB)
-    adc.width(ADC.WIDTH_10BIT)
-    #proceso de lectura para el sensor
-    p13.off()
-    utime.sleep_us(280)
-    V1 = adc.read()*3.3/1024
-    utime.sleep_us(40)
-    p13.on()
-    utime.sleep_us(9680)  
-    dust_density = 0.17*V1-0.1
-    return dust_density
+# def leer_polvo(DPIN, APIN):
+#     """Definici0n de pines
+#     para el sensor de polvo GP2Y1010AU0F
+#     """
+#     p13 = Pin(DPIN, Pin.OUT)
+#     adc = ADC(Pin(APIN))
+#     adc.atten(ADC.ATTN_11DB)
+#     adc.width(ADC.WIDTH_10BIT)
+#     #proceso de lectura para el sensor
+#     p13.off()
+#     utime.sleep_us(280)
+#     V1 = adc.read()*3.3/1024
+#     utime.sleep_us(40)
+#     p13.on()
+#     utime.sleep_us(9680)  
+#     dust_density = 0.17*V1-0.1
+#     return dust_density
 
 def leer_MQ(pin_adc, A, b ,Ro):
     """ Esta funcion es para leer los
@@ -94,28 +95,66 @@ def leer_MQ(pin_adc, A, b ,Ro):
         ppm = (A*Ro/Rs)**(1/b)
     return ppm
 
-def leer_presion(scl_pin, sda_pin):
-    """ Lee la presion del sensor BMP180 """
-    bus = I2C(scl=Pin(scl_pin), sda=Pin(sda_pin), freq=400000)  # create I2C peripheral at frequency of 400kHz
-    bmp180 = BMP180(bus)
-    bmp180.oversample_sett = 2
-    bmp180.baseline = 101325
+# def leer_presion(scl_pin, sda_pin):
+#     """ Lee la presion del sensor BMP180 """
+#     bus = I2C(scl=Pin(scl_pin), sda=Pin(sda_pin), freq=400000)  # create I2C peripheral at frequency of 400kHz
+#     bmp180 = BMP180(bus)
+#     bmp180.oversample_sett = 2
+#     bmp180.baseline = 101325
 
-    temp = bmp180.temperature
-    p = bmp180.pressure
-    altitude = bmp180.altitude
-    return p
+#     temp = bmp180.temperature
+#     p = bmp180.pressure
+#     altitude = bmp180.altitude
+#     return p
+
+def leer_MQ2(pin_adc):
+    """ Lectura del canal analogico """
+    adc = ADC(Pin(pin_adc))
+    adc.atten(ADC.ATTN_11DB)
+    adc.width(ADC.WIDTH_10BIT)
+    Vo = adc.read()
+    return Vo
 
 
-def leer_temp_hum(pin):
-    """ esta funcion es para leer los datos asociados
-    al sensor DHT11, sin embargo, la libreria funciona para otros sensores
-    como el DHT22.
-    La funcion retorna valores de temperatura y humedad
+def enviar_API2(url, medicion, asociacion):
+    """ Esta funcion se encarga de enviar los datos
+    a la API para que sean almacenados en la base de datos
+    de acuerdo a la url especificada.
     """
-    d = dht.DHT22(Pin(pin, Pin.IN, Pin.PULL_UP))
-    d.measure()
-    return d.temperature(), d.humidity()
+    pyload = {
+        "medicion": medicion,
+        "asociacion": asociacion
+    }
+    r = urequests.post(url, json=pyload, headers={"Content-Type": "application/json"})
+    print(r.content)
+    print(r.status_code)
+    r.close()
+    # podria retornarse el status HTTP para indicar a un led que todo esta  bien
+
+def modo_nariz():
+    pin_MQ7 = 36
+    pin_MQ9 = 39 
+    pin_MQ131 = 34
+    pin_MQ4 = 35
+
+    s1 = leer_MQ2(pin_MQ7)
+    s2 = leer_MQ2(pin_MQ4)
+    s3 = leer_MQ2(pin_MQ7)
+    s4 = leer_MQ2(pin_MQ131)
+    medicion = [s1,s2,s3,s4]
+    
+    return medicion
+
+
+# def leer_temp_hum(pin):
+#     """ esta funcion es para leer los datos asociados
+#     al sensor DHT11, sin embargo, la libreria funciona para otros sensores
+#     como el DHT22.
+#     La funcion retorna valores de temperatura y humedad
+#     """
+#     d = dht.DHT22(Pin(pin, Pin.IN, Pin.PULL_UP))
+#     d.measure()
+#     return d.temperature(), d.humidity()
 
 
 def enviar_API(url, fecha, valor, sensor):
@@ -233,8 +272,9 @@ def sub_cb(topic, msg):
     Control KIT ambiental
     """
     p9 = Pin(9, Pin.OUT) #pin para LED indicador
-    
-    if msg == b"1 medicion":
+    dato = ujson.loads(msg)
+
+    if dato["control"] == "1 medicion":
         sensado()
         """encender led para indicar que la comunicacion ha sido correcta"""        
         p9.on()  
@@ -242,7 +282,7 @@ def sub_cb(topic, msg):
         p9.off()
         time.sleep(500e-3)
 
-    if msg == b"30 segundos":
+    if dato["control"] == "30 segundos":
         timming = 0
         t1 = time.time()
         while timming<=30:
@@ -254,7 +294,7 @@ def sub_cb(topic, msg):
             t2 = time.time()
             timming = t2-t1
 
-    if msg == b"1 minuto":
+    if dato["control"] == "1 minuto":
         timming = 0
         t1 = time.time()
         while timming<=60:
@@ -266,7 +306,7 @@ def sub_cb(topic, msg):
             t2 = time.time()
             timming = t2-t1
 
-    if msg == b"5 minutos":
+    if dato["control"] == "5 minutos":
         timming = 0
         t1 = time.time()
         while timming<=60:
@@ -277,6 +317,16 @@ def sub_cb(topic, msg):
             time.sleep(100e-3)
             t2 = time.time()
             timming = t2-t1
+
+    if dato["control"] == "modo-nariz":
+        url = "http://34.74.6.16/app_praes/modo-nariz/"
+        t1 = time.time()
+        timming = 0
+        while timming<=10:
+            medicion = modo_nariz()
+            asociacion = dato["asociacion"]
+            enviar_API2(url, medicion, asociacion)
+            timming = time.time()-t1
 
                 
 # Default MQTT server to connect to
