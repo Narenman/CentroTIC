@@ -91,27 +91,27 @@ function initMap() {
   }); 
 
 
-  flightpositions = [
-  {lat:7.1417204,lng:-73.1197928},
-  {lat:7.1411233,lng:-73.1197257},
-  {lat:7.1405682,lng:-73.118541},
-  {lat:7.1405652,lng:-73.113543}
-  ];
+  // flightpositions = [
+  // {lat:7.1417204,lng:-73.1197928},
+  // {lat:7.1411233,lng:-73.1197257},
+  // {lat:7.1405682,lng:-73.118541},
+  // {lat:7.1405652,lng:-73.113543}
+  // ];
+flightpositions = [{lat:7.139154666,lng:-73.1211928333}]
+//flightpositions.push({lat:geo.lat,lng:geo.lng})
+  // //console.log("attitude", attitude.X)
 
-  //flightpositions.push({lat:geo.lat,lng:geo.lng})
-  //console.log("attitude", attitude.X)
-
-  poly = new google.maps.Polyline({
+/*  poly = new google.maps.Polyline({
     path: flightpositions,
     geodesic: true,
     strokeColor: '#00b4ff',
     strokeOpacity: 1.0,
     strokeWeight: 1
-  });
+  });*/
 
 
 
-  poly.setMap(map);
+  //poly.setMap(map);
   
   beachMarker = new google.maps.Marker({
     position: flightpositions[flightpositions.length-1],
@@ -136,15 +136,28 @@ m = (1 / ((2 * pi / 360) * earth)) / 1000;
 setInterval(function addLatLng() {
   acu = acu +1;
   
-  var llat = geo.lat + acu*m;
-  var llng = geo.lng + acu*m/Math.cos(geo.lng*(Math.PI/180))
+  var llat = geo.lat;// + acu*m;
+  var llng = geo.lng;// + acu*m/Math.cos(geo.lng*(Math.PI/180))
   var latlng = new google.maps.LatLng(llat,llng);
   beachMarker.setPosition(latlng);
   map.setCenter(latlng);
-  //var path = poly.getPa h();
-  console.log(llat)
-  // //// Because path is an MVCArray, we can simply append a new coordinate
-  // ////and it will automatically appear.
+  flightpositions.push({lat:llat,lng:llng})
+  //path = poly.getPath();
+
+  poly = new google.maps.Polyline({
+    path: flightpositions,
+    geodesic: true,
+    strokeColor: '#00b4ff',
+    strokeOpacity: 1.0,
+    strokeWeight: 1
+  });
+
+  poly.setMap(map);
+
+  // var path = poly.getPath();
+  // console.log(llat)
+  //// Because path is an MVCArray, we can simply append a new coordinate
+  ////and it will automatically appear.
   //path.push(latLng);
 
   

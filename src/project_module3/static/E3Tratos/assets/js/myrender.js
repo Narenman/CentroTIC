@@ -96,9 +96,9 @@ function render() {
 	camera.position.y = -250;
 	camera.position.z = 80;
 
-	//mesh.rotation.x = inclinacionX;
-	//mesh.rotation.y = inclinacionY;
-	//mesh.rotation.z = inclinacionZ;
+	// mesh.rotation.x = inclinacionX;
+	// mesh.rotation.y = inclinacionY;
+	// mesh.rotation.z = inclinacionZ;
 
 	mesh.rotation.x = (170+attitude.X)/-57.295779;
 	mesh.rotation.y = (0+attitude.Y)/-57.295779;
@@ -109,8 +109,8 @@ function render() {
 
 /*	mesh.rotation.x = (180)/-57.295779;
 	mesh.rotation.y = (0)/-57.295779;
-	mesh.rotation.z = (20)/57.295779;
-*/
+	mesh.rotation.z = (20)/57.295779;*/
+
 	//actualizarInclinacion();
 	//sconsole.log(attitude.X,attitude.Y,attitude.z);
 

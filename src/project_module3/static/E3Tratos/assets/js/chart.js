@@ -117,18 +117,24 @@ var ctx = document.getElementById("myChart").getContext('2d');
             }
         }
     });
-
+console.log("carga")
+//console.log("mete",outputvar(), mydatetime())
 var jj = 0;
+
 function updaterchart() {
-    //console.log(meteorology.temperatura, mydatetime())
+    //console.log(meteorology.co2[0], mydatetime())
 
     chart.data.labels.push(jj++)
-    chart.data.datasets[1-1].data.push(meteorology.temperatura)
-    chart.data.datasets[2-1].data.push(meteorology.presion)
-    chart.data.datasets[3-1].data.push(meteorology.humedad)
-    chart.data.datasets[4-1].data.push(meteorology.co2)
-    chart.data.datasets[5-1].data.push(meteorology.radiacion_uv)
-    chart.data.datasets[6-1].data.push(meteorology.PM25)
+    chart.data.datasets[1-1].data.push(meteorology.temperatura[0])
+    chart.data.datasets[2-1].data.push(meteorology.presion[0])
+    chart.data.datasets[3-1].data.push(meteorology.metano[0])
+    chart.data.datasets[4-1].data.push(meteorology.co2[0])
+    chart.data.datasets[5-1].data.push(meteorology.PM25[0])
+    chart.data.datasets[6-1].data.push(meteorology.var_6[0])
+    chart.data.datasets[7-1].data.push(meteorology.var_7[0])
+    chart.data.datasets[8-1].data.push(meteorology.var_8[0])
+
+
     if (jj>10) {
         chart.data.labels.shift()
         chart.data.datasets[1-1].data.shift()
@@ -137,6 +143,8 @@ function updaterchart() {
         chart.data.datasets[4-1].data.shift()
         chart.data.datasets[5-1].data.shift()
         chart.data.datasets[6-1].data.shift()
+        chart.data.datasets[7-1].data.shift()
+        chart.data.datasets[8-1].data.shift()
     }
     chart.update();
     
@@ -152,8 +160,7 @@ function updaterchart() {
 
 
 
-    setTimeout(updaterchart, 1000);
+    //setTimeout(updaterchart, 1000);
 
 }
 
-updaterchart()

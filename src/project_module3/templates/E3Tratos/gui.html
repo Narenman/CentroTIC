@@ -47,23 +47,23 @@
 							<table>
 								<tr class="t-name">
 									<th></th>	
-									<th><p>1. Temperatura</p></th>
-									<th> <p>2. Presión</p></th>
-									<th>3. Metano</th>
-									<th>4. Co2</th>
+									<th id="n_v1">1. Temperatura</th>
+									<th id="n_v2">2. Presión</th>
+									<th id="n_v3">3. Metano</th>
+									<th id="n_v4">4. Co2</th>
 								</tr>
 								<tr class="t-val">
 									<th></th>
 									<th id="v_temp">000.00</th>
 									<th id="v_pres">000.00</th>
-									<th id="v_hum">000.00</th>
+									<th id="v_met">000.00</th>
 									<th id="v_co2">000.00</th>
 								</tr>
 								<tr>
 									<td class="bor">Máx</td>
-									<td id="v_tempma">00	0.00</td>			
+									<td id="v_tempma">000.00</td>			
 									<td id="v_prema">000.00</td>			
-									<td id="v_humma">000.00</td>
+									<td id="v_metma">000.00</td>
 									<td id="v_co2ma">000.00</td>												
 								</tr>
 
@@ -71,7 +71,7 @@
 									<td class="bor">Mín</td>
 									<td id="v_tempmi">200.00</td>	
 									<td id="v_premi">000.00</td>	
-									<td id="v_hummi">000.00</td>	
+									<td id="v_metmi">000.00</td>	
 									<td id="v_co2mi">000.00</td>								
 								</tr>
 
@@ -80,7 +80,7 @@
 									<td class="bor">Media</td>
 									<td id="v_tempme">000.00</td>	
 									<td id="v_preme">000.00</td>	
-									<td id="v_humme">000.00</td>
+									<td id="v_metme">000.00</td>
 									<td id="v_co2me">000.00</td>	
 								</tr>
 
@@ -93,42 +93,42 @@
 							<table>
 								<tr class="t-name">
 									<th></th>
-									<th>5. Mat. Part. </th>
-									<th>6. ---</th>
-									<th>7. ---</th>
-									<th>8. ---</th>
+									<th id="n_v5">5. Mat. Part. </th>
+									<th id="n_v6">6. Var 6</th>
+									<th id="n_v7">7. Var 7</th>
+									<th id="n_v8">8. Var 8</th>
 								</tr>
 								<tr class="t-val">
 									<th></th>
-									<th id="v_rad">000.00</th>
 									<th id="v_pm25">000.00</th>
-									<th id="v_">000.00</th>
-									<th id="v__">000.00</th>
+									<th id="v_var6">000.00</th>
+									<th id="v_var7">000.00</th>
+									<th id="v_var8">000.00</th>
 								</tr>
 								<tr >
 									<td class="bor">Máx</td>
-									<td id="v_radma">000.00</td>		
-									<td id="v_pm25ma">000.00</td>						
-									<td>000.00</td>						
-									<td>000.00</td>												
+									<td id="v_pm25ma">000.00</td>
+									<td id="v_var6ma">000.00</td>							
+									<td id="v_var7ma">000.00</td>						
+									<td id="v_var8ma">000.00</td>												
 								</tr >
 
 								<tr >
 									<td class="bor">Mín</td>
-									<td id="v_radmi">000.00</td>			
-									<td id="v_pm25mi">000.00</td>						
-									<td>000.00</td>					
-									<td>000.00</td>	
+									<td id="v_pm25mi">000.00</td>
+									<td id="v_var6mi">000.00</td>						
+									<td id="v_var7mi">000.00</td>					
+									<td id="v_var8mi">000.00</td>	
 								</tr>
 
 
 
 								<tr>
 									<td class="bor">Media</td>
-									<td id="v_radme">000.00</td>	
-									<td id="v_pm25me">000.00</td>			
-									<td>000.00</td>							
-									<td>000.00</td>								
+									<td id="v_pm25me">000.00</td>
+									<td id="v_var6me">000.00</td>	
+									<td id="v_var7me">000.00</td>							
+									<td id="v_var8me">000.00</td>								
 								</tr>
 
 							</table>
@@ -146,10 +146,10 @@
 								<td id="v_tempINS">000.00</td>
 								
 							</tr>
-							<tr>
+							<!--<tr>
 								<th>[%] Humed. Interna</th>
 								<td id="v_humINS">000.00</td>
-							</tr>
+							</tr>-->
 
 							<tr>
 								<th>[DD] Longitud</th>
@@ -227,11 +227,25 @@
 
 				<div class="videostrm box">
 					<h5>transmisión de imagenes</h5>
-					<div class="videoframe"></div>
+					<div class="videoframe"><label style="color: #717171; font-size: 12px; margin: 0px 33% 10px 30%; width: 100%">Módulo en desarrollo</label></div>
 					
 				</div>
 
-				<div class="box"></div>
+				<div class="box">
+					<table class="table-4 table-3">
+						<tr class="t4">
+							<th>[mA] Corriente</th>
+							<td id='v_corriente'>00.00.00</td>
+							<th>[ V] Voltaje</th>
+							<td id='v_voltaje'>00.00.00</td>
+						</tr>
+						<tr>
+							<th>[ %] Carga</th>
+							<td id='v_carga'>00.00.00</td>
+						</tr>
+					</table>
+				</div>
+
 				<div class="box">
 					<table class="table-4 table-3">
 						<tr class="t4">
@@ -241,7 +255,13 @@
 					</table>
 				</div>
 				
-				<div class="box"></div>
+				<div class="box">
+
+					<div class='download'>
+						<p>Descargar:</p>
+						<a href="http://34.74.6.16/E3Tratos/datos-json-all" target="_blank">JSON</a>
+					</div>
+				</div>
 
 			</div>
 
@@ -261,16 +281,21 @@
 <script src="{% static 'E3Tratos/assets/js/jslib/OBJLoader.js' %}"></script>
 <script src="{% static 'E3Tratos/assets/js/switch_gui.js' %}"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeAmVudOtIX9_du7kSu3kLY6z07IgeqpI&callback=initMap"> </script>
-<script src="{% static 'E3Tratos/assets/js/apimaps.js' %}"></script>
+
+
+<script type="application/javascript" src="{% static 'E3Tratos/assets/js/chartjs.js' %}"></script>
 <script src="{% static 'E3Tratos/assets/js/myget.js' %}"></script>
+
+<script src="{% static 'E3Tratos/assets/js/apimaps.js' %}"></script>
+
 
 <script src="{% static 'E3Tratos/assets/js/myrender.js' %}"></script>
 
 
-
-<script type="application/javascript" src="{% static 'E3Tratos/assets/js/chartjs.js' %}"></script>
-
 <script src="{% static 'E3Tratos/assets/js/chart.js' %}"></script>
+
+
+
 </html>
 
 
