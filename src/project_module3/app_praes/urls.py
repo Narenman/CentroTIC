@@ -11,7 +11,6 @@ from .views import index, medicion_actual, monitoreo_lecturas, control_ESP32, ho
         consulta_humedad, consulta_presion, consulta_luzuv, consulta_co, consulta_co2, consulta_ch4,\
             consulta_polvo, consulta_so2, consulta_no2, consulta_o3, consulta_tvoc, consulta_lpg
 
-from rest_framework.authtoken import views
 
 app_name = "app_praes"
 schema_view = get_swagger_view(title='Estructura API')

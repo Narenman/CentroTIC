@@ -48,15 +48,16 @@ class KitNarizAPI(APIView):
     """
     authentication_classes = ()
     permission_classes = ()
-    def get(self, request, format=None):
-        snippets = KitNariz.objects.last()
-        serializer = KitNarizSerializer(snippets, many=False)
-        datos = serializer.data
-        #retorna los datos por sensores para poder graficarlos
-        lista_sensores = ["S1","S2","S3","S4",]
-        datos = pd.DataFrame(data=datos["medicion"], columns=lista_sensores)
-        respuesta = {"S1":datos["S1"], "S2":datos["S2"], "S3":datos["S3"], "S4":datos["S4"],}
-        return Response(respuesta)
+    # def get(self, request, format=None):
+    #     """ me falta arreglar esto"""
+    #     snippets = KitNariz.objects.last()
+    #     serializer = KitNarizSerializer(snippets, many=False)
+    #     datos = serializer.data
+    #     #retorna los datos por sensores para poder graficarlos
+    #     lista_sensores = ["S1","S2","S3","S4",]
+    #     datos = pd.DataFrame(data=datos["medicion"], columns=lista_sensores)
+    #     respuesta = {"S1":datos["S1"], "S2":datos["S2"], "S3":datos["S3"], "S4":datos["S4"],}
+    #     return Response(respuesta)
 
     def post(self, request, format=None):
         serializer = KitNarizSerializer(data=request.data)
