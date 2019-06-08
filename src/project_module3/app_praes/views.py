@@ -266,3 +266,22 @@ def consulta_lpg(request):
     lpg  = lpg.values("fecha", "valor")
     lpg  = list(map(lambda datos: [datos["fecha"], datos["valor"]], lpg ))
     return JsonResponse({"c3h8": lpg})
+
+
+def modo_nariz(request):
+    """Esta vista se encarga pasar el dato recolectado por la nariz electronica v1 y evaluarlo con 
+    el modelo entrenado para la nariz """
+
+    #envio de informacion a la nariz para que inicie el escaneo de la muestra
+    topico = "UIS/LP/213"
+    IP_broker = "34.74.6.16"
+    usuario_broker = "pi"
+    password_broker = "raspberry"
+    accion = {"control": "modo-nariz"}
+    publish.single(topico, json.dumps(accion), port=1883, hostname=IP_broker,
+    auth={"username": usuario_broker, "password":password_broker})
+
+    #se necesita pausar el servidor mientras llegan nuevos datos a la base de datos
+    time.sleep(6)
+    
+    return render(request,"app_praes/modo_nariz.html",{})

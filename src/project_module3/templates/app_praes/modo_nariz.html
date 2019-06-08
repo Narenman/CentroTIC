@@ -1,0 +1,11 @@
+{% extends 'app_praes/base.html' %}
+{% load static %}
+{% block body_block %}
+<div class="container">
+<h1> Grafica de los sensores en modo nariz del kit</h1>
+{{datos}}
+<canvas id="myChart"></canvas>
+</div>
+
+<script src= "{% static 'praes/js/kit_nariz.js' %}" ></script>
+{% endblock  %}

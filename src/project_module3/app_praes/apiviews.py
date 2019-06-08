@@ -48,16 +48,23 @@ class KitNarizAPI(APIView):
     """
     authentication_classes = ()
     permission_classes = ()
-    # def get(self, request, format=None):
-    #     """ me falta arreglar esto"""
-    #     snippets = KitNariz.objects.last()
-    #     serializer = KitNarizSerializer(snippets, many=False)
-    #     datos = serializer.data
-    #     #retorna los datos por sensores para poder graficarlos
-    #     lista_sensores = ["S1","S2","S3","S4",]
-    #     datos = pd.DataFrame(data=datos["medicion"], columns=lista_sensores)
-    #     respuesta = {"S1":datos["S1"], "S2":datos["S2"], "S3":datos["S3"], "S4":datos["S4"],}
-    #     return Response(respuesta)
+    def get(self, request, format=None):
+        """ Para mostrar los datos y graficarlos en el navegador """
+        #consulta del ultimo dato medido para extraer su asociacion
+        snippets = KitNariz.objects.last()
+        ultima_asociacion = snippets.asociacion.pk
+        # se filta por la asociacion del ultimo dato medido  
+        snippets = KitNariz.objects.filter(asociacion=ultima_asociacion)
+        serializer = KitNarizSerializer(snippets, many=True)
+        datos = serializer.data
+        #se realiza una organizacion de los datos para poder retornar la informacion por cada sensor
+        med = []
+        for dat in datos:
+            med.append(dat["medicion"])
+        lista_sensores = ["S1","S2","S3","S4",]
+        datos = pd.DataFrame(data=med, columns=lista_sensores)
+        respuesta = {"S1":datos["S1"], "S2":datos["S2"], "S3":datos["S3"], "S4":datos["S4"],}
+        return Response(respuesta)
 
     def post(self, request, format=None):
         serializer = KitNarizSerializer(data=request.data)
