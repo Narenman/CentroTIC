@@ -16,6 +16,7 @@ class Geolocation(models.Model):
     region = models.ForeignKey(Departamento, on_delete=models.CASCADE)
 
     class Meta:
+        ordering = ['city']
         verbose_name = ("Geolocation")
         verbose_name_plural = ("Geolocations")
 
