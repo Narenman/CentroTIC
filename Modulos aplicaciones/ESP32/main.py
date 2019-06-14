@@ -8,9 +8,9 @@ def do_connect():
     wlan.active(True)
     if not wlan.isconnected():
         print('connecting to network...')
-        wlan.connect('radiogis', 'radio.1359')
+        # wlan.connect('radiogis', 'radio.1359')
         # wlan.connect('STEVEN', 'T1098739863')
-        # wlan.connect('AndroidAP', 'mzwj9860')
+        wlan.connect('AndroidAP', 'mzwj9860')
 
 
         while not wlan.isconnected():

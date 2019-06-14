@@ -3,7 +3,9 @@
 {% block body_block %}
 <div class="container">
 <h1> Resultado de la clasificación de maderas </h1>
-{{datos}}
+{% for dato in resultado_clasificacion %}
+<p> {{dato}} </p>
+{% endfor %}
 <canvas id="myChart"></canvas>
 </div>
 

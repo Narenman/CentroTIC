@@ -5,7 +5,7 @@
 # Title: Transmision simulando un TVWS
 # Author: Mario Castaneda
 # Description: Prueba piloto del protocolo PAWS
-# Generated: Sat Jun  8 19:29:57 2019
+# Generated: Tue Jun 11 17:00:05 2019
 ##################################################
 
 from gnuradio import blocks
@@ -33,7 +33,7 @@ class TVWS(gr.top_block):
         # Blocks
         ##################################################
         self.digital_psk_mod_0 = digital.psk.psk_mod(
-          constellation_points=8,
+          constellation_points=4,
           mod_code="gray",
           differential=True,
           samples_per_symbol=2,

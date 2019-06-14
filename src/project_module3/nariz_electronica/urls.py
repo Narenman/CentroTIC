@@ -13,4 +13,8 @@ urlpatterns = [
     path("toma_datos", views.toma_datos, name="toma-datos"),
     path("evaluacion_clasificadores", views.evaluacion_clasificadores, name="evaluacion-clasificadores"),
     path("clasificacion_maderas", views.clasificacion_maderas, name="clasificacion-maderas"),
+    path("clasificacion_rocas", views.clasificacion_rocas, name="clasificacion-rocas"),
+    path("clasificacion_triatominos", views.clasificacion_triatominos, name="clasificacion-triatominos"),
+
+
 ]

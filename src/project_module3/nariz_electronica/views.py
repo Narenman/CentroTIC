@@ -10,6 +10,8 @@ import json
 import csv
 from django.contrib.auth.decorators import login_required
 import pandas as pd
+import os
+
 
 # Create your views here.
 def index(request):
@@ -120,7 +122,7 @@ def clasificacion_maderas(request):
     auth={"username": usuario_broker, "password":password_broker})
 
     #se necesita pausar el servidor mientras llegan nuevos datos a la base de datos
-    time.sleep(6)
+    time.sleep(1)
     #despues de enviar los datos se realiza la consulta
     try:
         lecturas = DatosEvaluar.objects.last()
@@ -128,8 +130,113 @@ def clasificacion_maderas(request):
         lista_sensores = ["S1","S2","S3","S4","S5","S6","S7","S8","S9","S10","S11","S12","S13","S14","S15","S16"]
         datos = pd.DataFrame(data=lecturas, columns=lista_sensores)
         """ Aqui se carga el codigo de la clasificacion """
-        
-    except:
-        pass
+        from sklearn.externals import joblib
+        # se determina la ruta de almacenamiento
+        BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        BASE_DIR = os.path.join(BASE_DIR,"nariz_electronica/modelos_entrenados")
+        # se lee el modelo entrenado 
+        clasificador = joblib.load(BASE_DIR+'/svm1_corr.pkl')
+        # se evalua el modelo con los datos recolectados por la nariz,
+        # en este caso solo son 10 porque el modelo que tengo solo tiene 10 sensores pero deben ser 16
+        resultado = clasificador.predict(datos[["S1","S2","S3","S4", "S5", "S6","S7","S8","S9","S10"]])
 
-    return render(request,"nariz_electronica/clasificacion_maderas.html",{})
+        # en esta parte se colocan las clases de clasificacion
+        clases = ["Illegal","Testing"]
+        # por cada muestra de los datos se evalua la clase en la que esta
+        respuesta_cliente = []
+        for res in resultado:
+            respuesta_cliente.append(clases[res])
+        respuesta = {"resultado_clasificacion": respuesta_cliente}
+
+    except:
+        respuesta = {}
+    return render(request,"nariz_electronica/clasificacion_maderas.html",respuesta)
+
+
+def clasificacion_rocas(request):
+    """Esta vista se encarga pasar el dato recolectado por la nariz electronica v1 y evaluarlo con 
+    el modelo entrenado para la nariz """
+
+    #envio de informacion a la nariz para que inicie el escaneo de la muestra
+    topico = "UIS/NARIZ/PRINCIPAL"
+    IP_broker = "34.74.6.16"
+    usuario_broker = "pi"
+    password_broker = "raspberry"
+    accion = {"accion": "clasificacion-datos"}
+    publish.single(topico, json.dumps(accion), port=1883, hostname=IP_broker,
+    auth={"username": usuario_broker, "password":password_broker})
+
+    #se necesita pausar el servidor mientras llegan nuevos datos a la base de datos
+    time.sleep(1)
+    #despues de enviar los datos se realiza la consulta
+    try:
+        lecturas = DatosEvaluar.objects.last()
+        lecturas = lecturas.medicion
+        lista_sensores = ["S1","S2","S3","S4","S5","S6","S7","S8","S9","S10","S11","S12","S13","S14","S15","S16"]
+        datos = pd.DataFrame(data=lecturas, columns=lista_sensores)
+        """ Aqui se carga el codigo de la clasificacion """
+        from sklearn.externals import joblib
+        # se determina la ruta de almacenamiento
+        BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        BASE_DIR = os.path.join(BASE_DIR,"nariz_electronica/modelos_entrenados")
+        # se lee el modelo entrenado 
+        clasificador = joblib.load(BASE_DIR+'/svm1_corr.pkl')
+        # se evalua el modelo con los datos recolectados por la nariz,
+        # en este caso solo son 10 porque el modelo que tengo solo tiene 10 sensores pero deben ser 16
+        resultado = clasificador.predict(datos[["S1","S2","S3","S4", "S5", "S6","S7","S8","S9","S10"]])
+
+        # en esta parte se colocan las clases de clasificacion
+        clases = ["Illegal","Testing"]
+        # por cada muestra de los datos se evalua la clase en la que esta
+        respuesta_cliente = []
+        for res in resultado:
+            respuesta_cliente.append(clases[res])
+        respuesta = {"resultado_clasificacion": respuesta_cliente}
+
+    except:
+        respuesta = {}
+    return render(request,"nariz_electronica/clasificacion_maderas.html",respuesta)
+
+def clasificacion_triatominos(request):
+    """Esta vista se encarga pasar el dato recolectado por la nariz electronica v1 y evaluarlo con 
+    el modelo entrenado para la nariz """
+
+    #envio de informacion a la nariz para que inicie el escaneo de la muestra
+    topico = "UIS/NARIZ/PRINCIPAL"
+    IP_broker = "34.74.6.16"
+    usuario_broker = "pi"
+    password_broker = "raspberry"
+    accion = {"accion": "clasificacion-datos"}
+    publish.single(topico, json.dumps(accion), port=1883, hostname=IP_broker,
+    auth={"username": usuario_broker, "password":password_broker})
+
+    #se necesita pausar el servidor mientras llegan nuevos datos a la base de datos
+    time.sleep(1)
+    #despues de enviar los datos se realiza la consulta
+    try:
+        lecturas = DatosEvaluar.objects.last()
+        lecturas = lecturas.medicion
+        lista_sensores = ["S1","S2","S3","S4","S5","S6","S7","S8","S9","S10","S11","S12","S13","S14","S15","S16"]
+        datos = pd.DataFrame(data=lecturas, columns=lista_sensores)
+        """ Aqui se carga el codigo de la clasificacion """
+        from sklearn.externals import joblib
+        # se determina la ruta de almacenamiento
+        BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        BASE_DIR = os.path.join(BASE_DIR,"nariz_electronica/modelos_entrenados")
+        # se lee el modelo entrenado 
+        clasificador = joblib.load(BASE_DIR+'/svm1_corr.pkl')
+        # se evalua el modelo con los datos recolectados por la nariz,
+        # en este caso solo son 10 porque el modelo que tengo solo tiene 10 sensores pero deben ser 16
+        resultado = clasificador.predict(datos[["S1","S2","S3","S4", "S5", "S6","S7","S8","S9","S10"]])
+
+        # en esta parte se colocan las clases de clasificacion
+        clases = ["Illegal","Testing"]
+        # por cada muestra de los datos se evalua la clase en la que esta
+        respuesta_cliente = []
+        for res in resultado:
+            respuesta_cliente.append(clases[res])
+        respuesta = {"resultado_clasificacion": respuesta_cliente}
+
+    except:
+        respuesta = {}
+    return render(request,"nariz_electronica/clasificacion_maderas.html",respuesta)
