@@ -71,6 +71,10 @@ class RulsetInfo(models.Model):
     authority = models.CharField(max_length=50)
     rulsetId = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.rulsetId
+    
+
 
 class EventTime(models.Model):
     """ Indica el periodo de tiempo sobre el cual el espectro
@@ -78,6 +82,10 @@ class EventTime(models.Model):
     """
     start_Time = models.DateTimeField(auto_now=False, auto_now_add=False)
     stop_Time = models.DateTimeField(auto_now=False, auto_now_add=False)
+
+    def __str__(self):
+        return str(self.start_Time)+"  -  "+str(self.stop_Time)
+    
 
 class Frequency(models.Model):
     """ Relaciona los canales del PTTV con la frecuencia inicial en MHz """

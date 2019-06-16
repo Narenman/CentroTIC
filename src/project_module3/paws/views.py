@@ -4,7 +4,7 @@ from .forms import  GeolocationForm, DeviceValidityForm, \
     FrequencyRangeForm, DeviceDescriptorForm, DeviceOwnerForm, SpectrumForm
 
 from .models import DeviceDescriptor, Geolocation, SpectrumSpec, DeviceValidity, \
-    Spectrum, Frequency
+    Spectrum, Frequency, RulsetInfo
 from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
@@ -81,6 +81,24 @@ def register(request):
 
     return render(request, "paws/register.html", respuesta)
 
+#Operaciones del protocolo entre el maestro y el esclavo
+@csrf_exempt
+def init_req(request):
+    """ Es la funcion que da inicio al protocolo PAWS """
+    master_data = request.POST    
+    device = DeviceDescriptor.objects.filter(serial_Number=master_data["serial_Number"]).filter(model_Id=master_data["model_Id"])
+    if len(device) >= 1:
+        spectrumspec = SpectrumSpec.objects.filter(geolocation=master_data["dane_code"])
+        ruleset_id = spectrumspec.values("rulset_Info")
+        ruleset_id = ruleset_id[0]
+        ruleset_id = ruleset_id["rulset_Info"]
+        print(ruleset_id)
+        ruleset_info = RulsetInfo.objects.filter(pk=ruleset_id)
+        ruleset_info = list(ruleset_info.values("authority", "rulsetId"))
+        INIT_RESP = {"ruleset_info":ruleset_info}
+    return JsonResponse(INIT_RESP)
+
+
 @csrf_exempt
 def avail_spectrum(request):
     """Esta funcion se realiza con el fin de retornar AVAIL_SPECTRUM_RESP
@@ -156,3 +174,4 @@ def delete_channel_paws(request):
     if len(spectrum)==1:
         spectrum.delete()
     return JsonResponse({"delete": "delete ok"})
+

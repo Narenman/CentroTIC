@@ -11,4 +11,5 @@ urlpatterns = [
     path("canales-regiones", views.canales_regiones, name="canales-regiones"),
     path("spectrum-use-resp", views.spectrum_use_resp, name="spectrum-use-resp"), # para el maestro
     path("delete-channel-paws",views.delete_channel_paws, name="delete-channel-paws"), #para el maestro
+    path("init-req", views.init_req, name="init-req"),# para el maestro
 ]
