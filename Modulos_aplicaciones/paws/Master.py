@@ -3,6 +3,29 @@ import paho.mqtt.client as mqttClient
 import paho.mqtt.publish as publish
 import json
 
+def init_req(serial_Number, model_Id, manufacturer_Id,dane_code,):
+    """ este metodo es para iniciar la comunicacion donde la base de datos
+    retorna el init resp
+    """
+    URL = "http://34.74.6.16/paws/init-req"
+    INIT_REQ = {"serial_Number": serial_Number,
+                            "model_Id": model_Id,
+                            "manufacturer_Id": manufacturer_Id,
+                            "dane_code": dane_code}
+
+    r = requests.post(URL, data=INIT_REQ)
+    if r.status_code==200:
+        print("HTTP status ok. {}".format(r.status_code))
+        INIT_RESP = r.text
+        INIT_RESP = json.loads(INIT_RESP)
+        INIT_RESP = INIT_RESP["ruleset_info"]
+        INIT_RESP =INIT_RESP[0]["rulsetId"]
+        print(INIT_RESP)
+        r.close()
+        return INIT_RESP
+    else:
+        return None
+
 def no_use_notify(serial_Number, ruleset_Ids, model_Id, manufacturer_Id,dane_code,chosen_channel):
     """ Este metodo es para eliminar los canales cuando el dispositivo en blanco deja de transmitir
     """
@@ -221,6 +244,15 @@ def suscriptor_MQTT_DELETE_NOTIFY():
     client.loop_forever()
 
 if __name__ == "__main__":
+    # informacion enviada para iniciar la comunicacion, deberia ser la info del 
+    # en este caso el maestro tiene un esclavo.
+    serial_Number = "e310-f5ab-ao0x"
+    model_Id = "USRP E310"
+    manufacturer_Id = "Ettus Research"
+    dane_code = 68001
+
+    # funciones principales del protoclo
+    init_req(serial_Number, model_Id, manufacturer_Id, dane_code)
     suscriptor_MQTT_SPEC_RESP()
     suscriptor_MQTT_USE_NOTIFY()
     suscriptor_MQTT_DELETE_NOTIFY()
