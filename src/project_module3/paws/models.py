@@ -101,6 +101,10 @@ class Spectrum(models.Model):
     channels = models.ForeignKey(Frequency, on_delete=models.CASCADE)
     geolocation = models.ForeignKey(Geolocation, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.operation +"  "+ str(self.geolocation)
+    
+
 class SpectrumSchedule(models.Model):
     """Indica el periodo de tiempo sobre el cual ese espectro esta disponible
     """
