@@ -29,4 +29,5 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('nariz_electronicaV2/', include('nariz_electronica2.urls', namespace="nariz_electronicaV2")),
     path('piscicultura/', include('piscicultura.urls', namespace="piscicultura")),
+    path('bloqueadores/', include('bloqueadores.urls', namespace="bloqueadores")),
 ]

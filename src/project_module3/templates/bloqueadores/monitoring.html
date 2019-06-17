@@ -1,0 +1,82 @@
+{% extends "bloqueadores/base.html" %}
+{% load staticfiles %}
+{% block body_block %}
+
+</script>
+
+<div class="container">
+  <h2>Métodos de sensado</h2>
+  <h3>Detector de energía</h3>
+  <p class="text-justify">El detector de energı́a es una técnica que no requiere conocimiento acerca de la señal del
+usuario primario. El detector de energı́a mide la energı́a de la señal sobre un intervalo de
+tiempo y compara su salida con un umbral que depende del nivel de ruido. El detector
+de energı́a tiene la siguiente forma:</p>
+<div lang="latex">
+  y[n] = \left\lbrace\begin{array}{ll}
+w[n], & H_0 \\
+x[n]+w[n], & H_1
+\end{array}
+\right.
+</div>
+<p class="text-justify">donde <span lang="latex">H_0</span>es la hipótesis nula para señal no transmitida y <span lang="latex">H_1</span> es la hipótesis para señal
+transmitida.</p>
+
+<h3>Detector de picos basado en los coeficientes de la transformada Wavelet</h3>
+<p class="text-justify">Los picos del periodograma de Welch contienen información acerca de las frecuencias
+de portadora de las estaciones de radio. La transformada continua de Wavelet (CWT por
+sus siglas en inglés) es calculada para cada periodograma. La CWT es una herramienta
+matemática que necesita una base wavelet. Esta base es una pequeña ondı́cula con carac-
+terı́sticas oscilatorias donde su energı́a está concentrada en el tiempo. Una base wavelet
+permite analizar las variaciones temporales y no estacionarias de las señales mediante la
+descomposición 2D en escala-desplazamiento. Los coeficientes CWT son calculados en
+cada observación <span lang="latex">i</span> del periodograma Welch de acuerdo con la expresión:</p>
+
+<div lang="latex">
+  \textbf{C}(a,b)=\frac{1}{\sqrt{a}}\int_{-\infty}^{\infty}\hat{P}_i(f)\psi(\frac{f-b}{a})df
+</div>
+
+<p class="text-justify"> donde <span lang="latex">a</span> es la escala, <span lang="latex">b</span> es el desplazamiento y <span lang="latex">\psi</span> es la función sombrero Mexicano como base
+wavelet. La matriz <span lang="latex">\textbf{C}</span> tiene diferentes escalas y desplazamientos de la CWT. Los picos son
+calculados usando el algoritmo basado en la <a href="https://doi.org/10.1093/bioinformatics/btl355">coincidencia de patrones de la CWT</a> que
+es usado en espectroscopia de masas  ; este algoritmo encuentra los indices de los picos que
+permiten identificar las frecuencias donde se presentan las portadoras.</p>
+
+<img class="img-responsive" src={% static "picos.png" %} alt="No encontrado" width="700px">
+
+  <div class="row">
+    <div id = "sample" style = "width:700px; height:500px;"></div>
+  </div>
+  <h3>Seleccionar USRP para escanear</h3>
+
+  <form action="{% url 'bloqueadores:monitoring' %}" method="get">
+    <input type="checkbox" name="USRP1" value="USRP1"> USRP1<br>
+    <input type="checkbox" name="USRP2" value="USRP2"> USRP2<br>
+<!--
+    <input type="checkbox" name="usrp3" value="USRP3"> USRP3<br>
+-->
+    <h4>Métodos de análisis del espectro</h4>
+    <label><input type="radio" name="metodo" value="detector de picos">Detector de picos</label> 
+    <p></p>
+    <label><input type="radio" name="metodo" value="detector de energia">Detector de energía</label> 
+    <p></p> 
+    <input type="submit" name="escanear" class="btn btn-info" value="escanear" id='boton'>
+    <p></p>
+		<progress id="nodejs" max="8700" value="0"></progress>
+    <span></span>
+  </form>
+  <h4>{{ orden }}</h4>
+
+<script type="text/javascript">
+	window.onload = function() {
+		animateprogress("#nodejs",0);
+	}
+	document.querySelector ('#boton').addEventListener ('click', function() {
+		animateprogress("#nodejs",20000);
+	});
+</script>
+</div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWQsGzQ3jpJcdCHAdCVAns6E4zRV4_4Ug&callback=initMap"></script>
+<script src="{% static 'bloqueadores/js/maps.js'%}"></script>
+<script src="{% static 'bloqueadores/js/loader.js'%}"></script>
+<script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
+{% endblock  %}

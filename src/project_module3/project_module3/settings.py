@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'app_praes',
     'paws',
     'E3Tratos',
+    'bloqueadores',
     'nariz_electronica',
     'nariz_electronica2',
     'piscicultura',
