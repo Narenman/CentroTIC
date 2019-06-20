@@ -4,7 +4,7 @@ from django.contrib.postgres.fields import JSONField
 # Create your models here.
 
 class Ciudad(models.Model):
-    departamento = models.CharField(max_length=20)
+    departamento = models.CharField(max_length=50)
     nombre = models.CharField(max_length=60)
 
     class Meta:
@@ -21,9 +21,11 @@ class Dispositivos(models.Model):
         return self.modelo_id + self.ubicacion
 
 class Espectro(models.Model):
-    espectro_IQ = JSONField(encoder="")
+    espectro_iq = JSONField(encoder="")
     dispositivo = models.ForeignKey(Dispositivos, on_delete=models.CASCADE)
     frec_central = models.FloatField()
+    samp_rate = models.FloatField()
+    fft_size = models.IntegerField()
 
     def __str__(self):
         return "Dispositivo "+str(self.dispositivo)

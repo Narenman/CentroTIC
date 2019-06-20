@@ -24,7 +24,6 @@ radioeléctrico.</p>
   <div class="row">
     <div id = "sample" style = "width:700px; height:500px;"></div>
   </div>
-  {% if orden %}
   <form action="{% url 'bloqueadores:jamming' %}" method="post">
     {% csrf_token %}
   <p> Ingrese frecuencia central <span lang="latex">88 \leq f_c \leq 108 </span> MHz: <input type="number" name="freq" value="Ingrese Frecuencia" step="any"></p>
@@ -35,18 +34,11 @@ radioeléctrico.</p>
   <input type="checkbox" name="usrp3" value="USRP3"> USRP3<br>
 -->
   <input type="submit" name="bloquear" class="btn btn-danger" value="Bloquear">
-  {{ orden }}
   </form>
-  {% else %}
     <p> Para parar el bloquedo seleccione los USRP</p>
-    <p>{{ N_USRPS }}</p>
-    <form class="" action="{% url 'bloqueadores:index' %}" method="post">
-      {% csrf_token %}
-      <input type="hidden" name="N_USRPS" value= "{{ N_USRPS }}">
-      <input type="submit" name="bloquear2" class="btn btn-warning" value="Parar">
-    </form>
+    
 
-<h1>Bloqueando...</h1>
+{% comment %} <h1>Bloqueando...</h1>
     <svg id="wrap" width="300" height="300">
 
   <!-- background -->
@@ -119,8 +111,7 @@ radioeléctrico.</p>
     </path>
   </svg>
 
-</svg>
-  {% endif %}
+</svg> {% endcomment %}
 
 </div>
 

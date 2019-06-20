@@ -50,7 +50,7 @@ class MQTTSuscriptor():
                 "analisis": accion["id"]}
 
                 """ uso de la API """
-                r = requests.post("http://34.74.6.16/nariz_electronica/lecturas", data=datos, headers={"Authorization":"Token 38fdc0c1fa605c6444a7b6523866c7c4147e9f18"})
+                r = requests.post("http://34.74.6.16/nariz_electronica/lecturas", data=datos, headers={"Authorization":"Token be9c008bdb9c0ed68f87863a1fdeda569a8fe4c7"})
                 print("HTTP status {}".format(r.status_code))
                 r.close()
 

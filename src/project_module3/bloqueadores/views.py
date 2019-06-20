@@ -1,10 +1,16 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+
 import re
 import json
 import time
-from django.contrib.auth.decorators import login_required
-from .forms import UsuariosPrimariosForm
-from .models import UsuariosPrimarios
+import numpy
+import paho.mqtt.publish as publish
+
+from .forms import UsuariosPrimariosForm, DispositivosForm
+from .models import UsuariosPrimarios, Dispositivos, Ciudad, Espectro
 
 # Create your views here.
 
@@ -17,7 +23,6 @@ def index(request):
 def jamming(request):
     """Para hacer bloqueo manual del espectro"""
 
-    dict1 = dict()
     username = "pi"
     password = "raspberry"
     MQTT_broker = "34.74.6.16"
@@ -27,73 +32,116 @@ def jamming(request):
     L  = 4096 # fft size,
     N  = 10 # frames of samples
     ins = request.POST
-    N_keys = ins.keys()
-    N_USRPS = re.findall(r'USRP\w',''.join(N_keys))
-    print(ins)
-
-    try:
-        freq = float(ins['freq'])
-        SCAN_REQ = json.dumps({"Center Freq":freq*1000000, "sample_rate": 250000, "Antenna": "RX", "flag":"0", "freq_list":[]})
-        # objMQTT = MQTT_Master_assist.MQTTmanagerServer(username, password, MQTT_broker, MQTT_port, INIT_REQ, SCAN_REQ, N_USRPS, N, K, L)
-        dict1 = {'orden':[],'N_USRPS': N_USRPS}
-        if (('USRP1' in N_keys) or ('USRP2' in N_keys) or ('USRP3' in N_keys)) and (freq >= 88.0 and freq < 108):
-            # objMQTT.pub_messages_to_devices(INIT_REQ)
-            # msgs_USRPS = objMQTT.sub_init_com()
-            # time.sleep(3)
-            # objMQTT.pub_messages_to_devices(SCAN_REQ)
-            del(dict1['orden'])
-            ins = request.POST
-            print("\nbloqueando")
-        else:
-            dict1 = {'orden':'Por favor seleccione al menos un USRP y la frecuencia entre 88-108 MHz'}
-        # del(objMQTT)
-    except KeyError:
-            dict1 = {'orden': 'Ningun elemento seleccionado'}
-    except ValueError:
-            freq = 0.0
-            dict1 = {'orden': 'Por favor ingrese la frecuencia entre 88 y 108 MHz'}
-    return render(request, 'bloqueadores/jamming.html',dict1)
+   
+    return render(request, 'bloqueadores/jamming.html',{})
 
 
 @login_required
 def monitoring(request):
-    """ Para hacer monitoreo del espectro """    
-    USRPS = request.GET
-    cont = dict()
-    ##################  MQTT  ##############33
-    username = "pi"
-    password = "raspberry"
-    MQTT_broker = "34.74.6.16"
-    MQTT_port = 1883
+    """ Para hacer monitoreo del espectro """
+    ciudad_form = UsuariosPrimariosForm()
+    cont = dict() #diccionario de control
+    dispositivos = Dispositivos.objects.all()
+    dispositivos = dispositivos.values()
+       
+    #seleccion de terminales IoT para enviar instrucciones MQTT
+    if request.GET:
+        USRPS = request.GET
+        keys = USRPS.keys()
+        terminales_seleccionados = []
+        for k in keys:
+            regex = re.findall(r'^[-+]?\d', k)
+            if len(regex)>0:
+                terminales_seleccionados.append(regex[0])
 
-    # informacion para enviar al USRP
-    K  = 10 # number of average
-    L  = 4096 # fft size,
-    N  = 25 # frames of samples
-    fs = 16e6
-    f_mixer = [96e6, 112e6]
+        print(terminales_seleccionados)
+        ##################  MQTT  ##############33
+        username = "pi"
+        password = "raspberry"
+        MQTT_broker = "34.74.6.16"
+        MQTT_port = 1883
 
-    # INIT_REQ = json.dumps({"deviceDesc":["server", "django", "0x12345"], "frames": N, "K": K, "fft size": L, 'flag':"exit"}); #content type protocol
-    # SCAN_REQ = json.dumps({"Center Freq":112e6, "sample_rate": 16000000, "Antenna": "RX", "flag":"1", 'freq_list':[]})
-    N_keys = USRPS.keys()
-    print(N_keys)
-    N_USRPS = re.findall(r'USRP\w',''.join(N_keys))
-    cont.update(USRPS)
-    print(N_USRPS)
-    if ("USRP1" in N_keys or "USRP2" in N_keys or "USRP3" in N_keys) and USRPS["escanear"]=="escanear" and 'metodo' in N_keys:
-        print("joder")
+        # informacion para enviar al USRP
+        fft_size = 4096 # fft size,
+        samp_rate = 16e6
+        frecuencia_central = [96e6, 112e6]
+        ganancia = 50
+        tiempo_sensado = 1 #segundos
+        #mensaje que se enviara a los USRP
+        SCAN_REQ = json.dumps({"fft_size": fft_size, "sample_rate": samp_rate, "frec_central": frecuencia_central,
+                                "ganancia": ganancia, "tiempo_sensado": tiempo_sensado, "accion": "monitorear-espectro"})
+        #creacion de las instrucciones para enviar por MQTT a traves de los topicos
+        msg = []
+        for i in range(len(terminales_seleccionados)):
+            dispositivo = Dispositivos.objects.get(pk=int(terminales_seleccionados[i]))
+            topico = dispositivo.modelo_id + dispositivo.ubicacion + str(dispositivo.pk)
+            msg.append((topico, SCAN_REQ, 2))
+
+        #publicacion de los mensajes MQTT a los dispositivos seleccionados por los clientes
+        publish.multiple(msg, hostname=MQTT_broker, port=MQTT_port, auth={"username": username, "password": password})
+
+        # aca se debe esperar un tiempo a que los dispositivos reporten la informacion a la base de datos
+
+        # se lee el espectro y se llama la funcion para procesarlo
     
+    cont.update({"ciudad_form": ciudad_form, "dispositivos":dispositivos})
     return render(request, "bloqueadores/monitoring.html", cont)
 
 def consulta_usuarios_primarios(request):
     usuarios_primarios = UsuariosPrimariosForm()
     if request.POST:
         dato_cliente = request.POST
-        print(dato_cliente["ciudad"])
         usuarios = UsuariosPrimarios.objects.filter(ciudad_id=dato_cliente["ciudad"])
         usuarios = usuarios.values("nombre_emisora", "clase_emisora", "frecuencia")
         respuesta = {"usuarios_primarios": usuarios_primarios, "usuarios": usuarios}
-        print(usuarios)
     else:
         respuesta = {"usuarios_primarios": usuarios_primarios}
     return render(request, "bloqueadores/consulta_usuarios_primarios.html", respuesta)
+
+def registrar_dispositivos(request):
+    dispositivos = DispositivosForm()
+    # print(request.POST)
+    if request.POST:
+        dispositivos = DispositivosForm(request.POST)
+        if dispositivos.is_valid():
+            dispositivos.save()
+            return render(request,"bloqueadores/index.html",{"registrado":"Dispositivo registrado"})
+    respuesta = {"dispositivos": dispositivos}
+    return render(request, "bloqueadores/registrar_dispositivos.html", respuesta)
+
+def consulta_dispositivos(request):
+    dispositivos = Dispositivos.objects.all()
+    dispositivos = dispositivos.values("modelo_id", "ubicacion", "ciudad")
+    for lista_ciudad in dispositivos:
+        ciudad = Ciudad.objects.get(pk=lista_ciudad["ciudad"])
+        lista_ciudad.update({"ciudad":ciudad})
+    return render(request,"bloqueadores/consulta_dispositivos.html",{"dispositivos": dispositivos})
+
+@csrf_exempt
+def espectro_json(request):
+    """Esto es solo con fines de graficar los datos recolectados por dispositivo"""
+
+    #aca debo hacer la consulta de dispositivos registrados
+    try:
+        #lectura de datos de la base de datos filtrada por dispositivos
+        espectro  = Espectro.objects.filter(dispositivo=1)
+        espectro = espectro.values("espectro_iq", "frec_central", "samp_rate", "fft_size")
+        y = numpy.array([])
+        #concatenacion de los datos recolectados por las frecuencias centrales diferentes
+        for dato in espectro:
+            print(dato["frec_central"])
+            fft_size = dato["fft_size"]
+            x = dato["espectro_iq"]
+            y = numpy.append(y, x[0:fft_size])
+            samp_rate = dato["samp_rate"]
+        f = numpy.arange(0, len(y), 1)*samp_rate/fft_size+88e6 # creacion del vector de frecuencias
+        # datos enviados al javascript para que realize la grafica del espectro
+        spectrum = list(map(lambda f, Pxx : [f/1e6, Pxx], f, y))
+        respuesta = {"spectrum":spectrum}
+    except:
+        respuesta = {}
+    return JsonResponse(respuesta)
+
+
+def grafica_espectro(request):
+    return render(request, "bloqueadores/grafica_espectro.html", {})

@@ -5,7 +5,7 @@
 # Title: Recepcion de la transmision de PAWS
 # Author: Mario Castaneda
 # Description: Este flujograma realiza la recepcion de una senal generada por el esclavo
-# Generated: Mon Jun 17 10:03:40 2019
+# Generated: Thu Jun 20 16:02:44 2019
 ##################################################
 
 if __name__ == '__main__':
@@ -75,7 +75,7 @@ class RxPAWS(gr.top_block, Qt.QWidget):
         	),
         )
         self.uhd_usrp_source_0.set_samp_rate(samp_rate)
-        self.uhd_usrp_source_0.set_center_freq(560e6, 0)
+        self.uhd_usrp_source_0.set_center_freq(506e6, 0)
         self.uhd_usrp_source_0.set_gain(50, 0)
         self.uhd_usrp_source_0.set_antenna('TX/RX', 0)
         self.qtgui_sink_x_0 = qtgui.sink_c(
