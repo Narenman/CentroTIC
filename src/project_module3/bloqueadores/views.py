@@ -22,18 +22,18 @@ def index(request):
 @login_required
 def jamming(request):
     """Para hacer bloqueo manual del espectro"""
+    dispositivos = Dispositivos.objects.all()
+    dispositivos = dispositivos.values()
 
     username = "pi"
     password = "raspberry"
     MQTT_broker = "34.74.6.16"
 
     MQTT_port = 1883
-    K  = 10 # number of average
-    L  = 4096 # fft size,
-    N  = 10 # frames of samples
     ins = request.POST
-   
-    return render(request, 'bloqueadores/jamming.html',{})
+
+    respuesta = {"dispositivos": dispositivos}
+    return render(request, 'bloqueadores/jamming.html',respuesta)
 
 
 @login_required
@@ -75,6 +75,7 @@ def monitoring(request):
         for i in range(len(terminales_seleccionados)):
             dispositivo = Dispositivos.objects.get(pk=int(terminales_seleccionados[i]))
             topico = dispositivo.modelo_id + dispositivo.ubicacion + str(dispositivo.pk)
+            print(topico)
             msg.append((topico, SCAN_REQ, 2))
 
         #publicacion de los mensajes MQTT a los dispositivos seleccionados por los clientes

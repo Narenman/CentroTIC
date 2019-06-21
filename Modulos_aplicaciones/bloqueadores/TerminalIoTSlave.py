@@ -48,24 +48,24 @@ def envio_API(dispositivo, frec_central, samp_rate, fft_size):
     print("fin codificacion json")
     # envio por API REST
     pyload = {
-        "espectro_IQ": x,
+        "espectro_iq": x,
         "frec_central": frec_central,
         "dispositivo": dispositivo,
         "samp_rate": samp_rate,
         "fft_size": fft_size
     }
 
-    headers={"Authorization": " Token 33565da4cc7e8394310dfa74160222e484b4fe6f"}
+    headers={"Authorization": " Token be9c008bdb9c0ed68f87863a1fdeda569a8fe4c7"}
     # preparacion de las URL para realizar la actualizacion
 
     if frec_central==96e6 and dispositivo==1:
-        URL = "http://192.168.0.105:8000/bloqueadores/espectro/1"
+        URL = "http://34.74.6.16/bloqueadores/espectro/1"
     elif frec_central==112e6 and dispositivo ==1:
-        URL = "http://192.168.0.105:8000/bloqueadores/espectro/2"
+        URL = "http://34.74.6.16/bloqueadores/espectro/2"
     elif frec_central==96e6 and dispositivo ==2:
-        URL = "http://192.168.0.105:8000/bloqueadores/espectro/3"
+        URL = "http://34.74.6.16/bloqueadores/espectro/3"
     elif frec_central==112e6 and dispositivo ==2:
-        URL = "http://192.168.0.105:8000/bloqueadores/espectro/4"
+        URL = "http://34.74.6.16/bloqueadores/espectro/4"
     
 
     r = requests.put(URL, data=pyload, headers=headers)
@@ -89,7 +89,7 @@ class MQTTSuscriptor():
     def on_connect(self, client, userdata, flags, rc):
         if rc==0:
             print("conexion exitosa con el broker")
-        client.subscribe("USRP E310UIS LP 2131")
+        client.subscribe("E310UIS/LP/2131")
 
     def on_message(self, client, userdata, message):
             accion = message.payload.decode()
@@ -106,7 +106,6 @@ class MQTTSuscriptor():
                 tiempo_sensado = accion["tiempo_sensado"] #segundos
                 frecuencia_central = [96e6, 112e6]
                 dispositivo = 1
-                print(accion)
                 #se inicia el proceso de escaneo
                 for freq in frecuencia_central:
                     monitoreo(freq,ganancia,sample_rate,tiempo_sensado, fft_size)

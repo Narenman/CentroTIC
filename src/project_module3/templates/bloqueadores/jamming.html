@@ -28,8 +28,11 @@ radioeléctrico.</p>
     {% csrf_token %}
   <p> Ingrese frecuencia central <span lang="latex">88 \leq f_c \leq 108 </span> MHz: <input type="number" name="freq" value="Ingrese Frecuencia" step="any"></p>
   <p> Seleccione dispositivos que desea utilizar:</p>
-  <input type="checkbox" name="USRP1" value="USRP1"> USRP1<br>
-  <input type="checkbox" name="USRP2" value="USRP2"> USRP2<br>
+  {% comment %} <input type="checkbox" name="USRP1" value="USRP1"> USRP1<br>
+  <input type="checkbox" name="USRP2" value="USRP2"> USRP2<br> {% endcomment %}
+   {% for disp in dispositivos %}
+      <input type="checkbox" name="{{disp.id}}" value="{{disp.modelo_id}}"> {{disp.id}} {{disp.modelo_id}} <br>
+    {% endfor %}
   <!--
   <input type="checkbox" name="usrp3" value="USRP3"> USRP3<br>
 -->

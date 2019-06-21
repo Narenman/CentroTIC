@@ -12,8 +12,8 @@ class EspectroAPI(APIView):
     """
     API para actualizar el valor del espectro
     """
-    authentication_classes = ()
-    permission_classes = ()
+    # authentication_classes = ()
+    # permission_classes = ()
 
     def get_object(self, pk):
         try:
