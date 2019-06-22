@@ -24,13 +24,37 @@ def jamming(request):
     """Para hacer bloqueo manual del espectro"""
     dispositivos = Dispositivos.objects.all()
     dispositivos = dispositivos.values()
+    #seleccion de terminales IoT para enviar instrucciones MQTT
+    if request.POST:
+        USRPS = request.POST
+        frecuencia_central = float(USRPS["freq"])
+        frecuencia_central = frecuencia_central*1e6
+        print(frecuencia_central)
+        keys = USRPS.keys()
+        terminales_seleccionados = []
+        for k in keys:
+            regex = re.findall(r'^[-+]?\d', k)
+            if len(regex)>0:
+                terminales_seleccionados.append(regex[0])
 
-    username = "pi"
-    password = "raspberry"
-    MQTT_broker = "34.74.6.16"
+        print(terminales_seleccionados)
+        username = "pi"
+        password = "raspberry"
+        MQTT_broker = "34.74.6.16"
+        MQTT_port = 1883
+        JAM_REQ = json.dumps({"frec_central": frecuencia_central, "accion": "bloquear-espectro"})
 
-    MQTT_port = 1883
-    ins = request.POST
+        #creacion de las instrucciones para enviar por MQTT a traves de los topicos
+        msg = []
+        for i in range(len(terminales_seleccionados)):
+            dispositivo = Dispositivos.objects.get(pk=int(terminales_seleccionados[i]))
+            topico = dispositivo.modelo_id + dispositivo.ubicacion + str(dispositivo.pk)
+            print(topico)
+            msg.append((topico, JAM_REQ, 2))
+
+        #publicacion de los mensajes MQTT a los dispositivos seleccionados por los clientes
+        publish.multiple(msg, hostname=MQTT_broker, port=MQTT_port, auth={"username": username, "password": password})
+
 
     respuesta = {"dispositivos": dispositivos}
     return render(request, 'bloqueadores/jamming.html',respuesta)

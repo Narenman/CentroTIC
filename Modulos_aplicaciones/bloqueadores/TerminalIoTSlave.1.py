@@ -1,6 +1,4 @@
 from Monitoring import Monitoring
-from Jamming import Jamming
-
 import requests
 import time
 import numpy
@@ -20,16 +18,6 @@ class ComplexEncoder(json.JSONEncoder):
 		elif isinstance(obj, bytes):  # pragma: py3
 			return obj.decode()
 		return json.JSONEncoder.default(self, obj)
-
-global jamming
-def bloqueo(frec_central):
-    """Entradas:
-    * frec_central para indicar la frecuencia del VCO 78e6 <frec_central <5.92e9 """
-    #objeto para realizar el sensado
-    jamming = Jamming()
-    jamming.start()
-    jamming.set_freq(frec_central)
-
 
 def monitoreo(frec_central, ganancia, samp_rate, tiempo, fft_size):
     """Entradas:
@@ -106,8 +94,8 @@ class MQTTSuscriptor():
     def on_message(self, client, userdata, message):
             accion = message.payload.decode()
             accion = json.loads(accion)
-            # print(type(accion))
-            # print(accion)
+            print(type(accion))
+            print(accion)
 
             if accion["accion"] == "monitorear-espectro":
                 """ Con esta instruccion el E310 sensa el espectro y envia los datos """
@@ -125,7 +113,7 @@ class MQTTSuscriptor():
                 self.client.disconnect()
 
             if accion["accion"] == "bloquear-espectro":
-                print(accion["frec_central"])
+                pass
 
             # if accion["accion"] == "clasificacion-datos":
             #     pass
