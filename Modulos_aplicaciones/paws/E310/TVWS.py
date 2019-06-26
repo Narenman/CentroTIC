@@ -5,7 +5,7 @@
 # Title: Transmision simulando un TVWS
 # Author: Mario Castaneda
 # Description: Prueba piloto del protocolo PAWS
-# Generated: Mon Jun 17 09:57:38 2019
+# Generated: Tue Jun 25 18:22:47 2019
 ##################################################
 
 from gnuradio import blocks
@@ -43,7 +43,7 @@ class TVWS(gr.top_block):
         )
         self.uhd_usrp_sink_0.set_samp_rate(samp_rate)
         self.uhd_usrp_sink_0.set_center_freq(freq, 0)
-        self.uhd_usrp_sink_0.set_gain(50, 0)
+        self.uhd_usrp_sink_0.set_gain(70, 0)
         self.uhd_usrp_sink_0.set_antenna('TX/RX', 0)
         self.digital_psk_mod_0 = digital.psk.psk_mod(
           constellation_points=2,
