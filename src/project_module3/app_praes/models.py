@@ -46,7 +46,7 @@ class Sensores(models.Model):
         return self.nombre_sensor
 
 class Temperatura(models.Model):
-    fecha = models.DateTimeField(auto_now=False, auto_now_add=False)
+    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
     valor = models.FloatField()
     sensor = models.ForeignKey(Sensores, on_delete=models.CASCADE)
     def __str__(self):
@@ -54,96 +54,66 @@ class Temperatura(models.Model):
 
 
 class Humedad(models.Model):
-    fecha = models.DateTimeField(auto_now=False, auto_now_add=False)
+    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
     valor = models.FloatField()
     sensor = models.ForeignKey(Sensores, on_delete=models.CASCADE)
     def __str__(self):
         return "humedad " + str(self.valor)+ " %"
 
 class PresionAtmosferica(models.Model):
-    fecha = models.DateTimeField(auto_now=False, auto_now_add=False)
+    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
     valor = models.FloatField()
     sensor = models.ForeignKey(Sensores, on_delete=models.CASCADE)
     def __str__(self):
         return "presion " + str(self.valor)+ " mbar"
 
-class MaterialParticulado(models.Model):
-    fecha = models.DateTimeField(auto_now=False, auto_now_add=False)
-    valor = models.FloatField()
-    sensor = models.ForeignKey(Sensores, on_delete=models.CASCADE)
-
-class NO2(models.Model):
-    fecha = models.DateTimeField(auto_now=False, auto_now_add=False)
-    valor = models.FloatField()
-    sensor = models.ForeignKey(Sensores, on_delete=models.CASCADE)
-    def __str__(self):
-        return "NO2 {} ppm".format(self.valor)
-
-class Polvo(models.Model):
-    fecha = models.DateTimeField(auto_now=False, auto_now_add=False)
-    valor = models.FloatField()
-    sensor = models.ForeignKey(Sensores, on_delete=models.CASCADE)
-    def __str__(self):
-        return "polvo {} mg/cm^2".format(self.valor)
 
 class O3(models.Model):
-    fecha = models.DateTimeField(auto_now=False, auto_now_add=False)
+    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
     valor = models.FloatField()
     sensor = models.ForeignKey(Sensores, on_delete=models.CASCADE)
     def __str__(self):
         return "O3 {} ppm".format(self.valor)
-
-class SO2(models.Model):
-    fecha = models.DateTimeField(auto_now=False, auto_now_add=False)
-    valor = models.FloatField()
-    sensor = models.ForeignKey(Sensores, on_delete=models.CASCADE)
-    def __str__(self):
-        return "SO2 {} ppm".format(self.valor)
     
 class CO(models.Model):
-    fecha = models.DateTimeField(auto_now=False, auto_now_add=False)
+    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
     valor = models.FloatField()
     sensor = models.ForeignKey(Sensores, on_delete=models.CASCADE)
     def __str__(self):
         return "CO {} ppm".format(self.valor)
 
 class CO2(models.Model):
-    fecha = models.DateTimeField(auto_now=False, auto_now_add=False)
+    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
     valor = models.FloatField()
     sensor = models.ForeignKey(Sensores, on_delete=models.CASCADE)
     def __str__(self):
         return "CO2 {} ppm".format(self.valor)
 
 class MetanoPropanoCO(models.Model):
-    fecha = models.DateTimeField(auto_now=False, auto_now_add=False)
+    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
     valor = models.FloatField()
     sensor = models.ForeignKey(Sensores, on_delete=models.CASCADE)
 
 class LuzUV(models.Model):
-    fecha = models.DateTimeField(auto_now=False, auto_now_add=False)
+    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
     valor = models.FloatField()
     sensor = models.ForeignKey(Sensores, on_delete=models.CASCADE)
     def __str__(self):
         return "luz uv {} mW/cm^2".format(self.valor)
 
 class MaterialOrganico(models.Model):
-    fecha = models.DateTimeField(auto_now=False, auto_now_add=False)
+    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
     valor = models.FloatField()
     sensor = models.ForeignKey(Sensores, on_delete=models.CASCADE)
     def __str__(self):
         return "material organico {} ppm".format(self.valor)
 
 class CH4(models.Model):
-    fecha = models.DateTimeField(auto_now=False, auto_now_add=False)
+    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
     valor = models.FloatField()
     sensor = models.ForeignKey(Sensores, on_delete=models.CASCADE)
     def __str__(self):
         return "CH4 {} ppm".format(self.valor)
-
-class Anemometro(models.Model):
-    fecha = models.DateTimeField(auto_now=False, auto_now_add=False)
-    valor = models.FloatField()
-    sensor = models.ForeignKey(Sensores, on_delete=models.CASCADE)
 
 class Semillero(models.Model):
     responsable = models.CharField(max_length=50)

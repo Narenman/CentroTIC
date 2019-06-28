@@ -1,7 +1,7 @@
 from django.shortcuts import render
 import paho.mqtt.publish as publish
-from .models import Temperatura, Humedad, PresionAtmosferica, MaterialParticulado, NO2, \
-    Polvo, O3, SO2, CO, CO2, MetanoPropanoCO, LuzUV, MaterialOrganico, CH4, Anemometro, \
+from .models import Temperatura, Humedad, PresionAtmosferica, \
+    O3, CO, CO2, MetanoPropanoCO, LuzUV, MaterialOrganico, CH4, \
     Semillero, Integrantes, Kit, Asociacion
 from .forms import IntegrantesForm, SemilleroForm, ConsultaSemilleroForm, ConsultaIntegrantesForm
 from numpy import random
@@ -92,14 +92,8 @@ def monitoreo_lecturas_json(request):
     ch4 = CH4.objects.all()
     ch4 = ch4.values("fecha","valor")
     ch4 = list(map(lambda datos: [datos["fecha"], datos["valor"]], ch4))
-    #particulas de polvo
-    polvo = Polvo.objects.all()
-    polvo = polvo.values("fecha", "valor")
-    polvo = list(map(lambda datos: [datos["fecha"], datos["valor"]],polvo))
-    #so2 dioxido de azufre
-    so2 = SO2.objects.all()
-    so2 = so2.values("fecha", "valor")
-    so2 = list(map(lambda datos: [datos["fecha"], datos["valor"]],so2))
+    
+    
     #no2 dioxido de nitrogeno
     no2 = NO2.objects.all()
     no2 = no2.values("fecha", "valor")
@@ -117,7 +111,7 @@ def monitoreo_lecturas_json(request):
     variables = {"temperatura":temperatura,
                          "humedad": humedad, "presion": presion,
                          "tvoc": tvoc, "luzuv": luzuv, "co2": CO2_ppm,
-                         "co":co, "ch4":ch4, "polvo":polvo, "so2":so2,
+                         "co":co, "ch4":ch4, 
                          "no2":no2, "o3":o3, "c3h8":c3h8}
     return JsonResponse(variables)
 
@@ -225,19 +219,6 @@ def consulta_ch4(request):
     ch4  = list(map(lambda datos: [datos["fecha"], datos["valor"]], ch4 ))
     return JsonResponse({"ch4": ch4 })
 
-@csrf_exempt
-def consulta_polvo(request):
-    polvo = Polvo.objects.all()
-    polvo  = polvo.values("fecha", "valor")
-    polvo  = list(map(lambda datos: [datos["fecha"], datos["valor"]], polvo ))
-    return JsonResponse({"polvo": polvo })
-
-@csrf_exempt
-def consulta_so2(request):
-    so2 = SO2.objects.all()
-    so2  = so2.values("fecha", "valor")
-    so2  = list(map(lambda datos: [datos["fecha"], datos["valor"]], so2 ))
-    return JsonResponse({"so2": so2 })
 
 @csrf_exempt
 def consulta_no2(request):

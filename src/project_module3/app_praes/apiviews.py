@@ -8,12 +8,12 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
 
-from .models import Temperatura, Humedad, PresionAtmosferica, MaterialParticulado, NO2, \
-      Polvo, O3, SO2, CO, CO2, MetanoPropanoCO, LuzUV, MaterialOrganico, CH4, Anemometro, Sensores, KitNariz
+from .models import Temperatura, Humedad, PresionAtmosferica, \
+     O3, CO, CO2, MetanoPropanoCO, LuzUV, MaterialOrganico, CH4, Sensores, KitNariz
 from .serializers import TemperaturaSerializer, HumedadSerializer, PresionAtmosfericaSerializer, \
-      MaterialParticuladoSerializer, NO2Serializer, PolvoSerializer, O3Serializer, SO2Serializer, \
+      O3Serializer, \
       COSerializer, CO2Serializer, MetanoPropanoCOSerializer, LuzUVSerializer,\
-      MaterialOrganicoSerializer, CH4Serializer, AnemometroSerializer, UserSerializer, SensoresSerializer, KitNarizSerializer
+      MaterialOrganicoSerializer, CH4Serializer, UserSerializer, SensoresSerializer, KitNarizSerializer
 import pandas as pd
 
 
@@ -112,25 +112,12 @@ class PresionAtmosfericaAPI(generics.CreateAPIView):
     queryset = PresionAtmosferica.objects.all()
     serializer_class = PresionAtmosfericaSerializer
 
-class MaterialParticuladoAPI(generics.CreateAPIView):
-    queryset = MaterialParticulado.objects.all()
-    serializer_class = MaterialParticuladoSerializer
 
-class NO2API(generics.CreateAPIView):
-    queryset = NO2.objects.all()
-    serializer_class = NO2Serializer
-
-class PolvoAPI(generics.CreateAPIView):
-    queryset = Polvo.objects.all()
-    serializer_class = PolvoSerializer
 
 class O3API(generics.CreateAPIView):
     queryset = O3.objects.all()
     serializer_class = O3Serializer
 
-class SO2API(generics.CreateAPIView):
-    queryset = SO2.objects.all()
-    serializer_class = SO2Serializer
 
 class COAPI(generics.CreateAPIView):
     queryset = CO.objects.all()
@@ -155,7 +142,3 @@ class MaterialOrganicoAPI(generics.CreateAPIView):
 class CH4API(generics.CreateAPIView):
     queryset = CH4.objects.all()
     serializer_class = CH4Serializer
-
-class AnemometroAPI(generics.CreateAPIView):
-    queryset = Anemometro.objects.all()
-    serializer_class = AnemometroSerializer

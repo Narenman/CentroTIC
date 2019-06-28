@@ -10,9 +10,7 @@ urlpatterns = [
    path("registrar-pozo", registrar_pozo, name="registrar-pozo" ),
    # url para las API
    path("temperatura-pozo", TemperaturaAPIPiscicultura.as_view()),
-   path("temperatura-ambiente", TemperaturaAPIAmbiente.as_view()),
    path("ph-pozo", PhAPIPiscicultura.as_view()),
    path("oxigeno-disuelto", O2DisueltoAPI.as_view()),
-   path("voltaje-bateria", VoltajeBateriaAPI.as_view()),
    path("lista-pozos", PozoAPI.as_view()),
 ]
