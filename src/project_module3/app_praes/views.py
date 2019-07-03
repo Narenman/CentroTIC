@@ -92,12 +92,7 @@ def monitoreo_lecturas_json(request):
     ch4 = CH4.objects.all()
     ch4 = ch4.values("fecha","valor")
     ch4 = list(map(lambda datos: [datos["fecha"], datos["valor"]], ch4))
-    
-    
-    #no2 dioxido de nitrogeno
-    no2 = NO2.objects.all()
-    no2 = no2.values("fecha", "valor")
-    no2 = list(map(lambda datos: [datos["fecha"], datos["valor"]],no2))
+
     #o3 ozono
     o3 = O3.objects.all()
     o3 = o3.values("fecha", "valor")
@@ -112,7 +107,7 @@ def monitoreo_lecturas_json(request):
                          "humedad": humedad, "presion": presion,
                          "tvoc": tvoc, "luzuv": luzuv, "co2": CO2_ppm,
                          "co":co, "ch4":ch4, 
-                         "no2":no2, "o3":o3, "c3h8":c3h8}
+                         "o3":o3, "c3h8":c3h8}
     return JsonResponse(variables)
 
 def hora_local(request):
