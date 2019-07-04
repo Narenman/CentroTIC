@@ -9,7 +9,7 @@ class Pozo(models.Model):
     ubicacion = models.CharField(max_length=100)
     
     def __str__(self):
-        return self.nombre
+        return str(self.nombre)
 
 class Temperatura(models.Model):
     """ Utilizado para almacena la temperatura del agua donde estan los pescados """
@@ -38,7 +38,7 @@ class PH(models.Model):
     def __str__(self):
         return str(self.valor)+" PH"
 
-class TemperaturaAmbiente(models.Model):
+class TemperaturaCaja(models.Model):
     """ Mide la temperatura del ambiente donde se encuentra el kit de monitoreo """
     fecha = models.DateTimeField(auto_now=False, auto_now_add=False)
     valor = models.FloatField()
@@ -56,5 +56,19 @@ class VoltajeBateria(models.Model):
     def __str__(self):
         return str(self.valor)+" V"
 
-    
+""" Falta crear la tabla de esta variable en la base de datos"""
 
+class HumedadCaja(models.Model):
+    """ Mide la humedad dentro del kit de monitoreo """
+    fecha = models.DateTimeField(auto_now=False, auto_now_add=False)
+    valor = models.FloatField()
+    pozo = models.ForeignKey(Pozo, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.valor)+" Humedad Caja"  
+
+class TomaDatos(models.Model):
+    estado = models.CharField(max_length=50)
+    def __str__(self):
+        return "asociacion "+str(self.estado)
+    

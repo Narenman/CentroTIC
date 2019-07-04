@@ -1,0 +1,183 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MONITOR PISCICULTURA</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, height=device-height">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="theme-color" content="#22282d">
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+   <!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,700" rel="stylesheet">-->
+
+    <link rel="stylesheet" type="text/css" href="{% static 'piscicultura/css/monitoreo4.css' %}">
+
+</head>
+
+<body onload="selectTank(event, 'Estanque1')">
+
+    <div id="root-container">
+
+        <div id="title" class="title">
+            <h2> Monitor piscicultura <br/> Granja El Hangar, Guatiguará UIS</h2>       
+        </div>
+
+        <div id="tab-container">
+
+            <div class="tab">
+              <button class="tablinks" onclick="selectTank(event, 'Estanque1')">ESTANQUE 1</button>
+              <button class="tablinks" onclick="selectTank(event, 'Estanque2')">ESTANQUE 2</button>
+              <button class="tablinks" onclick="selectTank(event, 'Estanque3')">ESTANQUE 3</button>
+            </div>
+
+            <div id="Estanque1" class="tabcontent">
+                 <div class="grid-container">
+                    <div id="water" class="data-div1">
+                        <h3 class="div-title">Variables agua</h3>
+                        <hr>
+                        <br>
+                        <div id="table1" class="water_table">
+                            <table>
+                                <tr class="variable-name">
+                                    <th id="n_v1">Temperatura</th>
+                                    <th id="n_v2">PH</th>
+                                    <th id="n_v3">Oxígeno <br> Disuelto</th>
+
+                                </tr>
+                                <tr>
+                                    <td><br><img class="icon_temp" src="/static/piscicultura/img/thermometer.png"></td>
+                                    <td><br><img  class="icon_ph" src="/static/piscicultura/img/ph_horizontal.jpg"></td>
+                                    <td><br><img class="icon_od" src="/static/piscicultura/img/DO_logo.png"></td>
+                                </tr>
+                                <tr class="values">        
+                                    <td id="temp_value"><br>27°C</td>            
+                                    <td id="ph_value"><br>7</td>
+                                    <td id="od_value"><br>100 mg/L</td>                                                
+                                </tr>
+                            </table>
+                            <br>
+                        </div> 
+                    </div>
+
+                    <div id="box" class="data-div2">
+                        <h3 class="div-title">Variables interior caja</h3>
+                        <hr> 
+                        <br>
+                        <div id="table2" class="box_table">
+                            <table>
+                                <tr class="variable-name">
+                                    <th id="n_v1">Temperatura <br>Interna</th>
+                                    <th id="n_v2">Humedad <br>Interna</th>
+                                    <th id="n_v3">Voltaje <br>Batería</th>
+
+                                </tr>
+                                <tr>
+                                    <td><br><img class="icon_tempBox" src="/static/piscicultura/img/temperature_box.png"></td>
+                                    <td><br><img  class="icon_hum" src="/static/piscicultura/img/humidity.png"></td>
+                                    <td><br><img class="icon_voltage" src="/static/piscicultura/img/battery.png"></td>
+                                </tr>
+                                <tr class="values">        
+                                    <td id="tempCaja_value"><br>30°C </td>        
+                                    <td id="humCaja_value"><br>10</td>
+                                    <td id="voltBat_value"><br>3.7 [V]</td>                                                
+                                </tr>
+
+                            </table>
+                            <br>
+                        </div>
+                    </div>
+
+                    <div id="grafics" class="data-div3">
+                        <div id="grafic1" class="grafic-div">
+                            <h3 class="div-title">Gráficas</h3>
+                            <hr> 
+                            <br>
+                            <br>
+                            <div class="ptemp">
+                                <canvas id="myChart"></canvas>
+                            </div>             
+                            <br>
+                            <br>         
+                        </div>                
+                    </div>
+                    
+                </div>
+                <h5 id="last_update1">Última actualización</h5>
+                       
+            </div>
+
+            <div id="Estanque2" class="tabcontent">
+                <h3>Paris</h3>
+                <p>Paris is the capital of France.</p> 
+                
+            </div>
+
+            <div id="Estanque3" class="tabcontent">
+              <h3>Tokyo</h3>
+              <p>Tokyo is the capital of Japan.</p>
+            </div>
+
+
+        </div>
+
+   </div>
+
+    <script>
+
+    function selectTank(evt, tank) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(tank).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+    </script>
+   <!-- 
+
+    <script type="application/javascript" src="{% static 'piscicultura/js/chartjs.js' %}"></script>
+
+
+    <script src="{% static 'piscicultura/js/chart.js' %}"></script>
+    -->
+
+</body>
+
+
+
+
+
+<script src="{% static 'piscicultura/js/myget_pis.js' %}"></script>
+
+<script src="{% static 'piscicultura/js/chartjs.js' %}"></script>
+<script src="{% static 'piscicultura/js/chart.js' %}"></script>
+
+
+<!--<script src="{% static 'E3Tratos/assets/js/jslib/three.js' %}"></script>-->
+<!--
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/103/three.js"></script>
+<script src="{% static 'piscicultura/assets/js/jslib/DDSLoader.js' %}"></script>
+<script src="{% static 'piscicultura/assets/js/jslib/MTLLoader.js' %}"></script>
+<script src="{% static 'piscicultura/assets/js/jslib/OBJLoader.js' %}"></script>
+<script src="{% static 'piscicultura/assets/js/switch_gui.js' %}"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeAmVudOtIX9_du7kSu3kLY6z07IgeqpI&callback=initMap"> </script>
+
+
+
+
+
+<script src="{% static 'piscicultura/assets/js/apimaps.js' %}"></script>
+
+
+<script src="{% static 'piscicultura/assets/js/myrender.js' %}"></script>
+
+
+-->
+
+</html>

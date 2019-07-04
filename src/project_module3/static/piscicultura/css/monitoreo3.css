@@ -1,0 +1,196 @@
+body {
+  font-family: 'Ubuntu', sans-serif;
+  background-color: #ce4040;
+  background-image: url(/static/piscicultura/img/bg-1.jpg);
+  background-size: cover;
+}
+
+.title{
+  margin-top: 10px;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: center;
+
+
+}
+
+
+
+#tab-container {
+  margin-top: 20px; /*sube y baja el contenedor de todo*/
+  margin-left: auto;
+  margin-right: auto;
+  /*margin-left: 5px;*/
+  width: 93%;  /* Ancho del contenedor */
+  /*background: #5f663d; /*color morado*/
+  /*background-color: transparent;*/
+/*box-sizing: border-box;
+-moz-box-sizing: border-box*/
+}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  /*border: 1px solid #ccc;*/
+  /*background-color: #f1f1f1;*/
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  line-height: 10px; /* margen del texto desde arriba*/
+  height: 40px; /*largo de las pestañas en blanco*/
+  margin-right: 3px; /*espacio entre las pestañas*/
+  border-radius: 5px 5px 0 0;
+  color: #888;  /* Color del texto de las pestañas, gris oscuro */
+  background: #381356;  /* Fondo de las pestañas color gris */
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background: #6a4489;  /* Fondo de las pestañas al pasar el cursor por encima, gris claro */
+  color: #c6a6e0;  /* Color del texto de las pestañas al pasar el cursor por encima */
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background: #e8e3e3; /*gris oscuro, fondo de las pestañas al presionar, nblaco gris */
+  color: #66229e; /* Color del texto de las pestañas al presionar moradito*/
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  border-radius: 0 5px 5px 5px;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+  background-color: #e8e3e3; /*gris oscuro*/
+}
+
+
+.grid-container{
+  margin-right: auto;
+  margin-left: auto;
+  width: 96%;
+  display: grid;
+  grid-template: auto auto / 38% 60%; /*primero alto, luego ancho
+  /*grid-template-columns: 39% 20% 39%;*/
+  grid-gap: 25px 25px; /*separación entre filas y columnas, (filas, columnas)*/
+  background: #e8e3e3; /*gris oscuro*/
+  overflow: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+
+@media screen and (max-width: 1050px) {
+
+  .grid-container{
+    display: grid;
+    grid-template: auto / 98.8%;
+  }
+}
+
+.data-divs{
+
+  height: auto;
+  background: #fcf9f9; 
+ /* color: #e23f3f;*/
+  border-radius: 5px 5px 5px 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /*float: right;*/
+
+}
+
+
+
+hr {
+  height: 0.1px;
+  width: 99.7%;
+  background-color: #e8e3e3;
+  border-color: transparent transparent;
+
+}
+
+.div-title {
+
+  margin-left: 20px;
+  color: gray;
+  font-weight: bold;
+}
+
+/* .last_update{*/
+.data-divs h5{ 
+  margin-left: 20px;
+  color: #e23f3f;
+  font-size: 18px;
+  /*background-color: #efef9e;*/
+  /*font-weight: bold*/;
+}
+
+
+
+/*primer div*/
+table{
+  font-size: 12px;
+  min-width: 100%;
+}
+
+table, th, td {
+  /*border: 1px solid black;*/
+  text-align:center;
+
+}
+
+.variable-name th{
+  color: #000000;
+  font-size: 20px;
+  font-weight: bold;
+  /*height: 25px;*/
+}
+
+.values td{
+  color: #8c8a8a;
+  font-size: 30px;
+  font-weight: bold;
+  /*height: 25px;*/
+}
+
+.water_table{
+  min-width: 70%;
+}
+
+.icon_temp, .icon_od, .icon_voltage{
+  width:  100px;
+  height: 100px;
+}
+
+.icon_ph{
+  width:  140px;
+
+}
+
+.icon_tempBox, .icon_hum{
+  height: 100px;
+}
+/*///////////////////segundo div///////////////////////*/
+
+#grafic{
+  width: 50%;
+}
+#myChart{
+  /*max-height: 400px;*/
+  width: 50%;
+}
+
+h4{
+  size: 20px;
+  color: blue;
+}

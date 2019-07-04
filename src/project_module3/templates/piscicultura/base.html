@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Protocolo PAWS</title>
+    <title>Piscicultura</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -21,7 +21,10 @@
         <a class="nav-link active" href="{% url 'piscicultura:registrar-pozo' %}">Registrar pozo</a>
         </li>
         <li class="nav-item">
-        <a class="nav-link active" href="#">Monitoreo</a>
+        <!-- <a class="nav-link active" href="#">Monitoreo</a> -->  
+        <a class="nav-link active" href="{% url 'piscicultura:toma-datos' %}">Toma de datos</a>
+        </li>       
+        <a class="nav-link active" href="{% url 'piscicultura:monitoreo' %}">Monitoreo</a>
         </li> 
 
     {% if user.is_authenticated %}

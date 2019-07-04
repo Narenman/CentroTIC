@@ -1,6 +1,6 @@
 
 from rest_framework import serializers
-from .models import Temperatura, TemperaturaAmbiente, PH, O2disuelto, VoltajeBateria, Pozo
+from .models import Temperatura, TemperaturaCaja, HumedadCaja, PH, O2disuelto, VoltajeBateria, Pozo
 
 class TemperaturaSerializer(serializers.ModelSerializer):
     class Meta:
@@ -8,11 +8,15 @@ class TemperaturaSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class TemperaturaAmbienteSerializer(serializers.ModelSerializer):
+class TemperaturaCajaSerializer(serializers.ModelSerializer):
     class Meta:
-        model = TemperaturaAmbiente
+        model = TemperaturaCaja
         fields = "__all__"
 
+class HumedadCajaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HumedadCaja
+        fields = "__all__"
 
 class PHSerializer(serializers.ModelSerializer):
     class Meta:
