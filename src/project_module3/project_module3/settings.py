@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework_swagger',
     'bootstrap3',
+    'radioastronomia',
 ]
 
 REST_FRAMEWORK = {
@@ -149,3 +150,6 @@ STATICFILES_DIRS =[os.path.join(BASE_DIR, 'static'),]
 #STATIC_ROOT = '/home/luismiguel/back_centrotic/staticfiles'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL  = '/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

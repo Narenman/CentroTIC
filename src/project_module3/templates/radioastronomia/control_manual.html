@@ -1,0 +1,34 @@
+{% extends 'radioastronomia/base.html' %}
+{% load static %}
+{% block body_block %}
+
+<div class="row">
+    <div "class=col">
+    <br>
+    <h3> Imágenes del cielo </h3>
+    {% for data in imagenes %}
+    <img src="{{ data.imagen.url }}" alt="no encontrado" class="img-thumbnail" height="300px" width="500px">
+    {% endfor %}
+    </div>
+
+    <div class="col">
+        <h3> Espectro </h3>
+        {% lorem 3 b random %}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <h3> Estación de monitoreo </h3>
+        {% lorem 3 b random %}
+    </div>
+
+     <div class="col">
+        <h3> Control posición </h3>
+        <img src="{% static 'radioastronomia/img/control_posicion.jpg'%}" alt="no encontrado" class="img-thumbnail" height="300px" width="500px">
+    </div>
+
+</div>
+{% endblock  %}
+
+<img src="media/album/imagenes/cielo-azul-nubes_1232-936.jpg" alt="no encontrado">

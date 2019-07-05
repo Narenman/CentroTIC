@@ -17,6 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from app_sensado import views
 
+#static and media
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf.urls.static import static
+from django.conf import settings
+
 
 urlpatterns = [
     path('admin/', admin.site.urls, name="admin"),
@@ -30,4 +35,9 @@ urlpatterns = [
     path('nariz_electronicaV2/', include('nariz_electronica2.urls', namespace="nariz_electronicaV2")),
     path('piscicultura/', include('piscicultura.urls', namespace="piscicultura")),
     path('bloqueadores/', include('bloqueadores.urls', namespace="bloqueadores")),
+    path('radioastronomia/', include('radioastronomia.urls', namespace="radioastronomia")),
 ]
+
+#para los archivos de media
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
