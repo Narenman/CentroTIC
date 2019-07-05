@@ -18,7 +18,7 @@ function loadDoc() {
     }
   };
 
-  xhttp.open("GET", "http://127.0.0.1:8080/piscicultura/json-estado", true);
+  xhttp.open("GET", "http://34.74.6.16/piscicultura/json-estado", true);
   xhttp.overrideMimeType('text/xml; charset=iso-8859-1');
   xhttp.send(); 
 

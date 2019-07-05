@@ -115,7 +115,12 @@ def last_json_data(request):
     #humedad caja
     humC = HumedadCaja.objects.last()
     humCaja = [humC.fecha, humC.valor]
-    variables = {"temperatura":temperatura, "oxigenoDisuelto": oxigenoDisuelto, "phTank": phTank, "tempCaja": tempCaja, "voltajeBat": voltajeBat, "humCaja": humCaja}
+    variables = {"temperatura":temperatura,
+                 "oxigenoDisuelto": oxigenoDisuelto,
+                 "phTank": phTank,
+                 "tempCaja": tempCaja,
+                 "voltajeBat": voltajeBat,
+                 "humCaja": humCaja}
     return JsonResponse(variables)
 
 
