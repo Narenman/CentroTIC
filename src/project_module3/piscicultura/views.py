@@ -93,34 +93,35 @@ def toma_datos(request):
 """
 
 
-
 @csrf_exempt
 def last_json_data(request):
-
-    temp = Temperatura.objects.last()
-    #print(temp) 
-    temperatura = [temp.fecha, temp.valor]
-    #oxígeno disuelto
-    od = O2disuelto.objects.last()
-    oxigenoDisuelto = [od.fecha, od.valor]
-    #ph
-    ph = PH.objects.last()
-    phTank = [ph.fecha, ph.valor]
-    #temperatura caja
-    tempC = TemperaturaCaja.objects.last()
-    tempCaja = [tempC.fecha, tempC.valor]
-    #voltaje batería
-    bat=VoltajeBateria.objects.last()
-    voltajeBat = [bat.fecha, bat.valor]
-    #humedad caja
-    humC = HumedadCaja.objects.last()
-    humCaja = [humC.fecha, humC.valor]
-    variables = {"temperatura":temperatura,
-                 "oxigenoDisuelto": oxigenoDisuelto,
-                 "phTank": phTank,
-                 "tempCaja": tempCaja,
-                 "voltajeBat": voltajeBat,
-                 "humCaja": humCaja}
+    try:
+        temp = Temperatura.objects.last()
+        #print(temp) 
+        temperatura = [temp.fecha, temp.valor]
+        #oxígeno disuelto
+        od = O2disuelto.objects.last()
+        oxigenoDisuelto = [od.fecha, od.valor]
+        #ph
+        ph = PH.objects.last()
+        phTank = [ph.fecha, ph.valor]
+        #temperatura caja
+        tempC = TemperaturaCaja.objects.last()
+        tempCaja = [tempC.fecha, tempC.valor]
+        #voltaje batería
+        bat=VoltajeBateria.objects.last()
+        voltajeBat = [bat.fecha, bat.valor]
+        #humedad caja
+        humC = HumedadCaja.objects.last()
+        humCaja = [humC.fecha, humC.valor]
+        variables = {"temperatura":temperatura,
+                    "oxigenoDisuelto": oxigenoDisuelto,
+                    "phTank": phTank,
+                    "tempCaja": tempCaja,
+                    "voltajeBat": voltajeBat,
+                    "humCaja": humCaja}
+    except:
+        variables = {}
     return JsonResponse(variables)
 
 
