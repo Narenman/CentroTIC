@@ -13,8 +13,7 @@
 
     <div class="col">
         <h3> Espectro </h3>
-        {% lorem 3 b random %}
-    </div>
+    <div id="grafica_espectro" style="height: 400px; max-width: 1000px; margin: 0 auto"></div>    </div>
 </div>
 
 <div class="row">
@@ -29,6 +28,10 @@
     </div>
 
 </div>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/boost.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="{% static 'radioastronomia/js/grafica.js' %}"></script>
+
 {% endblock  %}
 
-<img src="media/album/imagenes/cielo-azul-nubes_1232-936.jpg" alt="no encontrado">

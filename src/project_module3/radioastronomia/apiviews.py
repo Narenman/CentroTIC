@@ -9,6 +9,9 @@ from .serializers import AlbumSerializer, EstacionAmbientalSerializer, EspectroS
 class AlbumAPI(generics.CreateAPIView):
     """ Esta API se encarga de las imagenes recolectadas por la camara startlight 
     """
+    authentication_classes = ()
+    permission_classes = ()
+
     queryset = AlbumImagenes.objects.all()
     serializer_class = AlbumSerializer
 
@@ -16,11 +19,14 @@ class EspectroAPI(APIView):
     """ Esta API se encarga de gestiornar el espectro para poder almacenarlo
     correctamente
     """
+    authentication_classes = ()
+    permission_classes = ()
     def get(self, request, format=None):
         espectro = Espectro.objects.last()
         serializer = EspectroSerializer(espectro, many=False)
         datos = serializer.data
-        return Response(datos)
+        return Response({"frec_central": datos["frec_central"],
+                         "frec_muestreo": datos["frec_muestreo"]})
 
     def post(self, request, format=None):
         serializer = EspectroSerializer(data=request.data)
