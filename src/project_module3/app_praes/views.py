@@ -134,17 +134,26 @@ def consultar_integrantes(request):
 #Consulta de las variables ambientales individuales
 @csrf_exempt
 def consulta_temperatura(request):
-    temperatura = Temperatura.objects.last()
-    fecha = temperatura.fecha
-    temperatura = temperatura.valor
-    # temperatura = list(map(lambda datos: [datos["fecha"], datos["valor"]], temperatura))
-    return JsonResponse({"temperatura": [temperatura, fecha]})
+
+    try:
+        temperatura = Temperatura.objects.last()
+        temperatura = [temperatura.fecha, temperatura.valor]
+        # temperatura = Temperatura.objects.all()[-3:]
+        # temperatura = temperatura.values("fecha", "valor")
+        # temperatura = list(map(lambda datos: [datos["fecha"], datos["valor"]], temperatura))
+    except:
+        fecha = timezone.now()
+        temperatura = [fecha, 10]
+    return JsonResponse({"temperatura": temperatura})
 
 @csrf_exempt
 def consulta_humedad(request):
-    humedad = Humedad.objects.all()
-    humedad = humedad.values("fecha", "valor")
-    humedad = list(map(lambda datos: [datos["fecha"], datos["valor"]], humedad))
+    try:
+        humedad = Humedad.objects.last()
+        humedad = [humedad.fecha, humedad.valor]
+    except:
+        fecha = timezone.now()
+        humedad = [fecha, 10]
     return JsonResponse({"humedad": humedad})
 
 @csrf_exempt

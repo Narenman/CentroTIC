@@ -33,7 +33,7 @@
             <p> Si hay altas temperaturas ambientales, las personas expuestas a ellas pueden experimentar una depleción de volumen, que se traduce clínicamente en el denominado agotamiento por calor. Su origen hay que buscarlo en una ingesta insuficiente de agua y electrolitos. Cuando el tratamiento no es correcto, cabe la posibilidad de que el síndrome progrese a golpe de calor.</p>
             <p></p>
 
-        <button type="button" class="btn btn-outline-success" id="graficar_temp">Ver gráfica</button>
+        {% comment %} <button type="button" class="btn btn-outline-success" id="graficar_temp">Ver gráfica</button> {% endcomment %}
 
         <div id="grafica_temperatura" style="min-width: 300px; height: 320px; margin: 0 auto"></div>
 
@@ -139,8 +139,7 @@
 </div>
 
 </div>
-<script src= "{% static 'praes/js/monitoreo_lecturas.js' %}" ></script>
-<script src="{% static 'praes/js/temperatura.js' %}"></script>
+<script src= "{% static 'praes/js/grafica_temperatura.js' %}" ></script>
 
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
