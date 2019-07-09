@@ -1,7 +1,6 @@
 from django.shortcuts import render
 import paho.mqtt.publish as publish
 from .models import Temperatura, Humedad, PresionAtmosferica, \
-    O3, CO, CO2, MetanoPropanoCO, LuzUV, MaterialOrganico, CH4, \
     Semillero, Integrantes, Kit, Asociacion
 from .forms import IntegrantesForm, SemilleroForm, ConsultaSemilleroForm, ConsultaIntegrantesForm
 from numpy import random
@@ -72,42 +71,10 @@ def monitoreo_lecturas_json(request):
     pres = PresionAtmosferica.objects.all()
     presion = pres.values("fecha", "valor")
     presion = list(map(lambda datos: [datos["fecha"], datos["valor"]], presion))
-    #sgp30 material organico, tambien lee CO2 pero ese lo leo con otro sensor
-    voc = MaterialOrganico.objects.all()
-    tvoc = voc.values("fecha", "valor")
-    tvoc = list(map(lambda datos: [datos["fecha"], datos["valor"]], tvoc))
-    co2 = CO2.objects.all()
-    CO2_ppm = co2.values("fecha", "valor")
-    CO2_ppm = list(map(lambda datos: [datos["fecha"], datos["valor"]], CO2_ppm))
-    #ML8511 sensor UV
-    uv = LuzUV.objects.all()
-    luzuv = uv.values("fecha", "valor")
-    luzuv = list(map(lambda datos: [datos["fecha"], datos["valor"]], luzuv))
-
-    #monoxido de carbono
-    co=CO.objects.all()
-    co = co.values("fecha", "valor")
-    co = list(map(lambda datos: [datos["fecha"], datos["valor"]], co))
-    #metano CH4
-    ch4 = CH4.objects.all()
-    ch4 = ch4.values("fecha","valor")
-    ch4 = list(map(lambda datos: [datos["fecha"], datos["valor"]], ch4))
-
-    #o3 ozono
-    o3 = O3.objects.all()
-    o3 = o3.values("fecha", "valor")
-    o3 = list(map(lambda datos: [datos["fecha"], datos["valor"]],o3))
-    #propano C3H8
-    c3h8 = MetanoPropanoCO.objects.all()
-    c3h8 = c3h8.values("fecha", "valor")
-    c3h8 = list(map(lambda datos: [datos["fecha"], datos["valor"]],c3h8))
-
-
+   
     variables = {"temperatura":temperatura,
-                         "humedad": humedad, "presion": presion,
-                         "tvoc": tvoc, "luzuv": luzuv, "co2": CO2_ppm,
-                         "co":co, "ch4":ch4, 
-                         "o3":o3, "c3h8":c3h8}
+                  "humedad": humedad, "presion": presion,
+                }
     return JsonResponse(variables)
 
 def hora_local(request):
@@ -167,10 +134,11 @@ def consultar_integrantes(request):
 #Consulta de las variables ambientales individuales
 @csrf_exempt
 def consulta_temperatura(request):
-    temperatura = Temperatura.objects.all()
-    temperatura = temperatura.values("fecha", "valor")
-    temperatura = list(map(lambda datos: [datos["fecha"], datos["valor"]], temperatura))
-    return JsonResponse({"temperatura": temperatura})
+    temperatura = Temperatura.objects.last()
+    fecha = temperatura.fecha
+    temperatura = temperatura.valor
+    # temperatura = list(map(lambda datos: [datos["fecha"], datos["valor"]], temperatura))
+    return JsonResponse({"temperatura": [temperatura, fecha]})
 
 @csrf_exempt
 def consulta_humedad(request):
@@ -185,63 +153,6 @@ def consulta_presion(request):
     presion = presion.values("fecha", "valor")
     presion = list(map(lambda datos: [datos["fecha"], datos["valor"]], presion))
     return JsonResponse({"presion": presion})
-
-@csrf_exempt
-def consulta_luzuv(request):
-    luzuv = LuzUV.objects.all()
-    luzuv = luzuv.values("fecha", "valor")
-    luzuv = list(map(lambda datos: [datos["fecha"], datos["valor"]], luzuv))
-    return JsonResponse({"luzuv": luzuv})
-
-@csrf_exempt
-def consulta_co(request):
-    co = CO.objects.all()
-    co  = co.values("fecha", "valor")
-    co  = list(map(lambda datos: [datos["fecha"], datos["valor"]], co ))
-    return JsonResponse({"co": co })
-
-@csrf_exempt
-def consulta_co2(request):
-    co2 = CO2.objects.all()
-    co2  = co2.values("fecha", "valor")
-    co2  = list(map(lambda datos: [datos["fecha"], datos["valor"]], co2 ))
-    return JsonResponse({"co2": co2 })
-
-@csrf_exempt
-def consulta_ch4(request):
-    ch4 = CH4.objects.all()
-    ch4  = ch4.values("fecha", "valor")
-    ch4  = list(map(lambda datos: [datos["fecha"], datos["valor"]], ch4 ))
-    return JsonResponse({"ch4": ch4 })
-
-
-@csrf_exempt
-def consulta_no2(request):
-    no2 = NO2.objects.all()
-    no2  = no2.values("fecha", "valor")
-    no2  = list(map(lambda datos: [datos["fecha"], datos["valor"]], no2 ))
-    return JsonResponse({"no2": no2 })
-
-@csrf_exempt
-def consulta_o3(request):
-    o3 = O3.objects.all()
-    o3  = o3.values("fecha", "valor")
-    o3  = list(map(lambda datos: [datos["fecha"], datos["valor"]], o3 ))
-    return JsonResponse({"o3": o3 })
-
-@csrf_exempt
-def consulta_tvoc(request):
-    tvoc = MaterialOrganico.objects.all()
-    tvoc  = tvoc.values("fecha", "valor")
-    tvoc  = list(map(lambda datos: [datos["fecha"], datos["valor"]], tvoc ))
-    return JsonResponse({"tvoc": tvoc})
-
-@csrf_exempt
-def consulta_lpg(request):
-    lpg = MetanoPropanoCO.objects.all()
-    lpg  = lpg.values("fecha", "valor")
-    lpg  = list(map(lambda datos: [datos["fecha"], datos["valor"]], lpg ))
-    return JsonResponse({"c3h8": lpg})
 
 
 def modo_nariz(request):

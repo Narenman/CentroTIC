@@ -1,7 +1,6 @@
 from django.contrib import admin
 from .models import Departamento, Ciudad, Kit, Colegio, Sensores, Semillero, Temperatura, \
-    Humedad, PresionAtmosferica, \
-    O3, CO, CO2, MetanoPropanoCO, LuzUV, MaterialOrganico, CH4, Asociacion, KitNariz
+    Humedad, PresionAtmosferica, Asociacion, KitNariz
 
 # Register your models here.
 
@@ -16,13 +15,7 @@ admin.site.register(Sensores)
 admin.site.register(Temperatura)
 admin.site.register(Humedad)
 admin.site.register(PresionAtmosferica)
-admin.site.register(O3)
-admin.site.register(CO)
-admin.site.register(CO2)
-admin.site.register(MetanoPropanoCO)
-admin.site.register(LuzUV)
-admin.site.register(MaterialOrganico)
-admin.site.register(CH4)
+
 
 #modo nariz
 admin.site.register(Asociacion)

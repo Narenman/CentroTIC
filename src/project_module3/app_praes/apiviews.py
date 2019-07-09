@@ -8,12 +8,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
 
-from .models import Temperatura, Humedad, PresionAtmosferica, \
-     O3, CO, CO2, MetanoPropanoCO, LuzUV, MaterialOrganico, CH4, Sensores, KitNariz
-from .serializers import TemperaturaSerializer, HumedadSerializer, PresionAtmosfericaSerializer, \
-      O3Serializer, \
-      COSerializer, CO2Serializer, MetanoPropanoCOSerializer, LuzUVSerializer,\
-      MaterialOrganicoSerializer, CH4Serializer, UserSerializer, SensoresSerializer, KitNarizSerializer
+from .models import Temperatura, Humedad, PresionAtmosferica, Sensores, KitNariz
+from .serializers import TemperaturaSerializer, HumedadSerializer, PresionAtmosfericaSerializer,\
+      UserSerializer, SensoresSerializer, KitNarizSerializer
 import pandas as pd
 
 
@@ -43,8 +40,7 @@ import pandas as pd
 #             return Response({"error": "Wrong Credentials"}, status=status.HTTP_400_BAD_REQUEST)
 
 class KitNarizAPI(APIView):
-    """
-    Lista el ultimo valor sensado por el kit praes en modo nariz.
+    """ La calidad del aire se evaluara como nariz electronica.
     """
     authentication_classes = ()
     permission_classes = ()
@@ -114,31 +110,5 @@ class PresionAtmosfericaAPI(generics.CreateAPIView):
 
 
 
-class O3API(generics.CreateAPIView):
-    queryset = O3.objects.all()
-    serializer_class = O3Serializer
 
 
-class COAPI(generics.CreateAPIView):
-    queryset = CO.objects.all()
-    serializer_class = COSerializer
-
-class CO2API(generics.CreateAPIView):
-    queryset = CO2.objects.all()
-    serializer_class = CO2Serializer
-
-class MetanoPropanoCOAPI(generics.CreateAPIView):
-    queryset = MetanoPropanoCO.objects.all()
-    serializer_class = MetanoPropanoCOSerializer
-
-class LuzUVAPI(generics.CreateAPIView):
-    queryset = LuzUV.objects.all()
-    serializer_class = LuzUVSerializer
-
-class MaterialOrganicoAPI(generics.CreateAPIView):
-    queryset = MaterialOrganico.objects.all()
-    serializer_class = MaterialOrganicoSerializer
-
-class CH4API(generics.CreateAPIView):
-    queryset = CH4.objects.all()
-    serializer_class = CH4Serializer

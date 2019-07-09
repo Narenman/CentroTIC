@@ -67,54 +67,6 @@ class PresionAtmosferica(models.Model):
     def __str__(self):
         return "presion " + str(self.valor)+ " mbar"
 
-
-class O3(models.Model):
-    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
-    valor = models.FloatField()
-    sensor = models.ForeignKey(Sensores, on_delete=models.CASCADE)
-    def __str__(self):
-        return "O3 {} ppm".format(self.valor)
-    
-class CO(models.Model):
-    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
-    valor = models.FloatField()
-    sensor = models.ForeignKey(Sensores, on_delete=models.CASCADE)
-    def __str__(self):
-        return "CO {} ppm".format(self.valor)
-
-class CO2(models.Model):
-    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
-    valor = models.FloatField()
-    sensor = models.ForeignKey(Sensores, on_delete=models.CASCADE)
-    def __str__(self):
-        return "CO2 {} ppm".format(self.valor)
-
-class MetanoPropanoCO(models.Model):
-    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
-    valor = models.FloatField()
-    sensor = models.ForeignKey(Sensores, on_delete=models.CASCADE)
-
-class LuzUV(models.Model):
-    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
-    valor = models.FloatField()
-    sensor = models.ForeignKey(Sensores, on_delete=models.CASCADE)
-    def __str__(self):
-        return "luz uv {} mW/cm^2".format(self.valor)
-
-class MaterialOrganico(models.Model):
-    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
-    valor = models.FloatField()
-    sensor = models.ForeignKey(Sensores, on_delete=models.CASCADE)
-    def __str__(self):
-        return "material organico {} ppm".format(self.valor)
-
-class CH4(models.Model):
-    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
-    valor = models.FloatField()
-    sensor = models.ForeignKey(Sensores, on_delete=models.CASCADE)
-    def __str__(self):
-        return "CH4 {} ppm".format(self.valor)
-
 class Semillero(models.Model):
     responsable = models.CharField(max_length=50)
     telefono = models.IntegerField()
@@ -141,9 +93,38 @@ class Asociacion(models.Model):
     
 
 class KitNariz(models.Model):
-
+    kit = models.ForeignKey(Sensores, on_delete=models.CASCADE)
     medicion = JSONField(encoder="",)
     asociacion = models.ForeignKey(Asociacion, on_delete=models.CASCADE)
 
     def __str__(self):
         return "modo nariz"+str(self.pk)
+
+#variables del agua
+class PH_agua(models.Model):
+    valor = models.FloatField()
+    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
+    sensor = models.ForeignKey(Sensores, on_delete=models.CASCADE)
+    def __str__(self):
+        return "valor PH "+str(self.valor)
+
+class Temperatura_agua(models.Model):
+    valor = models.FloatField()
+    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
+    sensor = models.ForeignKey(Sensores, on_delete=models.CASCADE)
+    def __str__(self):
+        return "Temperatura agua "+str(self.valor)
+
+class Turbidez_agua(models.Model):
+    valor = models.FloatField()
+    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
+    sensor = models.ForeignKey(Sensores, on_delete=models.CASCADE)
+    def __str__(self):
+        return "turbidez agua "+str(self.valor)
+
+class Flujo_agua(models.Model):
+    valor = models.FloatField()
+    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
+    sensor = models.ForeignKey(Sensores, on_delete=models.CASCADE)
+    def __str__(self):
+        return "Flujo agua "+str(self.valor)

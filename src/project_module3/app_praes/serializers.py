@@ -1,7 +1,5 @@
 
-from .models import Temperatura, Humedad, PresionAtmosferica, \
-                    O3, CO, CO2, \
-                    MetanoPropanoCO, LuzUV, MaterialOrganico, CH4, Sensores, KitNariz
+from .models import Temperatura, Humedad, PresionAtmosferica, Sensores, KitNariz
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
@@ -26,46 +24,6 @@ class PresionAtmosfericaSerializer(serializers.ModelSerializer):
     class Meta:
         model = PresionAtmosferica
         fields = "__all__"
-
-
-
-class O3Serializer(serializers.ModelSerializer):
-    class Meta:
-        model = O3
-        fields = "__all__"
-
-
-
-class COSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CO
-        fields = "__all__"
-
-class CO2Serializer(serializers.ModelSerializer):
-    class Meta:
-        model = CO2
-        fields = "__all__"
-
-class MetanoPropanoCOSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MetanoPropanoCO
-        fields = "__all__" 
-
-class LuzUVSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = LuzUV
-        fields = "__all__"
-
-class MaterialOrganicoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MaterialOrganico
-        fields = "__all__"
-
-class CH4Serializer(serializers.ModelSerializer):
-    class Meta:
-        model = CH4
-        fields = "__all__"
-
 
 class UserSerializer(serializers.ModelSerializer):
 
