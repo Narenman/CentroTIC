@@ -4,9 +4,9 @@ from .apiviews import TemperaturaAPI, HumedadAPI, PresionAtmosfericaAPI, \
                       CrearUsuarioAPI, LoginView, SensoresAPI, KitNarizAPI
 
 from rest_framework_swagger.views import get_swagger_view
-from .views import index, medicion_actual, monitoreo_lecturas, control_ESP32, hora_local, monitoreo_lecturas_json,\
+from .views import index, medicion_actual_temperatura, monitoreo_lecturas, control_ESP32, hora_local, monitoreo_lecturas_json,\
     registros_integrantes, registro_semillero, consultar_semilleros, consultar_integrantes, consulta_temperatura,\
-        consulta_humedad, consulta_presion, modo_nariz
+        consulta_humedad, consulta_presion, modo_nariz, medicion_actual_humedad, medicion_actual_presion, medicion_compuestos_aire
 
 
 app_name = "app_praes"
@@ -20,7 +20,13 @@ urlpatterns = [
     path('humedad/', HumedadAPI.as_view(), name="praes-humedad"),
     path('presion-atmosferica/', PresionAtmosfericaAPI.as_view(), name="praes-presion-atmosferica"),
     path('index/', index, name="index-praes"),
-    path('medicion_actual/', medicion_actual, name="medicion-actual"),
+
+    #informacion de variables medidas por el kit
+    path('medicion_actual/', medicion_actual_temperatura, name="medicion-actual"),
+    path("medicion_actual_humedad/", medicion_actual_humedad, name="medicion-humedad"),
+    path("medicion_actual_presion/", medicion_actual_presion, name="medicion-presion"),
+    path("medicion_compuestos_aire", medicion_compuestos_aire, name="medicion-compuestos-aire"),
+
     path('monitoreo_lecturas/', monitoreo_lecturas, name="monitoreo-lecturas"),
     path('control_kit/', control_ESP32, name="control-kit"),
     path('sensores/', SensoresAPI.as_view(), name="sensores-API"),

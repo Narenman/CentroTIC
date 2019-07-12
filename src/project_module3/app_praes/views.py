@@ -1,8 +1,8 @@
 from django.shortcuts import render
 import paho.mqtt.publish as publish
 from .models import Temperatura, Humedad, PresionAtmosferica, \
-    Semillero, Integrantes, Kit, Asociacion
-from .forms import IntegrantesForm, SemilleroForm, ConsultaSemilleroForm, ConsultaIntegrantesForm
+    Semillero, Integrantes, Kit, Asociacion, Sensores
+from .forms import IntegrantesForm, SemilleroForm, ConsultaSemilleroForm, ConsultaIntegrantesForm, SensoresForm
 from numpy import random
 import json
 from django.http import JsonResponse
@@ -47,11 +47,88 @@ def index(request):
     respuesta = {}
     return render(request, "app_praes/index.html", respuesta)
 
-def medicion_actual(request):
-    respuesta = {}
-    return render(request, "app_praes/medicion_actual.html", respuesta)
+# aca van las vistas necesarias para mostrar las  variables ambientales
+def medicion_actual_temperatura(request):
+    """ Se encarga de la temperatura """
+    sensores = SensoresForm()
+    if request.POST:
+        sensores = SensoresForm(request.POST)
+        if sensores.is_valid():
+            sensores.save()
+            ## enviar la orden MQTT para que se empieze a tomar la temperatura
+            print(request.POST)
+            print("tomar temperatura")
+    respuesta = {"sensores": sensores}
+    return render(request, "app_praes/temperatura.html", respuesta)
+
+@csrf_exempt
+def consulta_temperatura(request):
+    try:
+        temperatura = Temperatura.objects.last()
+        temperatura = [temperatura.fecha, temperatura.valor]
+    except:
+        fecha = timezone.now()
+        temperatura = [fecha, 10]
+    return JsonResponse({"temperatura": temperatura})
+
+def medicion_actual_humedad(request):
+    """ Se encarga de la temperatura """
+    sensores = SensoresForm()
+    if request.POST:
+        sensores = SensoresForm(request.POST)
+        if sensores.is_valid():
+            sensores.save()
+            ## enviar la orden MQTT para que se empieze a tomar la temperatura
+            print(request.POST)
+            print("tomar humedad")
+    respuesta = {"sensores": sensores}
+    return render(request, "app_praes/humedad.html", respuesta)
+
+@csrf_exempt
+def consulta_humedad(request):
+    try:
+        humedad = Humedad.objects.last()
+        humedad = [humedad.fecha, humedad.valor]
+    except:
+        fecha = timezone.now()
+        humedad = [fecha, 10]
+    return JsonResponse({"temperatura": humedad})
+
+def medicion_actual_presion(request):
+    """ Se encarga de la temperatura """
+    sensores = SensoresForm()
+    if request.POST:
+        sensores = SensoresForm(request.POST)
+        if sensores.is_valid():
+            sensores.save()
+            ## enviar la orden MQTT para que se empieze a tomar la temperatura
+            print(request.POST)
+            print("tomar presion")
+    respuesta = {"sensores": sensores}
+    return render(request, "app_praes/presion.html", respuesta)
+
+@csrf_exempt
+def consulta_presion(request):
+    presion = PresionAtmosferica.objects.last()
+    presion = [presion.fecha, presion.valor]
+    return JsonResponse({"temperatura": presion})
+
+def medicion_compuestos_aire(request):
+    """ Se encarga de la temperatura """
+    sensores = SensoresForm()
+    if request.POST:
+        sensores = SensoresForm(request.POST)
+        if sensores.is_valid():
+            sensores.save()
+            ## enviar la orden MQTT para que se empieze a tomar la temperatura
+            print(request.POST)
+            print("tomar compuestos aire")
+    respuesta = {"sensores": sensores}
+    return render(request, "app_praes/compuestos_aire.html", respuesta)
+
 
 def monitoreo_lecturas(request):
+    """ Esta es la que debo modificar para cambiar la informacion """
     temp = Temperatura.objects.all()
     temperatura = temp.values("fecha", "valor")
     respuesta = {"temperatura": temperatura}
@@ -101,7 +178,6 @@ def registros_integrantes(request):
         if integrantes.is_valid():
             integrantes.save()
             return render(request, "app_praes/index.html", {"integrantes": "Integrante registrado"})
-
     return render(request, "app_praes/registros_integrantes.html", {"integrantes": integrantes})
 
 def consultar_semilleros(request):
@@ -111,10 +187,8 @@ def consultar_semilleros(request):
         semilleros = Semillero.objects.filter(colegio=dato)
         semilleros = semilleros.values("responsable", "telefono",)
         print(semilleros)
-
     except MultiValueDictKeyError:
         semilleros = []
-
     return render(request, "app_praes/consulta_semilleros.html", {"semillero": semilleros,
                                                                   "consulta": consulta_semillero})
 
@@ -130,38 +204,6 @@ def consultar_integrantes(request):
         integrantes = []
     return render(request, "app_praes/consulta_integrantes.html", {"integrantes": integrantes,
                                                                    "consulta": consulta})
-
-#Consulta de las variables ambientales individuales
-@csrf_exempt
-def consulta_temperatura(request):
-
-    try:
-        temperatura = Temperatura.objects.last()
-        temperatura = [temperatura.fecha, temperatura.valor]
-        # temperatura = Temperatura.objects.all()[-3:]
-        # temperatura = temperatura.values("fecha", "valor")
-        # temperatura = list(map(lambda datos: [datos["fecha"], datos["valor"]], temperatura))
-    except:
-        fecha = timezone.now()
-        temperatura = [fecha, 10]
-    return JsonResponse({"temperatura": temperatura})
-
-@csrf_exempt
-def consulta_humedad(request):
-    try:
-        humedad = Humedad.objects.last()
-        humedad = [humedad.fecha, humedad.valor]
-    except:
-        fecha = timezone.now()
-        humedad = [fecha, 10]
-    return JsonResponse({"humedad": humedad})
-
-@csrf_exempt
-def consulta_presion(request):
-    presion = PresionAtmosferica.objects.all()
-    presion = presion.values("fecha", "valor")
-    presion = list(map(lambda datos: [datos["fecha"], datos["valor"]], presion))
-    return JsonResponse({"presion": presion})
 
 
 def modo_nariz(request):

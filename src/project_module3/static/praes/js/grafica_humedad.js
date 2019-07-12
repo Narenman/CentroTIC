@@ -1,7 +1,7 @@
 var chart; // global
 function requestData() {
     $.ajax({
-        url: '/app_praes/json-temperatura/',
+        url: '/app_praes/json-humedad/',
         success: function(point) {
 
             var year = point.temperatura[0].slice(0, 4)
@@ -27,7 +27,7 @@ function requestData() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    chart = Highcharts.chart('grafica_temperatura', {
+    chart = Highcharts.chart('grafica_humedad', {
         chart: {
             type: 'spline',
             events: {
@@ -46,12 +46,12 @@ document.addEventListener('DOMContentLoaded', function() {
             minPadding: 0.2,
             maxPadding: 0.2,
             title: {
-                text: '°C',
+                text: '%',
                 margin: 80
             }
         },
         series: [{
-            name: 'Temperatura °C',
+            name: '% humedad',
             data: []
         }]
     });        

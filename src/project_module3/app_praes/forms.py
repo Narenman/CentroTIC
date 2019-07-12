@@ -1,5 +1,5 @@
 from django import forms 
-from .models import Integrantes, Semillero
+from .models import Integrantes, Semillero, Sensores
 
 class IntegrantesForm(forms.ModelForm):
     class Meta:
@@ -22,3 +22,10 @@ class ConsultaSemilleroForm(forms.ModelForm):
     class Meta:
         model = Semillero
         fields = ('colegio',)
+
+
+class SensoresForm(forms.ModelForm):
+
+    class Meta:
+        model = Sensores
+        fields = ("ubicacion", "kit", "observaciones")

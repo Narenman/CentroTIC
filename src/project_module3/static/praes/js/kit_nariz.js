@@ -5,13 +5,15 @@ function range(start, stop, step) {
     }
     return a;
 }
+
+function sendRequest(){
 $.ajax({
         type: "GET",
         url: "/app_praes/modo-nariz/",
         dataType: 'json',
         success: function (data){
         var xaxes = range(0,1*data.S1.length,1)
-        var ctx = document.getElementById('myChart');
+        var ctx = document.getElementById('grafica_nariz');
         let chart = new Chart(ctx, {
             type: 'line',
             data: {
@@ -56,4 +58,11 @@ $.ajax({
             }
         });
 
-        }}); // fin ajax
+       
+        }//fin success
+    
+    }); // fin ajax
+
+}
+
+setInterval(sendRequest, 1000)
