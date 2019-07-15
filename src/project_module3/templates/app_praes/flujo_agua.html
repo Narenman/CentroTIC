@@ -1,0 +1,50 @@
+{% extends "app_praes/base1.html" %}
+{% load static %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+
+{% block body_block %}
+    <div class="col">
+        <h1> Variables del Agua </h1>
+            <div id="presion">
+            <h2>Flujo del agua</h2>
+
+            <p> El flujo del agua en una casa, escuela, hospital, entre otros, puede estar asociado al consumo</p>
+            
+            <img class="img-responsive" src="{% static "praes/img/cuidado_agua2.JPG" %}" height="500px" width="350px" alt="Chania"> 
+
+            <h3> Fuentes de desperdicio de agua </h3>
+            <img class="img-responsive" src="{% static "praes/img/fuentes_desperdicio_agua.JPG" %}" height="350px" width="500px" alt="Chania"> 
+            <p>Vamos a medir el flujo de agua para hacer cálculos del consumo</p>
+
+            <h3> El flujo de agua también se utiliza como fuente de energía renovable </h3>
+            <img class="img-responsive" src="{% static "praes/img/water_wheel.svg" %}" height="450px" width="500px" alt="Chania"> 
+
+            <h3>Seleccionar KIT y lugar de medición:</h3>
+            </div>
+
+        <form  action= "{% url 'app_praes:medicion-actual' %}" method="POST">
+                {% csrf_token %}
+
+                    {% bootstrap_form sensores%}
+                            
+                    {% buttons %}
+                    <button type="submit" class="btn btn-primary">
+                    {% bootstrap_icon "star" %} Realizar toma de datos
+                    </button>
+
+                    {% endbuttons %}
+            </form>
+        </div>
+    </div>
+    <div id="grafica_flujo" style="min-width: 300px; height: 400px; margin: 0 auto"></div>
+       
+
+<script src= "{% static 'praes/js/grafica_flujo.js' %}" ></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+{% endblock  %}

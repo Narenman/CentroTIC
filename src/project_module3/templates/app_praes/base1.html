@@ -49,7 +49,6 @@
       <div class="dropdown-menu">
         <a class="dropdown-item" href="{% url 'app_praes:registro-integrantes' %}">Registro integrantes</a>
         <a class="dropdown-item" href="{% url 'app_praes:registro-semillero' %}">Registro semilleros</a>
-        <a class="dropdown-item" href="{% url 'app_praes:control-kit'%}">Toma de datos</a>
       </div>
     </li>
 
@@ -76,12 +75,12 @@
             <h4>Calidad del Aire</h4>
             <a href="{% url "app_praes:medicion-compuestos-aire"%}" class="list-group-item list-group-item-action">Compuestos aire</a>
             <h4>Calidad del Agua</h4>
-            <a href="#ph-agua" onclick="toggle_visibility('lpg');" class="list-group-item list-group-item-action">PH</a>
-            <a href="turbidez-agua" onclick="toggle_visibility('lpg');" class="list-group-item list-group-item-action">Turbidez</a>
-            <a href="#temperatura-agua" onclick="toggle_visibility('lpg');" class="list-group-item list-group-item-action">Temperatura Agua</a>
+            <a href="{% url "app_praes:medicion-ph-agua"%}" class="list-group-item list-group-item-action">PH</a>
+            <a href="{% url "app_praes:medicion-turbidez"%}"  class="list-group-item list-group-item-action">Turbidez</a>
+            <a href="{% url "app_praes:medicion-temp-agua"%}" class="list-group-item list-group-item-action">Temperatura Agua</a>
 
             <h4> Consumo del agua </h4>
-            <a href="#flujo-agua" onclick="toggle_visibility('lpg');" class="list-group-item list-group-item-action">Flujo del agua</a>
+            <a href="{% url "app_praes:medicion-flujo"%}"  class="list-group-item list-group-item-action">Flujo del agua</a>
         </div>
     </div>
 

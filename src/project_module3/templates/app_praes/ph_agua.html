@@ -1,0 +1,49 @@
+{% extends "app_praes/base1.html" %}
+{% load static %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+
+{% block body_block %}
+    <div class="col">
+        <h1> Variables del Agua </h1>
+            <div id="presion">
+            <h2>PH</h2>
+
+            <p> Es el Potencial de Hidrógeno, es una medida que determina el grado de alcalinidad o de acidez de una solución. </p>
+            </br>
+            <h4> ¿Cómo se mide el PH? </h4>
+            <p> Normalmente se mide en una escala de 1 a 14. El uno es el valor más ácido y el 14 el valor más alcalino. Siete es el valor neutro </p>
+            <img class="img-responsive" src="{% static "praes/img/ph-colores.jpg" %}" height="200px" width="450px" alt="Chania"> 
+
+            <h3> El pH del agua potable ha de estar entre el 6,5 y el 9,5 </h3>
+            <p> Hay una normativa de la Unión Europea (Normativa 98/83/EU) sobre la calidad de las aguas destinadas al consumo humano en la que se establecen algunas normas para el agua potable y se protege la salud pública de los efectos adversos del agua contaminada. </p>
+            <button type="button" class="btn btn-outline-success" id="graficar_pres">Ver gráfica</button>
+            <p></p>
+            <h3>Seleccionar KIT y lugar de medición:</h3>
+            </div>
+
+        <form  action= "{% url 'app_praes:medicion-actual' %}" method="POST">
+                {% csrf_token %}
+
+                    {% bootstrap_form sensores%}
+                            
+                    {% buttons %}
+                    <button type="submit" class="btn btn-primary">
+                    {% bootstrap_icon "star" %} Realizar toma de datos
+                    </button>
+
+                    {% endbuttons %}
+            </form>
+        </div>
+    </div>
+    <div id="grafica_ph" style="min-width: 300px; height: 400px; margin: 0 auto"></div>
+       
+
+<script src= "{% static 'praes/js/grafica_ph.js' %}" ></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+{% endblock  %}

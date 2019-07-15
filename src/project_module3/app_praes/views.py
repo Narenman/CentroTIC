@@ -1,7 +1,7 @@
 from django.shortcuts import render
 import paho.mqtt.publish as publish
 from .models import Temperatura, Humedad, PresionAtmosferica, \
-    Semillero, Integrantes, Kit, Asociacion, Sensores
+    Semillero, Integrantes, Kit, Asociacion, Sensores, PH_agua, Turbidez_agua, Temperatura_agua, Flujo_agua
 from .forms import IntegrantesForm, SemilleroForm, ConsultaSemilleroForm, ConsultaIntegrantesForm, SensoresForm
 from numpy import random
 import json
@@ -109,8 +109,12 @@ def medicion_actual_presion(request):
 
 @csrf_exempt
 def consulta_presion(request):
-    presion = PresionAtmosferica.objects.last()
-    presion = [presion.fecha, presion.valor]
+    try:
+        presion = PresionAtmosferica.objects.last()
+        presion = [presion.fecha, presion.valor]
+    except:
+        fecha = timezone.now()
+        presion = [fecha, 100]
     return JsonResponse({"temperatura": presion})
 
 def medicion_compuestos_aire(request):
@@ -126,6 +130,98 @@ def medicion_compuestos_aire(request):
     respuesta = {"sensores": sensores}
     return render(request, "app_praes/compuestos_aire.html", respuesta)
 
+def medicion_ph_agua(request):
+    """ Se encarga de la temperatura """
+    sensores = SensoresForm()
+    if request.POST:
+        sensores = SensoresForm(request.POST)
+        if sensores.is_valid():
+            sensores.save()
+            ## enviar la orden MQTT para que se empieze a tomar la temperatura
+            print(request.POST)
+            print("tomar compuestos aire")
+    respuesta = {"sensores": sensores}
+    return render(request, "app_praes/ph_agua.html", respuesta)
+
+@csrf_exempt
+def consulta_ph(request):
+    try:
+        ph = PH_agua.objects.last()
+        ph = [ph.fecha, ph.valor]
+    except:
+        fecha = timezone.now()
+        ph = [fecha, 7]
+    return JsonResponse({"temperatura": ph})
+
+def medicion_turbidez(request):
+    """ Se encarga de la temperatura """
+    sensores = SensoresForm()
+    if request.POST:
+        sensores = SensoresForm(request.POST)
+        if sensores.is_valid():
+            sensores.save()
+            ## enviar la orden MQTT para que se empieze a tomar la temperatura
+            print(request.POST)
+            print("tomar compuestos aire")
+    respuesta = {"sensores": sensores}
+    return render(request, "app_praes/turbidez.html", respuesta)
+
+@csrf_exempt
+def consulta_turbidez(request):
+    try:
+        turbidez = Turbidez_agua.objects.last()
+        turbidez = [turbidez.fecha, turbidez.valor]
+    except:
+        fecha = timezone.now()
+        turbidez = [fecha, 100]
+    return JsonResponse({"temperatura": turbidez})
+
+
+def medicion_temperatura_agua(request):
+    """ Se encarga de la temperatura """
+    sensores = SensoresForm()
+    if request.POST:
+        sensores = SensoresForm(request.POST)
+        if sensores.is_valid():
+            sensores.save()
+            ## enviar la orden MQTT para que se empieze a tomar la temperatura
+            print(request.POST)
+            print("tomar compuestos aire")
+    respuesta = {"sensores": sensores}
+    return render(request, "app_praes/temperatura_agua.html", respuesta)
+
+@csrf_exempt
+def consulta_temp_agua(request):
+    try:
+        temp = Temperatura_agua.objects.last()
+        temp = [temp.fecha, temp.valor]
+    except:
+        fecha = timezone.now()
+        temp = [fecha, 16]
+    return JsonResponse({"temperatura": temp})
+
+def medicion_flujo_agua(request):
+    """ Se encarga de la temperatura """
+    sensores = SensoresForm()
+    if request.POST:
+        sensores = SensoresForm(request.POST)
+        if sensores.is_valid():
+            sensores.save()
+            ## enviar la orden MQTT para que se empieze a tomar la temperatura
+            print(request.POST)
+            print("tomar compuestos aire")
+    respuesta = {"sensores": sensores}
+    return render(request, "app_praes/flujo_agua.html", respuesta)
+
+@csrf_exempt
+def consulta_flujo(request):
+    try:
+        temp = Flujo_agua.objects.last()
+        temp = [temp.fecha, temp.valor]
+    except:
+        fecha = timezone.now()
+        temp = [fecha, 800]
+    return JsonResponse({"temperatura": temp})
 
 def monitoreo_lecturas(request):
     """ Esta es la que debo modificar para cambiar la informacion """
