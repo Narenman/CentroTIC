@@ -69,7 +69,7 @@ function callAjax(){
                         data: data.espectro,
                             }]
                 }); //fin grafica
-                interval = setTimeout(callAjax, 1000);
+                interval = setTimeout(callAjax, 3000);
             } //fin success
             }); // fin ajax
 

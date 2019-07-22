@@ -56,7 +56,7 @@ def caracteristicas(x, nfft):
 
 def envio_API(region, frec_central, samp_rate, fft_size, duracion):
     # objeto para leer el archivo del espectro
-    x = numpy.fromfile('/home/uis-e3t/back_centrotic/CentroTIC/Modulos_aplicaciones/radioastronomia/subsistema RFI/espectro', dtype=numpy.float32, count=-1)
+    x = numpy.fromfile('/home/root/radioastronomia/espectro', dtype=numpy.float32, count=-1)
     print("len(x)=", len(x))
     x = ComplexEncoder().encode(x)
     print("fin codificacion json")
@@ -71,7 +71,7 @@ def envio_API(region, frec_central, samp_rate, fft_size, duracion):
 
     # headers={"Authorization": " Token be9c008bdb9c0ed68f87863a1fdeda569a8fe4c7"}
     # preparacion de las URL para realizar la actualizacion
-    url = "http://127.0.0.1:8000/radioastronomia/subsistema-RFI"
+    url = "http://192.168.0.103:8000/radioastronomia/subsistema-RFI"
 
     r = requests.post(url, data=pyload)
     print("HTTP status {}".format(r.status_code))

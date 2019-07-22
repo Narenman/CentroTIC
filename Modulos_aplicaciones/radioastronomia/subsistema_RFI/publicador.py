@@ -9,9 +9,9 @@ password_broker = "raspberry"
 
 #variables de control RFI
 nfft = 1024
-sample_rate = 32000 #S/s
+sample_rate = 16000000 #S/s
 ganancia = 50       #valor UHD
-duracion = 100e-3     #segundos
+duracion = 1     #segundos
 frec_central = 96000000
 accion = True
 region = 1      #paramo de berlin

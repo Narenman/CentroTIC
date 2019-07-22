@@ -120,12 +120,13 @@ class CaracteristicasEstacion(models.Model):
 
 class AlbumImagenes(models.Model):
     """ esta tabla se encarga de registrar todas las imagenes del cielo tomadas """
-    imagen = models.ImageField(upload_to='album/imagenes', height_field=None, width_field=None, max_length=None)
+    # imagen = models.ImageField(upload_to='album/imagenes', height_field=None, width_field=None, max_length=None)
+    imagen = models.FileField(upload_to='videos/', null = True, max_length=200, verbose_name="")
     fecha = models.DateTimeField(auto_now_add=True, auto_now=False)
     region = models.ForeignKey(RegionCampana, on_delete=models.CASCADE)
 
     def __unicode__(self):
-        return self.imagen
+        return str(self.imagen)
 
     class Meta:
         db_table = ''

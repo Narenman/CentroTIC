@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Departamento, Ciudad, Kit, Colegio, Sensores, Semillero, Temperatura, \
-    Humedad, PresionAtmosferica, Asociacion, KitNariz, Temperatura_agua, PH_agua, Turbidez_agua, Flujo_agua
+    Humedad, PresionAtmosferica, Asociacion, KitNariz, Temperatura_agua, PH_agua, Turbidez_agua, Flujo_agua, Ubicacion_lectura
 # Register your models here.
 
 admin.site.register(Departamento)
@@ -18,6 +18,7 @@ admin.site.register(PH_agua)
 admin.site.register(Temperatura_agua)
 admin.site.register(Turbidez_agua)
 admin.site.register(Flujo_agua)
+admin.site.register(Ubicacion_lectura)
 
 
 

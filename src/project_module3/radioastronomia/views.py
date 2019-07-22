@@ -20,7 +20,7 @@ def json_spectro(request):
         espectro = espectro.espectro
         espectro = numpy.asarray(espectro)
         # promediado del espectro
-        K = 32
+        K = 1
         x = numpy.zeros(nfft)
         for i in range(K):
             x = x + espectro[i*nfft:(i+1)*nfft]
@@ -37,7 +37,11 @@ def json_spectro(request):
 
 def control_manual(request):
     """ Es para mostrar la interfaz del control manual del espectro """
-    album = AlbumImagenes.objects.all()
-    respuesta = {"imagenes": album,}
+    try:
+        album = AlbumImagenes.objects.last()
+        album = album.imagen
+        respuesta = {"imagenes": album}
+    except:
+        respuesta = {}
                 
     return render(request, "radioastronomia/control_manual.html", respuesta)

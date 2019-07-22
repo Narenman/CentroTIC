@@ -6,9 +6,10 @@
     <div "class=col">
     <br>
     <h3> Imágenes del cielo </h3>
-    {% for data in imagenes %}
-    <img src="{{ data.imagen.url }}" alt="no encontrado" class="img-thumbnail" height="300px" width="500px">
-    {% endfor %}
+    <video width="450" controls>
+    <source src="{{ imagenes.url }}" type="video/mp4" > </source>
+    Su navegador no soporta este video
+    </video>
     </div>
 
     <div class="col">

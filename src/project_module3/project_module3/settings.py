@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'rest_framework_swagger',
     'bootstrap3',
     'radioastronomia',
+    'django_cleanup',
 ]
 
 REST_FRAMEWORK = {
@@ -86,6 +87,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',#linea agregada para videos
             ],
         },
     },
@@ -147,9 +149,10 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS =[os.path.join(BASE_DIR, 'static'),]
-#STATIC_ROOT = '/home/luismiguel/back_centrotic/staticfiles'
+#STATIC_ROOT = '/home/luismiguel/back_centrotic/staticfiles' #para el servidor google
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL  = '/'
 
 MEDIA_URL = '/media/'
-#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = '/home/uis-e3t/back_centrotic/media'
+# MEDIA_ROOT = '/home/luismiguel/back_centrotic/media' #para el servidor google
