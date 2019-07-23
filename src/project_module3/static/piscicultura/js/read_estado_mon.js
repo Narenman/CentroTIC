@@ -13,7 +13,7 @@ function loadDoc() {
       est=this.response.estado;
 
     	printer();
-      //console.log(meteorology.temperatura[0]);
+      //console.log(est);
 
     }
   };
@@ -23,7 +23,14 @@ function loadDoc() {
   xhttp.overrideMimeType('text/xml; charset=iso-8859-1');
   xhttp.send(); 
 
-  setTimeout(loadDoc, 1000);
+  if(est=='Desactivado'){
+    var timeout = setTimeout(loadDoc, 1000);
+ 
+  } else{
+    clearTimeout(timeout);
+
+  }
+  
 
 }
 

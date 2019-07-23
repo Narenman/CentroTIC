@@ -36,7 +36,7 @@ def monitoreo(request):
 @csrf_exempt
 def toma_datos(request):
     topico = "UIS/PISCICULTURA"
-    IP_broker = "34.74.6.16"
+    IP_broker = "192.168.1.5"
     usuario_broker = "pi"
     password_broker = "raspberry"
     print("mqtt configurado")
@@ -92,70 +92,205 @@ def toma_datos(request):
     return render(request, "piscicultura/toma_datos.html", {})
 """
 
+def json_last_est1(request):
+    temp = Temperatura.objects.filter(pozo_id=1)
+    #print(temp)
+    temp = temp.last()
+    #print(temp) 
+    temperatura = [temp.fecha, temp.valor]
+    #oxígeno disuelto
+    od = O2disuelto.objects.filter(pozo_id=1)
+    od = od.last()
+    oxigenoDisuelto = [od.fecha, od.valor]
+    #ph
+    ph = PH.objects.filter(pozo_id=1)
+    ph = ph.last()
+    phTank = [ph.fecha, ph.valor]
+    #temperatura caja
+    tempC = TemperaturaCaja.objects.filter(pozo_id=1)
+    tempC = tempC.last()
+    tempCaja = [tempC.fecha, tempC.valor]
+    #voltaje batería
+    bat=VoltajeBateria.objects.filter(pozo_id=1)
+    bat = bat.last()
+    voltajeBat = [bat.fecha, bat.valor]
+    #humedad caja
+    humC = HumedadCaja.objects.filter(pozo_id=1)
+    humC = humC.last()
+    humCaja = [humC.fecha, humC.valor]
+    variables = {"temperatura":temperatura, "oxigenoDisuelto": oxigenoDisuelto, "phTank": phTank, "tempCaja": tempCaja, "voltajeBat": voltajeBat, "humCaja": humCaja}
+    # print(variables)
+    return JsonResponse(variables)
 
 @csrf_exempt
-def last_json_data(request):
+def json_last_est2(request):
     try:
-        temp = Temperatura.objects.last()
+        temp = Temperatura.objects.filter(pozo_id=2)
+        #print(temp)
+        temp = temp.last()
         #print(temp) 
         temperatura = [temp.fecha, temp.valor]
         #oxígeno disuelto
-        od = O2disuelto.objects.last()
+        od = O2disuelto.objects.filter(pozo_id=2)
+        od = od.last()
         oxigenoDisuelto = [od.fecha, od.valor]
         #ph
-        ph = PH.objects.last()
+        ph = PH.objects.filter(pozo_id=2)
+        ph = ph.last()
         phTank = [ph.fecha, ph.valor]
         #temperatura caja
-        tempC = TemperaturaCaja.objects.last()
+        tempC = TemperaturaCaja.objects.filter(pozo_id=2)
+        tempC = tempC.last()
         tempCaja = [tempC.fecha, tempC.valor]
         #voltaje batería
-        bat=VoltajeBateria.objects.last()
+        bat=VoltajeBateria.objects.filter(pozo_id=2)
+        bat = bat.last()
         voltajeBat = [bat.fecha, bat.valor]
         #humedad caja
-        humC = HumedadCaja.objects.last()
+        humC = HumedadCaja.objects.filter(pozo_id=2)
+        humC = humC.last()
         humCaja = [humC.fecha, humC.valor]
-        variables = {"temperatura":temperatura,
-                    "oxigenoDisuelto": oxigenoDisuelto,
-                    "phTank": phTank,
-                    "tempCaja": tempCaja,
-                    "voltajeBat": voltajeBat,
-                    "humCaja": humCaja}
+        variables = {"temperatura":temperatura, "oxigenoDisuelto": oxigenoDisuelto, "phTank": phTank, "tempCaja": tempCaja, "voltajeBat": voltajeBat, "humCaja": humCaja}
+        # print(variables)
     except:
         variables = {}
     return JsonResponse(variables)
 
-
-@csrf_exempt
-def lecturas_json_all(request):
-    #temperaturas
-    temp = Temperatura.objects.all()
-    temperatura = temp.values("fecha", "valor", "pozo")
-    temperatura = list(map(lambda datos: [datos["fecha"], datos["valor"], datos["pozo"]], temperatura))
-    #oxígenodisuelto
-    od = O2disuelto.objects.all()
-    oxigenoDisuelto = od.values("fecha", "valor", "pozo")
-    oxigenoDisuelto= list(map(lambda datos: [datos["fecha"], datos["valor"], datos["pozo"]], oxigenoDisuelto))
-    #ph
-    ph = PH.objects.all()
-    phTank = ph.values("fecha", "valor", "pozo")
-    phTank = list(map(lambda datos: [datos["fecha"], datos["valor"], datos["pozo"]], phTank))
-    #temperatura caja
-    tempC = TemperaturaCaja.objects.all()
-    tempCaja = tempC.values("fecha", "valor", "pozo")
-    tempCaja = list(map(lambda datos: [datos["fecha"], datos["valor"], datos["pozo"]], tempCaja))
-    #voltaje batería
-    bat=VoltajeBateria.objects.all()
-    voltajeBat = bat.values("fecha", "valor", "pozo")
-    voltajeBat = list(map(lambda datos: [datos["fecha"], datos["valor"], datos["pozo"]], voltajeBat))
-    
-    #humedad caja
-    humC = HumedadCaja.objects.all()
-    humCaja = humC.values("fecha","valor", "pozo")
-    humCaja = list(map(lambda datos: [datos["fecha"], datos["valor"], datos["pozo"]], humCaja))
-    
-    variables = {"temperatura":temperatura, "oxigenoDisuelto": oxigenoDisuelto, "phTank": phTank, "tempCaja": tempCaja, "voltajeBat": voltajeBat, "humCaja": humCaja}
+def json_last_est3(request):
+    try:
+        temp = Temperatura.objects.filter(pozo_id=3)
+        #print(temp)
+        temp = temp.last()
+        #print(temp) 
+        temperatura = [temp.fecha, temp.valor]
+        #oxígeno disuelto
+        od = O2disuelto.objects.filter(pozo_id=3)
+        od = od.last()
+        oxigenoDisuelto = [od.fecha, od.valor]
+        #ph
+        ph = PH.objects.filter(pozo_id=3)
+        ph = ph.last()
+        phTank = [ph.fecha, ph.valor]
+        #temperatura caja
+        tempC = TemperaturaCaja.objects.filter(pozo_id=3)
+        tempC = tempC.last()
+        tempCaja = [tempC.fecha, tempC.valor]
+        #voltaje batería
+        bat=VoltajeBateria.objects.filter(pozo_id=3)
+        bat = bat.last()
+        voltajeBat = [bat.fecha, bat.valor]
+        #humedad caja
+        humC = HumedadCaja.objects.filter(pozo_id=3)
+        humC = humC.last()
+        humCaja = [humC.fecha, humC.valor]
+        variables = {"temperatura":temperatura, "oxigenoDisuelto": oxigenoDisuelto, "phTank": phTank, "tempCaja": tempCaja, "voltajeBat": voltajeBat, "humCaja": humCaja}
+        # print(variables)
+    except:
+        variables = {}
     return JsonResponse(variables)
 
+@csrf_exempt
+def json_all_est1(request):
+    try:
+        #temperaturas
+        temp = Temperatura.objects.filter(pozo_id=1)
+        #print(temp)
+        temperatura = temp.values("fecha", "valor", "pozo")
+        #print(temperatura) 
+        temperatura = list(map(lambda datos: [datos["fecha"], datos["valor"], datos["pozo"]], temperatura))
+        #oxígenodisuelto
+        od = O2disuelto.objects.filter(pozo_id=1)
+        oxigenoDisuelto = od.values("fecha", "valor", "pozo")
+        oxigenoDisuelto= list(map(lambda datos: [datos["fecha"], datos["valor"], datos["pozo"]], oxigenoDisuelto))
+        #ph
+        ph = PH.objects.filter(pozo_id=1)
+        phTank = ph.values("fecha", "valor", "pozo")
+        phTank = list(map(lambda datos: [datos["fecha"], datos["valor"], datos["pozo"]], phTank))
+        #temperatura caja
+        tempC = TemperaturaCaja.objects.filter(pozo_id=1)
+        tempCaja = tempC.values("fecha", "valor", "pozo")
+        tempCaja = list(map(lambda datos: [datos["fecha"], datos["valor"], datos["pozo"]], tempCaja))
+        #voltaje batería
+        bat=VoltajeBateria.objects.filter(pozo_id=1)
+        voltajeBat = bat.values("fecha", "valor", "pozo")
+        voltajeBat = list(map(lambda datos: [datos["fecha"], datos["valor"], datos["pozo"]], voltajeBat))
+        
+        #humedad caja
+        humC = HumedadCaja.objects.filter(pozo_id=1)
+        humCaja = humC.values("fecha","valor", "pozo")
+        humCaja = list(map(lambda datos: [datos["fecha"], datos["valor"], datos["pozo"]], humCaja))
+        
+        variables = {"temperatura":temperatura, "oxigenoDisuelto": oxigenoDisuelto, "phTank": phTank, "tempCaja": tempCaja, "voltajeBat": voltajeBat, "humCaja": humCaja}
+    except:
+        variables = {}
+
+    return JsonResponse(variables)
+
+@csrf_exempt
+def json_all_est2(request):
+    try:
+        #temperaturas
+        temp = Temperatura.objects.filter(pozo_id=2)
+        temperatura = temp.values("fecha", "valor", "pozo")
+        temperatura = list(map(lambda datos: [datos["fecha"], datos["valor"], datos["pozo"]], temperatura))
+        #oxígenodisuelto
+        od = O2disuelto.objects.filter(pozo_id=2)
+        oxigenoDisuelto = od.values("fecha", "valor", "pozo")
+        oxigenoDisuelto= list(map(lambda datos: [datos["fecha"], datos["valor"], datos["pozo"]], oxigenoDisuelto))
+        #ph
+        ph = PH.objects.filter(pozo_id=2)
+        phTank = ph.values("fecha", "valor", "pozo")
+        phTank = list(map(lambda datos: [datos["fecha"], datos["valor"], datos["pozo"]], phTank))
+        #temperatura caja
+        tempC = TemperaturaCaja.objects.filter(pozo_id=2)
+        tempCaja = tempC.values("fecha", "valor", "pozo")
+        tempCaja = list(map(lambda datos: [datos["fecha"], datos["valor"], datos["pozo"]], tempCaja))
+        #voltaje batería
+        bat=VoltajeBateria.objects.filter(pozo_id=2)
+        voltajeBat = bat.values("fecha", "valor", "pozo")
+        voltajeBat = list(map(lambda datos: [datos["fecha"], datos["valor"], datos["pozo"]], voltajeBat)) 
+        #humedad caja
+        humC = HumedadCaja.objects.filter(pozo_id=2)
+        humCaja = humC.values("fecha","valor", "pozo")
+        humCaja = list(map(lambda datos: [datos["fecha"], datos["valor"], datos["pozo"]], humCaja))
+        
+        variables = {"temperatura":temperatura, "oxigenoDisuelto": oxigenoDisuelto, "phTank": phTank, "tempCaja": tempCaja, "voltajeBat": voltajeBat, "humCaja": humCaja}
+    except:
+        variables = {}
+
+    return JsonResponse(variables)
+
+@csrf_exempt
+def json_all_est3(request):
+    try:
+        #temperaturas
+        temp = Temperatura.objects.filter(pozo_id=3)
+        temperatura = temp.values("fecha", "valor", "pozo")
+        temperatura = list(map(lambda datos: [datos["fecha"], datos["valor"], datos["pozo"]], temperatura))
+        #oxígenodisuelto
+        od = O2disuelto.objects.filter(pozo_id=3)
+        oxigenoDisuelto = od.values("fecha", "valor", "pozo")
+        oxigenoDisuelto= list(map(lambda datos: [datos["fecha"], datos["valor"], datos["pozo"]], oxigenoDisuelto))
+        #ph
+        ph = PH.objects.filter(pozo_id=3)
+        phTank = ph.values("fecha", "valor", "pozo")
+        phTank = list(map(lambda datos: [datos["fecha"], datos["valor"], datos["pozo"]], phTank))
+        #temperatura caja
+        tempC = TemperaturaCaja.objects.filter(pozo_id=3)
+        tempCaja = tempC.values("fecha", "valor", "pozo")
+        tempCaja = list(map(lambda datos: [datos["fecha"], datos["valor"], datos["pozo"]], tempCaja))
+        #voltaje batería
+        bat=VoltajeBateria.objects.filter(pozo_id=3)
+        voltajeBat = bat.values("fecha", "valor", "pozo")
+        voltajeBat = list(map(lambda datos: [datos["fecha"], datos["valor"], datos["pozo"]], voltajeBat))
+        #humedad caja
+        humC = HumedadCaja.objects.filter(pozo_id=3)
+        humCaja = humC.values("fecha","valor", "pozo")
+        humCaja = list(map(lambda datos: [datos["fecha"], datos["valor"], datos["pozo"]], humCaja))     
+        variables = {"temperatura":temperatura, "oxigenoDisuelto": oxigenoDisuelto, "phTank": phTank, "tempCaja": tempCaja, "voltajeBat": voltajeBat, "humCaja": humCaja}
+    except:
+        variables = {}
+    return JsonResponse(variables)
 
 @csrf_exempt
 def json_estado(request):

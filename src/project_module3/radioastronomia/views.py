@@ -20,12 +20,12 @@ def json_spectro(request):
         espectro = espectro.espectro
         espectro = numpy.asarray(espectro)
         # promediado del espectro
-        K = 1
+        K = 2
         x = numpy.zeros(nfft)
         for i in range(K):
             x = x + espectro[i*nfft:(i+1)*nfft]
         x = x/K
-        frec = (numpy.arange(0,nfft,1)*frec_muestreo/nfft + frec_central)/1e6 #puntos espectrales
+        frec = (numpy.arange(0,nfft,1)*frec_muestreo/nfft + frec_central/2)/1e6 #puntos espectrales
         #organizacion de los datos para que javascript los pueda interpretar
         respuesta = []
         for i in range(nfft):
