@@ -71,13 +71,13 @@ def envio_API(dispositivo, frec_central, samp_rate, fft_size):
     # preparacion de las URL para realizar la actualizacion
 
     if frec_central==96e6 and dispositivo==1:
-        URL = "http://34.74.6.16/bloqueadores/espectro/1"
+        URL = "http://35.243.199.245/bloqueadores/espectro/1"
     elif frec_central==112e6 and dispositivo ==1:
-        URL = "http://34.74.6.16/bloqueadores/espectro/2"
+        URL = "http://35.243.199.245/bloqueadores/espectro/2"
     elif frec_central==96e6 and dispositivo ==2:
-        URL = "http://34.74.6.16/bloqueadores/espectro/3"
+        URL = "http://35.243.199.245/bloqueadores/espectro/3"
     elif frec_central==112e6 and dispositivo ==2:
-        URL = "http://34.74.6.16/bloqueadores/espectro/4"
+        URL = "http://35.243.199.245/bloqueadores/espectro/4"
     
 
     r = requests.put(URL, data=pyload, headers=headers)
@@ -86,7 +86,7 @@ def envio_API(dispositivo, frec_central, samp_rate, fft_size):
 
 
 class MQTTSuscriptor():
-    def __init__(self, broker_address ="34.74.6.16",
+    def __init__(self, broker_address ="35.243.199.245",
                        port = 1883,
                        usuario_broker = "pi",
                        contrasena_broker = "raspberry"):

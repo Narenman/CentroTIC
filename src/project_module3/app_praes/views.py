@@ -18,7 +18,7 @@ import time
 @csrf_exempt
 def control_ESP32(request):
     topico = "UIS/LP/213"
-    IP_broker = "34.74.6.16"
+    IP_broker = "35.243.199.245"
     usuario_broker = "pi"
     password_broker = "raspberry"
     try:
@@ -308,7 +308,7 @@ def modo_nariz(request):
 
     #envio de informacion a la nariz para que inicie el escaneo de la muestra
     topico = "UIS/LP/213"
-    IP_broker = "34.74.6.16"
+    IP_broker = "35.243.199.245"
     usuario_broker = "pi"
     password_broker = "raspberry"
     accion = {"control": "modo-nariz"}

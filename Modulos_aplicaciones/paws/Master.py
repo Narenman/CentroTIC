@@ -7,7 +7,7 @@ def init_req(serial_Number, model_Id, manufacturer_Id,dane_code,):
     """ este metodo es para iniciar la comunicacion donde la base de datos
     retorna el init resp
     """
-    URL = "http://34.74.6.16/paws/init-req"
+    URL = "http://35.243.199.245/paws/init-req"
     INIT_REQ = {"serial_Number": serial_Number,
                             "model_Id": model_Id,
                             "manufacturer_Id": manufacturer_Id,
@@ -29,7 +29,7 @@ def init_req(serial_Number, model_Id, manufacturer_Id,dane_code,):
 def no_use_notify(serial_Number, ruleset_Ids, model_Id, manufacturer_Id,dane_code,chosen_channel):
     """ Este metodo es para eliminar los canales cuando el dispositivo en blanco deja de transmitir
     """
-    URL = "http://34.74.6.16/paws/delete-channel-paws"
+    URL = "http://35.243.199.245/paws/delete-channel-paws"
     AVAIL_SPECTRUM_REQ = {"serial_Number": serial_Number,
                             "ruleset_Ids": ruleset_Ids,
                             "model_Id": model_Id,
@@ -67,7 +67,7 @@ def avail_spectrum_request(serial_Number, ruleset_Ids, model_Id, manufacturer_Id
     # contact = "mario"
     # email = "luismiguel@radiogis.uis.edu.co"
 
-    URL = "http://34.74.6.16/paws/avail-spectrum"
+    URL = "http://35.243.199.245/paws/avail-spectrum"
     AVAIL_SPECTRUM_REQ = {"serial_Number": serial_Number,
                             "ruleset_Ids": ruleset_Ids,
                             "model_Id": model_Id,
@@ -99,7 +99,7 @@ def avail_spectrum_notify(serial_Number, ruleset_Ids, model_Id, manufacturer_Id,
     # contact = "mario"
     # email = "luismiguel@radiogis.uis.edu.co"
 
-    URL = "http://34.74.6.16/paws/spectrum-use-resp"
+    URL = "http://35.243.199.245/paws/spectrum-use-resp"
     SPECTRUM_USE_NOTIFY = {"serial_Number": serial_Number,
                             "ruleset_Ids": ruleset_Ids,
                             "model_Id": model_Id,
@@ -150,7 +150,7 @@ def suscriptor_MQTT_SPEC_RESP():
             print("Comunicacion fallida con el servidor")
         client.disconnect()
 
-    broker_address= "34.74.6.16"  
+    broker_address= "35.243.199.245"  
     port = 1883                  
     usuario_broker = "pi"
     password_broker = "raspberry"
@@ -191,7 +191,7 @@ def suscriptor_MQTT_USE_NOTIFY():
         print(AVAIL_SPECTRUM_RESP)
         client.disconnect()
 
-    broker_address= "34.74.6.16"  
+    broker_address= "35.243.199.245"  
     port = 1883                  
     usuario_broker = "pi"
     password_broker = "raspberry"
@@ -230,7 +230,7 @@ def suscriptor_MQTT_DELETE_NOTIFY():
         no_use_notify(serial_Number, ruleset_Ids, model_Id, manufacturer_Id,dane_code,chosen_channel)
         client.disconnect()
 
-    broker_address= "34.74.6.16"  
+    broker_address= "35.243.199.245"  
     port = 1883                  
     usuario_broker = "pi"
     password_broker = "raspberry"

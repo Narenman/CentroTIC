@@ -40,7 +40,7 @@ def jamming(request):
         print(terminales_seleccionados)
         username = "pi"
         password = "raspberry"
-        MQTT_broker = "34.74.6.16"
+        MQTT_broker = "35.243.199.245"
         MQTT_port = 1883
         JAM_REQ = json.dumps({"frec_central": frecuencia_central, "accion": "bloquear-espectro"})
 
@@ -82,7 +82,7 @@ def monitoring(request):
         ##################  MQTT  ##############33
         username = "pi"
         password = "raspberry"
-        MQTT_broker = "34.74.6.16"
+        MQTT_broker = "35.243.199.245"
         MQTT_port = 1883
 
         # informacion para enviar al USRP

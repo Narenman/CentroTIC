@@ -37,7 +37,7 @@ def avail_spectrum_request():
 
     # informacion Broker MQTT
     topico = "UIS/PAWS"
-    IP_broker = "34.74.6.16"
+    IP_broker = "35.243.199.245"
     usuario_broker = "pi"
     password_broker = "raspberry"
 
@@ -66,7 +66,7 @@ def spectrum_use_notify(spectra):
     manufacturer_Id = "Ettus Research"
     dane_code = 68001 # codigo dane para Bucaramanga
     #informacion del broker
-    IP_broker = "34.74.6.16"
+    IP_broker = "35.243.199.245"
     usuario_broker = "pi"
     password_broker = "raspberry"
 
@@ -100,7 +100,7 @@ def suscriptor_MQTT():
         spectrum_use_notify(chosen_channel) #envio al maestro del canal escogido
         client.disconnect()
 
-    broker_address= "34.74.6.16"  
+    broker_address= "35.243.199.245"  
     port = 1883                  
     # broker_address= "centrotic1uis.cloudapp.net" 
     # port = 8443
@@ -121,7 +121,7 @@ if __name__ == "__main__":
     transmision(chosen_channel,event_time)
     # cuando termina de transmitir debe notificar al maestro que 
     # ya no esta usando esa frecuencia para borrarla de la base de datos
-    IP_broker = "34.74.6.16"
+    IP_broker = "35.243.199.245"
     usuario_broker = "pi"
     password_broker = "raspberry"
     SPECTRUM_DELETE_NOTIFY = { "serial_Number": "e310-f5ab-ao0x",

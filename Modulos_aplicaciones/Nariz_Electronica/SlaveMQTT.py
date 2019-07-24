@@ -9,7 +9,7 @@ import json
 import requests
 
 class MQTTSuscriptor():
-    def __init__(self, broker_address ="34.74.6.16",
+    def __init__(self, broker_address ="35.243.199.245",
                        port = 1883,
                        usuario_broker = "pi",
                        contrasena_broker = "raspberry"):
@@ -50,7 +50,7 @@ class MQTTSuscriptor():
                 "analisis": accion["id"]}
 
                 """ uso de la API """
-                r = requests.post("http://34.74.6.16/nariz_electronica/lecturas", data=datos, headers={"Authorization":"Token be9c008bdb9c0ed68f87863a1fdeda569a8fe4c7"})
+                r = requests.post("http://35.243.199.245/nariz_electronica/lecturas", data=datos, headers={"Authorization":"Token be9c008bdb9c0ed68f87863a1fdeda569a8fe4c7"})
                 print("HTTP status {}".format(r.status_code))
                 r.close()
 
@@ -70,7 +70,7 @@ class MQTTSuscriptor():
                     timeout = t2-t1
                 print("fin toma de datos para clasificar")
                 datos = {"medicion": json.dumps(datos)}
-                url = "http://34.74.6.16/nariz_electronica/clasificar_datos"
+                url = "http://35.243.199.245/nariz_electronica/clasificar_datos"
                 r = requests.post(url, data=datos)
                 print("HTTP status {}".format(r.status_code))
                 r.close()

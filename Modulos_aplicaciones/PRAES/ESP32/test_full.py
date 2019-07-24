@@ -179,7 +179,7 @@ def sensado():
     """Esta funcion se encarga de recolectar los datos de los sensores
     y enviarlos a la API creada
     """
-    IP_SERVER = "34.74.6.16"
+    IP_SERVER = "35.243.199.245"
 
     """definicion de pines """
     pin_MQ7 = 36
@@ -319,7 +319,7 @@ def sub_cb(topic, msg):
             timming = t2-t1
 
     if dato["control"] == "modo-nariz":
-        url = "http://34.74.6.16/app_praes/modo-nariz/"
+        url = "http://35.243.199.245/app_praes/modo-nariz/"
         t1 = time.time()
         timming = 0
         while timming<=10:
@@ -330,7 +330,7 @@ def sub_cb(topic, msg):
 
                 
 # Default MQTT server to connect to
-SERVER = "34.74.6.16"
+SERVER = "35.243.199.245"
 TOPIC = b"UIS/LP/213"
 CLIENT_ID = ubinascii.hexlify(machine.unique_id())
 print("client id {}".format(CLIENT_ID))

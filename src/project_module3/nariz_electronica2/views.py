@@ -17,7 +17,7 @@ def control_narizV2(request):
             print("Conexion fallida")
 
     #VM google cloud
-    broker_address= "34.74.6.16" 
+    broker_address= "35.243.199.245" 
     port = 1883
 
     #VM Azure 

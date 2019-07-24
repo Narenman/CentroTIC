@@ -75,7 +75,7 @@ def toma_datos(request):
 """
 def toma_datos(request):
     topico = "UIS/PISCICULTURA"
-    IP_broker = "34.74.6.16"
+    IP_broker = "35.243.199.245"
     usuario_broker = "pi"
     password_broker = "raspberry"
 

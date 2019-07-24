@@ -12,11 +12,12 @@ import Adafruit_MCP3008
  8        CS  
 """
 
+#ADC1
 SPI_PORT   = 0
 SPI_DEVICE = 0
 mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE))
 
-# Software SPI configuration:
+#ADC2 Software SPI configuration:
 #GPIO       MCP3008
 CLK  = 18   #CLK
 MISO = 23   #DOUT

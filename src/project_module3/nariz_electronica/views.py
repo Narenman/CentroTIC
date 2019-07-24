@@ -58,7 +58,7 @@ def analisis_nariz(request):
             """
 
             topico = "UIS/NARIZ/PRINCIPAL"
-            IP_broker = "34.74.6.16"
+            IP_broker = "35.243.199.245"
             usuario_broker = "pi"
             password_broker = "raspberry"
             publish.single(topico, accion, port=1883, hostname=IP_broker,
@@ -114,7 +114,7 @@ def clasificacion_maderas(request):
 
     #envio de informacion a la nariz para que inicie el escaneo de la muestra
     topico = "UIS/NARIZ/PRINCIPAL"
-    IP_broker = "34.74.6.16"
+    IP_broker = "35.243.199.245"
     usuario_broker = "pi"
     password_broker = "raspberry"
     accion = {"accion": "clasificacion-datos"}
@@ -159,7 +159,7 @@ def clasificacion_rocas(request):
 
     #envio de informacion a la nariz para que inicie el escaneo de la muestra
     topico = "UIS/NARIZ/PRINCIPAL"
-    IP_broker = "34.74.6.16"
+    IP_broker = "35.243.199.245"
     usuario_broker = "pi"
     password_broker = "raspberry"
     accion = {"accion": "clasificacion-datos"}
@@ -203,7 +203,7 @@ def clasificacion_triatominos(request):
 
     #envio de informacion a la nariz para que inicie el escaneo de la muestra
     topico = "UIS/NARIZ/PRINCIPAL"
-    IP_broker = "34.74.6.16"
+    IP_broker = "35.243.199.245"
     usuario_broker = "pi"
     password_broker = "raspberry"
     accion = {"accion": "clasificacion-datos"}

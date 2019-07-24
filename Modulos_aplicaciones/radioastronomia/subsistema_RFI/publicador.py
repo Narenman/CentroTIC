@@ -8,11 +8,11 @@ usuario_broker = "pi"
 password_broker = "raspberry"
 
 #variables de control RFI
-nfft = 8192
-sample_rate = 8000000 #S/s
+nfft = 1024
+sample_rate = 4000000 #S/s
 ganancia = 50       #valor UHD
 duracion = 1     #segundos
-frec_central = 600000000
+frec_central = 475000000
 accion = True
 region = 1      #paramo de berlin
 
