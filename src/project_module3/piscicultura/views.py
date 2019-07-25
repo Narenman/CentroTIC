@@ -93,33 +93,36 @@ def toma_datos(request):
 """
 
 def json_last_est1(request):
-    temp = Temperatura.objects.filter(pozo_id=1)
-    #print(temp)
-    temp = temp.last()
-    #print(temp) 
-    temperatura = [temp.fecha, temp.valor]
-    #oxígeno disuelto
-    od = O2disuelto.objects.filter(pozo_id=1)
-    od = od.last()
-    oxigenoDisuelto = [od.fecha, od.valor]
-    #ph
-    ph = PH.objects.filter(pozo_id=1)
-    ph = ph.last()
-    phTank = [ph.fecha, ph.valor]
-    #temperatura caja
-    tempC = TemperaturaCaja.objects.filter(pozo_id=1)
-    tempC = tempC.last()
-    tempCaja = [tempC.fecha, tempC.valor]
-    #voltaje batería
-    bat=VoltajeBateria.objects.filter(pozo_id=1)
-    bat = bat.last()
-    voltajeBat = [bat.fecha, bat.valor]
-    #humedad caja
-    humC = HumedadCaja.objects.filter(pozo_id=1)
-    humC = humC.last()
-    humCaja = [humC.fecha, humC.valor]
-    variables = {"temperatura":temperatura, "oxigenoDisuelto": oxigenoDisuelto, "phTank": phTank, "tempCaja": tempCaja, "voltajeBat": voltajeBat, "humCaja": humCaja}
-    # print(variables)
+    try:
+        temp = Temperatura.objects.filter(pozo_id=1)
+        #print(temp)
+        temp = temp.last()
+        #print(temp) 
+        temperatura = [temp.fecha, temp.valor]
+        #oxígeno disuelto
+        od = O2disuelto.objects.filter(pozo_id=1)
+        od = od.last()
+        oxigenoDisuelto = [od.fecha, od.valor]
+        #ph
+        ph = PH.objects.filter(pozo_id=1)
+        ph = ph.last()
+        phTank = [ph.fecha, ph.valor]
+        #temperatura caja
+        tempC = TemperaturaCaja.objects.filter(pozo_id=1)
+        tempC = tempC.last()
+        tempCaja = [tempC.fecha, tempC.valor]
+        #voltaje batería
+        bat=VoltajeBateria.objects.filter(pozo_id=1)
+        bat = bat.last()
+        voltajeBat = [bat.fecha, bat.valor]
+        #humedad caja
+        humC = HumedadCaja.objects.filter(pozo_id=1)
+        humC = humC.last()
+        humCaja = [humC.fecha, humC.valor]
+        variables = {"temperatura":temperatura, "oxigenoDisuelto": oxigenoDisuelto, "phTank": phTank, "tempCaja": tempCaja, "voltajeBat": voltajeBat, "humCaja": humCaja}
+        # print(variables)
+    except:
+        variables = {}
     return JsonResponse(variables)
 
 @csrf_exempt

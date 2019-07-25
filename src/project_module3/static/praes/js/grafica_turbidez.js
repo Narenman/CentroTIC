@@ -13,7 +13,7 @@ function requestData() {
             point.temperatura[0]=Date.UTC(year,month,day,hour,minute, second) 
 
             var series = chart.series[0];
-            shift = series.data.length > 10; // shift if the series is 
+            shift = series.data.length > 20; // shift if the series is 
                                                  // longer than 20
 
             // add the point

@@ -41,7 +41,7 @@ function loadDoc() {
     }
   };
 
-  xhttp.open("GET", "http://34.74.6.16/piscicultura/variables-json-last/", true);
+  xhttp.open("GET", "/piscicultura/variables-json-last/", true);
   xhttp.overrideMimeType('text/xml; charset=iso-8859-1');
   xhttp.send(); 
 
@@ -71,7 +71,7 @@ function downloadall(){
     }
   };
 
-  xhttp.open("GET", "http://34.74.6.16/E3Tratos/datos-json-all", true);
+  xhttp.open("GET", "/E3Tratos/datos-json-all", true);
   xhttp.overrideMimeType('text/xml; charset=iso-8859-1');
   xhttp.send(); 
 

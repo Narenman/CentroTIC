@@ -19,12 +19,11 @@
 
             <h3> El pH del agua potable ha de estar entre el 6,5 y el 9,5 </h3>
             <p> Hay una normativa de la Unión Europea (Normativa 98/83/EU) sobre la calidad de las aguas destinadas al consumo humano en la que se establecen algunas normas para el agua potable y se protege la salud pública de los efectos adversos del agua contaminada. </p>
-            <button type="button" class="btn btn-outline-success" id="graficar_pres">Ver gráfica</button>
             <p></p>
             <h3>Seleccionar KIT y lugar de medición:</h3>
             </div>
 
-        <form  action= "{% url 'app_praes:medicion-actual' %}" method="POST">
+        <form  action= "{% url 'app_praes:medicion-ph-agua' %}" method="POST">
                 {% csrf_token %}
 
                     {% bootstrap_form sensores%}

@@ -1,9 +1,14 @@
 
-from .models import Temperatura, Humedad, PresionAtmosferica, Sensores, KitNariz
+from .models import Temperatura, Humedad, PresionAtmosferica, KitNariz, PH_agua, Temperatura_agua, Turbidez_agua, Flujo_agua,\
+    Kit
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 
+class KitSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Kit
+        fields = "__all__"
 
 class KitNarizSerializer(serializers.ModelSerializer):
     class Meta:
@@ -42,10 +47,24 @@ class UserSerializer(serializers.ModelSerializer):
         Token.objects.create(user=user)
         return user
 
-class SensoresSerializer(serializers.ModelSerializer):
-    """
-    Lista de sensores que se encuentran en la API para monitorear el ambiente
-    """
+#sensores agua
+class PHaguaSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Sensores
-        fields ="__all__"
+        model = PH_agua
+        fields = "__all__"
+
+class TemperaturaAguaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Temperatura_agua
+        fields = "__all__"
+
+class TurbidezaguaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Turbidez_agua
+        fields = "__all__"
+
+class FlujoaguaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Flujo_agua
+        fields = "__all__"
+

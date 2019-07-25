@@ -36,8 +36,7 @@
     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Monitoreo Ambiental</a>
     <div class="dropdown-menu">
       <a class="dropdown-item" href="{% url 'app_praes:medicion-actual'%}">Información variables ambientales</a>
-      <a class="dropdown-item" href="{% url 'app_praes:monitoreo-lecturas'%}">Gráficas generales</a>
-      <a class="dropdown-item" href="{% url 'app_praes:control-kit'%}">Toma de datos</a>
+      {% comment %} <a class="dropdown-item" href="{% url 'app_praes:control-kit'%}">Toma de datos</a> {% endcomment %}
     </div>
   </li>
 
@@ -48,7 +47,7 @@
       <div class="dropdown-menu">
         <a class="dropdown-item" href="{% url 'app_praes:registro-integrantes' %}">Registro integrantes</a>
         <a class="dropdown-item" href="{% url 'app_praes:registro-semillero' %}">Registro semilleros</a>
-        <a class="dropdown-item" href="{% url 'app_praes:control-kit'%}">Toma de datos</a>
+        {% comment %} <a class="dropdown-item" href="{% url 'app_praes:control-kit'%}">Toma de datos</a> {% endcomment %}
       </div>
     </li>
 

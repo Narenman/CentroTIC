@@ -35,7 +35,6 @@ class Kit(models.Model):
     def __str__(self):
         return self.nombre_kit
 
-
 class Ubicacion_lectura(models.Model):
     etiqueta_ubicacion = models.CharField(max_length=100)
     def __str__(self):
@@ -45,36 +44,6 @@ class Ubicacion_lectura(models.Model):
         managed = True
         verbose_name = 'Ubicacion_lectura'
         verbose_name_plural = 'Ubicacion_lecturas'
-
-class Sensores(models.Model):
-    kit = models.ForeignKey(Kit, on_delete=models.CASCADE)
-    observaciones = models.CharField(max_length=150, null=True)
-    ubicacion = models.ForeignKey(Ubicacion_lectura, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.nombre_sensor
-
-class Temperatura(models.Model):
-    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
-    valor = models.FloatField()
-    sensor = models.ForeignKey(Kit, on_delete=models.CASCADE)
-    def __str__(self):
-        return "temperatura " + str(self.valor)+ " °C"
-
-
-class Humedad(models.Model):
-    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
-    valor = models.FloatField()
-    sensor = models.ForeignKey(Kit, on_delete=models.CASCADE)
-    def __str__(self):
-        return "humedad " + str(self.valor)+ " %"
-
-class PresionAtmosferica(models.Model):
-    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
-    valor = models.FloatField()
-    sensor = models.ForeignKey(Kit, on_delete=models.CASCADE)
-    def __str__(self):
-        return "presion " + str(self.valor)+ " mbar"
 
 class Semillero(models.Model):
     responsable = models.CharField(max_length=50)
@@ -86,26 +55,44 @@ class Semillero(models.Model):
         return self.responsable
 
 class Integrantes(models.Model):
-
     nombre = models.CharField(max_length=50)
     telefono = models.IntegerField()
     semillero = models.ForeignKey(Semillero, on_delete=models.CASCADE)
-    
     def __str__(self):
         return self.nombre
 
-
-class Asociacion(models.Model):
-    asociacion = models.IntegerField(default=0)
+#registro de variables
+class Temperatura(models.Model):
+    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
+    valor = models.FloatField()
+    kit_monitoreo = models.ForeignKey(Kit, on_delete=models.CASCADE)
+    ubicacion = models.ForeignKey(Ubicacion_lectura, on_delete=models.CASCADE)
     def __str__(self):
-        return "asociacion "+str(self.asociacion)
-    
+        return "temperatura " + str(self.valor)+ " °C"
+
+class Humedad(models.Model):
+    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
+    valor = models.FloatField()
+    kit_monitoreo = models.ForeignKey(Kit, on_delete=models.CASCADE)
+    ubicacion = models.ForeignKey(Ubicacion_lectura, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "humedad " + str(self.valor)+ " %"
+
+class PresionAtmosferica(models.Model):
+    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
+    valor = models.FloatField()
+    kit_monitoreo = models.ForeignKey(Kit, on_delete=models.CASCADE)
+    ubicacion = models.ForeignKey(Ubicacion_lectura, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "presion " + str(self.valor)+ " mbar"
 
 class KitNariz(models.Model):
-    kit = models.ForeignKey(Kit, on_delete=models.CASCADE)
-    medicion = JSONField(encoder="",)
-    asociacion = models.ForeignKey(Asociacion, on_delete=models.CASCADE)
-
+    kit_monitoreo = models.ForeignKey(Kit, on_delete=models.CASCADE)
+    valor = JSONField(encoder="",)
+    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
+    ubicacion = models.ForeignKey(Ubicacion_lectura, on_delete=models.CASCADE)
     def __str__(self):
         return "modo nariz"+str(self.pk)
 
@@ -113,28 +100,36 @@ class KitNariz(models.Model):
 class PH_agua(models.Model):
     valor = models.FloatField()
     fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
-    sensor = models.ForeignKey(Kit, on_delete=models.CASCADE)
+    kit_monitoreo = models.ForeignKey(Kit, on_delete=models.CASCADE)
+    ubicacion = models.ForeignKey(Ubicacion_lectura, on_delete=models.CASCADE)
+
     def __str__(self):
         return "valor PH "+str(self.valor)
 
 class Temperatura_agua(models.Model):
     valor = models.FloatField()
     fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
-    sensor = models.ForeignKey(Kit, on_delete=models.CASCADE)
+    kit_monitoreo = models.ForeignKey(Kit, on_delete=models.CASCADE)
+    ubicacion = models.ForeignKey(Ubicacion_lectura, on_delete=models.CASCADE)
+
     def __str__(self):
         return "Temperatura agua "+str(self.valor)
 
 class Turbidez_agua(models.Model):
     valor = models.FloatField()
     fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
-    sensor = models.ForeignKey(Kit, on_delete=models.CASCADE)
+    kit_monitoreo = models.ForeignKey(Kit, on_delete=models.CASCADE)
+    ubicacion = models.ForeignKey(Ubicacion_lectura, on_delete=models.CASCADE)
+
     def __str__(self):
         return "turbidez agua "+str(self.valor)
 
 class Flujo_agua(models.Model):
     valor = models.FloatField()
     fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
-    sensor = models.ForeignKey(Kit, on_delete=models.CASCADE)
+    kit_monitoreo = models.ForeignKey(Kit, on_delete=models.CASCADE)
+    ubicacion = models.ForeignKey(Ubicacion_lectura, on_delete=models.CASCADE)
+
     def __str__(self):
         return "Flujo agua "+str(self.valor)
 
