@@ -1,5 +1,5 @@
 from django import forms 
-from .models import Integrantes, Semillero, Temperatura
+from .models import Integrantes, Semillero, Temperatura, Ubicacion_lectura
 
 class IntegrantesForm(forms.ModelForm):
     class Meta:
@@ -25,3 +25,8 @@ class UbicacionForm(forms.ModelForm):
     class Meta:
         model = Temperatura
         fields = ("ubicacion","kit_monitoreo")
+
+class UbicacionLecturasForm(forms.ModelForm):
+    class Meta:
+        model = Ubicacion_lectura
+        fields = ("etiqueta_ubicacion",)

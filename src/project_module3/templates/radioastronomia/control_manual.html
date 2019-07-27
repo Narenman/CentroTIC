@@ -1,5 +1,10 @@
 {% extends 'radioastronomia/base.html' %}
 {% load static %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+
 {% block body_block %}
 
 <div class="row">
@@ -13,19 +18,28 @@
     </div>
 
     <div class="col">
-        <h3> Espectro </h3>
     <div id="grafica_espectro" style="height: 400px; max-width: 1000px; margin: 0 auto"></div>    </div>
 </div>
 
 <div class="row">
     <div class="col">
         <h3> Estación de monitoreo </h3>
-        {% lorem 3 b random %}
+        {% lorem 2 b random %}
     </div>
 
      <div class="col">
-        <h3> Control posición </h3>
-        <img src="{% static 'radioastronomia/img/control_posicion.jpg'%}" alt="no encontrado" class="img-thumbnail" height="300px" width="500px">
+        <h3> Control sistema RFI </h3>
+        <form  action= "{% url 'radioastronomia:control-manual' %}" method="POST">
+            {% csrf_token %}
+            {% bootstrap_form form%}
+                
+            {% buttons %}
+            <button type="submit" class="btn btn-primary">
+            {% bootstrap_icon "star" %} Adquirir datos
+            </button>
+            {% endbuttons %}
+        </form>
+        {% comment %} <img src="{% static 'radioastronomia/img/control_posicion.jpg'%}" alt="no encontrado" class="img-thumbnail" height="300px" width="500px"> {% endcomment %}
     </div>
 
 </div>

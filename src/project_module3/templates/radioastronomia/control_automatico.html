@@ -1,0 +1,26 @@
+{% extends 'radioastronomia/base.html' %}
+{% load static %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+
+{% block body_block %}
+<div class="container">
+    <div class='row'>
+        <div class="col">
+        <h2> Modo automático </h2>
+            <form  action= "{% url 'radioastronomia:control-automatico' %}" method="POST">
+                {% csrf_token %}
+                {% bootstrap_form form%}
+                    
+                {% buttons %}
+                <button type="submit" class="btn btn-primary">
+                {% bootstrap_icon "star" %} Adquirir datos
+                </button>
+                {% endbuttons %}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock  %}

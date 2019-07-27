@@ -135,4 +135,16 @@ class AlbumImagenes(models.Model):
         verbose_name_plural = 'AlbumImageness'
 
 
+class Estado(models.Model):
+
+    activo = models.BooleanField(default=False)
+
+    class Meta:
+        db_table = ''
+        managed = True
+        verbose_name = "Estado"
+        verbose_name_plural = "Estados"
+
+    def __str__(self):
+        return "estado: "+ str(self.activo)
 

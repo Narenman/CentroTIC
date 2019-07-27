@@ -252,11 +252,11 @@
     <key>logpwrfft_x</key>
     <param>
       <key>avg_alpha</key>
-      <value>1.0</value>
+      <value>0.3</value>
     </param>
     <param>
       <key>average</key>
-      <value>False</value>
+      <value>True</value>
     </param>
     <param>
       <key>alias</key>

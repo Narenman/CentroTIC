@@ -10,13 +10,18 @@
         <h1> Variables del clima </h1>
             <div id="temperatura">
                 <h2>Temperatura</h2> 
-            <img class="img-responsive" src="{% static "praes/img/temperatura.svg" %}" height="200px" width="200px" alt="Chania"> 
+                <p>Es la cantidad de energía solar retenida por el aire en un momento dado. Se expresa en
+                grados Centigrados o Farenheit. Se mide con un termometro.</p>
+                <img class="img-responsive" src="{% static "praes/img/temperatura.svg" %}" height="200px" width="200px" alt="Chania"> 
+
+                <h3>¿Qué efectos puede causar la temperatura en la salud humana? </h3>
                 <p>La enfermedad causada por la alteración de la temperatura corporal incluye cuadros leves (los calambres y el síncope por calor), junto con otros que pueden poner en serio peligro la vida del individuo (el golpe de calor, la hipertermia maligna, el síndrome neuroléptico maligno, etc.).</p>
                 <p> Si hay altas temperaturas ambientales, las personas expuestas a ellas pueden experimentar una depleción de volumen, que se traduce clínicamente en el denominado agotamiento por calor. Su origen hay que buscarlo en una ingesta insuficiente de agua y electrolitos. Cuando el tratamiento no es correcto, cabe la posibilidad de que el síndrome progrese a golpe de calor.</p>
                 <p></p>
             <h3>Seleccionar KIT y lugar de medición:</h3>
             </div>
 
+        <img src="{% static "praes/img/cambio_temperatura.JPG"%}" class="img-fluid" alt="Responsive image">
         <form  action= "{% url 'app_praes:medicion-actual' %}" method="POST">
                 {% csrf_token %}
 

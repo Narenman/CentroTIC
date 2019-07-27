@@ -8,6 +8,7 @@ def send_API(URL,valor, ubicacion):
     data = {"valor": valor,
             "sensor": 1,
             "ubicacion": ubicacion}
+            
     headers={"Authorization":"Token 33565da4cc7e8394310dfa74160222e484b4fe6f"} 
     r = requests.post(URL, data=data, headers=headers)
     if r.status_code==200:

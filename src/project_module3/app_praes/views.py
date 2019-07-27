@@ -5,15 +5,15 @@ import paho.mqtt.publish as publish
 from .models import Temperatura, Humedad, PresionAtmosferica, \
     Semillero, Integrantes, Kit, PH_agua, Turbidez_agua, Temperatura_agua, Flujo_agua, KitNariz
 from .forms import IntegrantesForm, SemilleroForm, ConsultaSemilleroForm, ConsultaIntegrantesForm,\
-    UbicacionForm
+    UbicacionForm, UbicacionLecturasForm
 
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.utils.datastructures import MultiValueDictKeyError
-
+from django.urls import reverse, resolve, reverse_lazy
 # Create your views here.
 def publishMQTT(topico, msg):
     IP_broker = "35.243.199.245"
@@ -98,7 +98,7 @@ def medicion_ph_agua(request):
             # datos para mqtt
             topico = kit.nombre_kit+"/"+str(kit.colegio)
             msg = json.dumps({"accion":"dato-en-vivo", "tipo dato":"ph",
-                              "ubicacion": ubicacion, "parar-aire": True})
+                              "ubicacion": ubicacion})
             publishMQTT(topico,msg)
     respuesta = {"sensores": sensores}
     return render(request, "app_praes/ph_agua.html", respuesta)
@@ -272,3 +272,15 @@ def consultar_integrantes(request):
         integrantes = []
     return render(request, "app_praes/consulta_integrantes.html", {"integrantes": integrantes,
                                                                    "consulta": consulta})
+
+def registrar_ubicacion(request):
+    ubicacion = UbicacionLecturasForm()
+    if request.POST:
+        ubicacion = UbicacionLecturasForm(request.POST)
+        if ubicacion.is_valid():
+            ubicacion.save()
+            return render(request, "app_praes/index.html", {})
+    else:
+        respuesta = {"ubicacion": ubicacion}
+    return render(request, "app_praes/registrar_lugar.html", respuesta)
+

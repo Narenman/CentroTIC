@@ -79,7 +79,7 @@ def envio_API(region, frec_central, samp_rate, fft_size, duracion):
 
 
 class MQTTSuscriptor():
-    def __init__(self, broker_address ="34.74.6.16",
+    def __init__(self, broker_address ="35.243.199.245",
                        port = 1883,
                        usuario_broker = "pi",
                        contrasena_broker = "raspberry"):
@@ -100,7 +100,7 @@ class MQTTSuscriptor():
             accion = message.payload.decode()
             accion = json.loads(accion)
 
-            if accion["accion"] == True:
+            if accion["accion"] == "modo manual":
                 """ Con esta instruccion el E310 sensa el espectro y envia los datos """
                 print(accion)
                 #configuracion de variables
@@ -116,8 +116,24 @@ class MQTTSuscriptor():
 
                 self.client.disconnect()
 
-            # if accion["accion"] == "bloquear-espectro":
-            #     print(accion["frec_central"])
+            if accion["accion"] == "modo automatico":
+                start_freq = accion["frecuencia_inicial"]
+                stop_freq = accion["frecuencia_final"]
+                samp_rate = accion["sample_rate"]
+                tiempo_sensado = accion["duracion"]
+                region = accion["region"]
+                fft_size = accion["nfft"]
+                ganancia = accion["ganancia"]
+
+                frec_central = numpy.arange(start_freq, stop_freq, int(samp_rate/2))
+                frec_central = frec_central[1:]
+                
+                print(type(frec_central[0]))
+                print(accion)
+                for frec in frec_central:
+                    print("frecuencia central: {}".format(frec))
+                    monitoreo(float(frec), ganancia, samp_rate, tiempo_sensado, fft_size)
+                    envio_API(region, float(frec), samp_rate, fft_size, tiempo_sensado)
 
             # if accion["accion"] == "clasificacion-datos":
             #     pass

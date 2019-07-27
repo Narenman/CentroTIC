@@ -44,10 +44,12 @@
   {% if user.is_authenticated %}
 
     <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Registro Equipo de trabajo</a>
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Registros</a>
       <div class="dropdown-menu">
         <a class="dropdown-item" href="{% url 'app_praes:registro-integrantes' %}">Registro integrantes</a>
         <a class="dropdown-item" href="{% url 'app_praes:registro-semillero' %}">Registro semilleros</a>
+        <a class="dropdown-item" href="{% url 'app_praes:registro-ubicacion' %}">Registro Lugar de medición</a>
+
       </div>
     </li>
 
@@ -64,8 +66,9 @@
     <div class="container">
 
 <div class="row">
-    <div class="col-sm-3">
+    <div class="col-sm-4">
         <div class="list-group">
+            <img src="{% static "praes/img/entornos_saludables.JPG"%}" class="img-fluid" alt="Responsive image">
             <h4>Variables del clima</h4>
             <a href="{% url "app_praes:medicion-actual"%}"  class="list-group-item list-group-item-action">Temperatura</a>
             <a href="{% url "app_praes:medicion-humedad"%}" class="list-group-item list-group-item-action">Humedad Relativa</a>

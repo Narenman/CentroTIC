@@ -5,7 +5,7 @@
 # Title: Adquisicion de datos del espectro
 # Author: Luis Miguel Diaz
 # Description: Este modulo se encarga de adquirir las senales del espectro
-# Generated: Mon Jul 22 16:51:23 2019
+# Generated: Sat Jul 27 09:11:08 2019
 ##################################################
 
 from gnuradio import blocks
@@ -51,8 +51,8 @@ class subsistemaRFI(gr.top_block):
         	fft_size=nfft,
         	ref_scale=2,
         	frame_rate=30,
-        	avg_alpha=1.0,
-        	average=False,
+        	avg_alpha=0.3,
+        	average=True,
         )
         self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_float*nfft, '/home/root/radioastronomia/espectro', False)
         self.blocks_file_sink_0.set_unbuffered(False)
