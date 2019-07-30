@@ -33,6 +33,7 @@ urlpatterns = [
     path("medicion_turbidez", views.medicion_turbidez, name="medicion-turbidez"),
     path("medicion_temperatura_agua/", views.medicion_temperatura_agua, name="medicion-temp-agua"),
     path("medicion_flujo/", views.medicion_flujo_agua, name="medicion-flujo"),
+    path("matematica-ambiental/", views.matematica_ambiental, name="matematica-ambiental"),
 
     # path('control_kit/', control_ESP32, name="control-kit"),
     path('registro-integrantes/', views.registros_integrantes, name="registro-integrantes"),

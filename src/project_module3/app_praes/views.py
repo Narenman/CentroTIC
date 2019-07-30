@@ -1,6 +1,7 @@
 import json
 import time
 import paho.mqtt.publish as publish
+import pandas as pd 
 
 from .models import Temperatura, Humedad, PresionAtmosferica, \
     Semillero, Integrantes, Kit, PH_agua, Turbidez_agua, Temperatura_agua, Flujo_agua, KitNariz
@@ -284,3 +285,33 @@ def registrar_ubicacion(request):
         respuesta = {"ubicacion": ubicacion}
     return render(request, "app_praes/registrar_lugar.html", respuesta)
 
+def matematica_ambiental(request):
+    form = UbicacionForm()
+    if request.POST:
+        cliente = request.POST
+        print(cliente)
+        try:
+            if cliente["variable"]=="temperatura":
+                modelo = Temperatura.objects.filter(kit_monitoreo=cliente["kit_monitoreo"]).filter(ubicacion=cliente["ubicacion"])
+            elif cliente["variable"]=="humedad":
+                modelo = Humedad.objects.filter(kit_monitoreo=cliente["kit_monitoreo"]).filter(ubicacion=cliente["ubicacion"])   
+            elif cliente["variable"]=="presion":
+                modelo = PresionAtmosferica.objects.filter(kit_monitoreo=cliente["kit_monitoreo"]).filter(ubicacion=cliente["ubicacion"])   
+            elif cliente["variable"]=="temp_agua":
+                modelo = Temperatura_agua.objects.filter(kit_monitoreo=cliente["kit_monitoreo"]).filter(ubicacion=cliente["ubicacion"])   
+            elif cliente["variable"]=="turb_agua":
+                modelo = Turbidez_agua.objects.filter(kit_monitoreo=cliente["kit_monitoreo"]).filter(ubicacion=cliente["ubicacion"])
+                modelo = modelo.values("fecha", "valor")
+                df = pd.DataFrame(data=modelo)
+                #valores estadisticos de las muestras
+                print(df.describe())
+            elif cliente["variable"]=="ph_agua":
+                modelo = PH_agua.objects.filter(kit_monitoreo=cliente["kit_monitoreo"]).filter(ubicacion=cliente["ubicacion"])
+            elif cliente["variable"]=="flujo_agua":
+                modelo = Flujo_agua.objects.filter(kit_monitoreo=cliente["kit_monitoreo"]).filter(ubicacion=cliente["ubicacion"])
+ 
+        except:
+            pass
+
+    respuesta = {"form": form}
+    return render(request, "app_praes/matematica_ambiental.html", respuesta)
