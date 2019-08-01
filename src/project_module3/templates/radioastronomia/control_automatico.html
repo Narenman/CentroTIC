@@ -8,8 +8,22 @@
 {% block body_block %}
 <div class="container">
     <div class='row'>
-        <div class="col">
+
+        <div class='col'>
         <h2> Modo automático </h2>
+        <p>En este modo se seleccionan los rangos donde se desean tomar los datos, es decir,
+        la frecuencia inicial, la frecuencia final, el RBW, las posiciones: Azimut y elevación,
+        entre otros parámetros </p>
+
+        </div>
+
+        <div class="col">
+
+        {% if estado %}
+        <h2> Actualmente el sistema está tomando datos </h2>
+        <img src="{% static 'radioastronomia/img/estado.gif' %}" alt="estado" width="300px" heigth="300px">
+        {% endif %}
+
             <form  action= "{% url 'radioastronomia:control-automatico' %}" method="POST">
                 {% csrf_token %}
                 {% bootstrap_form form%}

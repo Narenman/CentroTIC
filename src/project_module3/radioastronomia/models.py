@@ -38,7 +38,7 @@ class CaracteristicasEspectro(models.Model):
     el procesamiento"""
     max_v = JSONField(encoder="")
     min_v = JSONField(encoder="")
-    energia = models.FloatField()
+    energia = JSONField(encoder="")
     espectro = models.ForeignKey(Espectro, on_delete=models.CASCADE)
 
     def __str__(self):

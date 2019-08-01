@@ -1,15 +1,17 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
-from .forms import EntrenamientoForm, AnalisisForm, Seleccion_entrenamientoForm
 from django.urls import reverse
-from .models import Analisis, Lecturas, DatosEvaluar
 from django.http import JsonResponse
-import time
+
+from .models import Analisis, Lecturas, DatosEvaluar
+from .forms import EntrenamientoForm, AnalisisForm, Seleccion_entrenamientoForm
+
 import paho.mqtt.publish as publish
+import pandas as pd
+import time
 import json
 import csv
-from django.contrib.auth.decorators import login_required
-import pandas as pd
 import os
 
 

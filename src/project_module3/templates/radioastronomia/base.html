@@ -38,17 +38,19 @@
         <a class="dropdown-item" href="#">Adquisición de señales RF</a>
         <a class="dropdown-item" href="#">Posicion de antena</a>
         <a class="dropdown-item" href="#">Estación de monitoreo ambiental</a>
-        <a class="dropdown-item" href="#">Adquisición de imagenes del cielo</a>
-
-      
-
+        <a class="dropdown-item" href="#">Adquisición de imagenes del cielo</a>  
       </div>
     </li>
 
     <li class="nav-item"> <a class="nav-link" href="{% url 'radioastronomia:control-manual'%}">Modo Manual </a> </li>
     <li class="nav-item"> <a class="nav-link" href="{% url 'radioastronomia:control-automatico'%}">Modo automático </a> </li>
     <li class="nav-item"> <a class="nav-link" href="https://sites.google.com/saber.uis.edu.co/radioastronomia/plaradioastro">Gestión del proyecto</a> </li>
-
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Análisis de datos</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Espectro 50~250 MHz</a>
+      </div>
+    </li>
 
   
  </ul>

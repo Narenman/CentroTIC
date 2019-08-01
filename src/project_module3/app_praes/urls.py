@@ -41,6 +41,7 @@ urlpatterns = [
     path('consulta-semillero/', views.consultar_semilleros, name="consulta-semillero"),
     path('consulta-integrantes/', views.consultar_integrantes, name="consulta-integrantes"),
     path("registro-ubicacion/", views.registrar_ubicacion, name="registro-ubicacion"),
+    path("descargar-datos/", views.descargar, name="descargar"),
 
     #consultas graficas
     path('json-temperatura/',views.consulta_temperatura, name="consulta-temperatura"), 

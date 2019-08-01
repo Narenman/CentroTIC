@@ -1,7 +1,8 @@
 import json
 import time
 import paho.mqtt.publish as publish
-import pandas as pd 
+import pandas as pd
+import csv 
 
 from .models import Temperatura, Humedad, PresionAtmosferica, \
     Semillero, Integrantes, Kit, PH_agua, Turbidez_agua, Temperatura_agua, Flujo_agua, KitNariz
@@ -15,13 +16,15 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.utils.datastructures import MultiValueDictKeyError
 from django.urls import reverse, resolve, reverse_lazy
-# Create your views here.
+
 def publishMQTT(topico, msg):
     IP_broker = "35.243.199.245"
     usuario_broker = "pi"
     password_broker = "raspberry"
     publish.single(topico, msg, port=1883, hostname=IP_broker,
      auth={"username": usuario_broker, "password":password_broker})
+
+# Create your views here.
 
 def index(request):
     respuesta = {}
@@ -285,6 +288,17 @@ def registrar_ubicacion(request):
         respuesta = {"ubicacion": ubicacion}
     return render(request, "app_praes/registrar_lugar.html", respuesta)
 
+def preparacion(modelo):
+    modelo = modelo.values("fecha", "valor")
+    df = pd.DataFrame(data=modelo)
+    #valores estadisticos de las muestras
+    calculo = df.describe()
+    calculo = calculo["valor"]
+    respuesta = {"Nmuestras": calculo[0], "media": calculo[1],
+                 "std": calculo[2], "min":calculo[3], "q1": calculo[4],
+                 "q2": calculo[5], "q3": calculo[6], "max": calculo[7]}
+    return respuesta
+
 def matematica_ambiental(request):
     form = UbicacionForm()
     if request.POST:
@@ -293,25 +307,99 @@ def matematica_ambiental(request):
         try:
             if cliente["variable"]=="temperatura":
                 modelo = Temperatura.objects.filter(kit_monitoreo=cliente["kit_monitoreo"]).filter(ubicacion=cliente["ubicacion"])
+                respuesta = preparacion(modelo)
+                respuesta.update({"form": form, "kit_monitoreo":cliente["kit_monitoreo"],
+                                  "ubicacion": cliente["ubicacion"], "tipo": "temperatura"})
+                return render(request, "app_praes/matematica_ambiental.html", respuesta)
+
             elif cliente["variable"]=="humedad":
                 modelo = Humedad.objects.filter(kit_monitoreo=cliente["kit_monitoreo"]).filter(ubicacion=cliente["ubicacion"])   
+                respuesta = preparacion(modelo)
+                respuesta.update({"form": form, "kit_monitoreo":cliente["kit_monitoreo"],
+                                  "ubicacion": cliente["ubicacion"], "tipo": "humedad",})
+                return render(request, "app_praes/matematica_ambiental.html", respuesta)
+
             elif cliente["variable"]=="presion":
                 modelo = PresionAtmosferica.objects.filter(kit_monitoreo=cliente["kit_monitoreo"]).filter(ubicacion=cliente["ubicacion"])   
+                respuesta = preparacion(modelo)
+                respuesta.update({"form": form, "kit_monitoreo":cliente["kit_monitoreo"],
+                                  "ubicacion": cliente["ubicacion"], "tipo":"presion"})
+                return render(request, "app_praes/matematica_ambiental.html", respuesta)
+            
             elif cliente["variable"]=="temp_agua":
                 modelo = Temperatura_agua.objects.filter(kit_monitoreo=cliente["kit_monitoreo"]).filter(ubicacion=cliente["ubicacion"])   
+                respuesta = preparacion(modelo)
+                respuesta.update({"form": form, "kit_monitoreo":cliente["kit_monitoreo"],
+                                  "ubicacion": cliente["ubicacion"], "tipo":"temperaturaAgua"})
+                return render(request, "app_praes/matematica_ambiental.html", respuesta)
+            
             elif cliente["variable"]=="turb_agua":
                 modelo = Turbidez_agua.objects.filter(kit_monitoreo=cliente["kit_monitoreo"]).filter(ubicacion=cliente["ubicacion"])
-                modelo = modelo.values("fecha", "valor")
-                df = pd.DataFrame(data=modelo)
-                #valores estadisticos de las muestras
-                print(df.describe())
+                respuesta = preparacion(modelo)
+                respuesta.update({"form": form, "kit_monitoreo":cliente["kit_monitoreo"],
+                                  "ubicacion": cliente["ubicacion"], "tipo": "turbidezAgua"})
+                return render(request, "app_praes/matematica_ambiental.html", respuesta)
+
             elif cliente["variable"]=="ph_agua":
                 modelo = PH_agua.objects.filter(kit_monitoreo=cliente["kit_monitoreo"]).filter(ubicacion=cliente["ubicacion"])
+                respuesta = preparacion(modelo)
+                respuesta.update({"form": form, "kit_monitoreo":cliente["kit_monitoreo"],
+                                  "ubicacion": cliente["ubicacion"], "tipo": "PHAgua"})
+                return render(request, "app_praes/matematica_ambiental.html", respuesta)
+            
             elif cliente["variable"]=="flujo_agua":
                 modelo = Flujo_agua.objects.filter(kit_monitoreo=cliente["kit_monitoreo"]).filter(ubicacion=cliente["ubicacion"])
- 
+                respuesta = preparacion(modelo)
+                respuesta.update({"form": form, "kit_monitoreo":cliente["kit_monitoreo"],
+                                  "ubicacion": cliente["ubicacion"], "tipo": "flujoAgua"})
+                return render(request, "app_praes/matematica_ambiental.html", respuesta)
         except:
             pass
 
     respuesta = {"form": form}
     return render(request, "app_praes/matematica_ambiental.html", respuesta)
+
+
+def descargar(request):
+    if request.POST:
+        cliente = request.POST
+        print(cliente["tipo"])
+        
+        if cliente["tipo"]=="temperatura":
+            modelo = Temperatura.objects.filter(kit_monitoreo=cliente["kit_monitoreo"]).filter(ubicacion=cliente["ubicacion"])
+            modelo = modelo.values("fecha", "valor")
+
+        elif cliente["tipo"]=="humedad":
+            modelo = Humedad.objects.filter(kit_monitoreo=cliente["kit_monitoreo"]).filter(ubicacion=cliente["ubicacion"])
+            modelo = modelo.values("fecha", "valor")
+
+        elif cliente["tipo"]=="presion":
+            modelo = PresionAtmosferica.objects.filter(kit_monitoreo=cliente["kit_monitoreo"]).filter(ubicacion=cliente["ubicacion"])
+            modelo = modelo.values("fecha", "valor")
+
+        elif cliente["tipo"]=="temperaturaAgua":
+            modelo = Temperatura_agua.objects.filter(kit_monitoreo=cliente["kit_monitoreo"]).filter(ubicacion=cliente["ubicacion"])
+            modelo = modelo.values("fecha", "valor")        
+
+        elif cliente["tipo"]=="turbidezAgua":
+            modelo = Turbidez_agua.objects.filter(kit_monitoreo=cliente["kit_monitoreo"]).filter(ubicacion=cliente["ubicacion"])
+            modelo = modelo.values("fecha", "valor")
+
+        elif cliente["tipo"]=="PHAgua":
+            modelo = PH_agua.objects.filter(kit_monitoreo=cliente["kit_monitoreo"]).filter(ubicacion=cliente["ubicacion"])
+            modelo = modelo.values("fecha", "valor")
+
+        elif cliente["tipo"]=="flujoAgua":
+            modelo = Flujo_agua.objects.filter(kit_monitoreo=cliente["kit_monitoreo"]).filter(ubicacion=cliente["ubicacion"])
+            modelo = modelo.values("fecha", "valor")
+
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="datos.csv"'
+        writer = csv.writer(response)
+        header = ["fecha", "valor"]
+        writer.writerow(header)
+        for dato in modelo:
+            writer.writerow([dato["fecha"], dato["valor"]])
+        
+
+    return response  

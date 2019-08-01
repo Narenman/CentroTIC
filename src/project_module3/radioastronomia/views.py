@@ -1,8 +1,9 @@
 import paho.mqtt.publish as publish
 import json
 import numpy
+import time
 
-from .models import AlbumImagenes, Espectro
+from .models import AlbumImagenes, Espectro, Estado
 from .forms import EspectroForm, RFIForm
 
 from django.shortcuts import render
@@ -52,6 +53,12 @@ def control_manual(request):
         album = AlbumImagenes.objects.last()
         album = album.imagen
         form = EspectroForm()
+        
+        respuesta = dict()
+        estado = Estado.objects.get(pk=1)
+        if estado.activo == True:
+            respuesta.update({"estado":"activo"})
+
         if request.POST:
             print(request.POST)
             cliente = request.POST
@@ -62,7 +69,11 @@ def control_manual(request):
 
             #envio de la instruccion al subsistema RFI
             publishMQTT(topico, json.dumps(msg))
-        respuesta = {"imagenes": album, "form": form}
+            time.sleep(3)
+            estado = Estado.objects.get(pk=1)
+            if estado.activo == True:
+                respuesta.update({"estado":"activo"})
+        respuesta.update({"imagenes": album, "form": form})
     except:
         form = EspectroForm()
         respuesta = {"form":form}              
@@ -71,17 +82,25 @@ def control_manual(request):
 def control_automatico(request):
     try:
         form = RFIForm()
+        respuesta = dict()
+        estado = Estado.objects.get(pk=1)
+        if estado.activo == True:
+            respuesta.update({"estado":"activo"})
+
         if request.POST:
             cliente = request.POST
             print(cliente)
             msg = {"nfft": int(cliente["nfft"]), "sample_rate": int(cliente["frecuencia_muestreo"]),
-            "ganancia": 50, "duracion": 5, "frecuencia_inicial": int(cliente["frecuencia_inicial"]),
+            "ganancia": 50, "duracion": 2, "frecuencia_inicial": int(cliente["frecuencia_inicial"]),
             "accion": "modo automatico", "region": 1, "frecuencia_final": int(cliente["frecuencia_final"])}
             topico = "radioastronomia/RFI"
-
             #envio de la instruccion al subsistema RFI
             publishMQTT(topico, json.dumps(msg))
-        respuesta = {"form": form}
+            time.sleep(3)
+            estado = Estado.objects.get(pk=1)
+            if estado.activo == True:
+                respuesta.update({"estado":"activo"})
+        respuesta.update({"form": form})
     except:
         form = RFIForm()
         respuesta = {"form": form}

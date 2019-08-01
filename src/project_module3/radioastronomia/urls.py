@@ -1,6 +1,6 @@
 from django.urls import path
 from radioastronomia import views
-from .apiviews import AlbumAPI, EspectroAPI
+from .apiviews import AlbumAPI, EspectroAPI, CaracteristicasEspectroAPI, EstadoAPI
 
 app_name = "radioastronomia"
 
@@ -12,5 +12,7 @@ urlpatterns = [
     # APIs para la adquisicion de datos
     path('album-imagenes', AlbumAPI.as_view()),
     path('subsistema-RFI', EspectroAPI.as_view()),
+    path('caracteristicas-espectro', CaracteristicasEspectroAPI.as_view()),
+    path('estado/<int:pk>', EstadoAPI.as_view()),
 ]
 

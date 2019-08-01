@@ -28,6 +28,12 @@
     </div>
 
      <div class="col">
+
+        {% if estado %}
+        <h2> Actualmente el sistema está tomando datos </h2>
+        <img src="{% static 'radioastronomia/img/estado.gif' %}" alt="estado" width="300px" heigth="300px">
+        {% endif %}
+        
         <h3> Control sistema RFI </h3>
         <form  action= "{% url 'radioastronomia:control-manual' %}" method="POST">
             {% csrf_token %}
