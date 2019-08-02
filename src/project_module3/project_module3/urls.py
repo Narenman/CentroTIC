@@ -25,17 +25,18 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls, name="admin"),
+    path('', views.main_index, name='main-index'),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('app_sensado/', include('app_sensado.urls', namespace='app_sensado')),
     path('app_praes/', include('app_praes.urls', namespace="app_praes")),
     path('paws/', include('paws.urls', namespace="paws")),
     path('nariz_electronica/', include('nariz_electronica.urls', namespace="nariz_electronica")),
     path('E3Tratos/', include('E3Tratos.urls', namespace="E3Tratos")),
-    path('', views.main_index, name='main-index'),
-    path('accounts/', include('django.contrib.auth.urls')),
     path('nariz_electronicaV2/', include('nariz_electronica2.urls', namespace="nariz_electronicaV2")),
     path('piscicultura/', include('piscicultura.urls', namespace="piscicultura")),
     path('bloqueadores/', include('bloqueadores.urls', namespace="bloqueadores")),
     path('radioastronomia/', include('radioastronomia.urls', namespace="radioastronomia")),
+    path('particulado/', include('particulado.urls', namespace="particulado")),
 ]
 
 #para los archivos de media

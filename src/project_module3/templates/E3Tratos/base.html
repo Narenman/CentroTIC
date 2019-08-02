@@ -26,6 +26,7 @@
 <body>
 <div class="top-container">
     <div class="logo">
+    <a href={% url 'main-index' %} class="navbar-brand"><img src={% static 'centrotic.png' %} heigth="250px" width="250px" alt=""></a>
         <img src="{% static 'E3Tratos/assets/img/logo.png' %}" alt="Imagen no encontrada">
         <div id="contador"></div>
         <label>Días horas minutos segundos</label>
@@ -53,16 +54,6 @@
 
     </div>
 
-
-
-
-   
-    <div class="footer-links">
-
-        <a class="nav-link" href="{% url 'E3Tratos:e3tratos-api' %}"> API ENVIAR DATOS</a>
-        <a class="nav-link" href="{% url 'E3Tratos:datos-json-E3Tratos' %}">RECIBIR DATOS </a>
-
-    </div> 
 
     <div class="wrapper">
         {% block body_block %}

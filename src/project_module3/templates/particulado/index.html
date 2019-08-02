@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="span">
+{% load static %}
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>EMMP</title>
+    <link rel="shortcut icon" href={% static 'particulado/assets/img/hoja.png' %} type="png"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href={% static "particulado/assets/css/bootstrap.min.css" %} >
+    <!-- Icon -->
+    <link rel="stylesheet" type="text/css" href={% static "particulado/assets/fonts/line-icons.css" %}>
+    <!-- Slicknav -->
+    <link rel="stylesheet" type="text/css" href={% static "particulado/assets/css/slicknav.css" %}>
+    <!-- Owl carousel -->
+    <link rel="stylesheet" type="text/css" href={% static "particulado/assets/css/owl.carousel.min.css" %}>
+    <link rel="stylesheet" type="text/css" href={% static "particulado/assets/css/owl.theme.css"%}>
+    <!-- Slick Slider -->
+    <link rel="stylesheet" type="text/css" href={% static "particulado/assets/css/slick.css" %} >
+    <link rel="stylesheet" type="text/css" href={% static "particulado/assets/css/slick-theme.css" %} >
+    <!-- Animate -->
+    <link rel="stylesheet" type="text/css" href={% static "particulado/assets/css/animate.css" %}>
+    <!-- Main Style -->
+    <link rel="stylesheet" type="text/css" href={% static "particulado/assets/css/main.css"%}>
+    <!-- Responsive Style -->
+    <link rel="stylesheet" type="text/css" href={% static "particulado/assets/css/responsive.css" %} >
+
+   
+
+  </head>
+  <body>
+
+    
+    
+    
+    <!-- Header Area wrapper Starts -->
+    <header id="header-wrap">
+      <!-- Navbar Start -->
+      <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar indigo">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+              <span class="icon-menu"></span>
+              <span class="icon-menu"></span>
+              <span class="icon-menu"></span>
+            </button>
+            <a href={% url 'main-index' %} class="navbar-brand"><img src={% static 'centrotic.png' %} heigth="150px" width="150px" alt=""></a>
+            <a href={% url 'particulado:index' %} class="navbar-brand"><img src={% static 'particulado/assets/img/logo.png' %} alt=""></a>
+          </div>
+          <div class="collapse navbar-collapse" id="main-navbar">
+            <ul class="navbar-nav mr-auto w-100 justify-content-left clearfix">
+              <li class="nav-item active">
+                <a class="nav-link" href="#hero-area">
+                  INICIO
+                </a>
+              </li>
+              <!--<li class="nav-item">
+                <a class="nav-link" href="#services">
+                  Services
+                </a>
+              </li>-->
+              <li class="nav-item"> <a class="nav-link" href="#feature"> ESTACIÓN </a> </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#instrumentacion">
+                  INSTRUMENTACIÓN
+                </a>
+              </li>
+              
+              <li class="nav-item">
+                <a class="nav-link" href="#team">
+                  MONITOREO
+                </a>
+              </li>
+        
+        <li class="nav-item">
+                <a class="nav-link" href="#aplicacion">
+                  APLICACIÓN
+                </a>
+              </li>
+        
+              
+            </ul>
+            <!--<div class="btn-sing float-right">
+              <a class="btn btn-border" href="#feature">FAQ</a>
+            </div>-->
+          </div>
+        </div>
+
+        <!-- Mobile Menu Start -->
+        <ul class="mobile-menu navbar-nav">
+          <li>
+            <a class="page-scroll" href="#hero-area">
+              INICIO
+            </a>
+          </li>
+          
+          <li>
+            <a class="page-scroll" href="#feature">
+              ESTACIÓN
+            </a>
+          </li>
+      
+          <li>
+            <a class="page-scroll" href="#instrumentacion">
+             INTRUMENTACIÓN
+            </a>
+          </li>
+          
+          <li>
+            <a class="page-scroll" href="#team">
+              MONITOREO
+            </a>
+          </li>
+          
+          </li>
+        </ul>
+        <!-- Mobile Menu End -->
+
+      </nav>
+      <!-- Navbar End -->
+
+      <!-- Hero Area Start -->
+       <div id="hero-area" class="hero-area-bg">
+        <div class="overlay"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 col-sm-12">
+              <div class="contents text-center">
+                <h2 class="head-title wow fadeInUp">Monitoreo En Tiempo Real De Material Particulado.<br> Pm10, Pm2.5</h2>
+              </div>
+              <div class="img-thumb text-center wow fadeInUp" data-wow-delay="0.6s">
+                <img class="img-fluid" src={% static "particulado/assets/img/hero-1.png" %} alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Hero Area End -->
+
+    </header>
+    <!-- Header Area wrapper End -->
+
+    <!-- Services Section Start -->
+    
+
+
+    <!-- Feature Section Start -->
+    <div id="feature">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="text-wrapper">
+              <div>
+                <h2 class="title-hl wow fadeInLeft" data-wow-delay="0.3s">Estación</h2>
+                <div class="row">
+                  <div class="col-md-6 col-sm-6">
+                    <div class="features-box wow fadeInLeft" data-wow-delay="0.3s">
+                      <div class="features-icon">
+                        <i class="lni-layers"></i>
+                      </div>
+                      <div class="features-content">
+                        <h4>
+                          Bajo costo
+                        </h4>
+                        <p>
+                          La tecnologia de sensado por dispersión de luz hace de estos sensores una opción más viable y económica para el sensado de la calidad del aire. 
+                        </p>
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="col-md-6 col-sm-6">
+                    <div class="features-box wow fadeInLeft" data-wow-delay="0.6s">
+                      <div class="features-icon">
+                        <i class="lni-briefcase"></i>
+                      </div>
+                      <div class="features-content">
+                        <h4>
+                          Práctica 
+                        </h4>
+                        <p>
+                         El tamaño reducido de esta estación proporciona una gran versatibilidad en trabajo de campo. 
+                        </p>
+                      </div>
+                    </div>
+                  </div>           
+                  <div class="col-md-6 col-sm-6">
+                    <div class="features-box wow fadeInLeft" data-wow-delay="0.9s">
+                      <div class="features-icon">
+                       <i class="lni-cog"></i>
+                      </div>
+                      <div class="features-content">
+                        <h4>
+                          Confiable
+                        </h4>
+                        <p>
+                          La caracterización y calibración realizada ofrece aproximadamente un 95% de precisión.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-6">
+                    <div class="features-box wow fadeInLeft" data-wow-delay="1.2s">
+                      <div class="features-icon">
+                        <i class="lni-leaf"></i>
+                      </div>
+                      <div class="features-content">
+                        <h4>
+                          Bajo consumo 
+                        </h4>
+                        <p>
+                          Debido a su tamaño y a estrategias de progracíon de su microcontrolador se garantiza un ahorro considerable en aplicaciones portátiles. 
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-12 col-sm-12 padding-none">
+            <div class="feature-thumb wow fadeInRight" data-wow-delay="0.3s">
+              <img src={% static "particulado/assets/img/feature/img-1.jpg" %} alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Feature Section End -->
+    
+    
+ <!-- Owl Slider Section Start -->
+    <section id="instrumentacion" class="sloder-img section-padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="slider-center slider">
+              <div>
+                <img class="img-fluid" src= {% static "particulado/assets/img/slide/img1.jpg" %} alt="">
+              </div>
+              <div>
+                <img class="img-fluid" src={% static "particulado/assets/img/slide/img2.jpg" %} alt="">
+              </div>
+              <div>
+                <img class="img-fluid" src={% static "particulado/assets/img/slide/img3.jpg" %} alt="">
+              </div>
+              <div>
+                <img class="img-fluid" src={% static "particulado/assets/img/slide/img4.jpg" %} alt="">
+              </div>
+              <div>
+                <img class="img-fluid" src= {% static "particulado/assets/img/slide/img5.jpg" %} alt="">
+              </div>
+              <div>
+                <img  class="img-fluid" src={% static "particulado/assets/img/slide/img6.jpg" %} alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Owl Slider Section End -->  
+  
+        
+</section>-->
+  
+    
+    
+    
+    
+    <!-- Pricing section Start --> 
+    <!-- Team Section Start -->
+    <section id="team" class="section-padding text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            
+             <h3 class="section-title wow fadeInDown" data-wow-delay="0.3s">MONITOREO.</h3>
+        <center><body onLoad="muestraReloj()">
+          
+        <script language="javascript" type="text/javascript">
+        function muestraReloj()
+        {
+        // Compruebo si se puede ejecutar el script en el navegador del usuario
+        if (!document.layers && !document.all && !document.getElementById) return;
+        // Obtengo la hora actual y la divido en sus partes
+        var fechacompleta = new Date();
+        var horas = fechacompleta.getHours();
+        var minutos = fechacompleta.getMinutes();
+        var segundos = fechacompleta.getSeconds();
+        var mt = "a.m.";
+        // Pongo el formato 12 horas
+        if (horas> 12) {
+        mt = "p.m.";
+        horas = horas - 12;
+        }
+        if (horas == 0) horas = 12;
+        // Pongo minutos y segundos con dos digitos
+        if (minutos <= 9) minutos = "0" + minutos;
+        if (segundos <= 9) segundos = "0" + segundos;
+        // En la variable 'cadenareloj' puedes cambiar los colores y el tipo de fuente
+        //cadenareloj = "<font size='-1' face='verdana'>" + horas + ":" + minutos + ":" + segundos + " " + mt + "</font>";
+        cadenareloj =horas + ":" + minutos + ":" + segundos + " " + mt;
+        // Escribo el reloj de una manera u otra, segun el navegador del usuario
+        if (document.layers) {
+        document.layers.spanreloj.document.write(cadenareloj);
+        document.layers.spanreloj.document.close();
+        }
+        else if (document.all) spanreloj.innerHTML = cadenareloj;
+        else if (document.getElementById) document.getElementById("spanreloj").innerHTML = cadenareloj;
+        // Ejecuto la funcion con un intervalo de un segundo
+        setTimeout("muestraReloj()", 1000);
+        }
+        </script>
+          
+                  <script type="text/javascript">
+                  var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+                  var f=new Date();
+                  document.write(f.getDate() + " de " + meses[f.getMonth()] + " de " + f.getFullYear());
+                  </script>
+          
+          
+          
+          
+              <div id="spanreloj">
+              </div>
+              </body> </center>
+             
+             <footer>
+              <iframe src={% url 'particulado:grafica-pms' %} width="1000" height="450" ></iframe>
+              <center><iframe src= {% url 'particulado:tabla' %} width="800" height="350" ></iframe></center>     
+              <iframe src= {% url 'particulado:grafica-opc' %} width="1000" height="450" ></iframe>
+              </footer>
+        </div>
+        </div>
+          </div>
+    </section>
+
+
+    <!-- Pricing Table Section End -->
+
+    <!-- Owl Slider Section Start -->
+    <section id="aplicacion" class="sloder-img section-padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="slider-center slider">
+              <div>
+                <img class="img-fluid" src={% static "particulado/assets/img/slide/img1.jpg" %} alt="">
+              </div>
+              <div>
+                <img class="img-fluid" src={% static "particulado/assets/img/slide/img2.jpg" %}  alt="">
+              </div>
+              <div>
+                <img class="img-fluid" src={% static "particulado/assets/img/slide/img3.jpg" %} alt="">
+              </div>
+              <div>
+                <img class="img-fluid" src={% static "particulado/assets/img/slide/img4.jpg" %} alt="">
+              </div>
+              <div>
+                <img class="img-fluid" src={% static "particulado/assets/img/slide/img5.jpg" %} alt="">
+              </div>
+              <div>
+                <img  class="img-fluid" src={% static "particulado/assets/img/slide/img6.jpg" %} alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Owl Slider Section End -->  
+
+  <section id="mapa" class="section-padding text-center">
+    <center><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15835.819921493015!2d-73.12324398312191!3d7.131204444304868!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x146fd58e59cbf254!2sPorter%C3%ADa+principal+UIS!5e0!3m2!1ses!2sco!4v1559507059596!5m2!1ses!2sco" width="1300" height="450" frameborder="0" style="border:0" allowfullscreen></iframe></center>
+  </section>
+
+    
+    <!-- Map Section End -->
+
+    <!-- Footer Section Start -->
+    <footer id="footer" class="footer-area section-padding">
+      <div class="container">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 wow fadeInUp" data-wow-delay="0.2s">
+
+              <div class="footer-logo mb-3">
+                <img src={% static 'particulado/assets/img/logo.png' %} alt="">
+              </div>
+              <p>Estación de monitoreo de material particulado de bajo costo.</p>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 wow fadeInUp" data-wow-delay="0.6s">
+              <h3 class="footer-titel">Acerca</h3>
+              <ul>
+                <li><a href="#">Proyectos</a></li>
+                <li><a href="#">Equipo</a></li>
+                <li><a href="#">Clientes</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 wow fadeInUp" data-wow-delay="0.8s">
+              <h3 class="footer-titel">Contáctanos en</h3>
+              jfloreztrana@gmail.com
+              <div class="social-icon">
+                <a class="facebook" href="#"><i class="lni-facebook-filled"></i></a>
+                <a class="twitter" href="#"><i class="lni-twitter-filled"></i></a>
+                <a class="instagram" href="#"><i class="lni-instagram-filled"></i></a>
+                <a class="linkedin" href="#"><i class="lni-linkedin-filled"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>  
+      </div>     
+    </footer> 
+    <!-- Footer Section End -->
+
+    <section id="copyright">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <p>Copyright © 2019 UIS Derechos Reservados</p>
+          </div>
+        </div>
+      </div>
+    </section>   
+
+    <!-- Go to Top Link -->
+    <a href="#" class="back-to-top">
+      <i class="lni-arrow-up"></i>
+    </a>
+    
+    <!-- Preloader -->
+    <div id="preloader">
+      <div class="loader" id="loader-1"></div>
+    </div>
+    <!-- End Preloader -->
+    
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src={% static  "particulado/assets/js/jquery-min.js" %}></script>
+    <script src={% static "particulado/assets/js/popper.min.js" %}></script>
+    <script src={% static "particulado/assets/js/bootstrap.min.js" %}></script>
+    <script src={% static "particulado/assets/js/owl.carousel.min.js" %}></script>
+    <script src={% static "particulado/assets/js/slick.min.js" %}></script>
+    <script src={% static "particulado/assets/js/wow.js" %}></script>
+    <script src={% static "particulado/assets/js/jquery.nav.js" %}></script>
+    <script src={% static "particulado/assets/js/scrolling-nav.js" %}></script>
+    <script src={% static "particulado/assets/js/jquery.easing.min.js" %}></script>
+    <script src={% static "particulado/assets/js/jquery.slicknav.js" %}></script>
+    <script src={% static "particulado/assets/js/main.js" %}></script>
+    <script src={% static "particulado/assets/js/form-validator.min.js" %}></script>
+    <script src={% static "particulado/assets/js/contact-form-script.min.js" %}></script>
+  <!--<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>-->
+    <!--<script type="text/javascript" src="jquery.js"></script>-->
+    
+      
+  </body>
+</html>

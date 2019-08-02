@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'nariz_electronica',
     'nariz_electronica2',
     'piscicultura',
+    'particulado',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_swagger',

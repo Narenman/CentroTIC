@@ -17,8 +17,11 @@
 <div class="jumbotron">
 <h3> PLATAFORMA DEL CENTROTIC "EL INTERNET DE LOS OBJETOS" </h3>
 </div>
- <a class="nav-link active" href="{% url 'main-index' %}"> <img src= "{% static 'centrotic.png' %}" alt="Imagen no encontrada" width=150px height=120px> 
-        <img src= "{% static 'logo_radiogis.jpg' %}" alt="Imagen no encontrada" width=150px height=120px>
+ <a class="nav-link active" href="{% url 'main-index' %}">
+ <img src= "{% static 'logoUIS.png' %}" alt="Imagen no encontrada" width=220px height=120px>
+ <img src= "{% static 'centrotic.png' %}" alt="Imagen no encontrada" width=150px height=120px> 
+ <img src= "{% static 'logo_radiogis.jpg' %}" alt="Imagen no encontrada" width=150px height=120px>
+
 </a>    
 <ul class="nav ">
     <li class="nav-item">
@@ -30,11 +33,12 @@
     <li class="nav-item"> <a class="nav-link" href="{% url 'paws:index-paws' %}">Proyecto PAWS</a>
   </li>
   <li class="nav-item"> <a class="nav-link" href="http://centrotic2uis.cloudapp.net:8080/sigripv/"> Sistemas GRIPV</a> </li>
-   <li class="nav-item"> <a class="nav-link" href="{% url 'nariz_electronica:index-nariz' %}">Nariz Electronica</a> </li>
+  <li class="nav-item"> <a class="nav-link" href="{% url 'nariz_electronica:index-nariz' %}">Nariz Electronica</a> </li>
+  <li class="nav-item"> <a class="nav-link" href="{% url 'particulado:index' %}">Material Particulado</a> </li>
   <li class="nav-item"> <a class="nav-link" href="{% url 'E3Tratos:index-E3Tratos' %}">E3Tratos</a> </li>
   <li class="nav-item"> <a class="nav-link" href="{% url 'piscicultura:index' %}">Piscicultura</a> </li>
   <li class="nav-item"> <a class="nav-link" href="{% url 'bloqueadores:index' %}">Bloqueadores Espectro</a> </li>
-    <li class="nav-item"> <a class="nav-link" href="{% url 'radioastronomia:index' %}">Radioastronomía</a> </li>
+  <li class="nav-item"> <a class="nav-link" href="{% url 'radioastronomia:index' %}">Radioastronomía</a> </li>
 
 
   

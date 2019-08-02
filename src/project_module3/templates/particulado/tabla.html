@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Tabla</title>
+  <link rel="stylesheet" href="tabla.css">
+
+</head>
+<body>
+	<table border="1">
+		<tr>
+			<th>Muestra.</th>
+			<th>Pm2.5</th>
+			<th>Pm10</th>
+		</tr>
+
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript">
+
+		var JSON= $.ajax({
+          url:"datos_sensor.php",
+          dataType: 'json',
+          async: false}).responseText;
+
+      var Respuesta = jQuery.parseJSON(JSON);
+      var long = Respuesta.length; 
+      var variable_m = [];
+      var variable_dato1 = [];
+      var variable_dato2 = [];
+      //console.log(long);
+      if (long > 10) {
+        var n = long-10;
+        var i = -1;
+        while (n < long) {
+          n ++;
+          i ++;
+          //var i = 1;
+          var v1 = n;
+          var v2 = Respuesta[n-1].Dato2;
+          var v3 = Respuesta[n-1].Dato3;
+          var v2def = v2.replace(/['"]+/g, '');
+          var v3def = v3.replace(/['"]+/g, '');
+          variable_m.push(n);
+          variable_dato1.push(v2def);
+          variable_dato2.push(v3def);
+          //var lon_n = variable_m.length;
+          //var lon_d1 = variable_dato1.length;
+          //var lon_d2 = variable_dato2.length;
+
+          //document.write("<tr><td>" + variable_m[lon_n] + "</td><td>" + variable_dato1[lon_d1] + "</td><td>" + variable_dato2[lon_d2] + "</td></tr>" )
+          document.write("<tr><td>" + variable_m[i] + "</td><td>" + v2def + "</td><td>" + v3def + "</td></tr>" )
+          //console.log(lon_d2,v2def);
+            
+          }
+        }
+
+        else{
+          console.log("hola");
+          var n = 0;
+          while (n < long) {
+          n ++;
+          //var i = 1;
+          var v1 = n;
+          var v2 = Respuesta[n-1].Dato2;
+          var v3 = Respuesta[n-1].Dato3;
+          var v2def = v2.replace(/['"]+/g, '');
+          var v3def = v3.replace(/['"]+/g, '');
+          console.log(v1,v2def-1+1,v3);
+          variable_m.push(n);
+          variable_dato1.push(v2def);
+          variable_dato2.push(v3def);
+          //var lon_n = variable_m.length;
+          //var lon_d1 = variable_dato1.length;
+          //var lon_d2 = variable_dato2.length;
+
+          //document.write("<tr><td>" + variable_m[lon_n] + "</td><td>" + variable_dato1[lon_d1] + "</td><td>" + variable_dato2[lon_d2] + "</td></tr>" )
+          document.write("<tr><td>" + n + "</td><td>" + v2def + "</td><td>" + v3def + "</td></tr>" )
+          //console.log(lon_d2,v2def);
+
+
+        }
+      }
+
+        setInterval(function(){
+             window.location.reload(true);
+
+           
+
+
+           
+            //if (long > 10) {
+             
+              //}
+
+
+             
+	       //document.write("<tr><td>" + variable_m[lon_n] + "</td><td>" + variable_dato1[lon_d1] + "</td><td>" + variable_dato2[lon_d2] + "</td></tr>" )
+	           //document.write("<tr><td>" + variable_m + "</td><td>" + v2def + "</td><td>" + v3def + "</td></tr>" )
+	          //console.log(lon_d2,v2def);
+	        //}
+        //}
+        
+        //chart.draw(data,options); 
+      },8000);  
+        
+
+	</script>
+
+	
+</body>
+</html>
