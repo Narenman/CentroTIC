@@ -63,7 +63,9 @@ class EstadoAPI(APIView):
 
     def get(self, request, pk, format=None):
         estado = self.get_object(pk=pk)
-        respuesta = {"activo": estado.activo}
+        print(estado)
+        respuesta = {"activo": estado.activo,
+                    "frecuencia": estado.frecuencia}
         return Response(respuesta)
 
     def put(self, request, pk, format=None):

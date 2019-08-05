@@ -138,6 +138,7 @@ class AlbumImagenes(models.Model):
 class Estado(models.Model):
 
     activo = models.BooleanField(default=False)
+    frecuencia = models.FloatField()
 
     class Meta:
         db_table = ''

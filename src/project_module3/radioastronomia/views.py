@@ -8,6 +8,8 @@ from .forms import EspectroForm, RFIForm
 
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
 
 # Create your views here.
 def publishMQTT(topico, msg):
@@ -105,3 +107,4 @@ def control_automatico(request):
         form = RFIForm()
         respuesta = {"form": form}
     return render(request, "radioastronomia/control_automatico.html", respuesta)
+

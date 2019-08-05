@@ -44,6 +44,7 @@
                 </tr>
             </tbody>
         </table>
+
         <h4> ¿Desea descargar los datos en un CSV? </h4>
         <form action="{% url 'app_praes:descargar' %}" method="POST">
         {% csrf_token %}
@@ -59,6 +60,7 @@
 
         </form>
         {% endif %}
+
         </div>
 
         <div class="col-sm">
@@ -69,6 +71,7 @@
                 {% bootstrap_form form%}
                 
                 <h4> Seleccione la variable para analizar </h4>
+                <h3> CLIMA </h3>
                 <label>
                 <input type="radio" name="variable" value="temperatura"> Temperatura ambiente
                 <img class="img-responsive" src="{% static "praes/img/temperatura.svg" %}" height="100px" width="100px" alt="Chania"> 
@@ -81,6 +84,7 @@
                 <input type="radio" name="variable" value="presion"> Presión
                 <img class="img-responsive" src="{% static "praes/img/presion.png" %}" height="100px" width="100px" alt="Chania"> 
                 </label> 
+                <h3> Agua </h3>
                 <label>
                 <input type="radio" name="variable" value="temp_agua"> Temperatura agua 
                 <img class="img-responsive" src="{% static "praes/img/temperatura_agua.jpg" %}" height="100px" width="100px" alt="Chania"> 
@@ -96,6 +100,11 @@
                 <label>
                 <input type="radio" name="variable" value="flujo_agua"> Flujo de agua
                 <img class="img-responsive" src="{% static "praes/img/water_wheel.svg" %}" height="100px" width="100px" alt="Chania"> 
+                </label>
+                <h3> Aire </h3>  
+                <label>
+                <input type="radio" name="variable" value="aire"> Compuestos del aire
+                <img class="img-responsive" src="{% static "praes/img/gases.jpg" %}" height="100px" width="100px" alt="Chania"> 
                 </label>
 
                 {% buttons %}

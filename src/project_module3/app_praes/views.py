@@ -2,7 +2,8 @@ import json
 import time
 import paho.mqtt.publish as publish
 import pandas as pd
-import csv 
+import csv
+import numpy 
 
 from .models import Temperatura, Humedad, PresionAtmosferica, \
     Semillero, Integrantes, Kit, PH_agua, Turbidez_agua, Temperatura_agua, Flujo_agua, KitNariz
@@ -353,6 +354,22 @@ def matematica_ambiental(request):
                 respuesta.update({"form": form, "kit_monitoreo":cliente["kit_monitoreo"],
                                   "ubicacion": cliente["ubicacion"], "tipo": "flujoAgua"})
                 return render(request, "app_praes/matematica_ambiental.html", respuesta)
+            
+            elif cliente["variable"]=="aire":
+                respuesta = dict()
+
+                # aca coloco procesamiento para detectar buenos y malos niveles                
+                # modelo = KitNariz.objects.filter(kit_monitoreo=cliente["kit_monitoreo"]).filter(ubicacion=cliente["ubicacion"])
+                # modelo = modelo.values("fecha", "valor")
+                # msg = []
+                # for dat in modelo:
+                #     msg.append(dat["valor"])
+                # columns = ["MQ2", "MQ3", "MQ4", "MQ5", "MQ6", "MQ7", "MQ8", "MQ9", "MQ135", "MICS5524"]
+                # df = pd.DataFrame(data=msg, columns=columns)
+
+                respuesta.update({"form": form, "kit_monitoreo":cliente["kit_monitoreo"],
+                                  "ubicacion": cliente["ubicacion"], "tipo": "aire"})
+                return render(request, "app_praes/matematica_ambiental.html", respuesta)
         except:
             pass
 
@@ -392,14 +409,30 @@ def descargar(request):
         elif cliente["tipo"]=="flujoAgua":
             modelo = Flujo_agua.objects.filter(kit_monitoreo=cliente["kit_monitoreo"]).filter(ubicacion=cliente["ubicacion"])
             modelo = modelo.values("fecha", "valor")
-
-        response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = 'attachment; filename="datos.csv"'
-        writer = csv.writer(response)
-        header = ["fecha", "valor"]
-        writer.writerow(header)
-        for dato in modelo:
-            writer.writerow([dato["fecha"], dato["valor"]])
         
+        elif cliente["tipo"]=="aire":
+            modelo = KitNariz.objects.filter(kit_monitoreo=cliente["kit_monitoreo"]).filter(ubicacion=cliente["ubicacion"])
+            modelo = modelo.values("fecha", "valor")
+            msg = []
+            for dat in modelo:
+                msg.append(dat["valor"])
+            columns = ["MQ2", "MQ3", "MQ4", "MQ5", "MQ6", "MQ7", "MQ8", "MQ9", "MQ135", "MICS5524"]
+            df = pd.DataFrame(data=msg, columns=columns)
+            response = HttpResponse(content_type='text/csv')
+            response['Content-Disposition'] = 'attachment; filename="datos.csv"'
+            df.to_csv(path_or_buf=response, index=None, header=True)
+
+        if cliente["tipo"]=="temperatura" or cliente["tipo"]=="humedad" or cliente["tipo"]=="presion" or \
+            cliente["tipo"]=="temperaturaAgua" or cliente["tipo"]=="turbidezAgua" or \
+            cliente["tipo"]=="PHAgua" or cliente["tipo"]=="flujoAgua":
+
+            response = HttpResponse(content_type='text/csv')
+            response['Content-Disposition'] = 'attachment; filename="datos.csv"'
+            writer = csv.writer(response)
+            header = ["fecha", "valor"]
+            writer.writerow(header)
+            for dato in modelo:
+                writer.writerow([dato["fecha"], dato["valor"]])
+                
 
     return response  

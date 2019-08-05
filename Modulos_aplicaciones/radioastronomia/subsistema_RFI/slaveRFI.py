@@ -66,19 +66,19 @@ class MQTTSuscriptor():
                 
                 #actualizacion del estado del sistema (ocupado=True)
                 print(accion)
-                obj = Espectro(IP)
-                activo = True
-                obj.estado(activo)
 
+                obj = Espectro(IP)
                 #inicio de adquisicion de datos
                 for frec in frec_central:
                     print("frecuencia central: {}".format(frec))
                     obj.monitoreo(float(frec), ganancia, samp_rate, tiempo_sensado, fft_size)
                     obj.envio_API(region, float(frec), samp_rate, fft_size, tiempo_sensado)
-                
+                    activo = True
+                    obj.estado(activo, frec)
+
                 #actualizacion del estado del sistema
                 activo = False
-                obj.estado(activo)
+                obj.estado(activo, frec)
 
             # if accion["accion"] == "clasificacion-datos":
             #     pass
@@ -95,6 +95,8 @@ class MQTTSuscriptor():
 if __name__ == "__main__":
     global IP 
     IP = "192.168.0.103:8000"
+    # IP = "10.1.50.216:8000" #dogulas
+
     while True:
         objmqtt = MQTTSuscriptor()
         objmqtt.comunicacionMQTT()

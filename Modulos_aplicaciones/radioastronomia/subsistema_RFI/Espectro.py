@@ -114,10 +114,11 @@ class Espectro():
 		print("HTTP status {} caracteristicas espectro".format(r.status_code))
 		r.close()
 
-	def estado(self, activo):
+	def estado(self, activo, frecuencia):
 		"""Actualiza el estado de activo o inactivo, la entrada es:
 		estado y es de tipo booleano """
-		pyload = {"activo": activo}
+		pyload = {"activo": activo,
+				  "frecuencia": frecuencia}
 		url = "http://"+self.IP+"/radioastronomia/estado/1"
 		r = requests.put(url, pyload)
 		print("HTTP {} actualizacion estado".format(r.status_code))
