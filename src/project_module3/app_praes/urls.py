@@ -1,6 +1,9 @@
-from django.urls import path 
+from django.urls import path
+from django.views.generic import TemplateView
+
 from rest_framework.authtoken import views as view
 from rest_framework_swagger.views import get_swagger_view
+
 from app_praes import views
 from app_praes import apiviews
 
@@ -8,9 +11,20 @@ app_name = "app_praes"
 schema_view = get_swagger_view(title='Estructura API')
 
 urlpatterns = [
+    path('index/', TemplateView.as_view(template_name="app_praes/index.html"), name="index-praes"),
     path('docs/', schema_view, name="documentacion"),
-    path('index/', views.index, name="index-praes"),
-
+    path("lista/lugares", views.Ubicacion_lecturaListView.as_view(), name="lugares"),
+    path("lugar/<int:pk>/delete/", views.Ubicacion_lecturaDeleteView.as_view(), name="borrar"),
+    path("registro/", views.Ubicacion_lecturaCreateView.as_view(), name="registro"),
+    path("semilleros/", views.SemilleroListView.as_view(), name="semilleros"),
+    path("semillero/<int:pk>/borrar", views.SemilleroDeleteView.as_view(), name="borrar-semillero"),
+    path("semillero/crear", views.SemilleroCreateView.as_view(), name="registro-semillero"),
+    path("lista/colegios", views.ColegioListView.as_view(), name="colegios"),
+    path("registro/colegio", views.ColegioCreateView.as_view(), name="registro-colegios"),
+    path("actualizar/colegio/<int:pk>", views.ColegioUpdateView.as_view(), name="actualizar-colegio"),
+    path("lista/kits", views.KitListView.as_view(), name="consulta-kits"),
+    path("registro/kit", views.KitCreateView.as_view(), name="registro-kit"),
+    
     #APIS
     path('login/', apiviews.LoginView.as_view(), name="login"),
     path('usuario/', apiviews.CrearUsuarioAPI.as_view(), name="crear-usuario"),
@@ -35,12 +49,6 @@ urlpatterns = [
     path("medicion_flujo/", views.medicion_flujo_agua, name="medicion-flujo"),
     path("matematica-ambiental/", views.matematica_ambiental, name="matematica-ambiental"),
 
-    # path('control_kit/', control_ESP32, name="control-kit"),
-    path('registro-integrantes/', views.registros_integrantes, name="registro-integrantes"),
-    path('registro-semillero/', views.registro_semillero, name="registro-semillero"),
-    path('consulta-semillero/', views.consultar_semilleros, name="consulta-semillero"),
-    path('consulta-integrantes/', views.consultar_integrantes, name="consulta-integrantes"),
-    path("registro-ubicacion/", views.registrar_ubicacion, name="registro-ubicacion"),
     path("descargar-datos/", views.descargar, name="descargar"),
 
     #consultas graficas

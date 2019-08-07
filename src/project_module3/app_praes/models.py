@@ -35,8 +35,27 @@ class Kit(models.Model):
     def __str__(self):
         return self.nombre_kit
 
+
+class Semillero(models.Model):
+    nombre = models.CharField(max_length=50)
+    responsable = models.CharField(max_length=50)
+    telefono = models.CharField(max_length=25)
+    kit = models.ForeignKey(Kit, on_delete=models.CASCADE)
+    colegio = models.ForeignKey(Colegio, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = ''
+        managed = True
+        verbose_name = 'Semillero'
+        verbose_name_plural = 'Semilleros'
+    
+    def __str__(self):
+        return self.nombre
+
 class Ubicacion_lectura(models.Model):
     etiqueta_ubicacion = models.CharField(max_length=100)
+    tipo_experimento = models.CharField(max_length=50)
+    semillero = models.ForeignKey(Semillero, on_delete=models.CASCADE)
     def __str__(self):
         return self.etiqueta_ubicacion
     class Meta:
@@ -44,22 +63,8 @@ class Ubicacion_lectura(models.Model):
         managed = True
         verbose_name = 'Ubicacion_lectura'
         verbose_name_plural = 'Ubicacion_lecturas'
+        ordering = ['etiqueta_ubicacion']
 
-class Semillero(models.Model):
-    responsable = models.CharField(max_length=50)
-    telefono = models.IntegerField()
-    kit = models.ForeignKey(Kit, on_delete=models.CASCADE)
-    colegio = models.ForeignKey(Colegio, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.responsable
-
-class Integrantes(models.Model):
-    nombre = models.CharField(max_length=50)
-    telefono = models.IntegerField()
-    semillero = models.ForeignKey(Semillero, on_delete=models.CASCADE)
-    def __str__(self):
-        return self.nombre
 
 #registro de variables
 class Temperatura(models.Model):

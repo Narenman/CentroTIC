@@ -25,10 +25,13 @@
   </li>
   
   <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Información semilleros</a>
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Información adicional</a>
     <div class="dropdown-menu">
-      <a class="dropdown-item" href="{% url 'app_praes:consulta-semillero' %}">Consultar semilleros</a>
-      <a class="dropdown-item" href="{% url 'app_praes:consulta-integrantes' %}">Consultar integrantes</a>
+      <a class="dropdown-item" href="{% url 'app_praes:semilleros' %}">Consultar semilleros</a>
+      <a class="dropdown-item" href="{% url 'app_praes:colegios' %}">Consultar colegios</a>
+      <a class="dropdown-item" href="{% url 'app_praes:consulta-kits' %}">Consultar KITS</a>
+      <a class="dropdown-item" href="{% url 'app_praes:lugares' %}">Lugares experimentos</a>
+
     </div>
   </li>
 
@@ -36,7 +39,6 @@
     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Monitoreo Ambiental</a>
     <div class="dropdown-menu">
       <a class="dropdown-item" href="{% url 'app_praes:medicion-actual'%}">Información variables ambientales</a>
-      <a class="dropdown-item" href="{% url 'app_praes:registro-ubicacion' %}">Registro Lugar de medición</a>
       <a class="dropdown-item" href="{% url 'app_praes:matematica-ambiental' %}">Matemática ambiental</a>
     </div>
   </li>
@@ -46,9 +48,11 @@
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Registros</a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="{% url 'app_praes:registro-integrantes' %}">Registro integrantes</a>
         <a class="dropdown-item" href="{% url 'app_praes:registro-semillero' %}">Registro semilleros</a>
-        {% comment %} <a class="dropdown-item" href="{% url 'app_praes:control-kit'%}">Toma de datos</a> {% endcomment %}
+        <a class="dropdown-item" href="{% url 'app_praes:registro' %}">Registro Lugar de medición</a>
+        <a class="dropdown-item" href="{% url 'app_praes:registro-colegios' %}">Registro colegios</a>
+        <a class="dropdown-item" href="{% url 'app_praes:registro-kit' %}">Registro KIT</a>
+
       </div>
     </li>
 

@@ -13,15 +13,27 @@
 
     <div class="row">
         <div class="col">
-            <form  action= "{% url 'app_praes:registro-ubicacion' %}" method="POST">
+            <form  action= "{% url 'app_praes:registro' %}" method="POST">
                 {% csrf_token %}
-                {% bootstrap_form ubicacion%}                          
+                {% bootstrap_form form%}                          
                 {% buttons %}
                 <button type="submit" class="btn btn-primary">
                 {% bootstrap_icon "star" %} Registrar lugar
                 </button>
                 {% endbuttons %}
             </form>
+        <br>
+        <h5>Notas para registrar el lugar </h5>
+        <ul class="list-group">
+        <li class="list-group-item">Etiqueta ubicación: hace referencia al lugar donde se toma el dato, por ejemplo: bosque-UIS, parque los niños, Carrera 27 - Quebrada seca, etc.</li>
+        <li class="list-group-item">Tipo experimento: hace referencia al experimento, es decir, si está midiendo cosas del aire, del clima, o del agua. </li>
+        </ul>
+
+        <br>
+        <button type="button" class="btn btn-light">
+        <a href="{% url 'app_praes:lugares' %}"> Ver lugares registrados </a>
+        </button>
+
         </div>
 
         <div class="col">

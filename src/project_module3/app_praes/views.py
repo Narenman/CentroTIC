@@ -5,17 +5,22 @@ import pandas as pd
 import csv
 import numpy 
 
-from .models import Temperatura, Humedad, PresionAtmosferica, \
-    Semillero, Integrantes, Kit, PH_agua, Turbidez_agua, Temperatura_agua, Flujo_agua, KitNariz
-from .forms import IntegrantesForm, SemilleroForm, ConsultaSemilleroForm, ConsultaIntegrantesForm,\
-    UbicacionForm, UbicacionLecturasForm
+from .models import Temperatura, Humedad, PresionAtmosferica, Ubicacion_lectura, \
+    Semillero, Kit, PH_agua, Turbidez_agua, Temperatura_agua, Flujo_agua, KitNariz, Colegio
+from .forms import UbicacionForm, UbicacionLecturasForm
 
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
+
 from django.utils import timezone
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.utils.datastructures import MultiValueDictKeyError
+
+from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import ListView, DeleteView, CreateView, UpdateView
+
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse, resolve, reverse_lazy
 
 def publishMQTT(topico, msg):
@@ -26,10 +31,6 @@ def publishMQTT(topico, msg):
      auth={"username": usuario_broker, "password":password_broker})
 
 # Create your views here.
-
-def index(request):
-    respuesta = {}
-    return render(request, "app_praes/index.html", respuesta)
 
 # variables ambientales
 def medicion_actual_temperatura(request):
@@ -234,60 +235,6 @@ def consulta_flujo(request):
         temp = [fecha, 800]
     return JsonResponse({"temperatura": temp})
 
-@login_required
-def registro_semillero(request):
-    semillero = SemilleroForm()
-    if request.POST:
-        semillero = SemilleroForm(request.POST)
-        if semillero.is_valid():
-            semillero.save()
-            return render(request, "app_praes/index.html", {"semillero": "Semillero registrado"})
-    return render(request, "app_praes/registros_semillero.html", {"semillero": semillero})
-
-@login_required
-def registros_integrantes(request):
-    integrantes = IntegrantesForm()
-    if request.POST:
-        integrantes = IntegrantesForm(request.POST)
-        if integrantes.is_valid():
-            integrantes.save()
-            return render(request, "app_praes/index.html", {"integrantes": "Integrante registrado"})
-    return render(request, "app_praes/registros_integrantes.html", {"integrantes": integrantes})
-
-def consultar_semilleros(request):
-    consulta_semillero = ConsultaSemilleroForm()
-    try:
-        dato = request.POST['colegio']
-        semilleros = Semillero.objects.filter(colegio=dato)
-        semilleros = semilleros.values("responsable", "telefono",)
-        print(semilleros)
-    except MultiValueDictKeyError:
-        semilleros = []
-    return render(request, "app_praes/consulta_semilleros.html", {"semillero": semilleros,
-                                                                  "consulta": consulta_semillero})
-def consultar_integrantes(request):
-    consulta = ConsultaIntegrantesForm()
-    print(request.POST)
-    try:
-        dato = request.POST['semillero']
-        integrantes = Integrantes.objects.filter(semillero=dato)
-        integrantes = integrantes.values("nombre", "telefono",)
-        print(integrantes)
-    except MultiValueDictKeyError:
-        integrantes = []
-    return render(request, "app_praes/consulta_integrantes.html", {"integrantes": integrantes,
-                                                                   "consulta": consulta})
-
-def registrar_ubicacion(request):
-    ubicacion = UbicacionLecturasForm()
-    if request.POST:
-        ubicacion = UbicacionLecturasForm(request.POST)
-        if ubicacion.is_valid():
-            ubicacion.save()
-            return render(request, "app_praes/index.html", {})
-    else:
-        respuesta = {"ubicacion": ubicacion}
-    return render(request, "app_praes/registrar_lugar.html", respuesta)
 
 def preparacion(modelo):
     modelo = modelo.values("fecha", "valor")
@@ -434,5 +381,75 @@ def descargar(request):
             for dato in modelo:
                 writer.writerow([dato["fecha"], dato["valor"]])
                 
+    return response
 
-    return response  
+#CRD para la Ubicacion
+@method_decorator(login_required, name='dispatch')
+class Ubicacion_lecturaCreateView(CreateView):
+    """ no necesita ningun formulario """
+    model = Ubicacion_lectura
+    template_name = "app_praes/registrar_lugar1.html"
+    fields = ["etiqueta_ubicacion", "tipo_experimento", "semillero"]
+    success_url = reverse_lazy("app_praes:lugares")
+
+class Ubicacion_lecturaListView(ListView):
+    """lista la base de datos"""
+    model = Ubicacion_lectura
+    template_name = "app_praes/ubicacion_lectura_list.html"
+    context_object_name = 'ubicaciones'  
+
+class Ubicacion_lecturaDeleteView(DeleteView):
+    """permite borrar la base de datos con la url """
+    model = Ubicacion_lectura
+    context_object_name = 'ubicaciones'
+    template_name = "app_praes/del_ubicacion_lectura.html"
+    success_url = reverse_lazy("app_praes:lugares")
+
+#CRUD para semillero
+@method_decorator(login_required, name='dispatch')
+class SemilleroListView(ListView):
+    model = Semillero
+    template_name = "app_praes/semillero_list.html"
+    context_object_name = "semillero"
+
+class SemilleroDeleteView(DeleteView):
+    model = Semillero
+    template_name = "app_praes/semillero_del.html"
+    success_url = reverse_lazy("app_praes:semilleros")
+
+class SemilleroCreateView(CreateView):
+    model = Semillero
+    template_name = "app_praes/semillero_crear.html"
+    fields = "__all__"
+    success_url = reverse_lazy("app_praes:semilleros")
+
+#CRUD para colegios
+class ColegioListView(ListView):
+    model = Colegio
+    template_name = "app_praes/colegio_list.html"
+    context_object_name="colegio"
+
+class ColegioCreateView(CreateView):
+    model = Colegio
+    template_name = "app_praes/colegio_crear.html"
+    fields = "__all__"
+    success_url = reverse_lazy("app_praes:colegios")
+
+class ColegioUpdateView(UpdateView):
+    model = Colegio
+    fields = "__all__"
+    template_name = "app_praes/colegio_update.html"
+    success_url = reverse_lazy("app_praes:colegios")
+
+#CRUD para KITS
+class KitListView(ListView):
+    model = Kit
+    template_name = "app_praes/kit_list.html"
+    context_object_name="kit"
+
+class KitCreateView(CreateView):
+    model = Kit
+    template_name = "app_praes/kit_crear.html"
+    fields = "__all__"
+    success_url = reverse_lazy("app_praes:consulta-kits")
+

@@ -28,8 +28,7 @@
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Información semilleros</a>
     <div class="dropdown-menu">
-      <a class="dropdown-item" href="{% url 'app_praes:consulta-semillero' %}">Consultar semilleros</a>
-      <a class="dropdown-item" href="{% url 'app_praes:consulta-integrantes' %}">Consultar integrantes</a>
+      <a class="dropdown-item" href="{% url 'app_praes:semilleros' %}">Consultar semilleros</a>
     </div>
   </li>
 
@@ -46,9 +45,8 @@
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Registros</a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="{% url 'app_praes:registro-integrantes' %}">Registro integrantes</a>
         <a class="dropdown-item" href="{% url 'app_praes:registro-semillero' %}">Registro semilleros</a>
-        <a class="dropdown-item" href="{% url 'app_praes:registro-ubicacion' %}">Registro Lugar de medición</a>
+        <a class="dropdown-item" href="{% url 'app_praes:registro' %}">Registro Lugar de medición</a>
 
       </div>
     </li>
