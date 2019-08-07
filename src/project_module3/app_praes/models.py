@@ -1,13 +1,14 @@
 from django.db import models
 from django.contrib.postgres.fields import JSONField
+from paws.models import Departamento 
 
 # Create your models here.
 
-class Departamento(models.Model):
-    nombre_departamento = models.CharField(max_length=50)
+# class Departamento(models.Model):
+#     nombre_departamento = models.CharField(max_length=50)
 
-    def __str__(self):
-        return self.nombre_departamento
+#     def __str__(self):
+#         return self.nombre_departamento
 
 class Ciudad(models.Model):
     nombre_ciudad = models.CharField(max_length=50)

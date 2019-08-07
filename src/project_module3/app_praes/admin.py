@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import Departamento, Ciudad, Kit, Colegio, Semillero, Temperatura, \
+from .models import Ciudad, Kit, Colegio, Semillero, Temperatura, \
     Humedad, PresionAtmosferica, KitNariz, Temperatura_agua, PH_agua, Turbidez_agua, \
          Flujo_agua, Ubicacion_lectura
 # Register your models here.
 
-admin.site.register(Departamento)
+# admin.site.register(Departamento)
 admin.site.register(Ciudad)
 admin.site.register(Kit)
 admin.site.register(Colegio)
