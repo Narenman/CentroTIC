@@ -14,6 +14,9 @@ Vagrant.configure("2") do |config|
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "ubuntu/xenial64"
 
+  
+  config.vm.network "private_network", type: "dhcp"
+
   config.vm.network "forwarded_port", host_ip: "127.0.0.1", guest: 8080, host: 8080
   config.vm.network "forwarded_port", host_ip: "127.0.0.1", guest: 5432, host: 5432
 
@@ -25,19 +28,11 @@ Vagrant.configure("2") do |config|
     # Set Ubuntu Language
     sudo locale-gen en_GB.UTF-8
     # Install Python, SQLite and pip
-    sudo apt-get install -y python3-dev sqlite python-pip
-    # Install postgresql
-    sudo apt-get install postgresql
+    sudo apt-get install -y python3-dev sqlite python-pip postgresql
     # Upgrade pip to the latest version.
     sudo pip install --upgrade pip
     # Install and configure python virtualenvwrapper.
-    sudo pip install virtualenvwrapper
-    if ! grep -q VIRTUALENV_ALREADY_ADDED /home/ubuntu/.bashrc; then
-        echo "# VIRTUALENV_ALREADY_ADDED" >> /home/ubuntu/.bashrc
-        echo "WORKON_HOME=~/.virtualenvs" >> /home/ubuntu/.bashrc
-        echo "PROJECT_HOME=/vagrant" >> /home/ubuntu/.bashrc
-        echo "source /usr/local/bin/virtualenvwrapper.sh" >> /home/ubuntu/.bashrc
-    fi
+    sudo pip install virtualenv
   SHELL
 
 end

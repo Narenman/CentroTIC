@@ -3,13 +3,14 @@ import json
 import numpy
 import time
 
-from .models import AlbumImagenes, Espectro, Estado
+from .models import AlbumImagenes, Espectro, Estado, CaracteristicasAntena, CaracteristicasEstacion
 from .forms import EspectroForm, RFIForm
 
+from django.urls import reverse_lazy
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-
+from django.views.generic import ListView, DeleteView, CreateView, UpdateView
 
 # Create your views here.
 def publishMQTT(topico, msg):
@@ -108,3 +109,26 @@ def control_automatico(request):
         respuesta = {"form": form}
     return render(request, "radioastronomia/control_automatico.html", respuesta)
 
+# Informacion adicional de antenas utilizadas
+class CaracteristicasAntenaListView(ListView):
+    model = CaracteristicasAntena
+    template_name = "radioastronomia/caracteristicasantena_list.html"
+    context_object_name = "caracteristicasantena"
+
+class CaracteristicasAntenaCreateView(CreateView):
+    model = CaracteristicasAntena
+    template_name = "radioastronomia/caracteristicasantena_create.html"
+    fields = "__all__"
+    success_url = reverse_lazy("radioastronomia:antenas")
+
+class CaracteristicasAntenaUpdateView(UpdateView):
+    model = CaracteristicasAntena
+    template_name = "radioastronomia/caracteristicasantena_update.html"
+    fields = "__all__"
+    success_url = reverse_lazy("radioastronomia:antenas")
+
+class CaracteristicasAntenaDeleteView(DeleteView):
+    model = CaracteristicasAntena
+    template_name = "radioastronomia/caracteristicasantena_delete.html"
+    success_url = reverse_lazy("radioastronomia:antenas")
+    context_object_name = "caracteristicasantena"

@@ -52,11 +52,10 @@ class CaracteristicasEspectro(models.Model):
 
 class CaracteristicasAntena(models.Model):
     """ esta tabla registra los parametros relacionados con la antena """
-    s = models.FloatField()
-    a_efec = models.FloatField()
-    directividad = models.FloatField()
+    s_x = JSONField(encoder="")
+    area_efec = JSONField(encoder="")
+    directividad_antena = JSONField(encoder="")
     referencia = models.CharField(max_length=50)
-
     def __str__(self):
         return self.referencia
 

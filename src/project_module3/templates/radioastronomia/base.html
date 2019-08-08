@@ -28,7 +28,7 @@
            </a>
           </li>
         </ul>
-    <h2> Radio astronomía </h2>
+    <h2> <a href="{% url 'radioastronomia:index' %}"> Radio astronomía </a></h2>
 
 <ul class="nav ">
 
@@ -37,7 +37,7 @@
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Subsistemas</a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Adquisición de señales RF</a>
+        <a class="dropdown-item" href="{% url 'radioastronomia:subsistema-RFI' %}">Adquisición de señales RF</a>
         <a class="dropdown-item" href="#">Posicion de antena</a>
         <a class="dropdown-item" href="#">Estación de monitoreo ambiental</a>
         <a class="dropdown-item" href="#">Adquisición de imagenes del cielo</a>  
