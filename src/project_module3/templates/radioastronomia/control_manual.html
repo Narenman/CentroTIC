@@ -8,7 +8,7 @@
 {% block body_block %}
 
 <div class="row">
-    <div "class=col">
+    <div class="col">
     <br>
     <h3> Imágenes del cielo </h3>
     <video width="450" controls>
@@ -36,9 +36,8 @@
         
         <h3> Control sistema RFI </h3>
         <form  action= "{% url 'radioastronomia:control-manual' %}" method="POST">
-            {% csrf_token %}
+           {% csrf_token %}
             {% bootstrap_form form%}
-                
             {% buttons %}
             <button type="submit" class="btn btn-primary">
             {% bootstrap_icon "star" %} Adquirir datos

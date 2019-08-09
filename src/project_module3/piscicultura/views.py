@@ -36,7 +36,7 @@ def monitoreo(request):
 @csrf_exempt
 def toma_datos(request):
     topico = "UIS/PISCICULTURA"
-    IP_broker = "192.168.1.5"
+    IP_broker = "35.243.199.245"
     usuario_broker = "pi"
     password_broker = "raspberry"
     print("mqtt configurado")

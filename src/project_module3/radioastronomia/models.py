@@ -135,7 +135,6 @@ class AlbumImagenes(models.Model):
 
 
 class Estado(models.Model):
-
     activo = models.BooleanField(default=False)
     frecuencia = models.FloatField()
 
@@ -148,3 +147,17 @@ class Estado(models.Model):
     def __str__(self):
         return "estado: "+ str(self.activo)
 
+class RBW(models.Model):
+    frecuencia_muestreo = models.IntegerField()
+    nfft = models.IntegerField()
+    rbw = models.FloatField()
+
+    def __str__(self):
+        return "RBW {}".format(str(self.rbw))
+
+    class Meta:
+        db_table = ''
+        managed = True
+        verbose_name = 'RBW'
+        verbose_name_plural = 'RBWs'
+        ordering = ["rbw"]

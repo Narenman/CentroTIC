@@ -1,0 +1,54 @@
+{% extends 'radioastronomia/base.html' %}
+{% load static %}
+{% load bootstrap3 %}
+
+{% block body_block %}
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <h1> Análisis de bandas espectrales </h1>
+            <p>Este modo de operación se encarga de recopilar y filtar los datos 
+            de todas las bandas espectrales para generar un reporte del espectro 
+            por cada sitio de medición.</p>
+        <h4> Seleccione los parámetros para generar el reporte </h4>
+
+         <form id="form_id"  action= "" method="POST">
+            {% csrf_token %}
+            {% bootstrap_form region %}
+            <h5> RBW Hz</h5>
+            <select name="RBW">
+            {% for r in rbw %}
+            <option value="{{r.rbw}}">{{r.rbw}}</option> 
+             {% comment %} <input type="radio" name="RBW" value="{{r.rbw}}"> {{r.rbw}} Hz<br> {% endcomment %}
+            {% endfor %}                          
+            </select>
+
+            <h5 id="output">
+            <br>
+            </h5>
+            <br>
+
+            <a href="javascript:sendForm()"> Realizar análisis </a>
+            
+            </form>
+
+
+        </div>
+
+        <div class="col-4">
+        <div id="grafica" style="min-width: 700px; height: 400px; margin: 0 auto"></div>
+        <div id="grafica_energia" style="min-width: 700px; height: 400px; margin: 0 auto"></div>
+
+        </div>
+    </div>
+</div>
+<script>
+ //sirve para capturar variables desde django y enviarlas a javascript
+ var csrftoken = '{% csrf_token %}'
+ console.log(csrftoken)
+</script> 
+<script src="{% static 'radioastronomia/js/modo1.js' %}"></script>
+<script src="{% static 'radioastronomia/js/librerias/highcharts.js' %}"></script>
+<script src="{% static 'radioastronomia/js/librerias/exporting.js' %}"></script>
+<script src="{% static 'radioastronomia/js/librerias/export-data.js' %}"></script>
+{% endblock body_block %}

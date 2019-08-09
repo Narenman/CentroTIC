@@ -10,6 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'radioastronomia/css/loader.css' %}">
     <title>Radio Astronomia</title>
 </head>
 <body>
@@ -38,8 +39,8 @@
       <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Subsistemas</a>
       <div class="dropdown-menu">
         <a class="dropdown-item" href="{% url 'radioastronomia:subsistema-RFI' %}">Adquisición de señales RF</a>
+        <a class="dropdown-item" href="{% url 'radioastronomia:subsistema-estacion' %}">Estación de monitoreo ambiental</a>
         <a class="dropdown-item" href="#">Posicion de antena</a>
-        <a class="dropdown-item" href="#">Estación de monitoreo ambiental</a>
         <a class="dropdown-item" href="#">Adquisición de imagenes del cielo</a>  
       </div>
     </li>
@@ -50,10 +51,19 @@
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Análisis de datos</a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Espectro 50~250 MHz</a>
+        <a class="dropdown-item" href="{% url 'radioastronomia:modo1' %}">Espectro 50~250 MHz</a>
       </div>
     </li>
 
+      <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Configuraciones</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="{% url 'radioastronomia:crear-rbw' %}">Registrar RBW</a>
+        <a class="dropdown-item" href="{% url 'radioastronomia:crear-antena' %}">Registrar antena</a>
+        <a class="dropdown-item" href="{% url 'radioastronomia:crear-sensor' %}">Registrar sensor</a>
+ 
+      </div>
+    </li>
   
  </ul>
 
