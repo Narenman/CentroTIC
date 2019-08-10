@@ -5,9 +5,12 @@ var eloadining;
  
  function loaderloader(){
      
-    eloadining = document.getElementById('aplotinfo');
-    eform      = document.getElementById('aform');
-    efreq      = document.getElementById('efreq');
+    eloadining  = document.getElementById('aplotinfo');
+    meloadining = document.getElementById('aplotinfo_M');
+    eform       = document.getElementById('aform');
+    mform       = document.getElementById('mform');
+    efreq       = document.getElementById('efreq');
+
  }
 
  loaderloader();
@@ -35,19 +38,22 @@ var eloadining;
 
       if (sstate == true){
           eloadining.style.display = "block";
+          meloadining.style.display = "block";
           eform.style.display = "none";
+          mform.style.display = "none";
       }
       else if(sstate == false){
           eloadining.style.display = "none";
+          meloadining.style.display = "none";
           eform.style.display = "block";
+          mform.style.display = "block";
       }
 
-     console.log(sstate, frequency, document.getElementById('aplotinfo').style.display)
+    //  console.log(sstate, frequency)
      setTimeout(gettingstate, 500);
 
  }
 
-
  //document.getElementById('aplotinfo').style.display = "none"
- 
  gettingstate();
+//  console.log(sstate, frequency)

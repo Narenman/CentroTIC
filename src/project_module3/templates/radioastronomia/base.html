@@ -11,6 +11,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'radioastronomia/css/loader.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'radioastronomia/css/rfitabs.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'radioastronomia/css/main.css' %}">
     <title>Radio Astronomia</title>
 </head>
 <body>
@@ -45,8 +47,8 @@
       </div>
     </li>
 
-    <li class="nav-item"> <a class="nav-link" href="{% url 'radioastronomia:control-manual'%}">Modo Manual </a> </li>
-    <li class="nav-item"> <a class="nav-link" href="{% url 'radioastronomia:control-automatico'%}">Modo automático </a> </li>
+    <li class="nav-item"> <a class="nav-link" href="{% url 'radioastronomia:control-manual'%}">Operación del sistema </a> </li>
+    {% comment %} <li class="nav-item"> <a class="nav-link" href="{% url 'radioastronomia:control-automatico'%}">Modo automático </a> </li> {% endcomment %}
     <li class="nav-item"> <a class="nav-link" href="https://sites.google.com/saber.uis.edu.co/radioastronomia/plaradioastro">Gestión del proyecto</a> </li>
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Análisis de datos</a>
@@ -72,4 +74,6 @@
     {% endblock  %}
     </div>
 </body>
+<script src="{% static 'radioastronomia/js/loadining.js'%}"></script>
+<script src="{% static 'radioastronomia/js/rfimode.js'%}"></script>
 </html>

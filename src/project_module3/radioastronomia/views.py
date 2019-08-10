@@ -139,63 +139,59 @@ def json_spectro(request):
         respuesta = {}
     return JsonResponse({"espectro":respuesta})
 
+@csrf_exempt
 def control_manual(request):
     """ Es para mostrar la interfaz del control manual del espectro """
     try:
         album = AlbumImagenes.objects.last()
         album = album.imagen
-        form = EspectroForm()
-        
+        form = RegionForm()     
         respuesta = dict()
-        estado = Estado.objects.get(pk=1)
-        if estado.activo == True:
-            respuesta.update({"estado":"activo"})
 
         if request.POST:
             print(request.POST)
             cliente = request.POST
-            msg = {"nfft": int(cliente["nfft"]), "sample_rate": int(cliente["frec_muestreo"]),
-            "ganancia": 50, "duracion": 5, "frec_central": int(cliente["frec_central"]),
+            rbw = RBW.objects.get(rbw=cliente["RBW"])
+            nfft = rbw.nfft
+            frecuencia_muestreo = rbw.frecuencia_muestreo
+            #preparacion de los mensajes para enviar a los dispositivos
+            msg = {"nfft": nfft, "sample_rate": frecuencia_muestreo,
+            "ganancia": 50, "duracion": 5, "frec_central": int(float(cliente["frequency"])*1e6),
             "accion": "modo manual", "region": cliente["region"]}
             topico = "radioastronomia/RFI"
-
             #envio de la instruccion al subsistema RFI
             publishMQTT(topico, json.dumps(msg))
-            time.sleep(3)
-            estado = Estado.objects.get(pk=1)
-            if estado.activo == True:
-                respuesta.update({"estado":"activo"})
+            respuesta.update({"imagenes": album, "form": form})
         respuesta.update({"imagenes": album, "form": form})
     except:
-        form = EspectroForm()
-        respuesta = {"form":form}              
+        album = AlbumImagenes.objects.last()
+        album = album.imagen
+        form = RegionForm()   
+        respuesta = {"imagenes": album, "form": form}             
     return render(request, "radioastronomia/control_manual.html", respuesta)
 
+@csrf_exempt
 def control_automatico(request):
-    try:
-        form = RFIForm()
-        respuesta = dict()
-        estado = Estado.objects.get(pk=1)
-        if estado.activo == True:
-            respuesta.update({"estado":"activo"})
+    # try:
+    form = RFIForm()
+    respuesta = dict()
 
-        if request.POST:
-            cliente = request.POST
-            print(cliente)
-            msg = {"nfft": int(cliente["nfft"]), "sample_rate": int(cliente["frecuencia_muestreo"]),
-            "ganancia": 50, "duracion": 2, "frecuencia_inicial": int(cliente["frecuencia_inicial"]),
-            "accion": "modo automatico", "region": 1, "frecuencia_final": int(cliente["frecuencia_final"])}
-            topico = "radioastronomia/RFI"
-            #envio de la instruccion al subsistema RFI
-            publishMQTT(topico, json.dumps(msg))
-            time.sleep(5)
-            estado = Estado.objects.get(pk=1)
-            if estado.activo == True:
-                respuesta.update({"estado":"activo"})
-        respuesta.update({"form": form})
-    except:
-        form = RFIForm()
-        respuesta = {"form": form}
+    if request.POST:
+        cliente = request.POST
+        print(cliente)
+        rbw = RBW.objects.get(rbw=cliente["RBW"])
+        nfft = rbw.nfft
+        frecuencia_muestreo = rbw.frecuencia_muestreo
+        msg = {"nfft": nfft, "sample_rate": frecuencia_muestreo,
+        "ganancia": 50, "duracion": 2, "frecuencia_inicial": int(float(cliente["finicial"])*1e6),
+        "accion": "modo automatico", "region": 1, "frecuencia_final": int(float(cliente["ffinal"])*1e6)}
+        topico = "radioastronomia/RFI"
+        # #envio de la instruccion al subsistema RFI
+        publishMQTT(topico, json.dumps(msg))
+    respuesta.update({"form": form})
+    # except:
+    #     form = RFIForm()
+    #     respuesta = {"form": form}
     return render(request, "radioastronomia/control_automatico.html", respuesta)
 
 # Informacion adicional de antenas utilizadas

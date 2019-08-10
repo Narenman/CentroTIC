@@ -1,0 +1,9 @@
+.NAform{
+    display: grid;
+    grid-template: auto auto / 50% 50%;
+}
+
+.NMform{
+    display: grid;
+    grid-template: auto auto / 50% 50%;
+}

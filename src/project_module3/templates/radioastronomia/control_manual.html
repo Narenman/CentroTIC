@@ -4,11 +4,10 @@
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 {% bootstrap_messages %}
-
 {% block body_block %}
 
 <div class="row">
-    <div class="col">
+    <div "class=col">
     <br>
     <h3> Imágenes del cielo </h3>
     <video width="450" controls>
@@ -28,26 +27,122 @@
     </div>
 
      <div class="col">
-
-        {% if estado %}
-        <h2> Actualmente el sistema está tomando datos </h2>
-        <img src="{% static 'radioastronomia/img/estado.gif' %}" alt="estado" width="300px" heigth="300px">
-        {% endif %}
-        
         <h3> Control sistema RFI </h3>
-        <form  action= "{% url 'radioastronomia:control-manual' %}" method="POST">
-           {% csrf_token %}
-            {% bootstrap_form form%}
-            {% buttons %}
-            <button type="submit" class="btn btn-primary">
-            {% bootstrap_icon "star" %} Adquirir datos
-            </button>
-            {% endbuttons %}
-        </form>
+
+        <div class="tab">
+            <button class="tablinks" onclick="openMode(event, 'Manual')">Manual</button>
+            <button class="tablinks" onclick="openMode(event, 'Auto')">Auto</button>
+        </div>
+
+        <div id="Manual" class="tabcontent">
+                <p>Modo Manual seleccionado</p>
+            <div  id="aplotinfo_M">
+                <h4 > Actualmente el sistema está tomando datos </h4>
+                
+                <center><div class="lds-ring">
+                <div class="lds-spinner">
+                    <div></div><div></div><div></div><div></div><div></div>
+                    <div></div><div></div><div></div><div></div><div></div>
+                    <div></div><div></div></div>
+                </center>
+    
+            </div>
+
+            <div id="mform">
+                <form  class="NMform" id="Mf" action= "{% url 'radioastronomia:control-manual' %}" method="POST">
+                    {% comment %}{% csrf_token %}{% endcomment %}
+                <div>
+                    <label>Frecuencia (MHZ)</label><br>
+                    <input type="number" name="frequency" min="0" value="50"><br><br>
+                    <label>nFFT: </label><br>
+                    <select name="nFFT" id="nFFT_LIST_M" onchange="rbwlistM()" required>
+                            <option value="" selected disabled hidden>nFFT</option>
+                            <option value="1024">1024</option>
+                            <option value="2048">2048</option>
+                    </select><br><br>
+                    <label>RBW: </label><br>
+                    <select name="RBW" id="RBW_LIST_M"></select><br><br>
+                    <label>Ubicación: </label><br>
+                    {% comment %} <input type="radio" name="ubicacion" value="tatacoa" checked>Desierto de la Tatacoa<br>
+                    <input type="radio" name="ubicacion" value="cucuy">Nevado del Cucuy<br>
+                    <input type="radio" name="ubicacion" value="berlin">Parámo de Berlín<br> {% endcomment %}
+                    {{form}}
+                </div>
+                <div>
+                    <label>Azimut (Degre)</label><br>
+                    <input type="number" name="azimut" min="0" max="360" value="120"><br><br>
+                    <label>Elevación (Degre)</label><br>
+                    <input type="number" name="elevacion" min="0" max="180" value="70"><br><br>
+                    <input type="submit" id="AMsubmit" value="Adquirir datos">
+                </div>
+
+                </form>
+            </div>
+        </div>
+
+        <div id="Auto" class="tabcontent">
+            <p>Modo Autmático seleccionado</p>
+            <div  id="aplotinfo">
+                    <h4 > Actualmente el sistema está tomando datos </h4>
+                    <h3>Frecuencia: <p id="efreq"></p></h3>
+                    
+                    <center><div class="lds-ring">
+                    <div class="lds-spinner">
+                        <div></div><div></div><div></div><div></div><div></div>
+                        <div></div><div></div><div></div><div></div><div></div>
+                        <div></div><div></div></div>
+                    </center>
+            </div>
+            <div id="aform">
+                    <form class="NAform" id="Af" action= "{% url 'radioastronomia:control-automatico' %}" method="POST">
+                        {% comment %}{% csrf_token %}{% endcomment %}
+
+                        <div>
+                            <label>Frecuencia Inicial (MHz): </label><br>
+                            <input type="number" name="finicial" min="0" value="50" required><br><br>
+                            <label>Frecuencia Final (MHz): </label><br>
+                            <input type="number" name="ffinal" min="0" value="250" required><br><br>
+                            <label>nFFT: </label><br>
+                            <select name="nFFT" id="nFFT_LIST" onchange="rbwlist()" required>
+                                <option value="" selected disabled hidden>nFFT</option>
+                                <option value="1024">1024</option>
+                                <option value="2048">2048</option>
+                            </select><br><br>
+
+                            <label>RBW: </label><br>
+                            <select name="RBW" id="RBW_LIST">
+                                    <!-- <option value="" selected disabled hidden>RBW</option> -->
+                            </select><br><br>
+                            
+        
+                            <label>Ubicación: </label><br>
+                            {{form}}
+{% comment %} 
+                            <input type="radio" name="ubicacion" value="tatacoa" checked>Desierto de la Tatacoa<br>
+                            <input type="radio" name="ubicacion" value="cucuy">Nevado del Cucuy<br>
+                            <input type="radio" name="ubicacion" value="berlin">Parámo de Berlín<br> {% endcomment %}
+                        </div>
+                        <div>
+                            <label>Azimuth Inicial (Degres): </label><br>
+                            <input type="number" name="azinicial" value="0" min="0" max="360" required><br><br>
+                            <label>Azimuth Final (Degres): </label><br>
+                            <input type="number" name="azfinal" value="360" min="0" max="360" required><br><br>
+                            <label>Elevation Inicial (Degres): </label><br>
+                            <input type="number" name="eleninicial" value="0" min="0" max="180" required><br><br>
+                            <label>Elevation Final (Degres): </label><br>
+                            <input type="number" name="elefinal" value="180" min="0" max="180" required><br><br>
+                            <input type="submit" id="Afsubmit" value="Adquirir datos">
+                        </div>
+                    </form>
+                </div>
+        </div>
+        
+
         {% comment %} <img src="{% static 'radioastronomia/img/control_posicion.jpg'%}" alt="no encontrado" class="img-thumbnail" height="300px" width="500px"> {% endcomment %}
     </div>
 
 </div>
+
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/boost.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>

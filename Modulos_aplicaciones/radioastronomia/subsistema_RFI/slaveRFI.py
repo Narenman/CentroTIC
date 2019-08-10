@@ -41,14 +41,14 @@ class MQTTSuscriptor():
                 obj = Espectro(IP)
                 #estado del sistema RFI
                 activo = True
-                obj.estado(activo)
+                obj.estado(activo,frec_central)
                 #control de los flujogramas
                 obj.monitoreo(frec_central, ganancia, sample_rate, tiempo_sensado, fft_size)
                 #envio del espectro y de las caracteristicas
                 obj.envio_API(region, frec_central, sample_rate, fft_size, tiempo_sensado)
                 #actualizacion del estado del sistema
                 activo = False
-                obj.estado(activo)
+                obj.estado(activo, 0.0)
                 self.client.disconnect()
 
             if accion["accion"] == "modo automatico":
