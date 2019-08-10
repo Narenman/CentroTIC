@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #aplicaciones
     'app_sensado',
     'app_praes',
     'paws',
@@ -47,11 +48,13 @@ INSTALLED_APPS = [
     'nariz_electronica2',
     'piscicultura',
     'particulado',
+    'pulsioximetria',
+    'radioastronomia',
+    ##
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_swagger',
     'bootstrap3',
-    'radioastronomia',
     'django_cleanup',
 ]
 

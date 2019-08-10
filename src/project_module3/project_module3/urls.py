@@ -37,6 +37,7 @@ urlpatterns = [
     path('bloqueadores/', include('bloqueadores.urls', namespace="bloqueadores")),
     path('radioastronomia/', include('radioastronomia.urls', namespace="radioastronomia")),
     path('particulado/', include('particulado.urls', namespace="particulado")),
+    path('pulsioximetria/', include('pulsioximetria.urls', namespace="pulsioximetria")),
 ]
 
 #para los archivos de media
