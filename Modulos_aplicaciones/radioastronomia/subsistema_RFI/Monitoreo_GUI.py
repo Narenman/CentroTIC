@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Monitoreo del espectro
-# Generated: Fri Aug  9 14:29:24 2019
+# Generated: Tue Aug 13 10:49:59 2019
 ##################################################
 
 if __name__ == '__main__':
@@ -23,7 +23,6 @@ from gnuradio import qtgui
 from gnuradio import uhd
 from gnuradio.eng_option import eng_option
 from gnuradio.filter import firdes
-from gnuradio.qtgui import Range, RangeWidget
 from optparse import OptionParser
 import sip
 import sys
@@ -62,15 +61,12 @@ class Monitoreo_GUI(gr.top_block, Qt.QWidget):
         # Variables
         ##################################################
         self.samp_rate = samp_rate = 16000000
-        self.nfft = nfft = 1024
-        self.frec_central_id = frec_central_id = 94000000
+        self.nfft = nfft = 2048
+        self.frec_central = frec_central = 162000000
 
         ##################################################
         # Blocks
         ##################################################
-        self._frec_central_id_range = Range(78e6, 250e6, 10e3, 94000000, 200)
-        self._frec_central_id_win = RangeWidget(self._frec_central_id_range, self.set_frec_central_id, "frec_central_id", "counter_slider", float)
-        self.top_grid_layout.addWidget(self._frec_central_id_win)
         self.uhd_usrp_source_0 = uhd.usrp_source(
         	",".join(("", "")),
         	uhd.stream_args(
@@ -79,7 +75,7 @@ class Monitoreo_GUI(gr.top_block, Qt.QWidget):
         	),
         )
         self.uhd_usrp_source_0.set_samp_rate(samp_rate)
-        self.uhd_usrp_source_0.set_center_freq(frec_central_id, 0)
+        self.uhd_usrp_source_0.set_center_freq(frec_central, 0)
         self.uhd_usrp_source_0.set_gain(50, 0)
         self.uhd_usrp_source_0.set_antenna('TX/RX', 0)
         self.qtgui_sink_x_0 = qtgui.sink_c(
@@ -128,12 +124,12 @@ class Monitoreo_GUI(gr.top_block, Qt.QWidget):
     def set_nfft(self, nfft):
         self.nfft = nfft
 
-    def get_frec_central_id(self):
-        return self.frec_central_id
+    def get_frec_central(self):
+        return self.frec_central
 
-    def set_frec_central_id(self, frec_central_id):
-        self.frec_central_id = frec_central_id
-        self.uhd_usrp_source_0.set_center_freq(self.frec_central_id, 0)
+    def set_frec_central(self, frec_central):
+        self.frec_central = frec_central
+        self.uhd_usrp_source_0.set_center_freq(self.frec_central, 0)
 
 
 def main(top_block_cls=Monitoreo_GUI, options=None):

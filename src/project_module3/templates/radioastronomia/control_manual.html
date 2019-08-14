@@ -60,21 +60,26 @@
                             <option value="1024">1024</option>
                             <option value="2048">2048</option>
                     </select><br><br>
-                    <label>RBW: </label><br>
+                    <label>RBW [Hz]: </label><br>
                     <select name="RBW" id="RBW_LIST_M"></select><br><br>
                     <label>Ubicación: </label><br>
-                    {% comment %} <input type="radio" name="ubicacion" value="tatacoa" checked>Desierto de la Tatacoa<br>
-                    <input type="radio" name="ubicacion" value="cucuy">Nevado del Cucuy<br>
-                    <input type="radio" name="ubicacion" value="berlin">Parámo de Berlín<br> {% endcomment %}
                     {{form}}
                 </div>
                 <div>
-                    <label>Azimut (Degre)</label><br>
+                    <label>Azimut (Degree)</label><br>
                     <input type="number" name="azimut" min="0" max="360" value="120"><br><br>
-                    <label>Elevación (Degre)</label><br>
+                    <label>Elevación (Degree)</label><br>
                     <input type="number" name="elevacion" min="0" max="180" value="70"><br><br>
+                    <label> Antena </label>
+                    <select name="antena">
+                    {% for ant in antenna %}
+                        <option value="{{ant.id}}">{{ant.referencia}}</option>
+                    {% endfor %}
+                    </select>
+                    <br><br>
                     <input type="submit" id="AMsubmit" value="Adquirir datos">
                 </div>
+
 
                 </form>
             </div>
@@ -131,6 +136,13 @@
                             <input type="number" name="eleninicial" value="0" min="0" max="180" required><br><br>
                             <label>Elevation Final (Degres): </label><br>
                             <input type="number" name="elefinal" value="180" min="0" max="180" required><br><br>
+                            <label> Antena </label>
+                            <select name="antena">
+                            {% for ant in antenna %}
+                                <option value="{{ant.id}}">{{ant.referencia}}</option>
+                            {% endfor %}
+                            </select>
+                            <br><br>
                             <input type="submit" id="Afsubmit" value="Adquirir datos">
                         </div>
                     </form>

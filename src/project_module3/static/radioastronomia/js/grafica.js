@@ -64,7 +64,7 @@ function callAjax(){
                     },
                     
                     series: [{
-                        type: 'line',
+                        type: 'area',
                         name: 'Espectro',
                         data: data.espectro,
                             }]

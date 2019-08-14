@@ -9,21 +9,20 @@
 <div class="container">
     <div class="row">
         <div class="col-sm">
-        <h3> Registrar antenas de medición </h3>
-        <form  action= "{% url 'radioastronomia:crear-antena' %}" method="POST" enctype="multipart/form-data"> 
+        <h3> Registrar region </h3>
+        <form  action= "{% url 'radioastronomia:crear-region' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {% bootstrap_form form %}                          
             {% buttons %}
             <button type="submit" class="btn btn-primary">
-            {% bootstrap_icon "star" %} Registrar antena
+            {% bootstrap_icon "star" %} Registrar region
             </button>
             {% endbuttons %}
         </form>
         </div>
 
         <div class="col-sm">
-        {% lorem 1 b random %}
-        <button type="button" class="btn btn-light"><a href="{% url 'radioastronomia:antenas' %}">Lista de antenas </a></button>
+        <button type="button" class="btn btn-light"><a href="{% url 'radioastronomia:index' %}">Lista de RBW </a></button>
 
         </div>
     </div>

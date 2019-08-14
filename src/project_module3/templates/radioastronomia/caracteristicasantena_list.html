@@ -5,15 +5,19 @@
 
 <div class="container">
 <h2> Lista de antenas utilizadas </h2>
+</br>
+<button type="button" class="btn btn-light"><a href="{% url 'radioastronomia:crear-antena' %}">Registrar antena </a></button>
 <div class="row">
 <div class="col-sm">
     <table class="table">
     <thead>
         <tr>
         <th scope="col">Referencia Antena</th>
-        <th scope="col">Parámetros S</th>
-        <th scope="col">Área efectiva</th>
-        <th scope="col">Directividad de la antena</th>
+        <th scope="col">Imagen </th>
+        <th scope="col">Rango frecuencias</th>
+        <th scope="col">Polarizacion</th>
+        <th scope="col">Directividad</th>
+        <th scope="col">VSWR </th>
         <th scope="col">Borrar </th>
         </tr>
     </thead>
@@ -21,22 +25,19 @@
     {% for antena in caracteristicasantena %}
         <tr>
         <th scope="row"><a href="{% url 'radioastronomia:actualizar-antena' antena.id %}"> {{antena.referencia}}</a></th>
-        <td>{{antena.s_x}}</td>
-        <td>{{antena.area_efec}}</td>
-        <td>{{antena.directividad_antena}}</td>
+        <td><img src="{{antena.imagen.url}}" alt="no encontrado" class="img-thumbnail" height="200px" width="300px"></td>
+        <td>{{antena.rango_frecuencias}}</td>
+        <td>{{antena.polarizacion}}</td>
+        <td>{{antena.directividad}}</td>
+        <td><img src="{{antena.vswr.url}}" alt="no encontrado" class="img-thumbnail" height="200px" width="300px"></td>
         <td><a href="{% url 'radioastronomia:borrar-antena' antena.id %}"> Sí </a> </td>
         </tr>
     {% endfor %}
     </tbody>
     </table>
-    </div>
 
-<div class="col-sm">
-<h3> Antenas bicónicas </h3>
-<img src="{% static 'radioastronomia/img/HK116E.jpg' %}" class="img-fluid" alt="Responsive image">
-<img src="{% static 'radioastronomia/img/bicolog.jpg' %}" class="img-fluid" alt="Responsive image" height="250px" width="300px">
-<br>
-<button type="button" class="btn btn-light"><a href="{% url 'radioastronomia:crear-antena' %}">Registrar antena </a></button>
+
+    </div>
 
 </div>
 </div>

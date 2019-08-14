@@ -10,7 +10,7 @@
 <div class="row">
         <div class="col-sm">
         <h3> Actualizar antenas de medición </h3>
-        <form  action= "" method="POST">
+        <form  action= "" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {% bootstrap_form form %}                          
             {% buttons %}

@@ -5,7 +5,7 @@
 # Title: Adquisicion de datos del espectro
 # Author: Luis Miguel Diaz
 # Description: Este modulo se encarga de adquirir las senales del espectro
-# Generated: Sat Jul 27 09:11:08 2019
+# Generated: Wed Aug 14 07:37:38 2019
 ##################################################
 
 from gnuradio import blocks

@@ -8,6 +8,9 @@ class RegionCampana(models.Model):
     zona = models.CharField(max_length=100)
     departamento = models.CharField(max_length=50)
     municipio = models.CharField(max_length=50)
+    latitud = models.CharField(max_length=50, blank=True)
+    longitud = models.CharField(max_length=50, blank=True)
+    imagen = models.ImageField(upload_to="album/regiones", height_field=None, width_field=None, max_length=None, blank=True)
 
     def __str__(self):
         return self.zona
@@ -52,10 +55,13 @@ class CaracteristicasEspectro(models.Model):
 
 class CaracteristicasAntena(models.Model):
     """ esta tabla registra los parametros relacionados con la antena """
-    s_x = JSONField(encoder="")
-    area_efec = JSONField(encoder="")
-    directividad_antena = JSONField(encoder="")
     referencia = models.CharField(max_length=50)
+    rango_frecuencias = models.CharField(max_length=50)
+    polarizacion = models.CharField(max_length=50, blank=True)
+    vswr = models.ImageField(upload_to="album/vswr", height_field=None, width_field=None, max_length=None)
+    conector = models.CharField(max_length=50, blank=True)
+    directividad = models.CharField(max_length=50)
+    imagen = models.ImageField(upload_to="album/antenas", height_field=None, width_field=None, max_length=None)
     def __str__(self):
         return self.referencia
 

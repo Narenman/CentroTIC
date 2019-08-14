@@ -5,7 +5,7 @@ import time
 import pandas as pd
 
 from .models import AlbumImagenes, Espectro, Estado, CaracteristicasAntena, \
-                    CaracteristicasEstacion, RBW, CaracteristicasEspectro
+                    CaracteristicasEstacion, RBW, CaracteristicasEspectro, RegionCampana
 from .forms import EspectroForm, RFIForm, RegionForm
 
 from django.urls import reverse_lazy
@@ -36,79 +36,83 @@ def promedio(espectro, nfft):
     return x   
 
 def bandas_espectrales(request):
+    """Este es el modo 1 de analisis de datos """
     region = RegionForm()
     rbw = RBW.objects.all().distinct("rbw") #para obtener los RBW disponibles
-    
     respuesta = {"region": region, "rbw":rbw}
     return render(request, "radioastronomia/bandas_espectrales.html",respuesta)
+
+def analisis_tiempo(request):
+    respuesta = {}
+    return render(request,"radioastronomia/analisis_tiempo.html", respuesta)
 
 #modos de operacion del espectro
 @csrf_exempt
 def barrido_json(request):
     respuesta = dict()
     if request.POST:
-        try:
-            cliente = request.POST
-            print(cliente)
-            # try:
-            # analisis RF
-            #obtener frecuencia de muestreo y nfft
-            resBW = RBW.objects.get(rbw=cliente["RBW"])
-            frec_muestreo = resBW.frecuencia_muestreo
-            nfft = resBW.nfft
-            #filtrado para obtener cada banda
-            frec_central = Espectro.objects.filter(nfft=nfft).filter(frec_muestreo=frec_muestreo).distinct("frec_central")
-            frec_central = frec_central.values("frec_central")
-            y = numpy.array([])
-            #ahora se obtiene el espectro por cada banda espectral
-            freq = []
-            fechas = []
-            char_energia = []
-            for f in frec_central:
-                rows = Espectro.objects.filter(nfft=nfft).filter(frec_muestreo=frec_muestreo).filter(frec_central__exact=f["frec_central"])
-                rows = rows.values("id","fecha", "espectro")
-                x_ = numpy.zeros(nfft)
-                for row in rows:
-                    espectro = row["espectro"]
-                    espectro = numpy.asarray(espectro)
-                    x = promedio(espectro, nfft)
-                    x_ = x_ + x
-                    x_ = x_/len(rows)
-                    y = numpy.append(y, x_)
-                    fechas.append(row["fecha"].day)
-
-                freq.append(f["frec_central"])  
+        # try:
+        cliente = request.POST
+        print(cliente)
+        # analisis RF
+        #obtener frecuencia de muestreo y nfft
+        resBW = RBW.objects.get(rbw=cliente["RBW"])
+        frec_muestreo = resBW.frecuencia_muestreo
+        nfft = resBW.nfft
+        #filtrado para obtener cada banda
+        frec_central = Espectro.objects.filter(nfft=nfft).filter(frec_muestreo=frec_muestreo).filter(region=cliente["region"]).distinct("frec_central")
+        frec_central = frec_central.values("frec_central")
+        #ahora se obtiene el espectro por cada banda espectral
+        y = numpy.array([])
+        freq = []
+        fechas = []
+        char_energia = []
+        freq_prueba = numpy.array([])
+        for f in frec_central:
+            rows = Espectro.objects.filter(nfft=nfft).filter(frec_muestreo=frec_muestreo).filter(frec_central__exact=f["frec_central"])
+            rows = rows.values("fecha", "espectro")
+            x_ = numpy.zeros(nfft)
+            #este ciclo promedia todos los espectros asociados a la banda
+            for row in rows:
+                espectro = row["espectro"]
+                espectro = numpy.asarray(espectro)
+                x = promedio(espectro, nfft)
+                x_ = x_ + x
+                fechas.append(row["fecha"].day)
+            x_ = x_/len(rows)    
+            y = numpy.append(y, x_)
+            freq_prueba = numpy.append(freq_prueba, numpy.arange(-int(nfft/2),int(nfft/2),1)*frec_muestreo/(nfft*2) + f["frec_central"]) 
             
-                
-                #analsis caracteristicas de la energia
-                ids = Espectro.objects.filter(frec_central=f["frec_central"])
-                ids = ids.values("id")
-                car_energia =CaracteristicasEspectro.objects.filter(espectro__in=ids)
-                car_energia = car_energia.values("energia")
-                
-                mu = 0
-                for row in car_energia:
-                    energia = row["energia"]
-                    energia = numpy.asarray(energia)
-                    mu = mu + numpy.mean(energia)
-                mu = mu/len(car_energia)
-                mu = 10*numpy.log10(mu)
-                char_energia.append(mu)
-            #organizacion de los datos para las graficas
-            data_energia = []
-            for i in range(len(freq)):
-                data_energia.append([freq[i]/1000000, char_energia[i]])
-
-            freq = numpy.linspace(min(freq), max(freq), len(y)) #vector de las frecuencias
-            data = []
-            for j in range(len(freq)):
-                data.append([freq[j]/1000000.0, y[j]])
+            freq.append(f["frec_central"])
+            #analsis caracteristicas de la energia
+            ids = Espectro.objects.filter(frec_central=f["frec_central"])
+            ids = ids.values("id")
+            car_energia =CaracteristicasEspectro.objects.filter(espectro__in=ids)
+            car_energia = car_energia.values("energia")
             
-            print(len(fechas))
-            respuesta.update({"datos": len(y), "lenf": len(freq),
-                                "data": data, "data_energia": data_energia})
-        except:
-            respuesta = {"datos": "no existen lecturas"}
+            mu = 0
+            for row in car_energia:
+                energia = row["energia"]
+                energia = numpy.asarray(energia)
+                mu = mu + numpy.mean(energia)
+            mu = mu/len(car_energia)
+            mu = 10*numpy.log10(mu)
+            char_energia.append(mu)
+
+        #organizacion de los datos para las graficas
+        data_energia = []
+        for i in range(len(freq)):
+            data_energia.append([freq[i]/1000000, char_energia[i]])
+
+        data = []
+        for j in range(len(freq_prueba)):
+            data.append([freq_prueba[j]/1000000.0, y[j]])
+        
+        print(fechas)
+        respuesta.update({"datos": len(y), "lenf": len(freq),
+                            "data": data, "data_energia": data_energia,
+                            "frec_muestreo": frec_muestreo,
+                            "nfft": nfft})
     return JsonResponse(respuesta)
 
 def json_spectro(request):
@@ -142,12 +146,13 @@ def json_spectro(request):
 @csrf_exempt
 def control_manual(request):
     """ Es para mostrar la interfaz del control manual del espectro """
+    form = RegionForm()
+    antena = CaracteristicasAntena.objects.all()
+    antena = antena.values("id","referencia")     
+    respuesta = dict()
     try:
         album = AlbumImagenes.objects.last()
         album = album.imagen
-        form = RegionForm()     
-        respuesta = dict()
-
         if request.POST:
             print(request.POST)
             cliente = request.POST
@@ -157,24 +162,24 @@ def control_manual(request):
             #preparacion de los mensajes para enviar a los dispositivos
             msg = {"nfft": nfft, "sample_rate": frecuencia_muestreo,
             "ganancia": 50, "duracion": 5, "frec_central": int(float(cliente["frequency"])*1e6),
-            "accion": "modo manual", "region": cliente["region"]}
+            "accion": "modo manual", "region": int(cliente["region"])}
             topico = "radioastronomia/RFI"
             #envio de la instruccion al subsistema RFI
             publishMQTT(topico, json.dumps(msg))
-            respuesta.update({"imagenes": album, "form": form})
-        respuesta.update({"imagenes": album, "form": form})
+            respuesta.update({"imagenes": album, "form": form, "antenna": antena})
+        else:
+            respuesta.update({"imagenes": album, "form": form, "antenna": antena})
     except:
-        album = AlbumImagenes.objects.last()
-        album = album.imagen
         form = RegionForm()   
-        respuesta = {"imagenes": album, "form": form}             
+        respuesta = {"form": form, "antenna": antena}             
     return render(request, "radioastronomia/control_manual.html", respuesta)
 
 @csrf_exempt
 def control_automatico(request):
-    # try:
     form = RFIForm()
     respuesta = dict()
+    antena = CaracteristicasAntena.objects.all()
+    antena = antena.values("id","referencia")  
 
     if request.POST:
         cliente = request.POST
@@ -184,14 +189,12 @@ def control_automatico(request):
         frecuencia_muestreo = rbw.frecuencia_muestreo
         msg = {"nfft": nfft, "sample_rate": frecuencia_muestreo,
         "ganancia": 50, "duracion": 2, "frecuencia_inicial": int(float(cliente["finicial"])*1e6),
-        "accion": "modo automatico", "region": 1, "frecuencia_final": int(float(cliente["ffinal"])*1e6)}
+        "accion": "modo automatico", "region": int(cliente["region"]), "frecuencia_final": int(float(cliente["ffinal"])*1e6)}
         topico = "radioastronomia/RFI"
         # #envio de la instruccion al subsistema RFI
         publishMQTT(topico, json.dumps(msg))
-    respuesta.update({"form": form})
-    # except:
-    #     form = RFIForm()
-    #     respuesta = {"form": form}
+    respuesta.update({"form": form, "antenna": antena})
+
     return render(request, "radioastronomia/control_automatico.html", respuesta)
 
 # Informacion adicional de antenas utilizadas
@@ -242,8 +245,7 @@ class CaracteristicasEstacionDeleteView(DeleteView):
     context_object_name = "caracterstacion"
     success_url = reverse_lazy("radioastronomia:subsistema-estacion")
 
-# # informacion sobre las resoluciones espectrales
-
+## informacion sobre las resoluciones espectrales
 class RBWListView(ListView):
     model = RBW
     template_name = "radioastronomia/rbw_list.html"
@@ -255,5 +257,21 @@ class RBWCreateView(CreateView):
     fields = "__all__"
     success_url = reverse_lazy("radioastronomia:rbw")
 
+class RBWUpdateView(UpdateView):
+    model = RBW
+    template_name = "radioastronomia/rbw_update.html"
+    fields = "__all__"
+    success_url = reverse_lazy("radioastronomia:rbw")
 
+## informacion sobre los lugares de medicion
+class RegionCampanaListView(ListView):
+    model = RegionCampana
+    template_name = "radioastronomia/index.html"
+    context_object_name ="region"
+
+class RegionCreateView(CreateView):
+    model = RegionCampana
+    template_name = "radioastronomia/region_create.html"
+    fields = "__all__"
+    success_url = reverse_lazy("radioastronomia:index")
 

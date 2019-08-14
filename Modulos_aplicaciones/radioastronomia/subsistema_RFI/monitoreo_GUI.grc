@@ -90,14 +90,10 @@
     </param>
   </block>
   <block>
-    <key>variable_qtgui_range</key>
+    <key>variable</key>
     <param>
       <key>comment</key>
       <value></value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>94000000</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -105,11 +101,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(592, 20)</value>
-    </param>
-    <param>
-      <key>gui_hint</key>
-      <value></value>
+      <value>(448, 28)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -117,39 +109,11 @@
     </param>
     <param>
       <key>id</key>
-      <value>frec_central_id</value>
+      <value>frec_central</value>
     </param>
     <param>
-      <key>label</key>
-      <value></value>
-    </param>
-    <param>
-      <key>min_len</key>
-      <value>200</value>
-    </param>
-    <param>
-      <key>orient</key>
-      <value>Qt.Horizontal</value>
-    </param>
-    <param>
-      <key>start</key>
-      <value>78e6</value>
-    </param>
-    <param>
-      <key>step</key>
-      <value>10e3</value>
-    </param>
-    <param>
-      <key>stop</key>
-      <value>250e6</value>
-    </param>
-    <param>
-      <key>rangeType</key>
-      <value>float</value>
-    </param>
-    <param>
-      <key>widget</key>
-      <value>counter_slider</value>
+      <key>value</key>
+      <value>162000000</value>
     </param>
   </block>
   <block>
@@ -176,7 +140,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>1024</value>
+      <value>2048</value>
     </param>
   </block>
   <block>
@@ -210,7 +174,7 @@
     <key>logpwrfft_x</key>
     <param>
       <key>avg_alpha</key>
-      <value>0.5</value>
+      <value>0.1</value>
     </param>
     <param>
       <key>average</key>
@@ -309,7 +273,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(304, 452)</value>
+      <value>(328, 476)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -400,7 +364,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(568, 236)</value>
+      <value>(520, 236)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -608,7 +572,7 @@
     </param>
     <param>
       <key>vlen</key>
-      <value>1024</value>
+      <value>nfft</value>
     </param>
     <param>
       <key>x_axis_label</key>
@@ -659,7 +623,7 @@
     </param>
     <param>
       <key>center_freq0</key>
-      <value>frec_central_id</value>
+      <value>frec_central</value>
     </param>
     <param>
       <key>dc_offs_enb0</key>

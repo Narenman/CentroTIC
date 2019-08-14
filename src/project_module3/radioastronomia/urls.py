@@ -8,14 +8,16 @@ app_name = "radioastronomia"
 
 urlpatterns = [
     #urls para informacion
-    path('index', TemplateView.as_view(template_name="radioastronomia/index.html"), name="index"),
+    path('index', views.RegionCampanaListView.as_view(), name="index"),
     path('lista/antenas', views.CaracteristicasAntenaListView.as_view(), name="antenas"),
     path('lista/rbw', views.RBWListView.as_view(), name="rbw"),
     path('crear/antenas', views.CaracteristicasAntenaCreateView.as_view(), name="crear-antena"),
     path('crear/sensores', views.CaracteristicasEstacionCreateView.as_view(), name="crear-sensor"),
     path('crear/RBW', views.RBWCreateView.as_view(), name="crear-rbw"),
+    path('crear/region', views.RegionCreateView.as_view(), name="crear-region"),
     path('actualizar/antena/<int:pk>', views.CaracteristicasAntenaUpdateView.as_view(), name="actualizar-antena"),
     path('actualizar/sensor/<int:pk>', views.CaracteristicasEstacionUpdateView.as_view(), name="actualizar-sensor"),
+    path('actualizar/rbw/<int:pk>', views.RBWUpdateView.as_view(), name="actualizar-rbw"),
     path('borrar/antena/<int:pk>', views.CaracteristicasAntenaDeleteView.as_view(), name="borrar-antena"),
     path('borrar/sensor/<int:pk>', views.CaracteristicasEstacionDeleteView.as_view(), name="borrar-sensor"),
     path('subsistema/RFI', TemplateView.as_view(template_name="radioastronomia/subsistema_RFI.html"), name="subsistema-RFI"),
@@ -33,5 +35,6 @@ urlpatterns = [
     path('estado/<int:pk>', apiviews.EstadoAPI.as_view()),
     # modos de procesamiento del espectro
     path('modo/bandas-espectrales', views.bandas_espectrales, name="modo1"),
+    path('modo/analisis-tiempo',views.analisis_tiempo, name="modo2"),
 ]
 

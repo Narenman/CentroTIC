@@ -20,7 +20,7 @@
                 {% comment %} <th scope="row"><a href="{% url 'radioastronomia:actualizar-sensor' estacion.id %}"> {{estacion.sensor}}</a></th> {% endcomment %}
                 <td>{{estacion.frecuencia_muestreo}}</td>
                 <td>{{estacion.nfft}}</td>
-                <td>{{estacion.rbw}}</td>
+                <td><a href="{% url 'radioastronomia:actualizar-rbw' estacion.id %}"> {{estacion.rbw}} </a></td>
                 {% comment %} <td><a href="{% url 'radioastronomia:borrar-sensor' estacion.id %}">Sí</a></td> {% endcomment %}
                 </tr>
             {% endfor %}
@@ -28,6 +28,10 @@
             </table>
             <button type="button" class="btn btn-light"><a href="{% url 'radioastronomia:crear-rbw' %}">Registrar RBW </a></button>
         
+        </div>
+
+        <div class="col">
+        {% lorem 3 b random %}
         </div>
     </div>
 </div>

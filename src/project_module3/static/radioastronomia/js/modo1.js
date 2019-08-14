@@ -14,8 +14,9 @@ function sendForm(){
         //esta variable lee lo que viene del servidor
         stateobject = xhr.response;
         stateobject = JSON.parse(stateobject);
-        output.innerHTML += "Estado: "+ stateobject.datos+"\n";
-        
+        fmuestreo.innerHTML = "Frecuencia de muestreo: "+ stateobject.frec_muestreo+" Samp/s\n";
+        nfft.innerHTML = "nFFT: "+ stateobject.nfft;
+
         //inicio grafica bandas del espectro
         Highcharts.chart('grafica', {
             chart: {
@@ -127,11 +128,18 @@ function sendForm(){
                         }
                     },
                     threshold: null
+                },
+
+                column: {
+                    pointPadding: 0,
+                    borderWidth: 0,
+                    groupPadding: 0,
+                    shadow: false
                 }
             },
 
             series: [{
-                type: 'spline',
+                type: 'column',
                 name: 'Espectro',
                 data: stateobject.data_energia
             }]
@@ -144,3 +152,4 @@ function sendForm(){
     }
 
 }
+

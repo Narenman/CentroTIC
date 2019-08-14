@@ -1,0 +1,27 @@
+{% extends 'radioastronomia/base.html' %}
+{% load static %}
+
+{% block body_block %}
+<div class="container">
+    <div class="row">
+        <h2>Análisis temporal por bandas espectrales </h2>
+        <div class="col">
+        <br><br>
+         <form id="form_id"  action= "" method="POST">
+            {% csrf_token %}
+            {% comment %} {% bootstrap_form region %} {% endcomment %}
+            <h5> Seleccionar banda </h5>
+            <select name="RBW">
+            
+            <option value="fdsf">dfasdf</option> 
+                                   
+            </select>
+            <p>
+            </p>
+            {% comment %} <button id="enviar" class="btn btn-warning"><a href="javascript:sendForm()"> Realizar análisis </a></button> {% endcomment %}
+        </form>
+        </div>
+    </div>
+</div>
+{% lorem 1 b random %}
+{% endblock body_block %}

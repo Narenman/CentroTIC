@@ -17,26 +17,17 @@ radioastrónomos, quienes utilizan radiotelescopios de gran tamaño en tierra. <
 <p> Este proyecto busca estudiar y caracterizar el cielo realizando mediciones de espectro en angulos azimiut y elevación teniendo en cuenta condiciones metereológicas,
 eventos luminosos y procesamiento de imágenes en tres zonas geográficas de Colombia como lo son: </p>
 
-<h1> {{ frecuencia }} </h1>
 
 <div class="row">
-<div class="col-sm">
-    <label>
-    <h5>  Desierto de la Tatacoa (Huila) </h5>
-    <img src="{% static 'radioastronomia/img/desierto-del-huila.jpg' %}" alt="nevado cocuy" class="img-thumbnail" width="400px" height="300px">
-    </label>
-</div>
-<div class="col-sm">
-    <label>
-    <h5>  Nevado del Cocuy (Boyacá) </h5>
-    <img src="{% static 'radioastronomia/img/nevado-cocuy.jpg' %}" alt="nevado cocuy" class="img-thumbnail" width="400px" height="300px">
-    </label>
-</div>
-<div class="col-sm">
-    <label>
-    <h5>  Páramo de Berlín (Santander-Norte de Santander) </h5>
-    <img src="{% static 'radioastronomia/img/paramo-berlin.jpg' %}" alt="nevado cocuy" class="img-thumbnail" width="400px" height="300px">
-    </label>
-</div>
+    
+    {% for reg in region %}    
+    <div class="col">
+    <h2>{{reg.zona}}</h2>
+    <img src="{{reg.imagen.url}}" alt="no encontrado" class="img-thumbnail" height="300px" width="400px">
+    </div>
+
+    {% endfor %}
+
+
 </div>
 {% endblock  %}

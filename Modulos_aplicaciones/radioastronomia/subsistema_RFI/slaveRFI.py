@@ -38,8 +38,13 @@ class MQTTSuscriptor():
                 tiempo_sensado = accion["duracion"] #segundos
                 frec_central = accion["frec_central"]
                 region = accion["region"]
+                #aca coloco el codigo para publicar al controlador posicion
+
+
+
+                #sistema RFI
                 obj = Espectro(IP)
-                #estado del sistema RFI
+                #actualizacion de estados
                 activo = True
                 obj.estado(activo,frec_central)
                 #control de los flujogramas
@@ -52,6 +57,7 @@ class MQTTSuscriptor():
                 self.client.disconnect()
 
             if accion["accion"] == "modo automatico":
+                print(accion)
                 start_freq = accion["frecuencia_inicial"]
                 stop_freq = accion["frecuencia_final"]
                 samp_rate = accion["sample_rate"]
@@ -62,19 +68,23 @@ class MQTTSuscriptor():
 
                 #frecuencias para realizar el barrido del espectro
                 frec_central = numpy.arange(start_freq, stop_freq, int(samp_rate/2))
-                frec_central = frec_central[1:]
                 
-                #actualizacion del estado del sistema (ocupado=True)
-                print(accion)
 
+                #subsistema RFI
                 obj = Espectro(IP)
                 #inicio de adquisicion de datos
                 for frec in frec_central:
+                    
+                    ## aca hago otro ciclo para el barrido elevacion
+
+
+                    ## aca hago un ciclo para el barrido azimut
+                    
                     print("frecuencia central: {}".format(frec))
-                    obj.monitoreo(float(frec), ganancia, samp_rate, tiempo_sensado, fft_size)
-                    obj.envio_API(region, float(frec), samp_rate, fft_size, tiempo_sensado)
                     activo = True
                     obj.estado(activo, frec)
+                    obj.monitoreo(float(frec), ganancia, samp_rate, tiempo_sensado, fft_size)
+                    obj.envio_API(region, float(frec), samp_rate, fft_size, tiempo_sensado)
 
                 #actualizacion del estado del sistema
                 activo = False
