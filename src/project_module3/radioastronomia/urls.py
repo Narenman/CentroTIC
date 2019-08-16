@@ -28,6 +28,7 @@ urlpatterns = [
     # urls para graficas
     path('grafica-espectro', views.json_spectro, name="json-espectro"),
     path('barrido-espectro', views.barrido_json, name="barrido-espectro"),
+    path('grafica/tiempo-banda', views.espectrograma_json, name="barrido-tiempo"),
     # APIs para la adquisicion de datos
     path('album-imagenes', apiviews.AlbumAPI.as_view()),
     path('subsistema-RFI', apiviews.EspectroAPI.as_view()),

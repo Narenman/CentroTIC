@@ -4,24 +4,78 @@
 {% block body_block %}
 <div class="container">
     <div class="row">
+        <div class="col-3">
         <h2>Análisis temporal por bandas espectrales </h2>
-        <div class="col">
-        <br><br>
-         <form id="form_id"  action= "" method="POST">
-            {% csrf_token %}
-            {% comment %} {% bootstrap_form region %} {% endcomment %}
-            <h5> Seleccionar banda </h5>
-            <select name="RBW">
-            
-            <option value="fdsf">dfasdf</option> 
-                                   
-            </select>
-            <p>
-            </p>
-            {% comment %} <button id="enviar" class="btn btn-warning"><a href="javascript:sendForm()"> Realizar análisis </a></button> {% endcomment %}
-        </form>
+            <br><br>
+            <form id="form_modo2"  action= "" method="POST">
+                {% csrf_token %}
+                {% comment %} {% bootstrap_form region %} {% endcomment %}
+                <h5> Seleccionar banda de frecuencia MHz </h5>
+                <select name="bandas">
+                {% for band in bandas %}
+                <option value="{{ band}}">{{band}}</option>
+                {% endfor %}                     
+                </select>
+                <br>
+                <h5> Seleccionar Frecuencia de muestreo kHz </h5>
+                <select name="frecmuestreo">
+                {% for frec in frecmuestreo %}
+                <option value="{{frec}}">{{frec}}</option>
+                {% endfor %}
+                </select>
+                <br>
+                <h5> Seleccion tamaño FFT </h5>
+                <select name="nfft">
+                {% for n in nfft %}
+                <option value="{{n.nfft}}"> {{n.nfft}} </option>
+                {% endfor %}
+                </select>
+                <h5> Seleccione region </h5>
+                <select name="region">
+                {% for reg in region %}
+                <option value="{{reg.id}}"> {{reg.zona}} </option>
+                {% endfor %}
+                </select>
+                <br><br>
+                 <input type="submit" value="Realizar análisis"> 
+                {% comment %} <button id="enviar" class="btn btn-warning"><a href="javascript:sendForm()"> Realizar análisis </a></button> {% endcomment %}
+            </form>
+
+            <h4 id="output"> </h4>
+        </div>
+
+        <div class="col-5">
+        {% autoescape off %}
+        <div>{{ espectrograma }}</div>
+        {% endautoescape %}
+
+        {% autoescape off %}
+        <div>{{ grafica }}</div>
+        {% endautoescape %}
+
+        {% autoescape off %}
+        <div>{{ enetiempo }}</div>
+        {% endautoescape %}
+        {% comment %} <div id="espectrograma" style="min-width: 700px; height: 400px; margin: 0 auto"></div>
+        <div id="energia" style="min-width: 700px; height: 400px; margin: 0 auto"></div>
+        <div id="histograma" style="min-width: 700px; height: 400px; margin: 0 auto"></div> {% endcomment %}
+
+
         </div>
     </div>
 </div>
 {% lorem 1 b random %}
+<script>
+ //sirve para capturar variables desde django y enviarlas a javascript
+ var csrftoken =  '{% csrf_token %}'
+</script> 
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/heatmap.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="{% static 'radioastronomia/js/modo2.js' %}"> </script>
+
+
+
+
 {% endblock body_block %}

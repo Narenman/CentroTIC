@@ -3,6 +3,9 @@ import json
 import numpy
 import time
 import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+import mpld3
 
 from .models import AlbumImagenes, Espectro, Estado, CaracteristicasAntena, \
                     CaracteristicasEstacion, RBW, CaracteristicasEspectro, RegionCampana
@@ -14,7 +17,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, DeleteView, CreateView, UpdateView
 
-# Create your views here.
+# funciones auxiliares
 def publishMQTT(topico, msg):
     """ Se encarga de establecer comunicacion
     MQTT con los dispositivos """
@@ -33,18 +36,99 @@ def promedio(espectro, nfft):
     for i in range(K):
         x = x + espectro[i*nfft:(i+1)*nfft]
     x = x/K
-    return x   
+    return x
+
+##############################################################
+def analisis_tiempo(request):
+    """Este es el modo 2 de analisis de datos para realizar 
+    un estudio del tiempo por banda """
+    bandas = Espectro.objects.distinct("frec_central")
+    bandas = bandas.values("frec_central")
+    frec_central = list(map(lambda x: x["frec_central"]/1e6, bandas))
+    bandas = Espectro.objects.distinct("frec_muestreo")
+    bandas = bandas.values("frec_muestreo")
+    frec_muestreo  = list(map(lambda x: x["frec_muestreo"]/1e3, bandas))
+    bandas = Espectro.objects.distinct("nfft")
+    bandas = bandas.values("nfft")
+    region = RegionCampana.objects.all()
+    region = region.values("id", "zona")
+    respuesta = {"bandas":frec_central,
+                 "frecmuestreo": frec_muestreo,
+                 "nfft": bandas, "region":region}
+    if request.POST:
+        cliente = request.POST
+        print(cliente)
+        nfft = int(cliente["nfft"])
+        frec_central = int(float(cliente["bandas"])*1e6)
+        frec_muestreo = int(float(cliente["frecmuestreo"])*1e3)
+        region = cliente["region"]
+        # consulta del espectro
+        espectro = Espectro.objects.filter(region=region).filter(frec_central=frec_central).filter(frec_muestreo=frec_muestreo).filter(nfft=nfft)
+        espectro = espectro.values("fecha", "espectro")
+        #creacion del espectrograma
+        char_ener = []
+        tiempo = []
+
+        frecuencia = []
+        date = []
+        espec = []
+
+        if len(espectro)!=0:
+            for esp in espectro:
+                X = esp["espectro"]
+                fecha = esp["fecha"]
+                X = numpy.asarray(X)
+                #promedio de los espectros por cada tiempo escogido
+                X = promedio(espectro=X, nfft=nfft)
+                char_ener.append(numpy.sum(10**(X/10)))
+                #variables espectrograma
+                tiempo.append(fecha.strftime('%m-%d %H:%M:%S'))
+                f = numpy.arange(-int(nfft/2),int(nfft/2),1)*frec_muestreo/(nfft*2) + frec_central
+
+                for i in range(nfft):
+                    frecuencia.append(f[i]/1e6)
+                    date.append(fecha.strftime('%m-%d %H:%M:%S'))
+                    espec.append(X[i])
+
+            df = pd.DataFrame(data={"Frecuencia":frecuencia, "Tiempo":date, "espectro": espec})
+            df = df.pivot("Tiempo", "Frecuencia", "espectro")
+            # espacio para la grafica del espectrograma
+
+            fig, ax = plt.subplots()
+            sns.distplot(10*numpy.log10(char_ener), kde_kws={"color": "k", "lw": 3, "label": "KDE"},
+                hist_kws={"lw": 3, "label": "Histograma"}, ax=ax)
+            ax.set(xlabel='Energia dBm', ylabel='',
+            title='Histograma del comportamiento de la energia')
+            ax.grid()
+            histograma = mpld3.fig_to_html(fig)
+
+            fig1, ax1 = plt.subplots()
+            ax1.plot(tiempo, 10*numpy.log10(char_ener))
+            ax1.set(xlabel="Tiempo DD H:M:s", ylabel="Energia dBm", title="Energia banda en funcion del tiempo")
+            ax1.grid()
+            tiempo_energia = mpld3.fig_to_html(fig1)
+
+            fig2, ax2 = plt.subplots()
+            sns.heatmap(df, yticklabels=5, xticklabels=120, cmap="coolwarm", ax=ax2)
+            ax2.set(xlabel="Frecuencia MHz", ylabel="Tiempo", title="Espectrograma")
+            ax2.grid()
+            espectrograma = mpld3.fig_to_html(fig2)
+
+            respuesta.update({"grafica": histograma, "enetiempo":tiempo_energia,
+                            "espectrograma": espectrograma})
+
+
+    return render(request,"radioastronomia/analisis_tiempo.html", respuesta)
+
 
 def bandas_espectrales(request):
-    """Este es el modo 1 de analisis de datos """
+    """Este es el modo 1 de analisis de datos para barrer todas las bandas
+    espectrales"""
     region = RegionForm()
     rbw = RBW.objects.all().distinct("rbw") #para obtener los RBW disponibles
     respuesta = {"region": region, "rbw":rbw}
     return render(request, "radioastronomia/bandas_espectrales.html",respuesta)
 
-def analisis_tiempo(request):
-    respuesta = {}
-    return render(request,"radioastronomia/analisis_tiempo.html", respuesta)
 
 #modos de operacion del espectro
 @csrf_exempt
@@ -114,6 +198,43 @@ def barrido_json(request):
                             "frec_muestreo": frec_muestreo,
                             "nfft": nfft})
     return JsonResponse(respuesta)
+
+@csrf_exempt
+def espectrograma_json(request):
+    """se encarga de realizar las consultas para mostrar 
+    el espectrograma y el analisis de las bandas por tiempo """  
+    if request.POST:
+        cliente = request.POST
+        print(cliente)
+        nfft = int(cliente["nfft"])
+        frec_central = int(float(cliente["bandas"])*1e6)
+        frec_muestreo = int(float(cliente["frecmuestreo"])*1e3)
+        region = cliente["region"]
+        # consulta del espectro
+        espectro = Espectro.objects.filter(region=region).filter(frec_central=frec_central).filter(frec_muestreo=frec_muestreo).filter(nfft=nfft)
+        espectro = espectro.values("fecha", "espectro")
+        #creacion del espectrograma
+        char_ener = []
+        tiempo = []
+        espectrograma = []
+        for esp in espectro:
+            X = esp["espectro"]
+            fecha = esp["fecha"]
+            X = numpy.asarray(X)
+            #promedio de los espectros por cada tiempo escogido
+            X = promedio(espectro=X, nfft=nfft)
+            char_ener.append(numpy.sum(10**(X/10)))
+            #variables espectrograma
+            tiempo.append(fecha.strftime('%y-%m-%d %H:%M:%S'))
+            f = numpy.arange(-int(nfft/2),int(nfft/2),1)*frec_muestreo/(nfft*2) + frec_central
+            for i in range(nfft):
+                espectrograma.append([fecha.strftime('%y-%m-%d %H:%M:%S'),f[i]/1e6,X[i]])
+        print(espectrograma[0])
+    energia = list(map(lambda tiempo, energia: [tiempo, 10*numpy.log10(energia)], tiempo, char_ener))    
+    return JsonResponse({"espectrograma":espectrograma, 
+                         "tiempo": tiempo, "energia": energia,
+                         "caracteristica":char_ener})
+
 
 def json_spectro(request):
     """Se encarga retornar los valores que muestra el espectro
