@@ -39,7 +39,7 @@ function loadDoc() {
   xhttp.overrideMimeType('text/xml; charset=iso-8859-1');
   xhttp.send(); 
 
-  setTimeout(loadDoc, 5000);
+  setTimeout(loadDoc, 1200);
 
 }
 
