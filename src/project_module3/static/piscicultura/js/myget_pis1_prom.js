@@ -1,6 +1,74 @@
+
+var temp = "-"; 
+var od = "-"; 
+var ph = "-"; 
+var tempC = "-"; 
+var humC = "-"; 
+var voltajeB = "-"; 
+var fecha = "___"; 
+
+
+
+
+
+function loadDoc() {
+
+  var xhttp = new XMLHttpRequest();
+  xhttp.responseType = "json";
+
+
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+
+    	//globaljson = this.response.datos;
+      temp=this.response.temperatura;
+      od= this.response.oxigenoDisuelto;
+      ph= this.response.phTank;
+      tempC= this.response.tempCaja;
+      voltajeB= this.response.voltajeBat;
+      humC= this.response.humCaja;
+
+    	printer();
+     
+      updaterchart();
+    }
+  };
+  xhttp.open("GET", "/piscicultura/json-last-est1/", true);
+
+//  xhttp.open("GET", "http://192.168.0.108:8080/piscicultura/json-last-est1/", true);
+  xhttp.overrideMimeType('text/xml; charset=iso-8859-1');
+  xhttp.send(); 
+
+  setTimeout(loadDoc, 12000);
+
+}
+
+
+//var i = 0;
+
+//fecha= String(temp[0]);
+
+ function printer(){
+  
+  fecha= new Date(String(temp[0]));
+
+  document.getElementById('last_update1').innerHTML = "Última actualización: " + String(fecha.toLocaleString());
+ 	document.getElementById('temp_value').innerHTML = String(temp[1])+" °C";
+  document.getElementById('ph_value').innerHTML = ph[1];
+  document.getElementById('od_value').innerHTML = String(od[1])+" mg/L";
+
+ 	document.getElementById('tempCaja_value').innerHTML = String(tempC[1])+" °C";
+  document.getElementById('humCaja_value').innerHTML = humC[1]+"%";
+  document.getElementById('voltBat_value').innerHTML = String(voltajeB[1])+" V";
+
+ }
+
+loadDoc();
+
+
 var ctx = document.getElementById("myChart").getContext('2d');
 
-
+//ctx.style.minHeight="500px";
     // body...
     var chart = new Chart(ctx, {
     type: 'line',
@@ -115,7 +183,7 @@ function updaterchart() {
     chart.data.datasets[6-1].data.push(voltajeB[1])
 
 
-    if (jj>15) {
+    if (jj>11) {
         chart.data.labels.shift()
         chart.data.datasets[1-1].data.shift()
         chart.data.datasets[2-1].data.shift()
@@ -137,4 +205,4 @@ function updaterchart() {
 
 }
 
-updaterchart()
+//updaterchart()

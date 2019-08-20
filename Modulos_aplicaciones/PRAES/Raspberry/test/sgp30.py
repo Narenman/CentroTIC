@@ -23,4 +23,3 @@ while True:
     elapsed_sec += 1
     if elapsed_sec > 10:
         elapsed_sec = 0
-        print("joder")

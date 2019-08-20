@@ -39,7 +39,7 @@ function loadDoc() {
   xhttp.overrideMimeType('text/xml; charset=iso-8859-1');
   xhttp.send(); 
 
-  setTimeout(loadDoc, 1200);
+  setTimeout(loadDoc, 12000);
 
 }
 
@@ -53,14 +53,21 @@ function loadDoc() {
   fecha= new Date(String(temp[0]));
 
   document.getElementById('last_update1').innerHTML = "Última actualización: " + String(fecha.toLocaleString());
- 	document.getElementById('temp_value').innerHTML = String(temp[1])+" °C";
+  document.getElementById('temp_value').innerHTML = String(temp[1])+" °C";
   document.getElementById('ph_value').innerHTML = ph[1];
   document.getElementById('od_value').innerHTML = String(od[1])+" mg/L";
 
- 	document.getElementById('tempCaja_value').innerHTML = String(tempC[1])+" °C";
+  document.getElementById('tempCaja_value').innerHTML = String(tempC[1])+" °C";
   document.getElementById('humCaja_value').innerHTML = humC[1]+"%";
   document.getElementById('voltBat_value').innerHTML = String(voltajeB[1])+" V";
 
+  document.getElementById('temp_prom').innerHTML = "Prom. "+String(temp[2])+" °C";
+  document.getElementById('ph_prom').innerHTML = "Prom. "+ph[2];
+  document.getElementById('od_prom').innerHTML = "Prom. "+String(od[2])+" mg/L";
+
+  document.getElementById('tempCaja_prom').innerHTML = "Prom. "+String(tempC[2])+" °C";
+  document.getElementById('humCaja_prom').innerHTML = "Prom. "+humC[2]+"%";
+  document.getElementById('voltBat_prom').innerHTML = "Prom. "+String(voltajeB[2])+" V";
  }
 
 loadDoc();

@@ -38,7 +38,7 @@ function loadDoc() {
   xhttp.overrideMimeType('text/xml; charset=iso-8859-1');
   xhttp.send(); 
 
-  setTimeout(loadDoc, 1200);
+  setTimeout(loadDoc, 12000);
 
 }
 
@@ -59,6 +59,14 @@ function loadDoc() {
   document.getElementById('tempCaja_value3').innerHTML = String(tempC3[1])+" °C";
   document.getElementById('humCaja_value3').innerHTML = humC3[1]+"%";
   document.getElementById('voltBat_value3').innerHTML = String(voltajeB3[1])+" V";
+
+  document.getElementById('temp_prom3').innerHTML = "Prom. "+String(temp[2])+" °C";
+  document.getElementById('ph_prom3').innerHTML = "Prom. "+ph[2];
+  document.getElementById('od_prom3').innerHTML = "Prom. "+String(od[2])+" mg/L";
+
+  document.getElementById('tempCaja_prom3').innerHTML = "Prom. "+String(tempC[2])+" °C";
+  document.getElementById('humCaja_prom3').innerHTML = "Prom. "+humC[2]+"%";
+  document.getElementById('voltBat_prom3').innerHTML = "Prom. "+String(voltajeB[2])+" V";
 
  }
 

@@ -1,6 +1,7 @@
 body {
-  font-family: 'Ubuntu', sans-serif;
-  background-color: #ce4040;
+  /*font-family: 'Darker Grotesque', sans-serif;*/
+  /*font-family: 'Oxygen', sans-serif;*/
+  font-family: 'Poppins', sans-serif;
   background-image: url(/static/piscicultura/img/bg-1.jpg);
   background-size: cover;
 }
@@ -37,8 +38,8 @@ body {
 
 /* Style the buttons inside the tab */
 .tab button {
-  line-height: 10px; /* margen del texto desde arriba*/
-  height: 40px; /*largo de las pestañas en blanco*/
+  line-height: 5px; /* margen del texto desde arriba*/
+  height: 32px; /*largo de las pestañas en blanco*/
   margin-right: 3px; /*espacio entre las pestañas*/
   border-radius: 5px 5px 0 0;
   color: #888;  /* Color del texto de las pestañas, gris oscuro */
@@ -49,7 +50,7 @@ body {
   cursor: pointer;
   padding: 14px 16px;
   transition: 0.3s;
-  font-size: 17px;
+  font-size: 12px;
 }
 
 /* Change background color of buttons on hover */
@@ -83,7 +84,7 @@ body {
     display: grid;
     
     grid-template-rows: [linea-uno] auto [linea-dos] auto [linea-fin]; 
-    grid-template-columns: [col-uno] 38% [col-dos] 60% [col-fin];
+    grid-template-columns: [col-uno] 38% [col-dos] 59% [col-fin];
     
     /*grid-template-rows: auto auto; 
     grid-template-columns: 38% 60%;
@@ -95,8 +96,13 @@ body {
     grid-gap: 25px 25px; /*separación entre filas y columnas, (filas, columnas)*/
     background: #e8e3e3; /*gris oscuro*/
     overflow: auto;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    /*
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 20px; /* qué hace?*/
+
   }
 
   .data-div1{
@@ -115,6 +121,44 @@ body {
     grid-row: linea-uno / linea-fin;
     grid-column: col-dos / col-fin;
     /*grid-area: sidebar_right;*/
+  }
+
+  .variable-name th{
+    color: #000000;
+    font-size: 14px;
+    font-weight: none;
+    /*line-height: 20px;*/
+    
+  }
+
+  .values td{
+    color: #8c8a8a;
+    font-size: 20px;
+    /*margin-bottom: 20px;*/
+  }
+  
+ 
+
+  .icon_temp, .icon_od, .icon_voltage{
+    width: 50px;
+    height: 50px;
+  }
+
+  .icon_ph{
+    width:  70px;
+  }
+
+  .icon_tempBox, .icon_hum{
+    height: 50px;
+  }
+
+  /*h3{
+    font-size: 16px;
+  }*/
+  .div-title{
+    font-size: 16px;
+    /*line-height: 55px;/*espacio con borde superior del div*/
+   
   }
 
 }
@@ -148,6 +192,42 @@ body {
 
 }
 
+@media screen and (max-width: 480px) {
+
+  .variable-name th{
+    color: #000000;
+    font-size: 12px;
+    /*font-weight: bold;*/
+    /*height: 25px;*/
+  }
+
+  .values td{
+    color: #8c8a8a;
+    font-size: 18px;
+    /*font-weight: bold;*/
+    /*height: 25px;*/
+  }
+
+  .icon_temp, .icon_od, .icon_voltage{
+    width: 50px;
+    height: 50px;
+  }
+
+  .icon_ph{
+    width:  70px;
+  }
+
+  .icon_tempBox, .icon_hum{
+    height: 50px;
+  }
+
+  .div-title{
+    font-size: 14px;
+  }
+
+
+}
+
 
 .data-div1, .data-div2, .data-div3{
 
@@ -155,7 +235,8 @@ body {
   background: #fcf9f9; 
   border-radius: 5px 5px 5px 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
+  padding-right: 50px;
+  /*margin-left: 15px;*/
 }
 
 
@@ -168,26 +249,45 @@ hr {
   background-color: #e8e3e3;
   border-color: transparent;
 
+
 }
 
-.div-title {
-
-  margin-left: 20px;
-  color: gray;
-  font-weight: bold;
-}
 
 /* .last_update{*/
-#last_update1{ 
+#last_update1, #last_update2, #last_update3{ 
   margin-left: 30px;
   color: #918e8e;
-  font-size: 18px;
-
+  font-size: 15px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
+#descarga{ 
+  /*text-align: right;*/
+  float: right;
+  display:inline
+  color: #8139c4;
+  font-size: 15px;
+  margin-top: 0px;
+  /*margin-bottom: 100px;*/
+  
+}
 
+#estado_tomadatos{ 
+  text-align: right;
+  float: right;
+  margin-left: 30px;
+  display:inline;
+  color: #ffffff;
+  font-size: 17px;
+  margin-top: 0px;
+  /*margin-bottom: 100px;*/
+  
+}
 
 /*primer div*/
+
+
 table{
   font-size: 12px;
   min-width: 100%;
@@ -199,48 +299,35 @@ table, th, td {
 
 }
 
-.variable-name th{
-  color: #000000;
-  font-size: 20px;
-  font-weight: bold;
-  /*height: 25px;*/
-}
+.div-title {
 
-.values td{
-  color: #8c8a8a;
-  font-size: 30px;
+  margin-left: 20px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  color: gray;
   font-weight: bold;
-  /*height: 25px;*/
 }
 
 .water_table{
   min-width: 70%;
 }
 
-.icon_temp, .icon_od, .icon_voltage{
-  width:  100px;
-  height: 100px;
-}
 
-.icon_ph{
-  width:  140px;
 
-}
-
-.icon_tempBox, .icon_hum{
-  height: 100px;
-}
 /*///////////////////segundo div///////////////////////*/
-
-#grafic{
+/*
+#grafic1{
   width: 50%;
+  height: auto;
 }
-#myChart{
-  /*max-height: 400px;*/
-  width: 50%;
+*/
+
+
+.ptemp{
+  width: 97.5%;
+
 }
 
-h4{
-  size: 20px;
-  color: blue;
+h5{
+  display:inline;
 }

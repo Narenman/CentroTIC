@@ -95,30 +95,87 @@ def toma_datos(request):
 def json_last_est1(request):
     try:
         temp = Temperatura.objects.filter(pozo_id=1)
-        #print(temp)
         temp = temp.last()
-        #print(temp) 
-        temperatura = [temp.fecha, temp.valor]
+        temp_largo=Temperatura.objects.filter(pozo_id=1).count()
+        temp_last18=Temperatura.objects.filter(pozo_id=1)[temp_largo-18:]
+        temperatura18_value = temp_last18.values("valor")
+        acum_temp=0
+        for x in range(0, 18):
+            temp_value=temperatura18_value[x]["valor"]
+            #print(temp_value)
+            acum_temp=acum_temp+temp_value
+        temp_average=round(acum_temp/18,2)
+        temperatura = [temp.fecha, temp.valor, temp_average]
+        
         #oxígeno disuelto
         od = O2disuelto.objects.filter(pozo_id=1)
         od = od.last()
-        oxigenoDisuelto = [od.fecha, od.valor]
+        od_largo=O2disuelto.objects.filter(pozo_id=1).count()
+        od_last18=O2disuelto.objects.filter(pozo_id=1)[od_largo-18:]
+        od18_value = od_last18.values("valor")
+        acum_od=0
+        for x in range(0, 18):
+            od_value=od18_value[x]["valor"]
+            #print(temp_value)
+            acum_od=acum_od+od_value
+        od_average=round(acum_od/18,2)
+        oxigenoDisuelto = [od.fecha, od.valor, od_average]
+        
         #ph
         ph = PH.objects.filter(pozo_id=1)
         ph = ph.last()
-        phTank = [ph.fecha, ph.valor]
+        ph_largo=PH.objects.filter(pozo_id=1).count()
+        ph_last18=PH.objects.filter(pozo_id=1)[ph_largo-18:]
+        ph18_value = ph_last18.values("valor")
+        acum_ph=0
+        for x in range(0, 18):
+            ph_value=ph18_value[x]["valor"]
+            #print(temp_value)
+            acum_ph=acum_ph+ph_value
+        ph_average=round(acum_ph/18,2)
+        phTank = [ph.fecha, ph.valor, ph_average]
+        
         #temperatura caja
         tempC = TemperaturaCaja.objects.filter(pozo_id=1)
         tempC = tempC.last()
-        tempCaja = [tempC.fecha, tempC.valor]
+        tempC_largo=TemperaturaCaja.objects.filter(pozo_id=1).count()
+        tempC_last18=TemperaturaCaja.objects.filter(pozo_id=1)[tempC_largo-18:]
+        temperaturaC18_value = tempC_last18.values("valor")
+        acum_tempC=0
+        for x in range(0, 18):
+            tempC_value=temperaturaC18_value[x]["valor"]
+            #print(temp_value)
+            acum_tempC=acum_tempC+tempC_value
+        tempC_average=round(acum_tempC/18,2)
+        tempCaja = [tempC.fecha, tempC.valor, tempC_average]
+
         #voltaje batería
         bat=VoltajeBateria.objects.filter(pozo_id=1)
         bat = bat.last()
-        voltajeBat = [bat.fecha, bat.valor]
+        bat_largo=VoltajeBateria.objects.filter(pozo_id=1).count()
+        bat_last18=VoltajeBateria.objects.filter(pozo_id=1)[bat_largo-18:]
+        bat18_value = bat_last18.values("valor")
+        acum_bat=0
+        for x in range(0, 18):
+            bat_value=bat18_value[x]["valor"]
+            #print(temp_value)
+            acum_bat=acum_bat+bat_value
+        bat_average=round(acum_bat/18,2)
+        voltajeBat = [bat.fecha, bat.valor, bat_average]
+        
         #humedad caja
         humC = HumedadCaja.objects.filter(pozo_id=1)
         humC = humC.last()
-        humCaja = [humC.fecha, humC.valor]
+        humC_largo=HumedadCaja.objects.filter(pozo_id=1).count()
+        humC_last18=HumedadCaja.objects.filter(pozo_id=1)[humC_largo-18:]
+        humC18_value = humC_last18.values("valor")
+        acum_humC=0
+        for x in range(0, 18):
+            humC_value=humC18_value[x]["valor"]
+            #print(temp_value)
+            acum_humC=acum_humC+humC_value
+        humC_average=round(acum_humC/18,2)
+        humCaja = [humC.fecha, humC.valor, humC_average]
         variables = {"temperatura":temperatura, "oxigenoDisuelto": oxigenoDisuelto, "phTank": phTank, "tempCaja": tempCaja, "voltajeBat": voltajeBat, "humCaja": humCaja}
         # print(variables)
     except:
@@ -129,32 +186,88 @@ def json_last_est1(request):
 def json_last_est2(request):
     try:
         temp = Temperatura.objects.filter(pozo_id=2)
-        #print(temp)
         temp = temp.last()
-        #print(temp) 
-        temperatura = [temp.fecha, temp.valor]
+        temp_largo=Temperatura.objects.filter(pozo_id=2).count()
+        temp_last18=Temperatura.objects.filter(pozo_id=2)[temp_largo-5:]
+        temperatura18_value = temp_last18.values("valor")
+        acum_temp=0
+        for x in range(0, 18):
+            temp_value=temperatura18_value[x]["valor"]
+            #print(temp_value)
+            acum_temp=acum_temp+temp_value
+        temp_average=round(acum_temp/18,2)
+        temperatura = [temp.fecha, temp.valor, temp_average]
+        
         #oxígeno disuelto
         od = O2disuelto.objects.filter(pozo_id=2)
         od = od.last()
-        oxigenoDisuelto = [od.fecha, od.valor]
+        od_largo=O2disuelto.objects.filter(pozo_id=2).count()
+        od_last18=O2disuelto.objects.filter(pozo_id=2)[od_largo-5:]
+        od18_value = od_last18.values("valor")
+        acum_od=0
+        for x in range(0, 18):
+            od_value=od18_value[x]["valor"]
+            #print(temp_value)
+            acum_od=acum_od+od_value
+        od_average=round(acum_od/18,2)
+        oxigenoDisuelto = [od.fecha, od.valor, od_average]
+        
         #ph
         ph = PH.objects.filter(pozo_id=2)
         ph = ph.last()
-        phTank = [ph.fecha, ph.valor]
+        ph_largo=PH.objects.filter(pozo_id=2).count()
+        ph_last18=PH.objects.filter(pozo_id=2)[ph_largo-5:]
+        ph18_value = ph_last18.values("valor")
+        acum_ph=0
+        for x in range(0, 18):
+            ph_value=ph18_value[x]["valor"]
+            #print(temp_value)
+            acum_ph=acum_ph+ph_value
+        ph_average=round(acum_ph/18,2)
+        phTank = [ph.fecha, ph.valor, ph_average]
+        
         #temperatura caja
         tempC = TemperaturaCaja.objects.filter(pozo_id=2)
         tempC = tempC.last()
-        tempCaja = [tempC.fecha, tempC.valor]
+        tempC_largo=TemperaturaCaja.objects.filter(pozo_id=2).count()
+        tempC_last18=TemperaturaCaja.objects.filter(pozo_id=2)[tempC_largo-5:]
+        temperaturaC18_value = tempC_last18.values("valor")
+        acum_tempC=0
+        for x in range(0, 18):
+            tempC_value=temperaturaC18_value[x]["valor"]
+            #print(temp_value)
+            acum_tempC=acum_tempC+tempC_value
+        tempC_average=round(acum_tempC/18,2)
+        tempCaja = [tempC.fecha, tempC.valor, tempC_average]
+
         #voltaje batería
         bat=VoltajeBateria.objects.filter(pozo_id=2)
         bat = bat.last()
-        voltajeBat = [bat.fecha, bat.valor]
+        bat_largo=VoltajeBateria.objects.filter(pozo_id=2).count()
+        bat_last18=VoltajeBateria.objects.filter(pozo_id=2)[bat_largo-5:]
+        bat18_value = bat_last18.values("valor")
+        acum_bat=0
+        for x in range(0, 18):
+            bat_value=bat18_value[x]["valor"]
+            #print(temp_value)
+            acum_bat=acum_bat+bat_value
+        bat_average=round(acum_bat/18,2)
+        voltajeBat = [bat.fecha, bat.valor, bat_average]
+        
         #humedad caja
         humC = HumedadCaja.objects.filter(pozo_id=2)
         humC = humC.last()
-        humCaja = [humC.fecha, humC.valor]
+        humC_largo=HumedadCaja.objects.filter(pozo_id=2).count()
+        humC_last18=HumedadCaja.objects.filter(pozo_id=2)[humC_largo-5:]
+        humC18_value = humC_last18.values("valor")
+        acum_humC=0
+        for x in range(0, 18):
+            humC_value=humC18_value[x]["valor"]
+            #print(temp_value)
+            acum_humC=acum_humC+humC_value
+        humC_average=round(acum_humC/18,2)
+        humCaja = [humC.fecha, humC.valor, humC_average]
         variables = {"temperatura":temperatura, "oxigenoDisuelto": oxigenoDisuelto, "phTank": phTank, "tempCaja": tempCaja, "voltajeBat": voltajeBat, "humCaja": humCaja}
-        # print(variables)
     except:
         variables = {}
     return JsonResponse(variables)
@@ -162,32 +275,88 @@ def json_last_est2(request):
 def json_last_est3(request):
     try:
         temp = Temperatura.objects.filter(pozo_id=3)
-        #print(temp)
         temp = temp.last()
-        #print(temp) 
-        temperatura = [temp.fecha, temp.valor]
+        temp_largo=Temperatura.objects.filter(pozo_id=3).count()
+        temp_last18=Temperatura.objects.filter(pozo_id=3)[temp_largo-5:]
+        temperatura18_value = temp_last18.values("valor")
+        acum_temp=0
+        for x in range(0, 18):
+            temp_value=temperatura18_value[x]["valor"]
+            #print(temp_value)
+            acum_temp=acum_temp+temp_value
+        temp_average=round(acum_temp/18,2)
+        temperatura = [temp.fecha, temp.valor, temp_average]
+        
         #oxígeno disuelto
         od = O2disuelto.objects.filter(pozo_id=3)
         od = od.last()
-        oxigenoDisuelto = [od.fecha, od.valor]
+        od_largo=O2disuelto.objects.filter(pozo_id=3).count()
+        od_last18=O2disuelto.objects.filter(pozo_id=3)[od_largo-5:]
+        od18_value = od_last18.values("valor")
+        acum_od=0
+        for x in range(0, 18):
+            od_value=od18_value[x]["valor"]
+            #print(temp_value)
+            acum_od=acum_od+od_value
+        od_average=round(acum_od/18,2)
+        oxigenoDisuelto = [od.fecha, od.valor, od_average]
+        
         #ph
         ph = PH.objects.filter(pozo_id=3)
         ph = ph.last()
-        phTank = [ph.fecha, ph.valor]
+        ph_largo=PH.objects.filter(pozo_id=3).count()
+        ph_last18=PH.objects.filter(pozo_id=3)[ph_largo-5:]
+        ph18_value = ph_last18.values("valor")
+        acum_ph=0
+        for x in range(0, 18):
+            ph_value=ph18_value[x]["valor"]
+            #print(temp_value)
+            acum_ph=acum_ph+ph_value
+        ph_average=round(acum_ph/18,2)
+        phTank = [ph.fecha, ph.valor, ph_average]
+        
         #temperatura caja
         tempC = TemperaturaCaja.objects.filter(pozo_id=3)
         tempC = tempC.last()
-        tempCaja = [tempC.fecha, tempC.valor]
+        tempC_largo=TemperaturaCaja.objects.filter(pozo_id=3).count()
+        tempC_last18=TemperaturaCaja.objects.filter(pozo_id=3)[tempC_largo-5:]
+        temperaturaC18_value = tempC_last18.values("valor")
+        acum_tempC=0
+        for x in range(0, 18):
+            tempC_value=temperaturaC18_value[x]["valor"]
+            #print(temp_value)
+            acum_tempC=acum_tempC+tempC_value
+        tempC_average=round(acum_tempC/18,2)
+        tempCaja = [tempC.fecha, tempC.valor, tempC_average]
+
         #voltaje batería
         bat=VoltajeBateria.objects.filter(pozo_id=3)
         bat = bat.last()
-        voltajeBat = [bat.fecha, bat.valor]
+        bat_largo=VoltajeBateria.objects.filter(pozo_id=3).count()
+        bat_last18=VoltajeBateria.objects.filter(pozo_id=3)[bat_largo-5:]
+        bat18_value = bat_last18.values("valor")
+        acum_bat=0
+        for x in range(0, 18):
+            bat_value=bat18_value[x]["valor"]
+            #print(temp_value)
+            acum_bat=acum_bat+bat_value
+        bat_average=round(acum_bat/18,2)
+        voltajeBat = [bat.fecha, bat.valor, bat_average]
+        
         #humedad caja
         humC = HumedadCaja.objects.filter(pozo_id=3)
         humC = humC.last()
-        humCaja = [humC.fecha, humC.valor]
+        humC_largo=HumedadCaja.objects.filter(pozo_id=3).count()
+        humC_last18=HumedadCaja.objects.filter(pozo_id=3)[humC_largo-5:]
+        humC18_value = humC_last18.values("valor")
+        acum_humC=0
+        for x in range(0, 18):
+            humC_value=humC18_value[x]["valor"]
+            #print(temp_value)
+            acum_humC=acum_humC+humC_value
+        humC_average=round(acum_humC/18,2)
+        humCaja = [humC.fecha, humC.valor, humC_average]
         variables = {"temperatura":temperatura, "oxigenoDisuelto": oxigenoDisuelto, "phTank": phTank, "tempCaja": tempCaja, "voltajeBat": voltajeBat, "humCaja": humCaja}
-        # print(variables)
     except:
         variables = {}
     return JsonResponse(variables)
