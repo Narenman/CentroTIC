@@ -5,9 +5,10 @@ from rest_framework import status
 
 from django.http import Http404
 
-from .models import AlbumImagenes, Espectro, EstacionAmbiental, CaracteristicasEspectro, Estado
+from .models import AlbumImagenes, Espectro, EstacionAmbiental, CaracteristicasEspectro, Estado ,\
+    PosicionAntena
 from .serializers import AlbumSerializer, EstacionAmbientalSerializer, EspectroSerializer ,\
-    CaractEspectroSerializer, EstadoSerializer
+    CaractEspectroSerializer, EstadoSerializer, PosicionAntenaSerializer
 
 class AlbumAPI(generics.CreateAPIView):
     """ Esta API se encarga de las imagenes recolectadas por la camara startlight 
@@ -22,8 +23,8 @@ class EspectroAPI(APIView):
     """ Esta API se encarga de gestiornar el espectro para poder almacenarlo
     correctamente
     """
-    authentication_classes = ()
-    permission_classes = ()
+    # authentication_classes = ()
+    # permission_classes = ()
     def get(self, request, format=None):
         espectro = Espectro.objects.last()
         serializer = EspectroSerializer(espectro, many=False)
@@ -42,8 +43,8 @@ class EspectroAPI(APIView):
 class CaracteristicasEspectroAPI(generics.CreateAPIView):
     """Esta API se encarga de registrar las caracteristicas del espectro
     sensado """
-    authentication_classes = ()
-    permission_classes = ()
+    # authentication_classes = ()
+    # permission_classes = ()
     
     queryset = CaracteristicasEspectro.objects.all()
     serializer_class = CaractEspectroSerializer
@@ -65,7 +66,9 @@ class EstadoAPI(APIView):
         estado = self.get_object(pk=pk)
         print(estado)
         respuesta = {"activo": estado.activo,
-                    "frecuencia": estado.frecuencia}
+                    "frecuencia": estado.frecuencia,
+                    "azimut": estado.azimut,
+                    "elevacion":estado.elevacion}
         return Response(respuesta)
 
     def put(self, request, pk, format=None):
@@ -74,4 +77,12 @@ class EstadoAPI(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class PosicionAntenaAPI(APIView):
+    def post(self, request, format=None):
+        serializer = PosicionAntenaSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

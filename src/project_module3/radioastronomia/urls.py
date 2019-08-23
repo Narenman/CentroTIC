@@ -34,6 +34,7 @@ urlpatterns = [
     path('subsistema-RFI', apiviews.EspectroAPI.as_view()),
     path('caracteristicas-espectro', apiviews.CaracteristicasEspectroAPI.as_view()),
     path('estado/<int:pk>', apiviews.EstadoAPI.as_view()),
+    path('posicion-antena', apiviews.PosicionAntenaAPI.as_view()),
     # modos de procesamiento del espectro
     path('modo/bandas-espectrales', views.bandas_espectrales, name="modo1"),
     path('modo/analisis-tiempo',views.analisis_tiempo, name="modo2"),

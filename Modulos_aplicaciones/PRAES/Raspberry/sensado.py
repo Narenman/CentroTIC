@@ -1,10 +1,14 @@
-import time
 import Adafruit_GPIO.SPI as SPI
 import Adafruit_MCP3008
+import adafruit_sgp30
+import board
+import busio
+
+import time
 import requests
 import json
 
-class Analogico():
+class AnalogicoDigital():
     """ Esta clase se encarga de administrar el sensado analogico, es decir,
     en extraer los datos de la nariz electronica y de los sensores de agua.
 
@@ -25,9 +29,31 @@ class Analogico():
     23       DOUT
     24       DIN
     25       CS
+
+    Esta clase tambien realiza lectura del sensor de gas
+    digital sgp30 mediante la conexion a los siguientes pines
+
+    GPIO    SGP30
+    2       SDA
+    3       SCL
     """
-    def __init__(self, direccionIP):
+    def __init__(self, direccionIP, APIusername, APIpassword):
         self.direccionIP = direccionIP
+        self.APIusername = APIusername
+        self.APIpassword = APIpassword
+    
+    def sgp30(self):
+        """Esta funcion se encarga de realizar las lecturas del sensor
+        digital sgp30 para mirar la calidad del aire """
+        i2c = busio.I2C(board.SCL, board.SDA, frequency=100000)       
+        # Create library object on our I2C port
+        sgp30 = adafruit_sgp30.Adafruit_SGP30(i2c)      
+        # print("SGP30 serial #", [hex(i) for i in sgp30.serial])       
+        sgp30.iaq_init()
+        sgp30.set_iaq_baseline(0x8973, 0x8aae)
+        eC02 = sgp30.eCO2 #ppm
+        tvoc = sgp30.TVOC #ppb
+        return eC02, tvoc
     
     def leerADC(self):
         """Activa los SPI de los MCP3008 """
@@ -57,6 +83,7 @@ class Analogico():
         a la conexion hardware para tener una mejor identificacion con 
         el software """
         adc1, adc2 = self.leerADC()
+        eC02, tvoc = self.sgp30()
         #sensores conectados al ADC1
         MQ2 = adc1[0]
         MQ3 = adc1[1]
@@ -72,57 +99,85 @@ class Analogico():
         MQ9 = adc2[6]
         MICS5524 = adc2[7]
         agua = [PH, turb]
-        aire = [MQ2, MQ3, MQ4, MQ5, MQ6, MQ7, MQ8, MQ9, MQ135, MICS5524]
+        aire = [MQ2, MQ3, MQ4, MQ5, MQ6, MQ7, MQ8, MQ9, MQ135, MICS5524, eC02, tvoc]
         return agua, aire
+
+    #comunicacion con la API
+    def getToken(self, username, password):
+        """Esta funcion se encarga de consultar el token de acuerdo al usuario
+        y contrasena para la API """
+        data = {
+        "username": username,
+        "password": password}
+        URL = "http://"+self.direccionIP+"/app_praes/token/"
+        r = requests.post(URL, data=data)
+        print("HTTP status token {}".format(r.status_code))
+        token = json.loads(r.content)
+        # print(token["token"])
+        return token
     
-    def comunicacionAPI(self, URL,valor, ubicacion):
+    def comunicacionAPI(self, URL,valor, ubicacion, kit):
         """ este metodo es para comunicarse con la base 
         de datos a traves de API REST
         """
         data = {"valor": valor,
-                "kit_monitoreo": 1,
+                "kit_monitoreo": kit,
                 "ubicacion": ubicacion}
-        headers={"Authorization":"Token 33565da4cc7e8394310dfa74160222e484b4fe6f"} 
+        token = self.getToken(self.APIusername, self.APIpassword)
+        headers={"Authorization":"Token "+token["token"]} 
         r = requests.post(URL, data=data, headers=headers)
         if r.status_code==200 or r.status_code==201:
-            print("HTTP status ok. {}".format(r.status_code))
+            print("HTTP status API. {}".format(r.status_code))
             r.close()
         else:
             print("Bad request {}".format(r.status_code))
     
-    #estas se ejecutaran en el suscriptor MQTT
-    def phAgua(self, ubicacion):
+    #sensores de AGUA
+    def phAgua(self, ubicacion, kit):
         agua, aire = self.sensores()
         ph = agua[0]
         URL = "http://"+self.direccionIP+"/app_praes/ph-agua/"
-        self.comunicacionAPI(URL, ph, ubicacion)
+        self.comunicacionAPI(URL, ph, ubicacion, kit)
     
-    def turbidezAgua(self, ubicacion):
+    def turbidezAgua(self, ubicacion, kit):
         agua, aire = self.sensores()
         turb = agua[1]
         URL = "http://"+self.direccionIP+"/app_praes/turbidez-agua/"
-        self.comunicacionAPI(URL, turb, ubicacion)
+        self.comunicacionAPI(URL, turb, ubicacion, kit)
     
-    def calidadAire(self, ubicacion):
+    #calidad del aire
+    def calidadAire(self, ubicacion, kit):
         agua, aire = self.sensores()
         URL = "http://"+self.direccionIP+"/app_praes/modo-nariz/"
         data = {"valor": json.dumps(aire),
-                "kit_monitoreo": 1,
+                "kit_monitoreo": kit,
                 "ubicacion": ubicacion}
-        headers={"Authorization":"Token 33565da4cc7e8394310dfa74160222e484b4fe6f"} 
+        token = self.getToken(self.APIusername, self.APIpassword)
+        headers={"Authorization":"Token "+token["token"]} 
         r = requests.post(URL, data=data, headers=headers)
         if r.status_code==200 or r.status_code==201:
-            print("HTTP status ok. {}".format(r.status_code))
+            print("HTTP status API. {}".format(r.status_code))
+            # print("aire {}".format(aire))
             r.close()
         else:
             print("Bad request {}".format(r.status_code))
+    
+    #variables del clima
+    def clima(self,ubicacion, kit):
+        pass
 
 if __name__ == "__main__":
+    #parametros de configuracion
     direccionIP = "192.168.0.103:8000"
-    lecturas = Analogico(direccionIP)
+    APIusername = "mario"
+    APIpassword = "mario"
+
+    lecturas = AnalogicoDigital(direccionIP, APIusername, APIpassword)
+    kit = 1
+    ubicacion = 43
     print(lecturas.sensores())
     for i in range(20):
         # lecturas.phAgua(1)
         # lecturas.turbidezAgua(1)
-        lecturas.calidadAire(1)
+        lecturas.calidadAire(ubicacion, kit)
         time.sleep(2)

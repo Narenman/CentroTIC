@@ -73,8 +73,19 @@ function sendForm(){
             series: [{
                 type: 'area',
                 name: 'Espectro',
-                data: stateobject.data
-            }]
+                data: stateobject.data,
+                connectNulls: false // by default
+            }],
+            lang: {
+                noData: "No hay datos"
+            },
+            noData: {
+                style: {
+                    fontWeight: 'bold',
+                    fontSize: '15px',
+                    color: '#303030'
+                }
+            }
         });
         //fin grafica bandas del espectro
 

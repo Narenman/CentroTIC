@@ -1,8 +1,10 @@
 var sstate = false;
 var frequency;
-
+var azimut;
 var eloadining;
- 
+var elevacion;
+
+
  function loaderloader(){
      
     eloadining  = document.getElementById('aplotinfo');
@@ -10,6 +12,8 @@ var eloadining;
     eform       = document.getElementById('aform');
     mform       = document.getElementById('mform');
     efreq       = document.getElementById('efreq');
+    eazimut     = document.getElementById('eazimut');
+    eelevacion  = document.getElementById('eelevacion');
 
  }
 
@@ -28,6 +32,9 @@ var eloadining;
          stateobject = JSON.parse(stateobject);
          sstate       = stateobject.activo;
          frequency   = stateobject.frecuencia;
+         azimut = stateobject.azimut;
+         elevacion = stateobject.elevacion;
+         
          }
      };
 
@@ -35,6 +42,8 @@ var eloadining;
      xhttp.send();
 
      efreq.innerHTML = frequency;
+     eazimut.innerHTML = azimut;
+     eelevacion.innerHTML = elevacion;
 
       if (sstate == true){
           eloadining.style.display = "block";

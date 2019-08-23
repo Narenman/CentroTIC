@@ -27,6 +27,9 @@ function requestData() {
             var MQ9 = new Array(point.temperatura[0], point.temperatura[1][7])
             var MQ135 = new Array(point.temperatura[0], point.temperatura[1][8])
             var MICS5524 = new Array(point.temperatura[0], point.temperatura[1][9])
+            var eC02 = new Array(point.temperatura[0], point.temperatura[1][10])
+            var tvoc = new Array(point.temperatura[0], point.temperatura[1][11])
+
 
             
             chart.series[0].addPoint(MQ2, true, shift);
@@ -39,6 +42,8 @@ function requestData() {
             chart.series[7].addPoint(MQ9, true, shift);
             chart.series[8].addPoint(MQ135, true, shift);
             chart.series[9].addPoint(MICS5524, true, shift);
+            chart.series[10].addPoint(eC02, true, shift);
+            chart.series[11].addPoint(tvoc, true, shift);
 
 
             // call it again after one second
@@ -101,6 +106,12 @@ document.addEventListener('DOMContentLoaded', function() {
             data: []},
 
             {name: "MICS5524",
+            data: []},
+
+            {name: "eCO2",
+            data: []},
+
+            {name: "tvoc",
             data: []},
 
         ]

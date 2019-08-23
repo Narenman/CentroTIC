@@ -3,14 +3,14 @@ import paho.mqtt.client as mqttClient
 import paho.mqtt.publish as publish
 import json
 import time
-from sensado import Analogico
+from sensado import AnalogicoDigital
 
 def aire(**dato):
-    lecturas = Analogico(IPSERVER)
+    lecturas = AnalogicoDigital(IPSERVER, APIusername, APIpassword)
     t1 = time.time()
     timming = 0
     while timming<=200:
-        lecturas.calidadAire(dato["ubicacion"])
+        lecturas.calidadAire(dato["ubicacion"], dato["kit"])
         if stop_thread1:
             break
         print("aire")
@@ -18,11 +18,11 @@ def aire(**dato):
         time.sleep(1)
 
 def phagua(**dato):
-    lecturas = Analogico(IPSERVER)
+    lecturas = AnalogicoDigital(IPSERVER, APIusername, APIpassword)
     t1 = time.time()
     timming = 0
     while timming<=200:
-        lecturas.phAgua(dato["ubicacion"])
+        lecturas.phAgua(dato["ubicacion"], dato["kit"])
         if stop_thread3:
             break
         print("ph agua")
@@ -30,11 +30,11 @@ def phagua(**dato):
         time.sleep(1)
 
 def turbidez(**dato):
-    lecturas = Analogico(IPSERVER)
+    lecturas = AnalogicoDigital(IPSERVER, APIusername, APIpassword)
     t1 = time.time()
     timming = 0
     while timming<=200:
-        lecturas.turbidezAgua(dato["ubicacion"])
+        lecturas.turbidezAgua(dato["ubicacion"], dato["kit"])
         if stop_thread4:
             break
         print("turbidez agua")
@@ -54,50 +54,43 @@ def suscriptor_MQTT():
         msg = json.loads(message.payload.decode())
         print(msg)
         ubicacion = msg["ubicacion"]
+        kit = msg["kit"]
+        global stop_thread1, stop_thread3, stop_thread4
 
         if msg["accion"]=="dato-en-vivo" and msg["tipo dato"]=="aire":
             try:
-                global stop_thread1, stop_thread3, stop_thread4
+                stop_thread1 = False # hilo de aire
                 stop_thread3 = True  # hilo de ph
                 stop_thread4 = True # hilo de turbidez
-                stop_thread1 = False # hilo de aire
-                hilo3.join()
-                hilo4.join()
-                print("hilo agua finalizado")
-            except:
                 print("iniciando el hilo de aire")
-                hilo1 = threading.Thread(target=aire, kwargs={"ubicacion":ubicacion})
+                print("hilo agua finalizado")
+                hilo1 = threading.Thread(target=aire, kwargs={"ubicacion":ubicacion, "kit":kit})
                 hilo1.start()
+            except:
                 pass
         
         if msg["accion"]=="dato-en-vivo" and msg["tipo dato"] =="ph":
             try:
-                global stop_thread1, stop_thread3, stop_thread4
                 stop_thread4 = True  # hilo de turbidez
                 stop_thread1 = True  # hilo de aire
                 stop_thread3 = False # hilo de ph
-                hilo1.join()
-                hilo4.join()
                 print("hilos de aire, ph finalizados")
-            except:
                 print("iniciando hilo de ph")
-                hilo3 = threading.Thread(target=phagua, kwargs={"ubicacion":ubicacion})
+                hilo3 = threading.Thread(target=phagua, kwargs={"ubicacion":ubicacion, "kit":kit})
                 hilo3.start()
+            except:
                 pass
         
         if msg["accion"]=="dato-en-vivo" and msg["tipo dato"] == "turbidez":
             try:
-                global stop_thread1, stop_thread3, stop_thread4
                 stop_thread1 = True
                 stop_thread3 = True
                 stop_thread4 = False
-                hilo1.join()
-                hilo3.join()
                 print("hilo aire y ph finalizado")
-            except:
                 print("iniciando hilo de turbidez agua")
-                hilo4 = threading.Thread(target=turbidez, kwargs={"ubicacion":ubicacion})
+                hilo4 = threading.Thread(target=turbidez, kwargs={"ubicacion":ubicacion, "kit":kit})
                 hilo4.start()
+            except:
                 pass
             
 
@@ -113,11 +106,15 @@ def suscriptor_MQTT():
     client.loop_forever()
 
 if __name__ == "__main__":
+    #configuracion de variables
     global stop_thread1, stop_thread3, stop_thread4
-    global IPSERVER
+    global IPSERVER, APIusername, APIpassword
     IPSERVER = "192.168.0.103:8000"
+    APIusername = "mario"
+    APIpassword = "mario"
     stop_thread1 = False
     stop_thread3 = False
     stop_thread4 = False
+    #hilo maestro
     hilo2 = threading.Thread(target=suscriptor_MQTT)
     hilo2.start()

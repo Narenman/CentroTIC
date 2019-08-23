@@ -89,7 +89,9 @@
             <p>Modo Autmático seleccionado</p>
             <div  id="aplotinfo">
                     <h4 > Actualmente el sistema está tomando datos </h4>
-                    <h3>Frecuencia: <p id="efreq"></p></h3>
+                    <h4>Frecuencia: <p id="efreq"></p></h4>
+                    <h4>Azimut: <p id="eazimut"></p></h4>
+                    <h4>Elevacion: <p id="eelevacion"></p></h4>
                     
                     <center><div class="lds-ring">
                     <div class="lds-spinner">
@@ -118,24 +120,10 @@
                             <select name="RBW" id="RBW_LIST">
                                     <!-- <option value="" selected disabled hidden>RBW</option> -->
                             </select><br><br>
-                            
-        
-                            <label>Ubicación: </label><br>
+
+                            {% comment %} ubicacion {% endcomment %}
                             {{form}}
-{% comment %} 
-                            <input type="radio" name="ubicacion" value="tatacoa" checked>Desierto de la Tatacoa<br>
-                            <input type="radio" name="ubicacion" value="cucuy">Nevado del Cucuy<br>
-                            <input type="radio" name="ubicacion" value="berlin">Parámo de Berlín<br> {% endcomment %}
-                        </div>
-                        <div>
-                            <label>Azimuth Inicial (Degres): </label><br>
-                            <input type="number" name="azinicial" value="0" min="0" max="360" required><br><br>
-                            <label>Azimuth Final (Degres): </label><br>
-                            <input type="number" name="azfinal" value="360" min="0" max="360" required><br><br>
-                            <label>Elevation Inicial (Degres): </label><br>
-                            <input type="number" name="eleninicial" value="0" min="0" max="180" required><br><br>
-                            <label>Elevation Final (Degres): </label><br>
-                            <input type="number" name="elefinal" value="180" min="0" max="180" required><br><br>
+                            <br><br>
                             <label> Antena </label>
                             <select name="antena">
                             {% for ant in antenna %}
@@ -143,6 +131,34 @@
                             {% endfor %}
                             </select>
                             <br><br>
+                            
+
+                        </div>
+                        <div>
+                            <label>Azimuth Inicial (Degrees): </label><br>
+                            <input type="number" name="azinicial" value="0" min="0" max="360" required><br><br>
+                            <label>Azimuth Final (Degrees): </label><br>
+                            <input type="number" name="azfinal" value="360" min="0" max="360" required><br><br>
+
+                            <label>Resolución azimut: </label><br>
+                            <select name="RBazimut" >
+                                <option value="0.1">0.1°</option>
+                                <option value="1">1°</option>
+                                <option value="10">10°</option>
+                            </select><br><br>
+
+                            <label>Elevación Inicial (Degrees): </label><br>
+                            <input type="number" name="eleninicial" value="0" min="0" max="180" required><br><br>
+                            <label>Elevación Final (Degrees): </label><br>
+                            <input type="number" name="elefinal" value="180" min="0" max="180" required><br><br>
+
+                            <label>Resolución elevación: </label><br>
+                            <select name="RBelevacion" >
+                                <option value="0.1">0.1°</option>
+                                <option value="1">1°</option>
+                                <option value="10">10°</option>
+                            </select><br><br>
+
                             <input type="submit" id="Afsubmit" value="Adquirir datos">
                         </div>
                     </form>
@@ -150,14 +166,9 @@
         </div>
         
 
-        {% comment %} <img src="{% static 'radioastronomia/img/control_posicion.jpg'%}" alt="no encontrado" class="img-thumbnail" height="300px" width="500px"> {% endcomment %}
     </div>
 
 </div>
-
-{% comment %} <script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/boost.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script> {% endcomment %}
 
 <script src="{% static 'radioastronomia/js/librerias/highcharts.js' %}"></script>
 <script src="{% static 'radioastronomia/js/librerias/exporting.js' %}"></script>

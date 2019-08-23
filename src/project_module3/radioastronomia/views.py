@@ -192,7 +192,7 @@ def barrido_json(request):
         for j in range(len(freq_prueba)):
             data.append([freq_prueba[j]/1000000.0, y[j]])
         
-        print(fechas)
+        # print(fechas)
         respuesta.update({"datos": len(y), "lenf": len(freq),
                             "data": data, "data_energia": data_energia,
                             "frec_muestreo": frec_muestreo,
@@ -229,7 +229,6 @@ def espectrograma_json(request):
             f = numpy.arange(-int(nfft/2),int(nfft/2),1)*frec_muestreo/(nfft*2) + frec_central
             for i in range(nfft):
                 espectrograma.append([fecha.strftime('%y-%m-%d %H:%M:%S'),f[i]/1e6,X[i]])
-        print(espectrograma[0])
     energia = list(map(lambda tiempo, energia: [tiempo, 10*numpy.log10(energia)], tiempo, char_ener))    
     return JsonResponse({"espectrograma":espectrograma, 
                          "tiempo": tiempo, "energia": energia,
@@ -283,7 +282,8 @@ def control_manual(request):
             #preparacion de los mensajes para enviar a los dispositivos
             msg = {"nfft": nfft, "sample_rate": frecuencia_muestreo,
             "ganancia": 50, "duracion": 5, "frec_central": int(float(cliente["frequency"])*1e6),
-            "accion": "modo manual", "region": int(cliente["region"])}
+            "accion": "modo manual", "region": int(cliente["region"]), "elevacion":int(cliente["elevacion"]),
+            "azimut":int(cliente["azimut"]), "antena":int(cliente["antena"])}
             topico = "radioastronomia/RFI"
             #envio de la instruccion al subsistema RFI
             publishMQTT(topico, json.dumps(msg))
@@ -310,7 +310,12 @@ def control_automatico(request):
         frecuencia_muestreo = rbw.frecuencia_muestreo
         msg = {"nfft": nfft, "sample_rate": frecuencia_muestreo,
         "ganancia": 50, "duracion": 2, "frecuencia_inicial": int(float(cliente["finicial"])*1e6),
-        "accion": "modo automatico", "region": int(cliente["region"]), "frecuencia_final": int(float(cliente["ffinal"])*1e6)}
+        "accion": "modo automatico",
+        "region": int(cliente["region"]), "frecuencia_final": int(float(cliente["ffinal"])*1e6),
+        "azinicial": float(cliente["azinicial"]), "azfinal":float(cliente["azfinal"]),
+        "eleninicial": float(cliente["eleninicial"]), "elefinal":float(cliente["elefinal"]),
+        "antena":int(cliente["antena"]), "RBelevacion": float(cliente["RBelevacion"]), 
+        "RBazimut":float(cliente["RBazimut"])}
         topico = "radioastronomia/RFI"
         # #envio de la instruccion al subsistema RFI
         publishMQTT(topico, json.dumps(msg))

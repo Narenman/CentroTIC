@@ -25,8 +25,10 @@ class Espectro():
 	luego envia la informacion a las API que se encargan de redirigir la informacion
 	hacia la base de datos """
 
-	def __init__(self, IP):
+	def __init__(self, IP, usernameAPI, passwordAPI):
 		self.IP = IP
+		self.usernameAPI = usernameAPI
+		self.passwordAPI = passwordAPI
 
 	def monitoreo(self, frec_central, ganancia, sample_rate, tiempo, nfft):
 		"""Entradas:
@@ -64,9 +66,26 @@ class Espectro():
 			# ener_ = 10*numpy.log10(ener_)
 		return min_, max_, ener_
 
-	def consulta_id(self,):
+	#comunicacion con la API
+	def getToken(self):
+		"""Esta funcion se encarga de consultar el token de acuerdo al usuario
+		y contrasena para la API """
+		data = {
+		"username": self.usernameAPI,
+		"password": self.passwordAPI }
+		URL = "http://"+self.IP+"/app_praes/token/"
+		r = requests.post(URL, data=data)
+		print("HTTP status token {}".format(r.status_code))
+		token = json.loads(r.content)
+		# print(token["token"])
+		return token
+
+	def consulta_id(self):
 		url = "http://"+self.IP+"/radioastronomia/subsistema-RFI"
-		r = requests.get(url)
+		
+		token = self.getToken()		
+		headers={"Authorization":"Token "+token["token"] }
+		r = requests.get(url, headers=headers)
 		dato = r.text
 		dato = json.loads(dato)
 		print(dato)
@@ -74,7 +93,7 @@ class Espectro():
 		r.close()
 		return dato["id"]
 
-	def envio_API(self, region, frec_central, samp_rate, fft_size, duracion):
+	def envio_API(self, region, frec_central, samp_rate, fft_size, duracion, azimut, elevacion, antena):
 		# objeto para leer el archivo del espectro
 		x = numpy.fromfile('/home/root/radioastronomia/espectro', dtype=numpy.float32, count=-1, sep='')
 		print("len(x)=", len(x))
@@ -90,14 +109,27 @@ class Espectro():
 		"frec_central": frec_central,
 		"duracion": duracion,
 		"region": region}
-		# headers={"Authorization": "Token be9c008bdb9c0ed68f87863a1fdeda569a8fe4c7"}
+		token = self.getToken()
+		headers={"Authorization": "Token "+token["token"]}
 		# preparacion de las URL para realizar la actualizacion
 		url = "http://"+self.IP+"/radioastronomia/subsistema-RFI"
-		r = requests.post(url, data=pyload)
+		r = requests.post(url, data=pyload, headers=headers)
 		print("HTTP status {} espectro".format(r.status_code))
 		r.close()
 
-		#consulta id
+
+		#actualizacion de la posicion
+		pyload = {"azimut":azimut,
+            "elevacion":elevacion,
+            "region": region,
+            "antena": antena}
+		# preparacion de las URL para realizar la actualizacion
+		url = "http://"+self.IP+"/radioastronomia/posicion-antena"
+		r = requests.post(url, data=pyload, headers=headers)
+		print("HTTP status {} posicion".format(r.status_code))
+		r.close()
+
+		#consulta id para actualizar las caracteristicas del espectro
 		id = self.consulta_id()
 		max_v = ComplexEncoder().encode(max_v)
 		min_v = ComplexEncoder().encode(min_v)
@@ -110,15 +142,17 @@ class Espectro():
 			"espectro": id
 			}
 		url = "http://"+self.IP+"/radioastronomia/caracteristicas-espectro"
-		r = requests.post(url, data=pyload)
+		r = requests.post(url, data=pyload, headers=headers)
 		print("HTTP status {} caracteristicas espectro".format(r.status_code))
 		r.close()
 
-	def estado(self, activo, frecuencia):
+	def estado(self, activo, frecuencia, azimut, elevacion):
 		"""Actualiza el estado de activo o inactivo, la entrada es:
 		estado y es de tipo booleano """
 		pyload = {"activo": activo,
-				  "frecuencia": frecuencia}
+				  "frecuencia": frecuencia,
+				  "azimut": azimut,
+				  "elevacion": elevacion}
 		url = "http://"+self.IP+"/radioastronomia/estado/1"
 		r = requests.put(url, pyload)
 		print("HTTP {} actualizacion estado".format(r.status_code))
@@ -126,5 +160,7 @@ class Espectro():
 
 if __name__ == "__main__":
 	IP = "127.0.0.1:8000"
-	obj_espectro = Espectro(IP)
-	obj_espectro.envio_API(1, 1000000, 32000, 1024, 20)
+	usernameAPI = "mario"
+	passwordAPI = "mario"
+	obj_espectro = Espectro(IP, usernameAPI, passwordAPI)
+	obj_espectro.envio_API(1, 1000000, 32000, 1024, 20, 0,10,8)

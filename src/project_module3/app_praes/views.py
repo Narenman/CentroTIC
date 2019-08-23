@@ -84,8 +84,9 @@ def medicion_compuestos_aire(request):
             # datos para mqtt
             topico = kit.nombre_kit+"/"+str(kit.colegio)
             msg = json.dumps({"accion":"dato-en-vivo", "tipo dato":"aire",
-                              "ubicacion": ubicacion})
+                              "ubicacion": ubicacion, "kit":dato["kit_monitoreo"]})
             publishMQTT(topico,msg)
+        print(topico)
     respuesta = {"sensores": sensores}
     return render(request, "app_praes/compuestos_aire.html", respuesta)
 
@@ -104,8 +105,9 @@ def medicion_ph_agua(request):
             # datos para mqtt
             topico = kit.nombre_kit+"/"+str(kit.colegio)
             msg = json.dumps({"accion":"dato-en-vivo", "tipo dato":"ph",
-                              "ubicacion": ubicacion})
+                              "ubicacion": ubicacion, "kit":dato["kit_monitoreo"]})
             publishMQTT(topico,msg)
+        print(topico)
     respuesta = {"sensores": sensores}
     return render(request, "app_praes/ph_agua.html", respuesta)
 
@@ -123,7 +125,7 @@ def medicion_turbidez(request):
             # datos para mqtt
             topico = kit.nombre_kit+"/"+str(kit.colegio)
             msg = json.dumps({"accion":"dato-en-vivo", "tipo dato":"turbidez",
-                              "ubicacion": ubicacion})
+                              "ubicacion": ubicacion, "kit":dato["kit_monitoreo"]})
             publishMQTT(topico,msg)
     respuesta = {"sensores": sensores}
     return render(request, "app_praes/turbidez.html", respuesta)
