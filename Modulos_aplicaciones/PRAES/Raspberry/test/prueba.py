@@ -1,41 +1,56 @@
-""" Example for using the SGP30 with CircuitPython and the Adafruit library"""
-    
-import time
-import board
-import busio
-import adafruit_sgp30
-
-import json
+import bme280
 import requests
+import json
+import time
 
-def sgp30():
-    """Esta funcion se encarga de realizar las lecturas del sensor
-    digital sgp30 para mirar la calidad del aire """
-    i2c = busio.I2C(board.SCL, board.SDA, frequency=100000)       
-    # Create library object on our I2C port
-    sgp30 = adafruit_sgp30.Adafruit_SGP30(i2c)      
-    print("SGP30 serial #", [hex(i) for i in sgp30.serial])       
-    sgp30.iaq_init()
-    sgp30.set_iaq_baseline(0x8973, 0x8aae)
-    eC02 = sgp30.eCO2 #ppm
-    tvoc = sgp30.TVOC #ppb
-    return eC02, tvoc
+def bme280x():
+    """Se encarga de realizar las lecturas del sensor digital
+    bme280 para medir variables temperatura, humedad y presion """
+    temperature,pressure,humidity = bme280.readBME280All()
+    return temperature, pressure, humidity
 
-def getToken(username, password, IP):
+
+global direccionIP
+direccionIP = "192.168.0.103:8000"
+ubicacion = 45
+kit = 1
+APIusername="mario"
+APIpassword="mario"
+
+
+def getToken(username, password):
+    """Esta funcion se encarga de consultar el token de acuerdo al usuario
+    y contrasena para la API """
     data = {
     "username": username,
     "password": password}
-    URL = "http://"+IP+"/app_praes/token/"
+    URL = "http://"+direccionIP+"/app_praes/token/"
     r = requests.post(URL, data=data)
     print("HTTP status token {}".format(r.status_code))
     token = json.loads(r.content)
-    print(token["token"])
+    # print(token["token"])
     return token
 
-if __name__ == "__main__":
-    username = "mario"
-    password = "mario"
-    IP = "192.168.0.103:8000"
-    getToken(username, password, IP)
-    eCO2, tvoc = sgp30()
-    print("eC02 {} ppm\ttvoc {} ppb".format(eCO2, tvoc))
+def comunicacionAPI(URL,valor, ubicacion, kit):
+    """ este metodo es para comunicarse con la base 
+    de datos a traves de API REST
+    """
+    data = {"valor": valor,
+            "kit_monitoreo": kit,
+            "ubicacion": ubicacion}
+    token = getToken(APIusername, APIpassword)
+    headers={"Authorization":"Token "+token["token"]} 
+    r = requests.post(URL, data=data, headers=headers)
+    if r.status_code==200 or r.status_code==201:
+        print("HTTP status API. {}".format(r.status_code))
+        r.close()
+    else:
+        print("Bad request {}".format(r.status_code))
+
+
+
+URL = "http://"+direccionIP+"/app_praes/temperatura/"
+for i in range(20):
+    temperature, pressure, humidity = bme280x()
+    comunicacionAPI(URL, temperature, ubicacion, kit)
+    time.sleep(0.5)

@@ -23,7 +23,7 @@
             <h3>Seleccionar KIT y lugar de medición:</h3>
             </div>
 
-        <form  action= "{% url 'app_praes:medicion-actual' %}" method="POST">
+        <form  action= "{% url 'app_praes:medicion-temp-agua' %}" method="POST">
                 {% csrf_token %}
 
                     {% bootstrap_form sensores%}

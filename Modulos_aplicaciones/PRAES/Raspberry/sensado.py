@@ -3,6 +3,7 @@ import Adafruit_MCP3008
 import adafruit_sgp30
 import board
 import busio
+import bme280
 
 import time
 import requests
@@ -14,7 +15,7 @@ class AnalogicoDigital():
 
     El sensado se realiza con un MCP3008 que se conecta a la raspberry pi3 
     mediante protocolo SPI del MCP3008, la conexion se realiza de la siguiente
-    forma:
+    forma, los ADC se conectan a 5V
 
     1) pines utilizados hardware SPI
     GPIO     MCP3008
@@ -31,11 +32,12 @@ class AnalogicoDigital():
     25       CS
 
     Esta clase tambien realiza lectura del sensor de gas
-    digital sgp30 mediante la conexion a los siguientes pines
+    digital sgp30 mediante la conexion a los siguientes pines, 
+    los sensores se conectan a 3.3V
 
-    GPIO    SGP30
-    2       SDA
-    3       SCL
+    GPIO    SGP30   BME280
+    2       SDA     SDA
+    3       SCL     SCL
     """
     def __init__(self, direccionIP, APIusername, APIpassword):
         self.direccionIP = direccionIP
@@ -54,6 +56,13 @@ class AnalogicoDigital():
         eC02 = sgp30.eCO2 #ppm
         tvoc = sgp30.TVOC #ppb
         return eC02, tvoc
+    
+    def bme280x(self):
+        """Se encarga de realizar las lecturas del sensor digital
+        bme280 para medir variables temperatura, humedad y presion """
+        temperature,pressure,humidity = bme280.readBME280All()
+        return temperature, pressure, humidity
+
     
     def leerADC(self):
         """Activa los SPI de los MCP3008 """
@@ -92,12 +101,12 @@ class AnalogicoDigital():
         PH = adc1[6]
         turb = adc1[7]
         #sensores conectados al ADC2
+        MICS5524 = adc2[0]
+        MQ8 = adc2[1]
         MQ135 = adc2[2]
         MQ6 = adc2[3]
         MQ7 = adc2[4]
-        MQ8 = adc2[5]
         MQ9 = adc2[6]
-        MICS5524 = adc2[7]
         agua = [PH, turb]
         aire = [MQ2, MQ3, MQ4, MQ5, MQ6, MQ7, MQ8, MQ9, MQ135, MICS5524, eC02, tvoc]
         return agua, aire
@@ -163,8 +172,20 @@ class AnalogicoDigital():
             print("Bad request {}".format(r.status_code))
     
     #variables del clima
-    def clima(self,ubicacion, kit):
-        pass
+    def climaTemperatura(self,ubicacion, kit):
+        temperatura, presion, humedad = self.bme280x()
+        URL = "http://"+self.direccionIP+"/app_praes/temperatura/"
+        self.comunicacionAPI(URL, temperatura,ubicacion,kit)    
+
+    def climaHumedad(self, ubicacion, kit):
+        temperatura, presion, humedad = self.bme280x()
+        URL = "http://"+self.direccionIP+"/app_praes/humedad/"
+        self.comunicacionAPI(URL, humedad, ubicacion,kit)
+    
+    def climaPresion(self, ubicacion, kit):
+        temperatura, presion, humedad = self.bme280x()
+        URL = "http://"+self.direccionIP+"/app_praes/presion-atmosferica/"
+        self.comunicacionAPI(URL, presion,ubicacion,kit)
 
 if __name__ == "__main__":
     #parametros de configuracion

@@ -40,19 +40,36 @@ def medicion_actual_temperatura(request):
         sensores = UbicacionForm(request.POST)
         if sensores.is_valid():
             print(request.POST)
+             #validacion de datos para enviar instruccion MQTT
+            dato = request.POST
+            # print(dato)
+            kit = Kit.objects.get(pk=dato["kit_monitoreo"])
+            ubicacion = dato["ubicacion"]
+            # datos para mqtt
+            topico = kit.nombre_kit+"/"+str(kit.colegio)
+            msg = json.dumps({"accion":"dato-en-vivo", "tipo dato":"temperatura",
+                              "ubicacion": ubicacion, "kit":dato["kit_monitoreo"]})
+            publishMQTT(topico,msg)
+        print(topico)
     respuesta = {"sensores": sensores}
     return render(request, "app_praes/temperatura.html", respuesta)
 
 def medicion_actual_humedad(request):
-    """ Se encarga de la temperatura """
+    """ Se encarga de la humedad """
     sensores = UbicacionForm()
     if request.POST:
         sensores = UbicacionForm(request.POST)
         if sensores.is_valid():
-            # sensores.save()
-            ## enviar la orden MQTT para que se empieze a tomar la temperatura
-            print(request.POST)
-            print("tomar humedad")
+            dato = request.POST
+            print(dato)
+            kit = Kit.objects.get(pk=dato["kit_monitoreo"])
+            ubicacion = dato["ubicacion"]
+            # datos para mqtt
+            topico = kit.nombre_kit+"/"+str(kit.colegio)
+            msg = json.dumps({"accion":"dato-en-vivo", "tipo dato":"humedad",
+                              "ubicacion": ubicacion, "kit":dato["kit_monitoreo"]})
+            publishMQTT(topico,msg)
+            print(topico)
     respuesta = {"sensores": sensores}
     return render(request, "app_praes/humedad.html", respuesta)
 
@@ -62,9 +79,17 @@ def medicion_actual_presion(request):
     if request.POST:
         sensores = UbicacionForm(request.POST)
         if sensores.is_valid():
-            # sensores.save()
-            ## enviar la orden MQTT para que se empieze a tomar la temperatura
-            print(request.POST)
+
+            dato = request.POST
+            print(dato)
+            kit = Kit.objects.get(pk=dato["kit_monitoreo"])
+            ubicacion = dato["ubicacion"]
+            # datos para mqtt
+            topico = kit.nombre_kit+"/"+str(kit.colegio)
+            msg = json.dumps({"accion":"dato-en-vivo", "tipo dato":"presion",
+                              "ubicacion": ubicacion, "kit":dato["kit_monitoreo"]})
+            publishMQTT(topico,msg)
+            print(topico)
             print("tomar presion")
     respuesta = {"sensores": sensores}
     return render(request, "app_praes/presion.html", respuesta)
