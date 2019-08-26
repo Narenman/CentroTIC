@@ -19,16 +19,20 @@ Usuarios Linux
 3) Activar el entorno virtual `` source env_centrotic/bin/activate ``
 (Para desactivar el entorno virtual ``deactivate``)
 4) Instalar los paquetes pip del archivo requeriments.txt `` pip install -r requeriments.txt``
-5) Instalar postgresql ``sudo apt-get install postgresql``
-6) Ingresar al usuario postgres ``sudo su postgres``
-7) Item Abrir postgres usando ``psql``
-8) Crear una contraseña al usuario postgres `` \password postgres ``
-9) Crear una base de datos vacía ``CREATE DATABASE centrotic;``
-10) Salir ``\q``
-11) ``exit``
-12) Realizar las migraciones ``python manage.py makemigrations`` 
-13) ``python manage.py migrate``
-14) Lanzar el servidor ``python manage.py runserver``
+5) Instalar el paquete adicional para mplde `` pip install --user "git+https://github.com/javadba/mpld3@display_fix" ``
+6) Instalar postgresql ``sudo apt-get install postgresql``
+7) ``source deactivate ``
+7) Ingresar al usuario postgres ``sudo su postgres``
+8) Item Abrir postgres usando ``psql``
+9) Crear una contraseña al usuario postgres `` \password postgres ``
+10) Crear una base de datos vacía ``CREATE DATABASE centrotic;``
+11) Salir ``\q``
+12) ``exit``
+13) Activar el entorno virtual `` source env_centrotic/bin/activate ``
+14) Ingresar al proyecto ``cd CentroTIC/src/project_module3``
+13) Realizar las migraciones ``python manage.py makemigrations`` 
+14) ``python manage.py migrate``
+15) Lanzar el servidor ``python manage.py runserver``
 
 Ahora puede disfrutar del proyecto de manera local.
 

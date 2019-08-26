@@ -8,12 +8,13 @@ import matplotlib.pyplot as plt
 import mpld3
 
 from .models import AlbumImagenes, Espectro, Estado, CaracteristicasAntena, \
-                    CaracteristicasEstacion, RBW, CaracteristicasEspectro, RegionCampana
+                    CaracteristicasEstacion, RBW, CaracteristicasEspectro, RegionCampana, \
+                        PosicionAntena
 from .forms import EspectroForm, RFIForm, RegionForm
 
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, DeleteView, CreateView, UpdateView
 
@@ -57,13 +58,13 @@ def analisis_tiempo(request):
                  "nfft": bandas, "region":region}
     if request.POST:
         cliente = request.POST
-        print(cliente)
+        print(cliente, "joder")
         nfft = int(cliente["nfft"])
         frec_central = int(float(cliente["bandas"])*1e6)
         frec_muestreo = int(float(cliente["frecmuestreo"])*1e3)
         region = cliente["region"]
         # consulta del espectro
-        espectro = Espectro.objects.filter(region=region).filter(frec_central=frec_central).filter(frec_muestreo=frec_muestreo).filter(nfft=nfft)
+        espectro = Espectro.objects.filter(region=region).filter(frec_central=frec_central).filter(frec_muestreo=frec_muestreo).filter(nfft=nfft).filter(fecha__range=[cliente["fechaini"], cliente["fechafin"]])
         espectro = espectro.values("fecha", "espectro")
         #creacion del espectrograma
         char_ener = []
@@ -116,8 +117,6 @@ def analisis_tiempo(request):
 
             respuesta.update({"grafica": histograma, "enetiempo":tiempo_energia,
                             "espectrograma": espectrograma})
-
-
     return render(request,"radioastronomia/analisis_tiempo.html", respuesta)
 
 
@@ -129,6 +128,9 @@ def bandas_espectrales(request):
     respuesta = {"region": region, "rbw":rbw}
     return render(request, "radioastronomia/bandas_espectrales.html",respuesta)
 
+def espectro_angulos(request):
+    respuesta = {}
+    return JsonResponse(respuesta)
 
 #modos de operacion del espectro
 @csrf_exempt
@@ -144,7 +146,7 @@ def barrido_json(request):
         frec_muestreo = resBW.frecuencia_muestreo
         nfft = resBW.nfft
         #filtrado para obtener cada banda
-        frec_central = Espectro.objects.filter(nfft=nfft).filter(frec_muestreo=frec_muestreo).filter(region=cliente["region"]).distinct("frec_central")
+        frec_central = Espectro.objects.filter(nfft=nfft).filter(frec_muestreo=frec_muestreo).filter(region=cliente["region"]).filter(fecha__range=[cliente["fechaini"], cliente["fechafin"]]).distinct("frec_central")
         frec_central = frec_central.values("frec_central")
         #ahora se obtiene el espectro por cada banda espectral
         y = numpy.array([])
@@ -162,7 +164,7 @@ def barrido_json(request):
                 espectro = numpy.asarray(espectro)
                 x = promedio(espectro, nfft)
                 x_ = x_ + x
-                fechas.append(row["fecha"].day)
+                fechas.append(row["fecha"])
             x_ = x_/len(rows)    
             y = numpy.append(y, x_)
             freq_prueba = numpy.append(freq_prueba, numpy.arange(-int(nfft/2),int(nfft/2),1)*frec_muestreo/(nfft*2) + f["frec_central"]) 
@@ -192,47 +194,11 @@ def barrido_json(request):
         for j in range(len(freq_prueba)):
             data.append([freq_prueba[j]/1000000.0, y[j]])
         
-        # print(fechas)
         respuesta.update({"datos": len(y), "lenf": len(freq),
                             "data": data, "data_energia": data_energia,
                             "frec_muestreo": frec_muestreo,
                             "nfft": nfft})
     return JsonResponse(respuesta)
-
-@csrf_exempt
-def espectrograma_json(request):
-    """se encarga de realizar las consultas para mostrar 
-    el espectrograma y el analisis de las bandas por tiempo """  
-    if request.POST:
-        cliente = request.POST
-        print(cliente)
-        nfft = int(cliente["nfft"])
-        frec_central = int(float(cliente["bandas"])*1e6)
-        frec_muestreo = int(float(cliente["frecmuestreo"])*1e3)
-        region = cliente["region"]
-        # consulta del espectro
-        espectro = Espectro.objects.filter(region=region).filter(frec_central=frec_central).filter(frec_muestreo=frec_muestreo).filter(nfft=nfft)
-        espectro = espectro.values("fecha", "espectro")
-        #creacion del espectrograma
-        char_ener = []
-        tiempo = []
-        espectrograma = []
-        for esp in espectro:
-            X = esp["espectro"]
-            fecha = esp["fecha"]
-            X = numpy.asarray(X)
-            #promedio de los espectros por cada tiempo escogido
-            X = promedio(espectro=X, nfft=nfft)
-            char_ener.append(numpy.sum(10**(X/10)))
-            #variables espectrograma
-            tiempo.append(fecha.strftime('%y-%m-%d %H:%M:%S'))
-            f = numpy.arange(-int(nfft/2),int(nfft/2),1)*frec_muestreo/(nfft*2) + frec_central
-            for i in range(nfft):
-                espectrograma.append([fecha.strftime('%y-%m-%d %H:%M:%S'),f[i]/1e6,X[i]])
-    energia = list(map(lambda tiempo, energia: [tiempo, 10*numpy.log10(energia)], tiempo, char_ener))    
-    return JsonResponse({"espectrograma":espectrograma, 
-                         "tiempo": tiempo, "energia": energia,
-                         "caracteristica":char_ener})
 
 
 def json_spectro(request):
@@ -377,11 +343,22 @@ class RBWListView(ListView):
     template_name = "radioastronomia/rbw_list.html"
     context_object_name="rbw"
 
-class RBWCreateView(CreateView):
+class RBWDeleteView(DeleteView):
     model = RBW
-    template_name = "radioastronomia/rbw_create.html"
-    fields = "__all__"
+    template_name = "radioastronomia/rbw_delete.html"
+    context_object_name = "rbw"
     success_url = reverse_lazy("radioastronomia:rbw")
+
+def RBWcreate(request):
+    if request.POST:
+        cliente = request.POST
+        frecuencia_muestreo = cliente["frec_muestreo"]
+        nfft = cliente["nfft"]
+        rbw = float(frecuencia_muestreo)/float(nfft)
+        rbwmodel = RBW(frecuencia_muestreo=frecuencia_muestreo, nfft=nfft, rbw=rbw)
+        rbwmodel.save()
+        return HttpResponseRedirect(reverse_lazy("radioastronomia:rbw"))
+    return render(request, "radioastronomia/rbw_create.html")
 
 class RBWUpdateView(UpdateView):
     model = RBW

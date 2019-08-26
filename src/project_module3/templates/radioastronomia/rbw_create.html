@@ -12,7 +12,18 @@
         <h3> Registrar RBW </h3>
         <form  action= "{% url 'radioastronomia:crear-rbw' %}" method="POST">
             {% csrf_token %}
-            {% bootstrap_form form %}                          
+            {% comment %} {% bootstrap_form form %} {% endcomment %}
+           <label>Frecuencia de muestreo Hz</label><br>
+           <input type="number" name="frec_muestreo" id="">
+           <br><br>
+           <label>Tamaño FFT</label>
+           <select name="nfft" id="">
+               <option value="1024">1024</option>
+               <option value="2048">2048</option>
+               <option value="4096">4096</option>
+               <option value="8192">8192</option>
+           </select>
+
             {% buttons %}
             <button type="submit" class="btn btn-primary">
             {% bootstrap_icon "star" %} Registrar RBW

@@ -21,7 +21,7 @@
                 <td>{{estacion.frecuencia_muestreo}}</td>
                 <td>{{estacion.nfft}}</td>
                 <td><a href="{% url 'radioastronomia:actualizar-rbw' estacion.id %}"> {{estacion.rbw}} </a></td>
-                {% comment %} <td><a href="{% url 'radioastronomia:borrar-sensor' estacion.id %}">Sí</a></td> {% endcomment %}
+                <td><a href="{% url 'radioastronomia:borrar-rbw' estacion.id %}">Sí</a></td>
                 </tr>
             {% endfor %}
             </tbody>

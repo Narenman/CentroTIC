@@ -37,6 +37,17 @@
                 {% endfor %}
                 </select>
                 <br><br>
+                <h5> Seleccione rango de fechas </h5>
+                <label for="start">Fecha inicial</label>
+                <input type="date" id="start" name="fechaini"
+                value="2019-07-19"
+                min="2019-01-01" max="2019-12-31">
+
+                <label for="end">Fecha final</label>
+                <input type="date" id="end" name="fechafin"
+                value="2019-11-19"
+                min="2019-01-01" max="2019-12-31">
+
                  <input type="submit" value="Realizar análisis"> 
                 {% comment %} <button id="enviar" class="btn btn-warning"><a href="javascript:sendForm()"> Realizar análisis </a></button> {% endcomment %}
             </form>
@@ -56,10 +67,6 @@
         {% autoescape off %}
         <div>{{ enetiempo }}</div>
         {% endautoescape %}
-        {% comment %} <div id="espectrograma" style="min-width: 700px; height: 400px; margin: 0 auto"></div>
-        <div id="energia" style="min-width: 700px; height: 400px; margin: 0 auto"></div>
-        <div id="histograma" style="min-width: 700px; height: 400px; margin: 0 auto"></div> {% endcomment %}
-
 
         </div>
     </div>

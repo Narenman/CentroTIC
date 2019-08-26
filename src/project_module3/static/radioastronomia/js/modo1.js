@@ -1,6 +1,9 @@
 function sendForm(){
     
     var formElement = document.getElementById("form_id")
+    var informacion = document.getElementById("informacion")
+    var fecha_min = document.getElementById("fecha_min")
+    var fecha_max = document.getElementById("fecha_max")
     // en caso de querer agregar informacion extra
     // formData = new FormData(formElement)
     // formData.append("region",1); //esto es informacion extra
@@ -16,7 +19,9 @@ function sendForm(){
         stateobject = JSON.parse(stateobject);
         fmuestreo.innerHTML = "Frecuencia de muestreo: "+ stateobject.frec_muestreo+" Samp/s\n";
         nfft.innerHTML = "nFFT: "+ stateobject.nfft;
-
+        // informacion.innerHTML = "Analisis comprendido entre las fechas"
+        // fecha_min.innerHTML = stateobject.min_date+"\n"
+        // fecha_max.innerHTML = stateobject.max_date
         //inicio grafica bandas del espectro
         Highcharts.chart('grafica', {
             chart: {
