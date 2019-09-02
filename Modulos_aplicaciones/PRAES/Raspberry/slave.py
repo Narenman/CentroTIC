@@ -83,6 +83,19 @@ def presion(**dato):
         time.sleep(1)
     print("fin toma de datos")
 
+def temperatura_agua(**dato):
+    lecturas = AnalogicoDigital(IPSERVER, APIusername, APIpassword)
+    t1 = time.time()
+    timming = 0
+    while timming<=30:
+        lecturas.tempeAgua(dato["ubicacion"], dato["kit"])
+        if stop_thread8:
+            break
+        print("temperatura agua")
+        timming = time.time()- t1
+        time.sleep(1)
+    print("fin toma de datos")
+
 def suscriptor_MQTT():
     """Este es el suscriptor que se ejecuta en el esclavo
     para poder recibir las ordenes del maestro
@@ -97,8 +110,7 @@ def suscriptor_MQTT():
         print(msg)
         ubicacion = msg["ubicacion"]
         kit = msg["kit"]
-        global stop_thread1, stop_thread3, stop_thread4, stop_thread5, stop_thread6, stop_thread7
-
+        global stop_thread1, stop_thread3, stop_thread4, stop_thread5, stop_thread6, stop_thread7, stop_thread8
         if msg["accion"]=="dato-en-vivo" and msg["tipo dato"]=="aire":
             try:
                 stop_thread1 = False # hilo de aire
@@ -202,7 +214,7 @@ def suscriptor_MQTT():
 
 if __name__ == "__main__":
     #configuracion de variables
-    global stop_thread1, stop_thread3, stop_thread4, stop_thread5, stop_thread6, stop_thread7
+    global stop_thread1, stop_thread3, stop_thread4, stop_thread5, stop_thread6, stop_thread7, stop_thread8
     global IPSERVER, APIusername, APIpassword
     IPSERVER = "192.168.0.103:8000"
     APIusername = "mario"
@@ -213,6 +225,7 @@ if __name__ == "__main__":
     stop_thread5 = False
     stop_thread6 = False
     stop_thread7 = False
+    stop_thread8 = False
     #hilo maestro
     hilo2 = threading.Thread(target=suscriptor_MQTT)
     hilo2.start()

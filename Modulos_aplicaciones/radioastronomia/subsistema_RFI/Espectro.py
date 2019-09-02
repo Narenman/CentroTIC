@@ -160,7 +160,7 @@ class Espectro():
 
 if __name__ == "__main__":
 	IP = "127.0.0.1:8000"
-	usernameAPI = "mario"
-	passwordAPI = "mario"
-	obj_espectro = Espectro(IP, usernameAPI, passwordAPI)
-	obj_espectro.envio_API(1, 1000000, 32000, 1024, 20, 0,10,8)
+	# usernameAPI = "mario"
+	# passwordAPI = "mario"
+	# obj_espectro = Espectro(IP, usernameAPI, passwordAPI)
+	# obj_espectro.envio_API(1, 1000000, 32000, 1024, 20, 0,10,8)

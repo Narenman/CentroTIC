@@ -161,10 +161,19 @@ def medicion_temperatura_agua(request):
     if request.POST:
         sensores = UbicacionForm(request.POST)
         if sensores.is_valid():
-            # sensores.save()
-            ## enviar la orden MQTT para que se empieze a tomar la temperatura
+            #validacion de datos para enviar instruccion MQTT
+            dato = request.POST
+            # print(dato)
+            kit = Kit.objects.get(pk=dato["kit_monitoreo"])
+            ubicacion = dato["ubicacion"]
+            # datos para mqtt
+            topico = kit.nombre_kit+"/"+str(kit.colegio)
+            msg = json.dumps({"accion":"dato-en-vivo", "tipo dato":"turbidez",
+                              "ubicacion": ubicacion, "kit":dato["kit_monitoreo"]})
+            publishMQTT(topico,msg)
+
             print(request.POST)
-            print("tomar compuestos aire")
+            print("tomar temperatura del agua")
     respuesta = {"sensores": sensores}
     return render(request, "app_praes/temperatura_agua.html", respuesta)
 

@@ -1,0 +1,5 @@
+﻿SELECT radioastronomia_espectro.id, radioastronomia_espectro.frec_central, radioastronomia_espectro.nfft, radioastronomia_posicionantena.elevacion
+FROM radioastronomia_espectro
+INNER JOIN radioastronomia_posicionantena
+ON date_trunc('second',radioastronomia_espectro.fecha)=date_trunc('second',radioastronomia_posicionantena.fecha)
+WHERE radioastronomia_posicionantena.azimut=0 ORDER BY radioastronomia_posicionantena.elevacion;

@@ -9,6 +9,12 @@ import time
 import requests
 import json
 
+import os
+import glob
+import time
+
+
+
 class AnalogicoDigital():
     """ Esta clase se encarga de administrar el sensado analogico, es decir,
     en extraer los datos de la nariz electronica y de los sensores de agua.
@@ -43,6 +49,30 @@ class AnalogicoDigital():
         self.direccionIP = direccionIP
         self.APIusername = APIusername
         self.APIpassword = APIpassword
+        #sensor de temperatura agua
+        os.system('modprobe w1-gpio')
+        os.system('modprobe w1-therm')
+        self._direccion = '/sys/bus/w1/devices/'
+        self.dispositivo_folder = glob.glob(self._direccion + '28*')[0]
+        self.dispositivo_pad = self.dispositivo_folder + '/w1_slave'
+
+    def leer_temperatura(self):
+        f = open(self.dispositivo_pad, 'r')
+        lineas = f.readlines()
+        f.close()
+        return lineas
+    
+    def determinar_valores(self):
+        lineas = self.leer_temperatura()
+        while lineas[0].strip()[-3:] != 'YES':
+            time.sleep(0.2)
+            lineas = self.leer_temperatura()
+        igual_pos = lineas[1].find('t=')
+        if igual_pos != -1:
+            temp_string = lineas[1][igual_pos+2:]
+            temp_c = float(temp_string) / 1000.0
+            temp_f = temp_c * 9.0 / 5.0 + 32.0
+            return temp_c, temp_f
     
     def sgp30(self):
         """Esta funcion se encarga de realizar las lecturas del sensor
@@ -153,6 +183,11 @@ class AnalogicoDigital():
         turb = agua[1]
         URL = "http://"+self.direccionIP+"/app_praes/turbidez-agua/"
         self.comunicacionAPI(URL, turb, ubicacion, kit)
+
+    def tempeAgua(self, ubicacion, kit):
+        tem_c, tem_f = self.determinar_valores()
+        URL = "http://"+self.direccionIP+"/app_praes/temperatura-agua/"
+        self.comunicacionAPI(URL, tem_c, ubicacion, kit)
     
     #calidad del aire
     def calidadAire(self, ubicacion, kit):
@@ -197,8 +232,9 @@ if __name__ == "__main__":
     kit = 1
     ubicacion = 43
     print(lecturas.sensores())
-    for i in range(20):
-        # lecturas.phAgua(1)
-        # lecturas.turbidezAgua(1)
-        lecturas.calidadAire(ubicacion, kit)
-        time.sleep(2)
+    print("temperatura", lecturas.determinar_valores())
+    # for i in range(20):
+    #     # lecturas.phAgua(1)
+    #     # lecturas.turbidezAgua(1)
+    #     lecturas.calidadAire(ubicacion, kit)
+    #     time.sleep(2)

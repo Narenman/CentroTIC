@@ -4,6 +4,8 @@ import json
 import threading
 from posicion import YaetsuG5500
 
+def comunicacionRS232():
+    pass
 
 def suscriptor_MQTT():
     """Este es el suscriptor que se ejecuta en el esclavo

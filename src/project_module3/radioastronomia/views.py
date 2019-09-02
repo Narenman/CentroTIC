@@ -17,6 +17,7 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, DeleteView, CreateView, UpdateView
+from django.db import connection
 
 # funciones auxiliares
 def publishMQTT(topico, msg):
@@ -38,6 +39,18 @@ def promedio(espectro, nfft):
         x = x + espectro[i*nfft:(i+1)*nfft]
     x = x/K
     return x
+
+def ordenar_listas(lista):
+    """Es para ordenar las listas que se envian a javascript para
+    que highcharts realize las graficas, tiene la forma
+    lista = [[98, -50], [99, -51],...]
+    dos columnas frecuencia y espectro """
+    df = pd.DataFrame(data=lista, columns=["frec", "espectro"])
+    df = df.sort_values(by=["frec"])
+    y = []
+    for index, row in df.iterrows():
+        y.append([row["frec"], row["espectro"]])
+    return y
 
 ##############################################################
 def analisis_tiempo(request):
@@ -129,7 +142,50 @@ def bandas_espectrales(request):
     return render(request, "radioastronomia/bandas_espectrales.html",respuesta)
 
 def espectro_angulos(request):
-    respuesta = {}
+    """Se encarga de  filtrar los querys teniendo en cuenta
+    la fecha, la hora, minuto y segundo en que coinciden las mediciones
+    """
+    cursor = connection.cursor()
+
+    #variables de entrada
+    azimut = 0 
+    
+    query = []
+    query.append("SELECT radioastronomia_espectro.espectro, radioastronomia_espectro.frec_central, radioastronomia_espectro.nfft, radioastronomia_espectro.frec_muestreo, radioastronomia_posicionantena.elevacion ")
+    query.append("FROM radioastronomia_espectro INNER JOIN radioastronomia_posicionantena ")
+    query.append("ON date_trunc('second',radioastronomia_espectro.fecha)=date_trunc('second',radioastronomia_posicionantena.fecha) WHERE radioastronomia_posicionantena.azimut= %s ")
+    query.append("ORDER BY radioastronomia_posicionantena.elevacion;")
+    query = "".join(query)
+
+    cursor.execute(query, [azimut])
+    rows = cursor.fetchall()
+    
+    ele = []
+    ener = []
+    for row in rows:
+        espectro = row[0]
+        frec_central = row[1]
+        nfft = row[2]
+        frec_muestreo = row[3]
+        elevacion = row[4]
+        espectro = promedio(espectro, nfft)
+        ener.append(numpy.sum(10**(espectro/10)))
+        ele.append(elevacion)
+    angular = {"elevacion": ele, "energia": ener}
+    df = pd.DataFrame(data=angular)
+    df = df.groupby("elevacion")
+    dfm = df.mean()
+    print(dfm)
+    elevacion = dfm.index.tolist()
+    elevacion = numpy.asarray(elevacion)
+    # elevacion = elevacion*numpy.pi/180
+    energia = dfm["energia"].tolist()
+    energia = numpy.asarray(energia)
+    energia = 10*numpy.log10(energia)
+
+    #datos para javascript
+    angular = list(map(lambda elevacion, energia: [elevacion, energia], elevacion, energia))
+    respuesta = {"angular": angular}
     return JsonResponse(respuesta)
 
 #modos de operacion del espectro
@@ -155,7 +211,7 @@ def barrido_json(request):
         char_energia = []
         freq_prueba = numpy.array([])
         for f in frec_central:
-            rows = Espectro.objects.filter(nfft=nfft).filter(frec_muestreo=frec_muestreo).filter(frec_central__exact=f["frec_central"])
+            rows = Espectro.objects.filter(nfft=nfft).filter(frec_muestreo=frec_muestreo).filter(frec_central__exact=f["frec_central"]).order_by("frec_central")
             rows = rows.values("fecha", "espectro")
             x_ = numpy.zeros(nfft)
             #este ciclo promedia todos los espectros asociados a la banda
@@ -193,6 +249,9 @@ def barrido_json(request):
         data = []
         for j in range(len(freq_prueba)):
             data.append([freq_prueba[j]/1000000.0, y[j]])
+        
+        #ordena los datos del espectro por frecuencia para mejor visualizacion
+        data = ordenar_listas(data)
         
         respuesta.update({"datos": len(y), "lenf": len(freq),
                             "data": data, "data_energia": data_energia,
