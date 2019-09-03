@@ -37,6 +37,15 @@
                 {% endfor %}
                 </select>
                 <br><br>
+
+                <h5>Angulo Elevacion °</h5>
+                <select name="elevacion">
+                {% for el in elevacion %}
+                <option value="{{el.elevacion}}"> {{el.elevacion}} </option>
+                {% endfor %}
+                </select>
+                <br><br>
+
                 <h5> Seleccione rango de tiempo </h5>
                 <label for="start">Fecha inicial</label>
                 <input type="date" id="start" name="fechaini"

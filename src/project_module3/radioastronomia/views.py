@@ -148,10 +148,12 @@ def analisis_angular(request):
     region = RegionForm()
     rbw = RBW.objects.all().distinct("rbw")
     posicion = PosicionAntena.objects.all().distinct("azimut")
+    elevacion = PosicionAntena.objects.all().distinct("elevacion")
     respuesta = {"bandas": bandas,
                  "region": region,
                  "rbw": rbw,
-                 "azimut": posicion}
+                 "azimut": posicion,
+                 "elevacion": elevacion}
     return render(request, "radioastronomia/analisis_angular.html", respuesta)
 
 @csrf_exempt
