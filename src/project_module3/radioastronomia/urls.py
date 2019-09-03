@@ -30,6 +30,7 @@ urlpatterns = [
     # urls para graficas
     path('grafica-espectro', views.json_spectro, name="json-espectro"),
     path('barrido-espectro', views.barrido_json, name="barrido-espectro"),
+    path('posiciones-angulares', views.espectro_angulos, name="posiciones-angulares"),
     # APIs para la adquisicion de datos
     path('album-imagenes', apiviews.AlbumAPI.as_view()),
     path('subsistema-RFI', apiviews.EspectroAPI.as_view()),
@@ -39,6 +40,6 @@ urlpatterns = [
     # modos de procesamiento del espectro
     path('modo/bandas-espectrales', views.bandas_espectrales, name="modo1"),
     path('modo/analisis-tiempo',views.analisis_tiempo, name="modo2"),
-    path('modo/posiciones-angulares', views.espectro_angulos, name="modo3"),
+    path('modo/analisis-angular', views.analisis_angular, name="modo3"),
 ]
 

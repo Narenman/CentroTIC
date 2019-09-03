@@ -1,3 +1,17 @@
+function validatedSendForm(){
+    var BSE_DI = document.getElementById('start').value;
+    var BSE_DF = document.getElementById('end').value;
+
+    if(BSE_DI>BSE_DF){
+        window.alert("Rango de fechas inválido");
+
+    }
+    else{
+        sendForm();
+    }
+
+}
+
 function sendForm(){
     
     var formElement = document.getElementById("form_id")
