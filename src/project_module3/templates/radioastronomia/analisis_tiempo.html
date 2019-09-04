@@ -53,6 +53,17 @@
             </form>
 
             <h4 id="output"> </h4>
+
+        <h3> La frecuencia analizada es {{frec_central}} MHz</h3>
+        <h4> El ancho de banda analizado es {{frec_muestreo}}  Hz</h4>
+        <p> Los servicios encontrados de acuerdo al CNABF son: </p>
+        {% for serv in servicios %}
+        <p>{{serv.servicio}} {{serv.banda}}<br> Frecuencia inicial {{serv.frecuencia_inicial}} <br> Frecuencia final {{serv.frecuencia_final}}
+        </p> <br>
+        {% endfor %}
+        <br>
+
+
         </div>
 
         <div class="col-5">

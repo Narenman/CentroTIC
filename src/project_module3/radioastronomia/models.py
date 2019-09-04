@@ -169,3 +169,33 @@ class RBW(models.Model):
         verbose_name = 'RBW'
         verbose_name_plural = 'RBWs'
         ordering = ["rbw"]
+
+class Bandas(models.Model):
+    banda = models.CharField(max_length=50)
+    abreviatura = models.CharField(max_length=10)
+    frecuencia_inicial = models.FloatField()
+    frecuencia_final = models.FloatField()
+
+    def __str__(self):
+        return self.abreviatura
+
+    class Meta:
+        db_table = ''
+        managed = True
+        verbose_name = 'Bandas'
+        verbose_name_plural = 'Bandass'
+
+class Servicios(models.Model):
+    servicio = models.CharField(max_length=200)
+    frecuencia_inicial = models.FloatField()
+    frecuencia_final = models.FloatField()
+    banda = models.ForeignKey(Bandas, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.servicio
+
+    class Meta:
+        db_table = ''
+        managed = True
+        verbose_name = 'Servicios'
+        verbose_name_plural = 'Servicioss'

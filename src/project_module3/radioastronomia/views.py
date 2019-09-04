@@ -9,7 +9,7 @@ import mpld3
 
 from .models import AlbumImagenes, Espectro, Estado, CaracteristicasAntena, \
                     CaracteristicasEstacion, RBW, CaracteristicasEspectro, RegionCampana, \
-                        PosicionAntena
+                        PosicionAntena, Servicios, Bandas
 from .forms import EspectroForm, RFIForm, RegionForm
 
 from django.urls import reverse_lazy
@@ -71,18 +71,21 @@ def analisis_tiempo(request):
                  "nfft": bandas, "region":region}
     if request.POST:
         cliente = request.POST
-        print(cliente, "joder")
+        print(cliente)
         nfft = int(cliente["nfft"])
         frec_central = int(float(cliente["bandas"])*1e6)
         frec_muestreo = int(float(cliente["frecmuestreo"])*1e3)
         region = cliente["region"]
+        #consulta de la banda seleccionada
+        #aca hago la clasificacion para crear el reporte
+        servicios = Servicios.objects.filter(frecuencia_inicial__lte=(frec_central-frec_muestreo/2)/1e6).filter(frecuencia_final__gte=(frec_central+frec_muestreo/2)/1e6)
+
         # consulta del espectro
         espectro = Espectro.objects.filter(region=region).filter(frec_central=frec_central).filter(frec_muestreo=frec_muestreo).filter(nfft=nfft).filter(fecha__range=[cliente["fechaini"], cliente["fechafin"]])
         espectro = espectro.values("fecha", "espectro")
         #creacion del espectrograma
         char_ener = []
         tiempo = []
-
         frecuencia = []
         date = []
         espec = []
@@ -129,7 +132,10 @@ def analisis_tiempo(request):
             espectrograma = mpld3.fig_to_html(fig2)
 
             respuesta.update({"grafica": histograma, "enetiempo":tiempo_energia,
-                            "espectrograma": espectrograma})
+                            "espectrograma": espectrograma,
+                            "servicios": servicios, 
+                            "frec_central": frec_central/1e6,
+                            "frec_muestreo": frec_muestreo})
     return render(request,"radioastronomia/analisis_tiempo.html", respuesta)
 
 
@@ -161,60 +167,117 @@ def espectro_angulos(request):
     """Se encarga de  filtrar los querys teniendo en cuenta
     la fecha, la hora, minuto y segundo en que coinciden las mediciones
     """
+    respuesta = dict()
     if request.POST:
         cliente = request.POST
         print(cliente)
-        #variables de entrada
-        azimut = float(cliente["azimut"])
-        frec_central = int(float(cliente["bandas"])*1e6)
-        inidate = cliente["fechaini"]
-        enddate = cliente["fechafin"]
-        rbw = RBW.objects.get(rbw=float(cliente["RBW"]))
-        nfft = rbw.nfft
-        frec_muestreo = rbw.frecuencia_muestreo
+        if "azimut" in cliente.keys():
+            #variables de entrada
+            azimut = float(cliente["azimut"])
+            frec_central = int(float(cliente["bandas"])*1e6)
+            inidate = cliente["fechaini"]
+            enddate = cliente["fechafin"]
+            rbw = RBW.objects.get(rbw=float(cliente["RBW"]))
+            nfft = rbw.nfft
+            frec_muestreo = rbw.frecuencia_muestreo
 
-        cursor = connection.cursor() #conexion a la base de datos
-        #personalizacion del query
-        query = []
-        query.append("SELECT radioastronomia_espectro.espectro, radioastronomia_espectro.frec_central, radioastronomia_posicionantena.elevacion, radioastronomia_espectro.fecha ")
-        query.append("FROM radioastronomia_espectro ")
-        query.append("INNER JOIN radioastronomia_posicionantena ")
-        query.append("ON date_trunc('second',radioastronomia_espectro.fecha)=date_trunc('second',radioastronomia_posicionantena.fecha) ")
-        query.append("WHERE radioastronomia_posicionantena.azimut= %s ")
-        query.append("AND radioastronomia_espectro.frec_central=%s ")
-        query.append("AND radioastronomia_espectro.frec_muestreo = %s ")
-        query.append("AND radioastronomia_espectro.nfft = %s ")
-        query.append("AND date_trunc('day', radioastronomia_espectro.fecha)>= to_date(%s, 'YYYY-MM-DD') ")
-        query.append("AND date_trunc('day', radioastronomia_espectro.fecha)<=to_date(%s, 'YYYY-MM-DD') ")
-        query.append("ORDER BY radioastronomia_posicionantena.elevacion;")
-        query = "".join(query)
+            cursor = connection.cursor() #conexion a la base de datos
+            #personalizacion del query
+            query = []
+            query.append("SELECT radioastronomia_espectro.espectro, radioastronomia_espectro.frec_central, radioastronomia_posicionantena.elevacion, radioastronomia_espectro.fecha ")
+            query.append("FROM radioastronomia_espectro ")
+            query.append("INNER JOIN radioastronomia_posicionantena ")
+            query.append("ON date_trunc('second',radioastronomia_espectro.fecha)=date_trunc('second',radioastronomia_posicionantena.fecha) ")
+            query.append("WHERE radioastronomia_posicionantena.azimut= %s ")
+            query.append("AND radioastronomia_espectro.frec_central=%s ")
+            query.append("AND radioastronomia_espectro.frec_muestreo = %s ")
+            query.append("AND radioastronomia_espectro.nfft = %s ")
+            query.append("AND date_trunc('day', radioastronomia_espectro.fecha)>= to_date(%s, 'YYYY-MM-DD') ")
+            query.append("AND date_trunc('day', radioastronomia_espectro.fecha)<=to_date(%s, 'YYYY-MM-DD') ")
+            query.append("ORDER BY radioastronomia_posicionantena.elevacion;")
+            query = "".join(query)
 
-        cursor.execute(query,[azimut, frec_central, frec_muestreo, nfft, inidate, enddate])
-        rows = cursor.fetchall()
-        
-        ele = []
-        ener = []
-        for row in rows:
-            espectro = row[0]
-            elevacion = row[2]
-            espectro = promedio(espectro, nfft)
-            ener.append(numpy.sum(10**(espectro/10)))
-            ele.append(elevacion)
-        angular = {"elevacion": ele, "energia": ener}
-        df = pd.DataFrame(data=angular)
-        df = df.groupby("elevacion")
-        dfm = df.mean()
-        print(dfm)
-        elevacion = dfm.index.tolist()
-        elevacion = numpy.asarray(elevacion)
-        # elevacion = elevacion*numpy.pi/180
-        energia = dfm["energia"].tolist()
-        energia = numpy.asarray(energia)
-        energia = 1000*energia
-        # energia = 10*numpy.log10(energia)
+            cursor.execute(query,[azimut, frec_central, frec_muestreo, nfft, inidate, enddate])
+            rows = cursor.fetchall()
+            
+            ele = []
+            ener = []
+            for row in rows:
+                espectro = row[0]
+                elevacion = row[2]
+                espectro = promedio(espectro, nfft)
+                ener.append(numpy.sum(10**(espectro/10)))
+                ele.append(elevacion)
+            angular = {"elevacion": ele, "energia": ener}
+            df = pd.DataFrame(data=angular)
+            df = df.groupby("elevacion")
+            dfm = df.mean()
+            print(dfm)
+            elevacion = dfm.index.tolist()
+            elevacion = numpy.asarray(elevacion)
+            # elevacion = elevacion*numpy.pi/180
+            energia = dfm["energia"].tolist()
+            energia = numpy.asarray(energia)
+            energia = 1000*energia
+            # energia = 10*numpy.log10(energia)
 
-        #datos para javascript
-        angular = list(map(lambda elevacion, energia: [elevacion, energia], elevacion, energia))
+            #datos para javascript
+            angular = list(map(lambda elevacion, energia: [elevacion, energia], elevacion, energia))
+            respuesta.update({"az":"azimut"})
+            
+        elif "elevacion" in cliente.keys():
+            #variables de entrada
+            elevacion = float(cliente["elevacion"])
+            frec_central = int(float(cliente["bandas"])*1e6)
+            inidate = cliente["fechaini"]
+            enddate = cliente["fechafin"]
+            rbw = RBW.objects.get(rbw=float(cliente["RBW"]))
+            nfft = rbw.nfft
+            frec_muestreo = rbw.frecuencia_muestreo
+
+            cursor = connection.cursor() #conexion a la base de datos
+            #personalizacion del query
+            query = []
+            query.append("SELECT radioastronomia_espectro.espectro, radioastronomia_espectro.frec_central, radioastronomia_posicionantena.azimut, radioastronomia_espectro.fecha ")
+            query.append("FROM radioastronomia_espectro ")
+            query.append("INNER JOIN radioastronomia_posicionantena ")
+            query.append("ON date_trunc('second',radioastronomia_espectro.fecha)=date_trunc('second',radioastronomia_posicionantena.fecha) ")
+            query.append("WHERE radioastronomia_posicionantena.elevacion= %s ")
+            query.append("AND radioastronomia_espectro.frec_central=%s ")
+            query.append("AND radioastronomia_espectro.frec_muestreo = %s ")
+            query.append("AND radioastronomia_espectro.nfft = %s ")
+            query.append("AND date_trunc('day', radioastronomia_espectro.fecha)>= to_date(%s, 'YYYY-MM-DD') ")
+            query.append("AND date_trunc('day', radioastronomia_espectro.fecha)<=to_date(%s, 'YYYY-MM-DD') ")
+            query.append("ORDER BY radioastronomia_posicionantena.azimut;")
+            query = "".join(query)
+
+            cursor.execute(query,[elevacion, frec_central, frec_muestreo, nfft, inidate, enddate])
+            rows = cursor.fetchall()
+            
+            ele = []
+            ener = []
+            for row in rows:
+                espectro = row[0]
+                elevacion = row[2]
+                espectro = promedio(espectro, nfft)
+                ener.append(numpy.sum(10**(espectro/10)))
+                ele.append(elevacion)
+            angular = {"elevacion": ele, "energia": ener}
+            df = pd.DataFrame(data=angular)
+            df = df.groupby("elevacion")
+            dfm = df.mean()
+            print(dfm)
+            elevacion = dfm.index.tolist()
+            elevacion = numpy.asarray(elevacion)
+            # elevacion = elevacion*numpy.pi/180
+            energia = dfm["energia"].tolist()
+            energia = numpy.asarray(energia)
+            energia = 1000*energia
+            # energia = 10*numpy.log10(energia)
+
+            #datos para javascript
+            angular = list(map(lambda elevacion, energia: [elevacion, energia], elevacion, energia))
+            respuesta.update({"el":"elevacion"})
     else:
         angular = []
     respuesta = {"angular": angular}

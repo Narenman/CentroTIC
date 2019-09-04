@@ -1,20 +1,34 @@
 /*Este archivo se encarga de administrar el el analisis 
 temporal por cada banda espectral */
 
-function validatedSendForm(){
-    var BSE_DI = document.getElementById('start').value;
-    var BSE_DF = document.getElementById('end').value;
+function validatedSendForm_A(){
+    var BSE_DI = document.getElementById('start_A').value;
+    var BSE_DF = document.getElementById('end_A').value;
     if(BSE_DI>BSE_DF){
-        window.alert("Rango de fechas inválido");
+        window.alert("Rango de fechas inválido", );
     }
     else{
-        sendForm();
+        sendForm(document.getElementById('form_modo3_A'));
     }
 }
 
-function sendForm(){
+function validatedSendForm_E(){
+    var BSE_DI = document.getElementById('start_E').value;
+    var BSE_DF = document.getElementById('end_E').value;
+    if(BSE_DI>BSE_DF){
+        window.alert("Rango de fechas inválido", );
+    }
+    else{
+        
+        sendForm(document.getElementById('form_modo3_E'));
+    }
+}
+
+
+
+function sendForm(formElement){
     
-    var formElement = document.getElementById("form_modo3")
+    // alert(formElement.id)
     // en caso de querer agregar informacion extra
     formData = new FormData(formElement)
     // formData.append(csrftoken); //esto es informacion extra
@@ -29,7 +43,8 @@ function sendForm(){
         stateobject = xhr.response;
         stateobject = JSON.parse(stateobject);
         angular = stateobject.angular
-               
+        
+        
         //inicio grafica polar
         Highcharts.chart('polar', {
 
@@ -38,7 +53,7 @@ function sendForm(){
             },
         
             title: {
-                text: 'Energia por angulos de elevacion'
+                text: 'Energia por angulos'
             },
         
             subtitle: {

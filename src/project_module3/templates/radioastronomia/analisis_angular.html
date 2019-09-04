@@ -6,66 +6,111 @@
     <div class="row">
         <div class="col-3">
         <h2>Análisis angular </h2>
-        <p>Este modo se encarga analizar la energia por banda de frecuencia
-        para cada angulo azimutal, es decir, analiza los angulos de elevación
-        para una banda de frecuencia en particular</p>
+        <p>Este modo se encarga analizar la energia por banda de frecuencia, 
+        primero escoge un ángulo puede ser azimut o elevacion y realiza un barrido
+        de todas las medidas correspondientes a la frecuencia central seleccionada para diferentes angulos angulos de elevacion en caso de 
+        seleccionar el angulo azimut, en caso contrario, si selecciona un angulo de elevación
+        se realiza el barrido e
+        </p>
             <br><br>
-            <form id="form_modo3"  action= "" method="POST">
-                {% csrf_token %}
-                {% comment %} {% bootstrap_form region %} {% endcomment %}
-                <h5> Seleccionar banda de frecuencia MHz </h5>
-                <select name="bandas">
-                {% for band in bandas %}
-                <option value="{{ band }}">{{ band }}</option>
-                {% endfor %}                     
-                </select>
-                <br><br>
-                <h5> Seleccione región </h5>
-                {{region}}
-                <br><br>
-                <h5> Seleccione RBW Hz</h5>
-                <select name="RBW">
-                {% for rbwa in rbw %}
-                <option value="{{rbwa.rbw}}"> {{rbwa.rbw}} </option>
-                {% endfor %}
-                </select>
-                <br><br>
-                <h5>Angulo Azimut °</h5>
-                <select name="azimut">
-                {% for az in azimut %}
-                <option value="{{az.azimut}}"> {{az.azimut}} </option>
-                {% endfor %}
-                </select>
-                <br><br>
+            <div class="tab">
+                <button class="tablinks" onclick="AEtab(event, 'azitab')" id="defaulttab">Azimut</button>
+                <button class="tablinks" onclick="AEtab(event, 'eletab')">Elevación</button>
+            </div>
+            <div id="azitab" class="tabcontent">
+                <form id="form_modo3_A"  action= "" method="POST">
+                    {% csrf_token %}
+                    {% comment %} {% bootstrap_form region %} {% endcomment %}
+                    <h5> Seleccionar banda de frecuencia MHz </h5>
+                    <select name="bandas">
+                    {% for band in bandas %}
+                    <option value="{{ band }}">{{ band }}</option>
+                    {% endfor %}                     
+                    </select>
+                    <br><br>
+                    <h5> Seleccione región </h5>
+                    {{region}}
+                    <br><br>
+                    <h5> Seleccione RBW Hz</h5>
+                    <select name="RBW">
+                    {% for rbwa in rbw %}
+                    <option value="{{rbwa.rbw}}"> {{rbwa.rbw}} </option>
+                    {% endfor %}
+                    </select>
+                    <br><br>                    
+                    <h5>Angulo Azimut °</h5>
+                    <select name="azimut">
+                    {% for az in azimut %}
+                    <option value="{{az.azimut}}"> {{az.azimut}} </option>
+                    {% endfor %}
+                    </select>
+                    <br><br>
+                    <h5> Seleccione rango de tiempo</h5>
+                    <label for="start">Fecha inicial</label>
+                    <input type="date" id="start_A" name="fechaini"
+                    value="2019-07-19"
+                    min="2019-01-01" max="2019-12-31">
 
-                <h5>Angulo Elevacion °</h5>
-                <select name="elevacion">
-                {% for el in elevacion %}
-                <option value="{{el.elevacion}}"> {{el.elevacion}} </option>
-                {% endfor %}
-                </select>
-                <br><br>
+                    <label for="end">Fecha final</label>
+                    <input type="date" id="end_A" name="fechafin"
+                    value="2019-11-19"
+                    min="2019-01-01" max="2019-12-31">
 
-                <h5> Seleccione rango de tiempo </h5>
-                <label for="start">Fecha inicial</label>
-                <input type="date" id="start" name="fechaini"
-                value="2019-07-19"
-                min="2019-01-01" max="2019-12-31">
+                    <button id="enviar_A" class="btn btn-warning"><a href="javascript:validatedSendForm_A()"> Realizar análisis </a></button>
+                </form>
+            </div>
 
-                <label for="end">Fecha final</label>
-                <input type="date" id="end" name="fechafin"
-                value="2019-11-19"
-                min="2019-01-01" max="2019-12-31">
+            <div id="eletab" class="tabcontent">
+                <form id="form_modo3_E"  action= "" method="POST">
+                    {% csrf_token %}
+                    {% comment %} {% bootstrap_form region %} {% endcomment %}
+                    <h5> Seleccionar banda de frecuencia MHz </h5>
+                    <select name="bandas">
+                    {% for band in bandas %}
+                    <option value="{{ band }}">{{ band }}</option>
+                    {% endfor %}                     
+                    </select>
+                    <br><br>
+                    <h5> Seleccione región </h5>
+                    {{region}}
+                    <br><br>
+                    <h5> Seleccione RBW Hz</h5>
+                    <select name="RBW">
+                    {% for rbwa in rbw %}
+                    <option value="{{rbwa.rbw}}"> {{rbwa.rbw}} </option>
+                    {% endfor %}
+                    </select>
+                    <br><br>
 
-                <button id="enviar" class="btn btn-warning"><a href="javascript:validatedSendForm()"> Realizar análisis </a></button>
-            </form>
+                    <h5>Angulo Elevacion °</h5>
+                    <select name="elevacion">
+                    {% for el in elevacion %}
+                    <option value="{{el.elevacion}}"> {{el.elevacion}} </option>
+                    {% endfor %}
+                    </select>
+                    <br><br>
+
+                    <h5> Seleccione rango de tiempo </h5>
+                    <label for="start">Fecha inicial</label>
+                    <input type="date" id="start_E" name="fechaini"
+                    value="2019-07-19"
+                    min="2019-01-01" max="2019-12-31">
+
+                    <label for="end">Fecha final</label>
+                    <input type="date" id="end_E" name="fechafin"
+                    value="2019-11-19"
+                    min="2019-01-01" max="2019-12-31">
+
+                    <button id="enviar_E" class="btn btn-warning"><a href="javascript:validatedSendForm_E()"> Realizar análisis </a></button>
+                </form>
+            </div>
 
             <h4 id="output"> </h4>
         </div>
 
         <div class="col-5">
         <div id="polar" style="min-width: 310px; max-width: 400px; height: 400px; margin: 0 auto"></div>
-
+    {% lorem 2 b random %}
         </div>
     </div>
 </div>
@@ -75,4 +120,5 @@
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="{% static 'radioastronomia/js/modo3.js' %}"> </script>
+<script src="{% static 'radioastronomia/js/angularmode.js' %}"> </script>
 {% endblock body_block %}
