@@ -52,6 +52,15 @@ def ordenar_listas(lista):
         y.append([row["frec"], row["espectro"]])
     return y
 
+def detener(request):
+    cliente = request.POST
+    print(cliente)
+    stop = cliente["stop"]
+    topico = "radioastronomia/RFI"
+    msg = {"accion": stop}
+    publishMQTT(topico, json.dumps(msg))
+    return render(request, "radioastronomia/control_manual.html", {})
+
 ##############################################################
 def analisis_tiempo(request):
     """Este es el modo 2 de analisis de datos para realizar 
@@ -78,8 +87,9 @@ def analisis_tiempo(request):
         region = cliente["region"]
         #consulta de la banda seleccionada
         #aca hago la clasificacion para crear el reporte
-        servicios = Servicios.objects.filter(frecuencia_inicial__lte=(frec_central-frec_muestreo/2)/1e6).filter(frecuencia_final__gte=(frec_central+frec_muestreo/2)/1e6)
-
+        print((frec_central-frec_muestreo/2)/1e6)
+        servicios = Servicios.objects.filter(frecuencia_inicial__gte=(frec_central-frec_muestreo/2)/1e6)#.filter(frecuencia_final__lte=(frec_central+frec_muestreo/2)/1e6)
+        print(servicios)
         # consulta del espectro
         espectro = Espectro.objects.filter(region=region).filter(frec_central=frec_central).filter(frec_muestreo=frec_muestreo).filter(nfft=nfft).filter(fecha__range=[cliente["fechaini"], cliente["fechafin"]])
         espectro = espectro.values("fecha", "espectro")

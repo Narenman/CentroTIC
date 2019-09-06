@@ -38,7 +38,7 @@
                 <p>Modo Manual seleccionado</p>
             <div  id="aplotinfo_M">
                 <h4 > Actualmente el sistema está tomando datos </h4>
-                
+
                 <center><div class="lds-ring">
                 <div class="lds-spinner">
                     <div></div><div></div><div></div><div></div><div></div>
@@ -46,6 +46,12 @@
                     <div></div><div></div></div>
                 </center>
     
+                <form id="stop" action= "{% url 'radioastronomia:detener' %}" method="POST">
+                 {% csrf_token %}
+                 <input type="hidden" name="stop" value="detener">
+                 <button type="submit" class="btn btn-danger">
+                 {% bootstrap_icon "star" %} Detener
+                </button>                </form>
             </div>
 
             <div id="mform">
@@ -99,6 +105,13 @@
                         <div></div><div></div><div></div><div></div><div></div>
                         <div></div><div></div></div>
                     </center>
+                <form id="stop" action= "{% url 'radioastronomia:detener' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="stop" value="detener">
+                 <button type="submit" class="btn btn-danger">
+                 {% bootstrap_icon "star" %} Detener
+                </button>
+                </form>
             </div>
             <div id="aform">
                     <form class="NAform" id="Af" action= "{% url 'radioastronomia:control-automatico' %}" method="POST">

@@ -27,6 +27,7 @@ urlpatterns = [
     #urls para operacion del sistema
     path('control-manual', views.control_manual, name="control-manual"),
     path("control-automatico", views.control_automatico, name="control-automatico"),
+    path("detener", views.detener, name="detener"),
     # urls para graficas
     path('grafica-espectro', views.json_spectro, name="json-espectro"),
     path('barrido-espectro', views.barrido_json, name="barrido-espectro"),
