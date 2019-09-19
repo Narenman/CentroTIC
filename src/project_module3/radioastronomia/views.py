@@ -172,6 +172,7 @@ def analisis_angular(request):
                  "elevacion": elevacion}
     return render(request, "radioastronomia/analisis_angular.html", respuesta)
 
+#modo 3 de operacion
 @csrf_exempt
 def espectro_angulos(request):
     """Se encarga de  filtrar los querys teniendo en cuenta
@@ -187,6 +188,7 @@ def espectro_angulos(request):
             frec_central = int(float(cliente["bandas"])*1e6)
             inidate = cliente["fechaini"]
             enddate = cliente["fechafin"]
+            region_id = int(cliente["region"])
             rbw = RBW.objects.get(rbw=float(cliente["RBW"]))
             nfft = rbw.nfft
             frec_muestreo = rbw.frecuencia_muestreo
@@ -202,12 +204,13 @@ def espectro_angulos(request):
             query.append("AND radioastronomia_espectro.frec_central=%s ")
             query.append("AND radioastronomia_espectro.frec_muestreo = %s ")
             query.append("AND radioastronomia_espectro.nfft = %s ")
+            query.append("AND radioastronomia_espectro.region_id = %s ")
             query.append("AND date_trunc('day', radioastronomia_espectro.fecha)>= to_date(%s, 'YYYY-MM-DD') ")
             query.append("AND date_trunc('day', radioastronomia_espectro.fecha)<=to_date(%s, 'YYYY-MM-DD') ")
             query.append("ORDER BY radioastronomia_posicionantena.elevacion;")
             query = "".join(query)
 
-            cursor.execute(query,[azimut, frec_central, frec_muestreo, nfft, inidate, enddate])
+            cursor.execute(query,[azimut, frec_central, frec_muestreo, nfft, region_id, inidate, enddate])
             rows = cursor.fetchall()
             
             ele = []
@@ -233,7 +236,7 @@ def espectro_angulos(request):
 
             #datos para javascript
             angular = list(map(lambda elevacion, energia: [elevacion, energia], elevacion, energia))
-            respuesta.update({"az":"azimut"})
+            respuesta.update({"pos":"elevacion"})
             
         elif "elevacion" in cliente.keys():
             #variables de entrada
@@ -244,6 +247,8 @@ def espectro_angulos(request):
             rbw = RBW.objects.get(rbw=float(cliente["RBW"]))
             nfft = rbw.nfft
             frec_muestreo = rbw.frecuencia_muestreo
+            region_id = int(cliente["region"])
+
 
             cursor = connection.cursor() #conexion a la base de datos
             #personalizacion del query
@@ -256,12 +261,13 @@ def espectro_angulos(request):
             query.append("AND radioastronomia_espectro.frec_central=%s ")
             query.append("AND radioastronomia_espectro.frec_muestreo = %s ")
             query.append("AND radioastronomia_espectro.nfft = %s ")
+            query.append("AND radioastronomia_espectro.region_id = %s ")
             query.append("AND date_trunc('day', radioastronomia_espectro.fecha)>= to_date(%s, 'YYYY-MM-DD') ")
             query.append("AND date_trunc('day', radioastronomia_espectro.fecha)<=to_date(%s, 'YYYY-MM-DD') ")
             query.append("ORDER BY radioastronomia_posicionantena.azimut;")
             query = "".join(query)
 
-            cursor.execute(query,[elevacion, frec_central, frec_muestreo, nfft, inidate, enddate])
+            cursor.execute(query,[elevacion, frec_central, frec_muestreo, nfft, region_id, inidate, enddate])
             rows = cursor.fetchall()
             
             ele = []
@@ -287,13 +293,13 @@ def espectro_angulos(request):
 
             #datos para javascript
             angular = list(map(lambda elevacion, energia: [elevacion, energia], elevacion, energia))
-            respuesta.update({"el":"elevacion"})
+            respuesta.update({"pos":"azimut"})
     else:
         angular = []
-    respuesta = {"angular": angular}
+    respuesta.update({"angular": angular})
     return JsonResponse(respuesta)
 
-#modos de operacion del espectro
+#modo 1 de operacion del espectro
 @csrf_exempt
 def barrido_json(request):
     respuesta = dict()
@@ -392,6 +398,57 @@ def json_spectro(request):
     except:
         respuesta = {}
     return JsonResponse({"espectro":respuesta})
+
+#modo 4 de operacion
+def comparacion_zonas(request):
+    #variables 
+    nfft = 1024
+    samp_rate = 4000000
+
+    regiones = RegionCampana.objects.all()
+    regiones = regiones.values("id", "zona")
+    # ener = numpy.array([])
+    # media = numpy.array([])
+
+    for reg in regiones:
+        frecuencias = Espectro.objects.filter(region=reg["id"]).values("frec_central").distinct().order_by("frec_central")
+        y = numpy.array([])
+        freq_ = numpy.array([])
+
+        for freq in frecuencias:
+            print(freq)
+            espectro = Espectro.objects.filter(region=reg["id"]).values("espectro").filter(frec_central=freq["frec_central"]).filter(frec_muestreo=samp_rate).order_by("fecha")
+            print(len(espectro))
+            x_ = numpy.zeros(nfft)
+            for row in espectro:
+                x = numpy.asarray(row["espectro"])
+                x = promedio(x,nfft)
+                x_ = x_ + x
+            x_ = x_/len(espectro)
+            freq_ = numpy.append(freq_, numpy.arange(-int(nfft/2),int(nfft/2),1)*samp_rate/(nfft*2) + freq["frec_central"])
+            y = numpy.append(y,x_)
+        
+        freq_ = freq_/1e6 #escala de la frecuencia
+        #analisis de caracteristicas
+        df = pd.DataFrame(data=y, index=freq_, columns=["espectro"])
+        energia = 10*numpy.log10(numpy.sum(10**(y/10)))
+        media = numpy.mean(y)
+        mediana = numpy.median(y)
+        std = numpy.std(y)
+        max_ = numpy.max(y)
+        min_ = numpy.min(y)
+
+        ## aca van las graficas
+        fig1, ax1 = plt.subplots()
+        ax1.plot(freq_, y, label=reg["zona"])
+        ax1.set(xlabel="Frecuencia MHz", ylabel="Espectro dBm", title="Espectro por region")
+        ax1.legend()
+        ax1.grid()
+        espectros = mpld3.fig_to_html(fig1)
+
+    respuesta = {"espectros": espectros}
+    return render(request, "radioastronomia/comparacion_zonas.html", respuesta)
+
 
 @csrf_exempt
 def control_manual(request):

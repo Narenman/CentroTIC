@@ -38,9 +38,11 @@ urlpatterns = [
     path('caracteristicas-espectro', apiviews.CaracteristicasEspectroAPI.as_view()),
     path('estado/<int:pk>', apiviews.EstadoAPI.as_view()),
     path('posicion-antena', apiviews.PosicionAntenaAPI.as_view()),
+    path('estacion-monitoreo', apiviews.EstacionAmbientalAPI.as_view()),
     # modos de procesamiento del espectro
     path('modo/bandas-espectrales', views.bandas_espectrales, name="modo1"),
     path('modo/analisis-tiempo',views.analisis_tiempo, name="modo2"),
     path('modo/analisis-angular', views.analisis_angular, name="modo3"),
+    path('modo/comparacion-zonas', views.comparacion_zonas, name="modo4"),
 ]
 

@@ -49,6 +49,10 @@ class CaracteristicasEspectroAPI(generics.CreateAPIView):
     queryset = CaracteristicasEspectro.objects.all()
     serializer_class = CaractEspectroSerializer
 
+class EstacionAmbientalAPI(generics.CreateAPIView):
+    queryset = EstacionAmbiental.objects.all()
+    serializer_class = EstacionAmbientalSerializer
+
 class EstadoAPI(APIView):
     """Esta API se encarga de monitorear el estado 
     del sistema RFI, es decir, si esta activo o 

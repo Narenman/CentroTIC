@@ -25,13 +25,13 @@ function validatedSendForm_E(){
 }
 
 
-
 function sendForm(formElement){
-    
+ 
     // alert(formElement.id)
     // en caso de querer agregar informacion extra
     formData = new FormData(formElement)
     // formData.append(csrftoken); //esto es informacion extra
+    var posiciones = document.getElementById("posiciones")
 
     var xhr = new XMLHttpRequest();
     xhr.open("POST","/radioastronomia/posiciones-angulares", false)
@@ -43,6 +43,7 @@ function sendForm(formElement){
         stateobject = xhr.response;
         stateobject = JSON.parse(stateobject);
         angular = stateobject.angular
+        angulos = stateobject.pos
         
         
         //inicio grafica polar
@@ -96,6 +97,8 @@ function sendForm(formElement){
             }]
         });
         //fin grafica polar
+
+        posiciones.innerHTML = "Energía por ángulos "+angulos
 
     }
     else{

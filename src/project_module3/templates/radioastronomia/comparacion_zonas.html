@@ -1,0 +1,14 @@
+{% extends 'radioastronomia/base.html' %}
+{% load static %}
+
+{% block body_block %}
+<div class="container">
+    <h2> Comparación de las zonas de medición </h2>
+     {% autoescape off %}
+        <div>{{ espectros }}</div>
+        {% endautoescape %}
+
+</div>
+
+
+{% endblock body_block %}

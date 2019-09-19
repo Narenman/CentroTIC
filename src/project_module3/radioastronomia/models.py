@@ -87,16 +87,19 @@ class PosicionAntena(models.Model):
 # subsistema de estacion de monitoreo
 class EstacionAmbiental(models.Model):
     """ esta tabla registra variables ambientales """
-    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
+    fecha = models.DateTimeField(auto_now=False, auto_now_add=False)
     temperatura = models.FloatField()
     humedad_relativa = models.FloatField()
     presion_atomosferica = models.FloatField()
-    intensidad_luz = models.FloatField()
-    luz_uv = models.FloatField()
+    radiacion_solar = models.FloatField()
+    vel_viento = models.FloatField()
+    dir_viento = models.CharField( max_length=50)
+    precipitacion = models.FloatField()
+
     region = models.ForeignKey(RegionCampana, on_delete=models.CASCADE)
 
     def __str__(self):
-        return "Temperatura {}".format(self.temperatura)
+        return "Temperatura {} humedad {}".format(self.temperatura, self.humedad_relativa)
 
     class Meta:
         db_table = ''

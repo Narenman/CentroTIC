@@ -56,13 +56,13 @@
 
         <h3> La frecuencia analizada es {{frec_central}} MHz</h3>
         <h4> El ancho de banda analizado es {{frec_muestreo}}  Hz</h4>
+
         <p> Los servicios encontrados de acuerdo al CNABF son: </p>
         {% for serv in servicios %}
         <p>{{serv.servicio}} {{serv.banda}}<br> Frecuencia inicial {{serv.frecuencia_inicial}} <br> Frecuencia final {{serv.frecuencia_final}}
         </p> <br>
         {% endfor %}
-        <br>
-
+        <br>       
 
         </div>
 
@@ -85,7 +85,7 @@
 
 <script>
  //sirve para capturar variables desde django y enviarlas a javascript
- var csrftoken =  '{% csrf_token %}'
+ var csrftoken =  ' {{servicios}}'
 </script> 
 <script src="{% static 'radioastronomia/js/librerias/highcharts.js' %}"></script>
 <script src="{% static 'radioastronomia/js/librerias/exporting.js' %}"></script>
