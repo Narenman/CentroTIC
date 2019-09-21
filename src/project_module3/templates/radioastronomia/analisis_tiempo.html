@@ -56,40 +56,51 @@
 
         <h3> La frecuencia analizada es {{frec_central}} MHz</h3>
         <h4> El ancho de banda analizado es {{frec_muestreo}}  Hz</h4>
-
         <p> Los servicios encontrados de acuerdo al CNABF son: </p>
-        {% for serv in servicios %}
-        <p>{{serv.servicio}} {{serv.banda}}<br> Frecuencia inicial {{serv.frecuencia_inicial}} <br> Frecuencia final {{serv.frecuencia_final}}
+        {{services}}
         </p> <br>
-        {% endfor %}
-        <br>       
+        <br>
+
 
         </div>
 
         <div class="col-5">
-        {% autoescape off %}
-        <div>{{ espectrograma }}</div>
-        {% endautoescape %}
+            {% autoescape off %}
+            <div>{{ espectrograma }}</div>
+            {% endautoescape %}
 
-        {% autoescape off %}
-        <div>{{ grafica }}</div>
-        {% endautoescape %}
+            {% autoescape off %}
+            <div>{{ grafica }}</div>
+            {% endautoescape %}
 
-        {% autoescape off %}
-        <div>{{ enetiempo }}</div>
-        {% endautoescape %}
-
+            {% autoescape off %}
+            <div>{{ enetiempo }}</div>
+            {% endautoescape %}
+            <br><br><br>
+            <h3>CNABF Gráfico</h3>
+            <div id="boxset" class="boxsetC" height="{{canvaSize.Height}}">
+                <canvas id="BoxesCanvas" class="BcanvasC" width="{{canvaSize.Width}}" 
+                height="{{canvaSize.Height}}"></canvas>
+            </div>
+            
         </div>
+
+
+
     </div>
+
 </div>
 
 <script>
  //sirve para capturar variables desde django y enviarlas a javascript
- var csrftoken =  ' {{servicios}}'
+ var csrftoken =  '{% csrf_token %}';
+ var servicios = '{{services}}';
+ var cnvsH   = '{{canvaSize.Height}}'
+
 </script> 
 <script src="{% static 'radioastronomia/js/librerias/highcharts.js' %}"></script>
 <script src="{% static 'radioastronomia/js/librerias/exporting.js' %}"></script>
 <script src="{% static 'radioastronomia/js/librerias/export-data.js' %}"></script>
 <script src="{% static 'radioastronomia/js/modo2.js' %}"> </script>
-
+<script src="{% static 'radioastronomia/js/boxes.js' %}"> </script>
 {% endblock body_block %}

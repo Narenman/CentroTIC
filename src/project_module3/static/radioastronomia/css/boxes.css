@@ -1,0 +1,10 @@
+
+.BcanvasC{
+    border: 1px solid #c3c3c3;
+}
+
+
+#boxset{
+    width: 500px;
+    overflow: auto;
+}

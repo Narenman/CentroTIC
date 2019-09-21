@@ -6,6 +6,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import mpld3
+from django.core import serializers
 
 from .models import AlbumImagenes, Espectro, Estado, CaracteristicasAntena, \
                     CaracteristicasEstacion, RBW, CaracteristicasEspectro, RegionCampana, \
@@ -18,6 +19,7 @@ from django.http import JsonResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, DeleteView, CreateView, UpdateView
 from django.db import connection
+from django.core.serializers.json import DjangoJSONEncoder
 
 # funciones auxiliares
 def publishMQTT(topico, msg):
@@ -53,13 +55,38 @@ def ordenar_listas(lista):
     return y
 
 def detener(request):
-    cliente = request.POST
-    print(cliente)
-    stop = cliente["stop"]
-    topico = "radioastronomia/RFI"
-    msg = {"accion": stop}
-    publishMQTT(topico, json.dumps(msg))
-    return render(request, "radioastronomia/control_manual.html", {})
+    # cliente = request.POST
+    # print(cliente)
+    # stop = cliente["stop"]
+    # topico = "radioastronomia/RFI"
+    # msg = {"accion": stop}
+    # publishMQTT(topico, json.dumps(msg))
+    # return render(request, "radioastronomia/control_manual.html", {})
+
+    """ Es para mostrar la interfaz del control manual del espectro """
+    form = RegionForm()
+    antena = CaracteristicasAntena.objects.all()
+    antena = antena.values("id","referencia")     
+    respuesta = dict()
+    try:
+        album = AlbumImagenes.objects.last()
+        album = album.imagen
+        if request.POST:
+            print(request.POST)
+            cliente = request.POST
+            #preparacion de los mensajes para enviar a los dispositivos
+            stop = cliente["stop"]
+            msg = {"accion": stop}
+            topico = "radioastronomia/RFI"
+            #envio de la instruccion al subsistema RFI
+            publishMQTT(topico, json.dumps(msg))
+            respuesta.update({"imagenes": album, "form": form, "antenna": antena})
+        else:
+            respuesta.update({"imagenes": album, "form": form, "antenna": antena})
+    except:
+        form = RegionForm()   
+        respuesta = {"form": form, "antenna": antena}             
+    return render(request, "radioastronomia/control_manual.html", respuesta)
 
 ##############################################################
 def analisis_tiempo(request):
@@ -88,8 +115,23 @@ def analisis_tiempo(request):
         #consulta de la banda seleccionada
         #aca hago la clasificacion para crear el reporte
         print((frec_central-frec_muestreo/2)/1e6)
-        servicios = Servicios.objects.filter(frecuencia_inicial__gte=(frec_central-frec_muestreo/2)/1e6)#.filter(frecuencia_final__lte=(frec_central+frec_muestreo/2)/1e6)
-        print(servicios)
+        print((frec_central+frec_muestreo/2)/1e6)
+        servicios = Servicios.objects.filter(frecuencia_inicial__gte=(frec_central-frec_muestreo/2)/1e6)
+        servicios = servicios.values("servicio", "frecuencia_inicial", "frecuencia_final")
+        cnabf = []
+        for ser in servicios:
+            cnabf.append(ser)
+            if ser["frecuencia_final"]>=(frec_central+frec_muestreo/2)/1e6:
+                break
+        print(cnabf)
+
+        services = json.dumps(cnabf, cls=DjangoJSONEncoder)
+        max_col     = max([len(m['servicio'].split('-')) for m in json.loads(services)])
+        boxWidth    = len(cnabf)*160*2
+        boxHeight   = max_col*(50+1)
+        canvaSize   = {"Width": boxWidth,
+                       "Height": boxHeight}
+
         # consulta del espectro
         espectro = Espectro.objects.filter(region=region).filter(frec_central=frec_central).filter(frec_muestreo=frec_muestreo).filter(nfft=nfft).filter(fecha__range=[cliente["fechaini"], cliente["fechafin"]])
         espectro = espectro.values("fecha", "espectro")
@@ -143,9 +185,10 @@ def analisis_tiempo(request):
 
             respuesta.update({"grafica": histograma, "enetiempo":tiempo_energia,
                             "espectrograma": espectrograma,
-                            "servicios": servicios, 
                             "frec_central": frec_central/1e6,
-                            "frec_muestreo": frec_muestreo})
+                            "frec_muestreo": frec_muestreo,
+                            "services": services, 
+                            "canvaSize": canvaSize})
     return render(request,"radioastronomia/analisis_tiempo.html", respuesta)
 
 
@@ -401,52 +444,99 @@ def json_spectro(request):
 
 #modo 4 de operacion
 def comparacion_zonas(request):
-    #variables 
-    nfft = 1024
-    samp_rate = 4000000
 
     regiones = RegionCampana.objects.all()
     regiones = regiones.values("id", "zona")
-    # ener = numpy.array([])
-    # media = numpy.array([])
+    ener = numpy.array([])
+    media = numpy.array([])
+    mediana = numpy.array([])
+    std = numpy.array([])
+    max_ = numpy.array([])
+    min_ = numpy.array([])
+    espectros = []
 
-    for reg in regiones:
-        frecuencias = Espectro.objects.filter(region=reg["id"]).values("frec_central").distinct().order_by("frec_central")
-        y = numpy.array([])
-        freq_ = numpy.array([])
-
-        for freq in frecuencias:
-            print(freq)
-            espectro = Espectro.objects.filter(region=reg["id"]).values("espectro").filter(frec_central=freq["frec_central"]).filter(frec_muestreo=samp_rate).order_by("fecha")
-            print(len(espectro))
-            x_ = numpy.zeros(nfft)
-            for row in espectro:
-                x = numpy.asarray(row["espectro"])
-                x = promedio(x,nfft)
-                x_ = x_ + x
-            x_ = x_/len(espectro)
-            freq_ = numpy.append(freq_, numpy.arange(-int(nfft/2),int(nfft/2),1)*samp_rate/(nfft*2) + freq["frec_central"])
-            y = numpy.append(y,x_)
-        
-        freq_ = freq_/1e6 #escala de la frecuencia
-        #analisis de caracteristicas
-        df = pd.DataFrame(data=y, index=freq_, columns=["espectro"])
-        energia = 10*numpy.log10(numpy.sum(10**(y/10)))
-        media = numpy.mean(y)
-        mediana = numpy.median(y)
-        std = numpy.std(y)
-        max_ = numpy.max(y)
-        min_ = numpy.min(y)
-
-        ## aca van las graficas
+    columns = ["ener", "media", "mediana", "std", "max", "min"]
+    target = []
+    if request.POST:
+        cliente = request.POST
+        print(cliente)
+        rbw = RBW.objects.get(rbw=cliente["RBW"])
+        print(rbw)
+        nfft = rbw.nfft
+        samp_rate = rbw.frecuencia_muestreo
         fig1, ax1 = plt.subplots()
-        ax1.plot(freq_, y, label=reg["zona"])
-        ax1.set(xlabel="Frecuencia MHz", ylabel="Espectro dBm", title="Espectro por region")
-        ax1.legend()
-        ax1.grid()
-        espectros = mpld3.fig_to_html(fig1)
+        for reg in regiones:
+            frecuencias = Espectro.objects.filter(region=reg["id"]).values("frec_central").distinct().order_by("frec_central")
+            y = numpy.array([])
+            freq_ = numpy.array([])
+            target.append(reg["id"])
 
-    respuesta = {"espectros": espectros}
+            if len(frecuencias)>0:
+                for freq in frecuencias[:3]:
+                    print(freq)
+                    espectro = Espectro.objects.filter(region=reg["id"]).values("espectro").filter(frec_central=freq["frec_central"]).filter(frec_muestreo=samp_rate).order_by("fecha")
+                    print(len(espectro))
+                    x_ = numpy.zeros(nfft)
+                    for row in espectro:
+                        x = numpy.asarray(row["espectro"])
+                        x = promedio(x,nfft)
+                        x_ = x_ + x
+                    x_ = x_/len(espectro)
+                    freq_ = numpy.append(freq_, numpy.arange(-int(nfft/2),int(nfft/2),1)*samp_rate/(nfft*2) + freq["frec_central"])
+                    y = numpy.append(y,x_)
+                
+                freq_ = freq_/1e6 #escala de la frecuencia
+                #analisis de caracteristicas
+
+                ## aca van las graficas
+                ax1.plot(freq_, y, label=reg["zona"])
+                ax1.set(xlabel="Frecuencia MHz", ylabel="Espectro dBm", title="Espectro por region",)
+                ax1.legend()
+                ax1.grid(True)
+                espectros = mpld3.fig_to_html(fig1)
+
+                y = 10**(y/10)
+                ener = numpy.append(ener,numpy.sum(y))
+                media = numpy.append(media, numpy.mean(y))
+                mediana = numpy.append(mediana, numpy.median(y))
+                std = numpy.append(std, numpy.std(y))
+                max_ = numpy.append(max_,numpy.max(y))
+                min_ = numpy.append(min_, numpy.min(y))
+            else:
+                pass
+        
+        if len(ener)>1:
+            #analisis caracteristicas
+            X = numpy.vstack([ener, media, mediana, std, max_, min_])
+            df = pd.DataFrame(data=X.T, columns=columns)
+            print(df.head())
+            #escalado de los datos
+            from sklearn.preprocessing import StandardScaler
+            scaler = StandardScaler()
+            scaler.fit(df)
+            scaled_data = scaler.transform(df)
+            #aplicacion de PCA
+            from sklearn.decomposition import PCA
+            pca = PCA(n_components=2)
+            pca.fit(scaled_data)
+            x_pca = pca.transform(scaled_data)
+
+            fig2, ax2 = plt.subplots()
+            ax2.scatter(x_pca[:,0], x_pca[:,1], c=target, cmap="plasma")
+            ax2.set(xlabel="pc1", ylabel="pc2", title="Zonas registradas")
+            ax2.legend(title="Regiones")
+            ax2.grid()
+            caracteristicas = mpld3.fig_to_html(fig2)
+        else:
+            caracteristicas  = []
+
+        rbw = RBW.objects.all()
+        respuesta = {"espectros": espectros,
+                    "caracteristicas": caracteristicas,
+                    "rbws": rbw}
+    else:
+        rbw = RBW.objects.all()
+        respuesta = {"rbws":rbw}
     return render(request, "radioastronomia/comparacion_zonas.html", respuesta)
 
 

@@ -109,6 +109,9 @@ def automatico(**accion):
         #para que la siguiente medida arranque en el ultimo angulo elevacion
         #y se devuelva
         angelevacion = numpy.flipud(angelevacion)
+    #finalizacion de toma de datos
+    activo = False
+    obj.estado(activo, 0, 1000, 1000)
 
 # funciones auxiliares
 class MQTTSuscriptor():
@@ -217,7 +220,7 @@ if __name__ == "__main__":
     stop_thread2 = False
     stop_thread3 = False
 
-    IP = "192.168.0.103:8000"
+    IP = "192.168.0.101:8000"
     IPbroker = "35.243.199.245"
     usernameAPI  = "mario"
     passwordAPI = "mario"
