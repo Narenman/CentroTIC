@@ -14,4 +14,8 @@ urlpatterns = [
     #registro de apis
     path("pms1", apiviews.Pms5003aAPI.as_view()),
     path("pms2", apiviews.Pms5003bAPI.as_view()),
+    #para las graficas
+    path("jsonA", views.json_pmsA, name="jsonA"),
+    path("jsonB", views.json_pmsB, name="jsonB"),
+
 ]

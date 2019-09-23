@@ -220,7 +220,8 @@ if __name__ == "__main__":
     stop_thread2 = False
     stop_thread3 = False
 
-    IP = "192.168.0.101:8000"
+    # IP = "192.168.0.101:8000"
+    IP = "35.243.199.245"
     IPbroker = "35.243.199.245"
     usernameAPI  = "mario"
     passwordAPI = "mario"

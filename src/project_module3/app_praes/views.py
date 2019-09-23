@@ -168,7 +168,7 @@ def medicion_temperatura_agua(request):
             ubicacion = dato["ubicacion"]
             # datos para mqtt
             topico = kit.nombre_kit+"/"+str(kit.colegio)
-            msg = json.dumps({"accion":"dato-en-vivo", "tipo dato":"turbidez",
+            msg = json.dumps({"accion":"dato-en-vivo", "tipo dato":"temp_agua",
                               "ubicacion": ubicacion, "kit":dato["kit_monitoreo"]})
             publishMQTT(topico,msg)
 
@@ -176,6 +176,26 @@ def medicion_temperatura_agua(request):
             print("tomar temperatura del agua")
     respuesta = {"sensores": sensores}
     return render(request, "app_praes/temperatura_agua.html", respuesta)
+
+def medicion_flujo_agua(request):
+    """ Se encarga de la temperatura """
+    sensores = UbicacionForm()
+    if request.POST:
+        sensores = UbicacionForm(request.POST)
+        if sensores.is_valid():
+            dato = request.POST
+            # print(dato)
+            kit = Kit.objects.get(pk=dato["kit_monitoreo"])
+            ubicacion = dato["ubicacion"]
+            # datos para mqtt
+            topico = kit.nombre_kit+"/"+str(kit.colegio)
+            msg = json.dumps({"accion":"dato-en-vivo", "tipo dato":"flujo agua",
+                              "ubicacion": ubicacion, "kit":dato["kit_monitoreo"]})
+            publishMQTT(topico,msg)
+
+            print(request.POST)
+    respuesta = {"sensores": sensores}
+    return render(request, "app_praes/flujo_agua.html", respuesta)
 
 #consulta de graficas
 @csrf_exempt
@@ -248,18 +268,6 @@ def consulta_temp_agua(request):
         temp = [fecha, 16]
     return JsonResponse({"temperatura": temp})
 
-def medicion_flujo_agua(request):
-    """ Se encarga de la temperatura """
-    sensores = UbicacionForm()
-    if request.POST:
-        sensores = UbicacionForm(request.POST)
-        if sensores.is_valid():
-            # sensores.save()
-            ## enviar la orden MQTT para que se empieze a tomar la temperatura
-            print(request.POST)
-            print("tomar compuestos aire")
-    respuesta = {"sensores": sensores}
-    return render(request, "app_praes/flujo_agua.html", respuesta)
 
 @csrf_exempt
 def consulta_flujo(request):

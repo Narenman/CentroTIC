@@ -1,3 +1,4 @@
+import RPi.GPIO as GPIO
 import Adafruit_GPIO.SPI as SPI
 import Adafruit_MCP3008
 import adafruit_sgp30
@@ -12,6 +13,7 @@ import json
 import os
 import glob
 import time
+import sys
 
 
 
@@ -44,6 +46,11 @@ class AnalogicoDigital():
     GPIO    SGP30   BME280
     2       SDA     SDA
     3       SCL     SCL
+
+    Realiza lectura al sensor de flujo YFS201
+
+    GPIO BOARD
+    33
     """
     def __init__(self, direccionIP, APIusername, APIpassword):
         self.direccionIP = direccionIP
@@ -175,12 +182,15 @@ class AnalogicoDigital():
     def phAgua(self, ubicacion, kit):
         agua, aire = self.sensores()
         ph = agua[0]
+        print("PH {}".format(ph))
+
         URL = "http://"+self.direccionIP+"/app_praes/ph-agua/"
         self.comunicacionAPI(URL, ph, ubicacion, kit)
     
     def turbidezAgua(self, ubicacion, kit):
         agua, aire = self.sensores()
         turb = agua[1]
+        print("turbidez {}".format(turb))
         URL = "http://"+self.direccionIP+"/app_praes/turbidez-agua/"
         self.comunicacionAPI(URL, turb, ubicacion, kit)
 
@@ -192,6 +202,7 @@ class AnalogicoDigital():
     #calidad del aire
     def calidadAire(self, ubicacion, kit):
         agua, aire = self.sensores()
+        print("aire".format(aire))
         URL = "http://"+self.direccionIP+"/app_praes/modo-nariz/"
         data = {"valor": json.dumps(aire),
                 "kit_monitoreo": kit,
@@ -222,9 +233,32 @@ class AnalogicoDigital():
         URL = "http://"+self.direccionIP+"/app_praes/presion-atmosferica/"
         self.comunicacionAPI(URL, presion,ubicacion,kit)
 
+    def flujo_agua(self):
+        GPIO.setmode(GPIO.BOARD)
+        inpt = 33
+        GPIO.setup(inpt,GPIO.IN)
+        constante = 0.10
+        time_new = time.time() + 1
+        rate_cnt = 0
+        while time.time() <= time_new:
+            try:
+                if GPIO.input(inpt)!=0:
+                    rate_cnt +=1
+            except:
+                print('\nCTRL C - Exiting nicely')
+                GPIO.cleanup()
+                sys.exit()
+        print('\nLiters / min ', round(rate_cnt*constante,4))
+        return rate_cnt*constante
+
+    def flujo_agua_API(self, ubicacion, kit):
+        valor = self.flujo_agua()
+        URL = "http://"+self.direccionIP+"/app_praes/flujo-agua"
+        self.comunicacionAPI(URL, valor, ubicacion, kit)
+
 if __name__ == "__main__":
     #parametros de configuracion
-    direccionIP = "192.168.0.103:8000"
+    direccionIP = "192.168.0.101:8000"
     APIusername = "mario"
     APIpassword = "mario"
 
@@ -233,8 +267,8 @@ if __name__ == "__main__":
     ubicacion = 43
     print(lecturas.sensores())
     print("temperatura", lecturas.determinar_valores())
-    # for i in range(20):
-    #     # lecturas.phAgua(1)
-    #     # lecturas.turbidezAgua(1)
-    #     lecturas.calidadAire(ubicacion, kit)
-    #     time.sleep(2)
+    for i in range(20):
+        lecturas.phAgua(ubicacion, kit)
+        lecturas.turbidezAgua(ubicacion, kit)
+        lecturas.calidadAire(ubicacion, kit)
+        time.sleep(2)
