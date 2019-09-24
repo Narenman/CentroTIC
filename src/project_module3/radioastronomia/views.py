@@ -416,17 +416,15 @@ def barrido_json(request):
 
 def json_estacion(request):
     respuesta = dict()
-    try:
-        estacion = EstacionAmbiental.objects.last()
-        respuesta.update({"temp": estacion.temperatura,
-                    "hum": estacion.humedad_relativa,
-                    "pres": estacion.presion_atmosferica,
-                    "rad": estacion.radiacion_solar,
-                    "vel_vien": estacion.vel_viento,
-                    "dir_vien": estacion.dir_viento,
-                    "pres": estacion.percipitacion})
-    except:
-        pass
+
+    estacion = EstacionAmbiental.objects.last()
+    respuesta.update({"temp": estacion.temperatura,
+                "hum": estacion.humedad_relativa,
+                "pres": estacion.presion_atomosferica,
+                "rad": estacion.radiacion_solar,
+                "vel_vien": estacion.vel_viento,
+                "dir_vien": estacion.dir_viento,
+                "pres": estacion.precipitacion})
     return JsonResponse(respuesta)
 
 def json_spectro(request):
