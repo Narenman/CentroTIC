@@ -87,7 +87,7 @@ class PosicionAntena(models.Model):
 # subsistema de estacion de monitoreo
 class EstacionAmbiental(models.Model):
     """ esta tabla registra variables ambientales """
-    fecha = models.DateTimeField(auto_now=False, auto_now_add=False)
+    fecha = models.DateTimeField(auto_now=False, auto_now_add=True)
     temperatura = models.FloatField()
     humedad_relativa = models.FloatField()
     presion_atomosferica = models.FloatField()
