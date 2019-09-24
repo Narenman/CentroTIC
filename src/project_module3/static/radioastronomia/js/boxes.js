@@ -1,13 +1,15 @@
-console.log(servicios)
+
+
+
 var services = servicios.replace(/&quot;/g,'"');
 services = JSON.parse(services);
-print(services)
+
 var canvas = document.getElementById('BoxesCanvas');
 
 
 var CBox     = [];
 var boxW     = 160*2;
-var boxH     = 50;
+//var boxH     = 50;
 
 
 var colorBox = {"FIJO": "#09a912",
@@ -32,6 +34,11 @@ var colorBox = {"FIJO": "#09a912",
                 "MOVIL AERONAUTICO": "#0069cd"
             }; 
 
+bckgndctx = canvas.getContext('2d');
+bckgndctx.fillStyle = "#000";
+bckgndctx.fillRect(0, 0, cnvsW, cnvsH)
+
+
 for(i=0; i<=services.length-1; i++){
 
     var AllServices = services[i].servicio.split('-');
@@ -39,6 +46,7 @@ for(i=0; i<=services.length-1; i++){
     var freq0 = services[i].frecuencia_inicial;
     var freq1 = services[i].frecuencia_final;
 
+    var boxH     = 300/AllServices.length + 6/AllServices.length-1; // preferiblemente Obtener desde servidor 
     for (as=0; as<=AllServices.length-1; as++){
 
         // var nboxH = parseInt(cnvsH-i)/i;
@@ -49,33 +57,32 @@ for(i=0; i<=services.length-1; i++){
         CBox[as] = canvas.getContext("2d");
         
         //CBox[as].fillStyle = "#20c997";
+        DVBorder = 3
         CBox[as].fillStyle = colorBox[AllServicesUC[as]];
-        CBox[as].fillRect((boxW+1)*i, as*(boxH+1), boxW, boxH);
+        CBox[as].fillRect((boxW+DVBorder)*i, as*(boxH+1), boxW, boxH);
         
-        CBox[as].font="12px Arial";
+        CBox[as].font="bold 12px Arial";
         CBox[as].textAlign = "center";
-        CBox[as].fillStyle = "#fff";
-        CBox[as].fillText(AllServicesUC[as], (boxW+1)*(2*i+1)/2, (boxH+1)*(as*2+1)/2);
-
-
+        CBox[as].fillStyle = "#000";
+        CBox[as].fillText(AllServicesUC[as], (boxW+DVBorder)*(2*i+1)/2, (boxH+1)*(as*2+1)/2);
 
         if (i == services.length-1){
             CBox[as].font="10px Arial";
             CBox[as].textAlign = "left";
-            CBox[as].fillStyle = "#fff";
-            CBox[as].fillText(freq0+" MHz", ((boxW+1)*i+5), 10);
+            CBox[as].fillStyle = "#000";
+            CBox[as].fillText(freq0+" MHz", ((boxW+DVBorder)*i+5), 10);
 
             CBox[as].font="10px Arial";
             CBox[as].textAlign = "left";
-            CBox[as].fillStyle = "#fff";
-            CBox[as].fillText(freq1+" MHz", ((boxW+1)*i + boxW/1.2), 10);
+            CBox[as].fillStyle = "#000";
+            CBox[as].fillText(freq1+" MHz", ((boxW+DVBorder)*i + boxW/1.29), 10);
     
         }
         else{
             CBox[as].font="10px Arial";
             CBox[as].textAlign = "left";
-            CBox[as].fillStyle = "#fff";
-            CBox[as].fillText(freq0+" MHz", ((boxW+1)*i+5), 10);
+            CBox[as].fillStyle = "#000";
+            CBox[as].fillText(freq0+" MHz", ((boxW+DVBorder)*i+5), 10);
         }
     }
 
