@@ -10,6 +10,18 @@ class Estacion():
         self.APIusername = APIusername
         self.APIpassword = APIpassword
 
+    def serialRS232(self):
+        """ la salida de los datos debe ser un diccionario
+        valores = {"temperatura": 100,
+                "humedad_relativa": 20,
+                "presion_atomosferica": 30,
+                "radiacion_solar": 30,
+                "vel_viento": 90,
+                "dir_viento": "N-S",
+                "precipitacion": 50}
+                """
+        pass
+
     #comunicacion con la API
     def getToken(self):
         """Esta funcion se encarga de consultar el token de acuerdo al usuario
@@ -24,14 +36,13 @@ class Estacion():
         # print(token["token"])
         return token["token"]
 
-    def send_API(self, URL, valores, region):
+    def estacionAPI(self, valores, region):
         """ este metodo es para iniciar la comunicacion donde la base de datos
         y registrar las mediciones, las entradas son:
         * URL: es la direccion de la API sin colocar la IP, por ejemplo: /radioastronomia/estacion-monitoreo
         * valores: es un json que contiene las lecturas
         * region: es el id de la region donde se registra la medicion
         """
-
         data = {"temperatura": valores["temperatura"],
                 "humedad_relativa": valores["humedad_relativa"],
                 "presion_atomosferica": valores["presion_atomosferica"],
@@ -42,7 +53,8 @@ class Estacion():
                 "region": region}
         
         token = self.getToken()
-        headers={"Authorization":"Token "+token} 
+        headers={"Authorization":"Token "+token}
+        URL = "http://"+self.direccionIP+"/radioastronomia/estacion-monitoreo"
         r = requests.post(URL, data=data, headers=headers)
 
         if r.status_code==200:
@@ -50,11 +62,26 @@ class Estacion():
             r.close()
         else:
             print(r.status_code)
+    
+    def comunicacionAPI(self, region):
+        """ las funciones a ejecuar son:
+        valores = self.serialRS232()
+        self.estacionAPI(valores, region)
+        """
+        pass
 
 if __name__ == "__main__":
     direccionIP = "127.0.0.1:8000"
     APIusername = "mario"
     APIpassword = "mario"
+    valores = {"temperatura": 100,
+                "humedad_relativa": 20,
+                "presion_atomosferica": 30,
+                "radiacion_solar": 30,
+                "vel_viento": 90,
+                "dir_viento": "N-S",
+                "precipitacion": 50}
+    region = 1
 
     estacion = Estacion(direccionIP, APIusername, APIpassword)
-   
+    estacion.estacionAPI(valores, region)
