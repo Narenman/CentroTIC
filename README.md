@@ -9,6 +9,10 @@ Este proyecto hace referencia a las aplicaciones de:
 * Nariz Electronica Version II
 * Sistemas GRIPV
 * E3Tratos
+* Radioastronomia
+* Material particulado
+* Pulsioximetria
+* Piscicultura
 
 Para lanzar el proyecto se requiere realizar los siguiente:
 
@@ -19,7 +23,7 @@ Usuarios Linux
 3) Activar el entorno virtual `` source env_centrotic/bin/activate ``
 (Para desactivar el entorno virtual ``deactivate``)
 4) Instalar los paquetes pip del archivo requeriments.txt `` pip install -r requeriments.txt``
-5) Instalar el paquete adicional para mplde `` pip install --user "git+https://github.com/javadba/mpld3@display_fix" ``
+5) Instalar el paquete adicional para mplde `` pip install "git+https://github.com/javadba/mpld3@display_fix" ``
 6) Instalar postgresql ``sudo apt-get install postgresql``
 7) ``source deactivate ``
 7) Ingresar al usuario postgres ``sudo su postgres``
