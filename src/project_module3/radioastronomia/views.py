@@ -10,7 +10,7 @@ from django.core import serializers
 
 from .models import AlbumImagenes, Espectro, Estado, CaracteristicasAntena, \
                     CaracteristicasEstacion, RBW, CaracteristicasEspectro, RegionCampana, \
-                        PosicionAntena, Servicios, Bandas
+                        PosicionAntena, Servicios, Bandas, EstacionAmbiental
 from .forms import EspectroForm, RFIForm, RegionForm
 
 from django.urls import reverse_lazy
@@ -414,6 +414,21 @@ def barrido_json(request):
     return JsonResponse(respuesta)
 
 
+def json_estacion(request):
+    respuesta = dict()
+    try:
+        estacion = EstacionAmbiental.objects.last()
+        respuesta.update({"temp": estacion.temperatura,
+                    "hum": estacion.humedad_relativa,
+                    "pres": estacion.presion_atmosferica,
+                    "rad": estacion.radiacion_solar,
+                    "vel_vien": estacion.vel_viento,
+                    "dir_vien": estacion.dir_viento,
+                    "pres": estacion.percipitacion})
+    except:
+        pass
+    return JsonResponse(respuesta)
+
 def json_spectro(request):
     """Se encarga retornar los valores que muestra el espectro
     en el navegador para el modo manual"""
@@ -689,3 +704,15 @@ class RegionCreateView(CreateView):
     fields = "__all__"
     success_url = reverse_lazy("radioastronomia:index")
 
+def subsistemacielo(request):
+    respuesta = dict()
+    try:
+        album = AlbumImagenes.objects.last()
+        respuesta.update({"imagen": album.imagen,
+                    "fecha": album.fecha,
+                    "zona": album.region})
+        if request.POST:
+            print(request.POST)
+    except:
+        pass
+    return render(request, "radioastronomia/subsistema_camara.html", respuesta)

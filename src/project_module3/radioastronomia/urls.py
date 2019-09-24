@@ -22,8 +22,10 @@ urlpatterns = [
     path('borrar/antena/<int:pk>', views.CaracteristicasAntenaDeleteView.as_view(), name="borrar-antena"),
     path('borrar/sensor/<int:pk>', views.CaracteristicasEstacionDeleteView.as_view(), name="borrar-sensor"),
     path('borrar/rbw/<int:pk>', views.RBWDeleteView.as_view(), name="borrar-rbw"),
+    # subsistemas
     path('subsistema/RFI', TemplateView.as_view(template_name="radioastronomia/subsistema_RFI.html"), name="subsistema-RFI"),
-    path('subsistema/estacion-monitoreo',views.CaracteristicasEstacionListView.as_view(), name="subsistema-estacion") ,
+    path('subsistema/estacion-monitoreo',views.CaracteristicasEstacionListView.as_view(), name="subsistema-estacion"),
+    path('subsistema/camara', views.subsistemacielo, name="subsistema-camara"),
     #urls para operacion del sistema
     path('control-manual', views.control_manual, name="control-manual"),
     path("control-automatico", views.control_automatico, name="control-automatico"),
@@ -32,6 +34,7 @@ urlpatterns = [
     path('grafica-espectro', views.json_spectro, name="json-espectro"),
     path('barrido-espectro', views.barrido_json, name="barrido-espectro"),
     path('posiciones-angulares', views.espectro_angulos, name="posiciones-angulares"),
+    path('monitoreo-ambiental', views.json_estacion, name="monitor-ambiental"),
     # APIs para la adquisicion de datos
     path('album-imagenes', apiviews.AlbumAPI.as_view()),
     path('subsistema-RFI', apiviews.EspectroAPI.as_view()),
