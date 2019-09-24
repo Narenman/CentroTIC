@@ -95,7 +95,8 @@
  //sirve para capturar variables desde django y enviarlas a javascript
  var csrftoken =  '{% csrf_token %}';
  var servicios = '{{services}}';
- var cnvsH   = '{{canvaSize.Height}}'
+ var cnvsH     = '{{canvaSize.Height}}'
+ var cnvsW     =  '{{canvaSize.Width}}'
 
 </script> 
 <script src="{% static 'radioastronomia/js/librerias/highcharts.js' %}"></script>
