@@ -56,15 +56,15 @@ class AnalogicoDigital():
         self.direccionIP = direccionIP
         self.APIusername = APIusername
         self.APIpassword = APIpassword
+
+    def leer_temperatura(self):
         #sensor de temperatura agua
         os.system('modprobe w1-gpio')
         os.system('modprobe w1-therm')
-        self._direccion = '/sys/bus/w1/devices/'
-        self.dispositivo_folder = glob.glob(self._direccion + '28*')[0]
-        self.dispositivo_pad = self.dispositivo_folder + '/w1_slave'
-
-    def leer_temperatura(self):
-        f = open(self.dispositivo_pad, 'r')
+        _direccion = '/sys/bus/w1/devices/'
+        dispositivo_folder = glob.glob(_direccion + '28*')[0]
+        dispositivo_pad = dispositivo_folder + '/w1_slave'
+        f = open(dispositivo_pad, 'r')
         lineas = f.readlines()
         f.close()
         return lineas
@@ -234,8 +234,9 @@ class AnalogicoDigital():
         self.comunicacionAPI(URL, presion,ubicacion,kit)
 
     def flujo_agua(self):
-        GPIO.setmode(GPIO.BOARD)
-        inpt = 33
+        GPIO.setmode(GPIO.BCM)
+        # inpt = 33 #BOARD
+        inpt = 13
         GPIO.setup(inpt,GPIO.IN)
         constante = 0.10
         time_new = time.time() + 1
@@ -249,6 +250,7 @@ class AnalogicoDigital():
                 GPIO.cleanup()
                 sys.exit()
         print('\nLiters / min ', round(rate_cnt*constante,4))
+        GPIO.cleanup()
         return rate_cnt*constante
 
     def flujo_agua_API(self, ubicacion, kit):
@@ -258,17 +260,17 @@ class AnalogicoDigital():
 
 if __name__ == "__main__":
     #parametros de configuracion
-    direccionIP = "192.168.0.101:8000"
+    direccionIP = "192.168.0.102:8000"
     APIusername = "mario"
     APIpassword = "mario"
 
     lecturas = AnalogicoDigital(direccionIP, APIusername, APIpassword)
     kit = 1
     ubicacion = 43
-    print(lecturas.sensores())
-    print("temperatura", lecturas.determinar_valores())
+    # print("temperatura", lecturas.determinar_valores())
     for i in range(20):
         lecturas.phAgua(ubicacion, kit)
         lecturas.turbidezAgua(ubicacion, kit)
         lecturas.calidadAire(ubicacion, kit)
+        lecturas.flujo_agua()
         time.sleep(2)
