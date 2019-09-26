@@ -161,7 +161,7 @@ def analisis_tiempo(request):
 
             df = pd.DataFrame(data={"Frecuencia":frecuencia, "Tiempo":date, "espectro": espec})
             df = df.pivot("Tiempo", "Frecuencia", "espectro")
-            # espacio para la grafica del espectrograma
+            # # espacio para la grafica del espectrograma
 
             fig, ax = plt.subplots()
             sns.distplot(10*numpy.log10(char_ener), kde_kws={"color": "k", "lw": 3, "label": "KDE"},
@@ -183,12 +183,14 @@ def analisis_tiempo(request):
             ax2.grid()
             espectrograma = mpld3.fig_to_html(fig2)
 
-            respuesta.update({"grafica": histograma, "enetiempo":tiempo_energia,
+            respuesta.update({"grafica": histograma,
+                            "enetiempo":tiempo_energia,
                             "espectrograma": espectrograma,
                             "frec_central": frec_central/1e6,
                             "frec_muestreo": frec_muestreo,
                             "services": services, 
                             "canvaSize": canvaSize})
+
     return render(request,"radioastronomia/analisis_tiempo.html", respuesta)
 
 
