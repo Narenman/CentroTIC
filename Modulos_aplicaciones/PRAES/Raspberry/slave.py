@@ -264,7 +264,7 @@ if __name__ == "__main__":
     #configuracion de variables
     global stop_thread1, stop_thread3, stop_thread4, stop_thread5, stop_thread6, stop_thread7, stop_thread8, stop_thread9
     global IPSERVER, APIusername, APIpassword
-    IPSERVER = "192.168.0.101:8000"
+    IPSERVER = "35.243.199.245"
     APIusername = "mario"
     APIpassword = "mario"
     stop_thread1 = False
