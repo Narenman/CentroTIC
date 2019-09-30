@@ -36,7 +36,7 @@ var colorBox = {"FIJO": "#09a912",
 
 bckgndctx = canvas.getContext('2d');
 bckgndctx.fillStyle = "#000";
-bckgndctx.fillRect(0, 0, cnvsW, 300)
+bckgndctx.fillRect(0, 0, cnvsW, cnvsH)
 
 
 for(i=0; i<=services.length-1; i++){
@@ -75,7 +75,7 @@ for(i=0; i<=services.length-1; i++){
             CBox[as].font="10px Arial";
             CBox[as].textAlign = "left";
             CBox[as].fillStyle = "#000";
-            CBox[as].fillText(freq1+" MHz", cnvsW-60, 10); //((boxW+DVBorder)*i + boxW/1.29)
+            CBox[as].fillText(freq1+" MHz", ((boxW+DVBorder)*i + boxW/1.29), 10);
     
         }
         else{

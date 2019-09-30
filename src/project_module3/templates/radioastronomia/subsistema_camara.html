@@ -13,12 +13,19 @@
         para procesar en tiempo real las variaciones en el cielo utilizando técnicas de visión 
         por computador.
         </p>
-        <img src={% static 'radioastronomia/img/montaje.jpg' %} class="img-fluid" alt="Responsive image">
-        <img src={% static 'radioastronomia/img/subsistema.png' %} class="img-fluid" alt="Responsive image">
+        {% comment %} <img src={% static 'radioastronomia/img/montaje.jpg' %} class="img-fluid" alt="Responsive image">
+        <img src={% static 'radioastronomia/img/subsistema.png' %} class="img-fluid" alt="Responsive image"> {% endcomment %}
+
+        <p> Los videos seleccionados para el rango de fecha escogido son: </p>
+        {% for vid in videos %}
+        <ul style="list-style-type:circle;">
+        <li> <a href=" {% url 'radioastronomia:repro-videos' vid.id %}">Video {{vid.fecha}}</a> </li>        
+        </ul>         
+        {% endfor %}
 
         </div>
         <div class="col"> 
-        <h4> Video tomado </h4>
+        <h4> Último Video tomado </h4>
         <h4> Fecha {{fecha}} </h4>  
         <h4> Lugar {{zona}} </h4>  
 
@@ -27,7 +34,7 @@
             Su navegador no soporta este video
         </video>
 
-        <form  action= "{% url 'radioastronomia:subsistema-camara' %}" method="POST">
+        <form id="form_camara" action= "{% url 'radioastronomia:subsistema-camara' %}" method="POST">
             {% csrf_token %}
             <label for="dia">Dia <img src={% static 'radioastronomia/img/dia.gif' %} class="img-fluid" alt="Responsive image" width="100 px" hight="100 px"></label>
             <input id="dia" type="radio" name="day" value="dia">  
@@ -45,7 +52,8 @@
                 <input type="date" id="end" name="fechafin"
                 value="2019-11-19"
                 min="2019-01-01" max="2019-12-31">
-
+            <br>
+            {{region}}
 
             {% buttons %}
             <button type="submit" class="btn btn-primary">

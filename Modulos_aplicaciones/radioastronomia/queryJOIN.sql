@@ -1,11 +1,10 @@
-﻿SELECT radioastronomia_espectro.id, radioastronomia_espectro.frec_central, radioastronomia_posicionantena.azimut, radioastronomia_espectro.fecha
-FROM radioastronomia_espectro
-INNER JOIN radioastronomia_posicionantena
-ON date_trunc('second',radioastronomia_espectro.fecha)=date_trunc('second',radioastronomia_posicionantena.fecha)
-WHERE radioastronomia_posicionantena.elevacion=0
-AND radioastronomia_espectro.frec_central=78000000
-AND radioastronomia_espectro.frec_muestreo = 1000000
-AND radioastronomia_espectro.nfft = 1024
-AND date_trunc('day', radioastronomia_espectro.fecha)>= to_date('2019-08-27', 'YYYY-MM-DD')
-AND date_trunc('day', radioastronomia_espectro.fecha)<=to_date('2019-09-27', 'YYYY-MM-DD') 
-ORDER BY radioastronomia_posicionantena.azimut;
+﻿SELECT radioastronomia_albumimagenes.fecha, radioastronomia_estacionambiental.temperatura, radioastronomia_estacionambiental.humedad_relativa, radioastronomia_estacionambiental.presion_atomosferica,
+radioastronomia_estacionambiental.radiacion_solar, radioastronomia_estacionambiental.vel_viento,
+radioastronomia_estacionambiental.dir_viento, radioastronomia_estacionambiental.precipitacion
+FROM radioastronomia_estacionambiental
+INNER JOIN radioastronomia_albumimagenes
+ON date_trunc('minute',radioastronomia_estacionambiental.fecha)=date_trunc('minute',radioastronomia_albumimagenes.fecha)
+WHERE radioastronomia_estacionambiental.region_id=8
+AND date_trunc('day',radioastronomia_albumimagenes.fecha)='2019-09-27'
+
+ORDER BY radioastronomia_estacionambiental.humedad_relativa;
