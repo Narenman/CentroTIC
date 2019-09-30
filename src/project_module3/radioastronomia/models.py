@@ -93,7 +93,7 @@ class EstacionAmbiental(models.Model):
     presion_atomosferica = models.FloatField()
     radiacion_solar = models.FloatField()
     vel_viento = models.FloatField()
-    dir_viento = models.CharField( max_length=50)
+    dir_viento = models.FloatField()#CharField( max_length=50)
     precipitacion = models.FloatField()
 
     region = models.ForeignKey(RegionCampana, on_delete=models.CASCADE)

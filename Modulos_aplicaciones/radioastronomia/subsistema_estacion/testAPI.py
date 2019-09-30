@@ -79,7 +79,7 @@ if __name__ == "__main__":
                 "presion_atomosferica": 30,
                 "radiacion_solar": 30,
                 "vel_viento": 90,
-                "dir_viento": "N-S",
+                "dir_viento": 360,
                 "precipitacion": 50}
     region = 1
 

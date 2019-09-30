@@ -42,6 +42,7 @@ urlpatterns = [
     path('estado/<int:pk>', apiviews.EstadoAPI.as_view()),
     path('posicion-antena', apiviews.PosicionAntenaAPI.as_view()),
     path('estacion-monitoreo', apiviews.EstacionAmbientalAPI.as_view()),
+    path('json-estacion', views.json_estacion, name="json-estacion"),
     # modos de procesamiento del espectro
     path('modo/bandas-espectrales', views.bandas_espectrales, name="modo1"),
     path('modo/analisis-tiempo',views.analisis_tiempo, name="modo2"),
