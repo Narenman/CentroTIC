@@ -1,5 +1,5 @@
 import requests
-import numpy
+import random
 import json
 
 
@@ -61,7 +61,7 @@ class Estacion():
             print("HTTP status ok. {}".format(r.status_code))
             r.close()
         else:
-            print(r.status_code)
+            print("HTTP status {}".format(r.status_code))
     
     def comunicacionAPI(self, region):
         """ las funciones a ejecuar son:
@@ -71,17 +71,18 @@ class Estacion():
         pass
 
 if __name__ == "__main__":
-    direccionIP = "127.0.0.1:8000"
+    direccionIP = "192.168.0.102:8000"
     APIusername = "mario"
     APIpassword = "mario"
-    valores = {"temperatura": 100,
-                "humedad_relativa": 20,
-                "presion_atomosferica": 30,
-                "radiacion_solar": 30,
-                "vel_viento": 90,
+    valores = {"temperatura": random.random(),
+                "humedad_relativa": random.random(),
+                "presion_atomosferica": random.random(),
+                "radiacion_solar": random.random(),
+                "vel_viento": random.random(),
                 "dir_viento": "N-S",
-                "precipitacion": 50}
-    region = 1
+                "precipitacion": random.random()}
+    region = 8
 
     estacion = Estacion(direccionIP, APIusername, APIpassword)
-    estacion.estacionAPI(valores, region)
+    for i in range(10):
+        estacion.estacionAPI(valores, region)

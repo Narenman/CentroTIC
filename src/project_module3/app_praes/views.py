@@ -189,6 +189,7 @@ def medicion_flujo_agua(request):
             ubicacion = dato["ubicacion"]
             # datos para mqtt
             topico = kit.nombre_kit+"/"+str(kit.colegio)
+            print(topico)
             msg = json.dumps({"accion":"dato-en-vivo", "tipo dato":"flujo agua",
                               "ubicacion": ubicacion, "kit":dato["kit_monitoreo"]})
             publishMQTT(topico,msg)
@@ -407,7 +408,7 @@ def descargar(request):
             msg = []
             for dat in modelo:
                 msg.append(dat["valor"])
-            columns = ["MQ2", "MQ3", "MQ4", "MQ5", "MQ6", "MQ7", "MQ8", "MQ9", "MQ135", "MICS5524"]
+            columns = ["MQ2", "MQ3", "MQ4", "MQ5", "MQ6", "MQ7", "MQ8", "MQ9", "MQ135", "MICS5524", "eCO2", "tvoc"]
             df = pd.DataFrame(data=msg, columns=columns)
             response = HttpResponse(content_type='text/csv')
             response['Content-Disposition'] = 'attachment; filename="datos.csv"'

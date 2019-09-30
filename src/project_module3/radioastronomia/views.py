@@ -40,6 +40,7 @@ def promedio(espectro, nfft):
     for i in range(K):
         x = x + espectro[i*nfft:(i+1)*nfft]
     x = x/K
+    x = numpy.concatenate((x[int(nfft/2):], x[:int(nfft/2)]))
     return x
 
 def ordenar_listas(lista):
@@ -708,11 +709,74 @@ def subsistemacielo(request):
     respuesta = dict()
     try:
         album = AlbumImagenes.objects.last()
+        region = RegionForm()
         respuesta.update({"imagen": album.imagen,
                     "fecha": album.fecha,
-                    "zona": album.region})
+                    "zona": album.region,
+                    "region": region})
         if request.POST:
-            print(request.POST)
+            cliente = request.POST
+            print(cliente)
+            if cliente["day"]=="dia":
+                videos = AlbumImagenes.objects.filter(fecha__gte= cliente["fechaini"], fecha__lte = cliente["fechafin"]).filter(region=cliente["region"]).filter(fecha__hour__range=["06", "18"])
+            elif cliente["day"]=="noche":
+                videos = AlbumImagenes.objects.filter(fecha__gte= cliente["fechaini"], fecha__lte = cliente["fechafin"]).filter(region=cliente["region"]).filter(region=cliente["region"]).filter(fecha__hour__range=["18", "06"])
+            respuesta.update({"videos": videos})
+
     except:
         pass
     return render(request, "radioastronomia/subsistema_camara.html", respuesta)
+
+def reproduccionvideos(request, pk):
+    respuesta = dict()
+    imagen = AlbumImagenes.objects.get(pk=pk)
+    region_id = imagen.region.id
+    
+    #conexion a la base de datos para obtener informacion ambiental
+    cursor = connection.cursor() 
+    #personalizacion del query
+    query = []
+    query.append("SELECT radioastronomia_estacionambiental.temperatura, radioastronomia_estacionambiental.humedad_relativa, radioastronomia_estacionambiental.presion_atomosferica, ")
+    query.append("radioastronomia_estacionambiental.radiacion_solar, radioastronomia_estacionambiental.vel_viento, ")
+    query.append("radioastronomia_estacionambiental.dir_viento, radioastronomia_estacionambiental.precipitacion ")
+    query.append("FROM radioastronomia_estacionambiental ")
+    query.append("INNER JOIN radioastronomia_albumimagenes ")
+    query.append("ON date_trunc('minute',radioastronomia_estacionambiental.fecha)=date_trunc('minute',radioastronomia_albumimagenes.fecha) ")
+    query.append("WHERE radioastronomia_estacionambiental.region_id=%s ")
+    query.append("AND date_trunc('day',radioastronomia_albumimagenes.fecha)=date_trunc('day',%s) ")
+    query.append("ORDER BY radioastronomia_estacionambiental.humedad_relativa;")
+    query = "".join(query)
+
+    cursor.execute(query,[region_id, imagen.fecha])
+    rows = cursor.fetchall()
+    temperatura = numpy.array([])
+    humedad = numpy.array([])
+    presion = numpy.array([])
+    radiacion = numpy.array([])
+    vel_viento = numpy.array([])
+    dir_viento = numpy.array([])
+    precipitacion = numpy.array([])
+    for row in rows:
+        temperatura = numpy.append(temperatura, row[0])
+        humedad = numpy.append(humedad, row[1])
+        presion = numpy.append(presion, row[2])
+        radiacion = numpy.append(radiacion, row[3])
+        vel_viento = numpy.append(vel_viento, row[4])
+        dir_viento = numpy.append(dir_viento, row[5])
+        precipitacion = numpy.append(precipitacion, row[6])
+    
+    temperatura = numpy.mean(temperatura)
+    humedad = numpy.mean(humedad)
+    presion = numpy.mean(presion)
+    radiacion = numpy.mean(radiacion)
+    vel_viento = numpy.mean(vel_viento)
+    precipitacion = numpy.mean(precipitacion)
+    
+    respuesta.update({"imagen": imagen,
+                      "temperatura": temperatura,
+                      "humedad": humedad,
+                      "presion": presion,
+                      "radiacion": radiacion,
+                      "vel_viento": vel_viento,
+                      "precipitacion": precipitacion})
+    return render(request, "radioastronomia/reproduccionvideos.html", respuesta)

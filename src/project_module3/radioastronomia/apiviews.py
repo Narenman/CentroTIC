@@ -6,9 +6,10 @@ from rest_framework import status
 from django.http import Http404
 
 from .models import AlbumImagenes, Espectro, EstacionAmbiental, CaracteristicasEspectro, Estado ,\
-    PosicionAntena
+    PosicionAntena, Estadocamara, Estadoestacion
 from .serializers import AlbumSerializer, EstacionAmbientalSerializer, EspectroSerializer ,\
-    CaractEspectroSerializer, EstadoSerializer, PosicionAntenaSerializer
+    CaractEspectroSerializer, EstadoSerializer, PosicionAntenaSerializer ,\
+        EstadoCamaraSerializer, EstadoEstacionSerializer
 
 class AlbumAPI(generics.CreateAPIView):
     """ Esta API se encarga de las imagenes recolectadas por la camara startlight 
@@ -82,6 +83,55 @@ class EstadoAPI(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class EstadoCamaraAPI(APIView):
+    """Esta API es para mirar el estado de la camara """
+    authentication_classes = ()
+    permission_classes = ()
+
+    def get_object(self, pk):
+        try:
+            return Estadocamara.objects.get(pk=pk)
+        except Estadocamara.DoesNotExist:
+            raise Http404
+
+    def put(self, request, pk, format=None):
+        estado = self.get_object(pk=pk)
+        serializer = EstadoCamaraSerializer(estado, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.erros, status=status.HTTP_400_BAD_REQUEST)
+
+    def get(self, request, pk, format=None):
+        estado = self.get_object(pk=pk)
+        respuesta = {"activo": estado.camara}
+        return Response(respuesta)
+
+class EstadoEstacionAPI(APIView):
+    """Esta API es para mirar el estado de la Estacion metereologica DAVIS """
+    authentication_classes = ()
+    permission_classes = ()
+
+    def get_object(self, pk):
+        try:
+            return Estadoestacion.objects.get(pk=pk)
+        except Estadoestacion.DoesNotExist:
+            raise Http404
+
+    def put(self, request, pk, format=None):
+        estado = self.get_object(pk=pk)
+        serializer = EstadoEstacionSerializer(estado, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.erros, status=status.HTTP_400_BAD_REQUEST)
+
+    def get(self, request, pk, format=None):
+        estado = self.get_object(pk=pk)
+        respuesta = {"activo": estado.estacion}
+        return Response(respuesta)
 
 class PosicionAntenaAPI(APIView):
     def post(self, request, format=None):

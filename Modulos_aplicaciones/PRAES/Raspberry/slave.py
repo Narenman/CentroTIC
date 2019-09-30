@@ -114,7 +114,7 @@ def suscriptor_MQTT():
     para poder recibir las ordenes del maestro
     """
     def on_connect(client, userdata, flags, rc):
-        client.subscribe("KITV2/Radiogis")
+        client.subscribe("KITV2a001/Radiogis")
         if rc == 0:
             print("conexion exitosa con el broker")
 

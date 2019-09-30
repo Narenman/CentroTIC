@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'particulado',
     'pulsioximetria',
     'radioastronomia',
+    'bicicletas',
     ##
     'rest_framework',
     'rest_framework.authtoken',

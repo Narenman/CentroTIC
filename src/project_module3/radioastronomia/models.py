@@ -148,7 +148,7 @@ class Estado(models.Model):
     frecuencia = models.FloatField()
     azimut = models.FloatField()
     elevacion = models.FloatField()
-
+  
     class Meta:
         db_table = ''
         managed = True
@@ -157,6 +157,28 @@ class Estado(models.Model):
 
     def __str__(self):
         return "estado: "+ str(self.activo)
+
+class Estadocamara(models.Model):
+    camara = models.BooleanField(default=False)
+    def __str__(self):
+        return "estado: "+ str(self.camara)
+
+    class Meta:
+        db_table = ''
+        managed = True
+        verbose_name = 'Estadocamara'
+        verbose_name_plural = 'Estadocamaras'
+
+class Estadoestacion(models.Model):
+    estacion = models.BooleanField(default=False)
+    def __str__(self):
+        return "estado: "+str(self.estacion)
+
+    class Meta:
+        db_table = ''
+        managed = True
+        verbose_name = 'Estadoestacion'
+        verbose_name_plural = 'Estadoestacions'
 
 class RBW(models.Model):
     frecuencia_muestreo = models.IntegerField()
