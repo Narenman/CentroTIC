@@ -38,6 +38,7 @@ urlpatterns = [
     path('radioastronomia/', include('radioastronomia.urls', namespace="radioastronomia")),
     path('particulado/', include('particulado.urls', namespace="particulado")),
     path('pulsioximetria/', include('pulsioximetria.urls', namespace="pulsioximetria")),
+    path('bicicletas/', include('bicicletas.urls', namespace="bicicletas")),
 ]
 
 #para los archivos de media
