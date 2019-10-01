@@ -119,7 +119,7 @@ class MQTTSuscriptor():
             else:
                 print("El hilo de la estacion ya esta corriendo")
         
-        if accion["accion"] == "detener":
+        if accion["accion"] == "detener" or accion["accion"]=="detener-estacion":
             stop_thread3 = True
             stop_thread2 = True
 
@@ -144,7 +144,7 @@ if __name__ == "__main__":
     stop_thread3 = False
 
     # IP = "192.168.0.101:8000"
-    IP = "192.168.0.102:8000"
+    IP = "192.168.0.104:8000"
     IPbroker = "35.243.199.245"
     usernameAPI  = "mario"
     passwordAPI = "mario"
