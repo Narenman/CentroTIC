@@ -31,6 +31,8 @@ urlpatterns = [
     path('control-manual', views.control_manual, name="control-manual"),
     path("control-automatico", views.control_automatico, name="control-automatico"),
     path("detener", views.detener, name="detener"),
+    path("detener/subsistemas", views.detener_subsistemas, name="detener-subsistemas"),
+    path("activar/subsistemas", views.activar_subsistemas, name="activar-subsistemas"),
     # urls para graficas
     path('grafica-espectro', views.json_spectro, name="json-espectro"),
     path('barrido-espectro', views.barrido_json, name="barrido-espectro"),

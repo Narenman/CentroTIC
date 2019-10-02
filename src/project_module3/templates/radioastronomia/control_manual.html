@@ -26,6 +26,73 @@
         <div class="mainplot">
             <canvas id="myChart" width="100%" ></canvas>
         </div>
+
+        <h3> Estado subsistemas </h3>
+        <table class="table table-borderless">
+        <thead>
+            <tr>
+            <th scope="col">Subsistema</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Acción</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <th scope="row">Estación de monitoreo</th>
+            <td>
+            <div id="eambiental">
+                <div class="spinner-grow" role="status">
+                <span class="sr-only">Loading...</span>
+                </div>Activo 
+            </div>
+            </td>
+
+            <td >
+            <div id="fambiental">
+                 <button id="bot_estacion" type="submit" class="btn btn-danger">
+                 {% bootstrap_icon "star" %} Detener
+                </button>
+            </div>
+
+            <div id="inaestacion">
+            <p>INACTIVO</p>
+
+            </div>
+
+            </td>
+
+           
+            </tr>
+            <tr>
+            <th scope="row">Cámara Oculus All Sky</th>
+            
+
+            <td>
+            <div id="ecamara">
+            <div class="spinner-grow" role="status">
+            <span class="sr-only">Loading...</span>
+            </div>Activo</td>
+
+            </td>
+            <td >
+            <div id="fcamara">
+                <button id="bot_camara" type="submit" class="btn btn-danger">
+                 {% bootstrap_icon "star" %} Detener
+                </button>
+            </div>
+
+             <div id="inacamara">
+           <p> INACTIVO</p>
+         
+           </div>
+           
+            </td>
+            </tr>
+           
+        </tbody>
+        </table>
+        
     </div>
 
      <div class="col">
@@ -188,10 +255,12 @@
 
 </div>
 
+
 <script src="{% static 'radioastronomia/js/librerias/highcharts.js' %}"></script>
 <script src="{% static 'radioastronomia/js/librerias/exporting.js' %}"></script>
 <script src="{% static 'radioastronomia/js/librerias/export-data.js' %}"></script>
 
+<script src="{% static 'radioastronomia/js/loadsystems.js' %}"></script>
 <script src="{% static 'radioastronomia/js/grafica.js' %}"></script>
 <script src="{% static 'radioastronomia/js/loadining.js'%}"></script>
 <script src="{% static 'radioastronomia/js/rfimode.js'%}"></script>

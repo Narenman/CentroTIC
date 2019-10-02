@@ -55,16 +55,44 @@ def ordenar_listas(lista):
         y.append([row["frec"], row["espectro"]])
     return y
 
-def detener(request):
-    # cliente = request.POST
-    # print(cliente)
-    # stop = cliente["stop"]
-    # topico = "radioastronomia/RFI"
-    # msg = {"accion": stop}
-    # publishMQTT(topico, json.dumps(msg))
-    # return render(request, "radioastronomia/control_manual.html", {})
+#ordenes explicitas MQTT
 
-    """ Es para mostrar la interfaz del control manual del espectro """
+@csrf_exempt
+def detener_subsistemas(request):
+    """Recibe las instrucciones para detener los subsistemas camara y
+    estacion """
+    if request.POST:
+        cliente = request.POST
+        if cliente["detener"]=="estacion":
+            msg = {"accion": "detener-estacion"}
+            topico = "radioastronomia/RFI"
+            publishMQTT(topico, json.dumps(msg))
+        elif cliente["detener"]=="camara":
+            msg = {"accion": "detener-camara"}
+            topico = "radioastronomia/RFI"
+            publishMQTT(topico, json.dumps(msg))
+    
+    return JsonResponse({})
+
+@csrf_exempt
+def activar_subsistemas(request):
+    """Recibe las instrucciones para activar los subsistemas camara 
+    y estacion """
+    if request.POST:
+        cliente = request.POST
+        if cliente["activar"]=="estacion":
+            msg = {"accion": "activar-estacion"}
+            topico = "radioastronomia/RFI"
+            publishMQTT(topico, json.dumps(msg))
+        elif cliente["activar"]=="camara":
+            msg = {"accion": "activar-camara"}
+            topico = "radioastronomia/RFI"
+            publishMQTT(topico, json.dumps(msg))
+    return JsonResponse({})
+
+
+def detener(request):
+    """ Es para detener todos los subsistemas """
     form = RegionForm()
     antena = CaracteristicasAntena.objects.all()
     antena = antena.values("id","referencia")     
@@ -741,7 +769,7 @@ def reproduccionvideos(request, pk):
     query.append("radioastronomia_estacionambiental.dir_viento, radioastronomia_estacionambiental.precipitacion ")
     query.append("FROM radioastronomia_estacionambiental ")
     query.append("INNER JOIN radioastronomia_albumimagenes ")
-    query.append("ON date_trunc('minute',radioastronomia_estacionambiental.fecha)=date_trunc('minute',radioastronomia_albumimagenes.fecha) ")
+    query.append("ON date_trunc('second',radioastronomia_estacionambiental.fecha)=date_trunc('second',radioastronomia_albumimagenes.fecha) ")
     query.append("WHERE radioastronomia_estacionambiental.region_id=%s ")
     query.append("AND date_trunc('day',radioastronomia_albumimagenes.fecha)=date_trunc('day',%s) ")
     query.append("ORDER BY radioastronomia_estacionambiental.humedad_relativa;")
@@ -756,6 +784,7 @@ def reproduccionvideos(request, pk):
     vel_viento = numpy.array([])
     dir_viento = numpy.array([])
     precipitacion = numpy.array([])
+    print(len(rows), "tamano de la base consultada")
     for row in rows:
         temperatura = numpy.append(temperatura, row[0])
         humedad = numpy.append(humedad, row[1])

@@ -1,5 +1,7 @@
 {% extends 'radioastronomia/base.html' %}
 {% load static %}
+{% load bootstrap3 %}
+
 
 {% block body_block %}
 <div class="container">
@@ -8,12 +10,30 @@
             <h3> Subistema estación de monitoreo ambiental </h3>
             <p> El subsistema de estación monitoreo ambiental se encarga de ir recolectando variables ambientales como temperatura, humedad relativa, presión atmosférica, luz ultravioleta,  precipitaciones, radiación solar, y velocidad y dirección del viento, estas variables se recolectarán cada vez que se haga una medida del espectro radioeléctrico por el subsistema RFI con el fin de establecer correlaciones que permitan estudiar fenómenos ambientales con medidas de RF y así establecer eventos que puedan afectar las medidas del espectro, este subsistema se representa en la figura donde se compone principalmente por:</p>
             <img src="{% static 'radioastronomia/img/subsistema_estacion_monitoreo.jpg' %}" class="img-fluid" alt="Responsive image">
-            <ul>
-            <li>Estación metereológica General Purpose Weather Station metone</li>
-            <li>Sistema embebido raspberry pi4 para comunicación con el servidor</li>
-            <li>Comunicación vía Ethernet usando cable CAT6a</li>
-            <li>Conexión eléctrica junto con núcleos de ferrita para reducir la circulación de corrientes parásitas que puedan generar una onda electromagnética</li>
-            </ul>
+          
+           <div id="eambiental">
+                <h4>Estado de la estación metereológica</h4>
+                <div class="spinner-grow" role="status">
+                <span class="sr-only">Loading...</span>
+                </div>Activo 
+            </div>
+
+            <div id="fambiental">
+                 <button id="bot_estacion" type="submit" class="btn btn-danger">
+                 {% bootstrap_icon "star" %} Detener
+                </button>
+            </div>
+
+            <div id="inaestacion">
+           <h4>Estado de la estación metereológica</h4>
+            <p>INACTIVO</p>
+            </div>
+
+            <div id="ecamara"></div>
+            <div id="fcamara">
+            <p id="bot_camara"> </p>
+            </div>
+            <div id="inacamara"></div>
         </div>
 
         <div class="col-2">
@@ -45,4 +65,6 @@
         </div>
     </div>
 </div>
+<script src="{% static 'radioastronomia/js/loadsystems.js' %}"></script>
+
 {% endblock body_block %}
