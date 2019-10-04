@@ -6,13 +6,12 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import mpld3
-from django.core import serializers
-
+import logging
 from .models import AlbumImagenes, Espectro, Estado, CaracteristicasAntena, \
                     CaracteristicasEstacion, RBW, CaracteristicasEspectro, RegionCampana, \
                         PosicionAntena, Servicios, Bandas, EstacionAmbiental
 from .forms import EspectroForm, RFIForm, RegionForm
-
+from django.core import serializers
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponseRedirect
@@ -38,9 +37,10 @@ def promedio(espectro, nfft):
     K = int(len(espectro)/(nfft))
     x = numpy.zeros(nfft)
     for i in range(K):
-        x = x + espectro[i*nfft:(i+1)*nfft]
+        x = x + 10**(espectro[i*nfft:(i+1)*nfft]/10)
     x = x/K
     x = numpy.concatenate((x[int(nfft/2):], x[:int(nfft/2)]))
+    x = 10*numpy.log10(x)
     return x
 
 def ordenar_listas(lista):
@@ -55,6 +55,32 @@ def ordenar_listas(lista):
         y.append([row["frec"], row["espectro"]])
     return y
 
+def logs(level, msg, st):
+    """entradas:
+    msg: string, por ejemplo '{variable} esta variable es critica'
+    level: puede ser 'error', 'critical', 'warning', 'info'
+    st: por defecto es False, cuando es True es cuando exclusivamente queremos 
+    capturar los errores de las exepciones de los errores
+    """
+    logging.basicConfig(filename="output.log", filemode="w", format='%(asctime)s - %(levelname)s- %(message)s', level=logging.INFO)
+    
+    if level=="error" and st==False:
+        """cuando entra en las exepciones """
+        logging.error(msg)
+    elif level=="error" and st==True:
+        """exclusivo si queremos capturar exepciones"""
+        logging.error(msg, exc_info=True)
+    elif level=="critical":
+        """cuando algun valor es cero o algo asi"""
+        logging.critical(msg)
+    elif level=="warning":
+        """cuando alguna rutina puede trabajar pero no del todo bien"""
+        logging.warning(msg)
+    elif level=="info":
+        logging.info(msg)
+        
+        
+
 #ordenes explicitas MQTT
 
 @csrf_exempt
@@ -67,10 +93,12 @@ def detener_subsistemas(request):
             msg = {"accion": "detener-estacion"}
             topico = "radioastronomia/RFI"
             publishMQTT(topico, json.dumps(msg))
+            logs("warning", "Envio MQTT para detener estacion individualmente",False)
         elif cliente["detener"]=="camara":
             msg = {"accion": "detener-camara"}
             topico = "radioastronomia/RFI"
             publishMQTT(topico, json.dumps(msg))
+            logs("warning", "Envio MQTT para detener camara individualmente", False)
     
     return JsonResponse({})
 
@@ -84,10 +112,12 @@ def activar_subsistemas(request):
             msg = {"accion": "activar-estacion"}
             topico = "radioastronomia/RFI"
             publishMQTT(topico, json.dumps(msg))
+            logs("warning", "activar subsistemas nunca se habilito", False)
         elif cliente["activar"]=="camara":
             msg = {"accion": "activar-camara"}
             topico = "radioastronomia/RFI"
             publishMQTT(topico, json.dumps(msg))
+            logs("warning", "activar subsistemas nunca se habilito", False)
     return JsonResponse({})
 
 
@@ -109,10 +139,12 @@ def detener(request):
             topico = "radioastronomia/RFI"
             #envio de la instruccion al subsistema RFI
             publishMQTT(topico, json.dumps(msg))
+            logs("info", "se han detenido todos los subsistemas", False)
             respuesta.update({"imagenes": album, "form": form, "antenna": antena})
         else:
             respuesta.update({"imagenes": album, "form": form, "antenna": antena})
     except:
+        logs("error", "no hay videos registrados", True)
         form = RegionForm()   
         respuesta = {"form": form, "antenna": antena}             
     return render(request, "radioastronomia/control_manual.html", respuesta)
@@ -132,94 +164,99 @@ def analisis_tiempo(request):
     region = RegionCampana.objects.all()
     region = region.values("id", "zona")
     respuesta = {"bandas":frec_central,
-                 "frecmuestreo": frec_muestreo,
-                 "nfft": bandas, "region":region}
-    if request.POST:
-        cliente = request.POST
-        print(cliente)
-        nfft = int(cliente["nfft"])
-        frec_central = int(float(cliente["bandas"])*1e6)
-        frec_muestreo = int(float(cliente["frecmuestreo"])*1e3)
-        region = cliente["region"]
-        #consulta de la banda seleccionada
-        #aca hago la clasificacion para crear el reporte
-        print((frec_central-frec_muestreo/2)/1e6)
-        print((frec_central+frec_muestreo/2)/1e6)
-        servicios = Servicios.objects.filter(frecuencia_inicial__gte=(frec_central-frec_muestreo/2)/1e6)
-        servicios = servicios.values("servicio", "frecuencia_inicial", "frecuencia_final")
-        cnabf = []
-        for ser in servicios:
-            cnabf.append(ser)
-            if ser["frecuencia_final"]>=(frec_central+frec_muestreo/2)/1e6:
-                break
-        print(cnabf)
+                "frecmuestreo": frec_muestreo,
+                "nfft": bandas, "region":region}
+    try:
+        if request.POST:
+            cliente = request.POST
+            print(cliente)
+            nfft = int(cliente["nfft"])
+            frec_central = int(float(cliente["bandas"])*1e6)
+            frec_muestreo = int(float(cliente["frecmuestreo"])*1e3)
+            region = cliente["region"]
+            #consulta de la banda seleccionada
+            #aca hago la clasificacion para crear el reporte
+            print((frec_central-frec_muestreo/2)/1e6)
+            print((frec_central+frec_muestreo/2)/1e6)
+            servicios = Servicios.objects.filter(frecuencia_inicial__gte=(frec_central-frec_muestreo/2)/1e6)
+            servicios = servicios.values("servicio", "frecuencia_inicial", "frecuencia_final")
+            cnabf = []
+            for ser in servicios:
+                cnabf.append(ser)
+                if ser["frecuencia_final"]>=(frec_central+frec_muestreo/2)/1e6:
+                    break
+            print(cnabf)
 
-        services = json.dumps(cnabf, cls=DjangoJSONEncoder)
-        max_col     = max([len(m['servicio'].split('-')) for m in json.loads(services)])
-        boxWidth    = len(cnabf)*160*2
-        boxHeight   = max_col*(50+1)
-        canvaSize   = {"Width": boxWidth,
-                       "Height": boxHeight}
+            services = json.dumps(cnabf, cls=DjangoJSONEncoder)
+            max_col     = max([len(m['servicio'].split('-')) for m in json.loads(services)])
+            boxWidth    = len(cnabf)*160*2
+            boxHeight   = max_col*(50+1)
+            canvaSize   = {"Width": boxWidth,
+                        "Height": boxHeight}
 
-        # consulta del espectro
-        espectro = Espectro.objects.filter(region=region).filter(frec_central=frec_central).filter(frec_muestreo=frec_muestreo).filter(nfft=nfft).filter(fecha__range=[cliente["fechaini"], cliente["fechafin"]])
-        espectro = espectro.values("fecha", "espectro")
-        #creacion del espectrograma
-        char_ener = []
-        tiempo = []
-        frecuencia = []
-        date = []
-        espec = []
+            # consulta del espectro
+            espectro = Espectro.objects.filter(region=region).filter(frec_central=frec_central).filter(frec_muestreo=frec_muestreo).filter(nfft=nfft).filter(fecha__range=[cliente["fechaini"], cliente["fechafin"]])
+            espectro = espectro.values("fecha", "espectro")
+            #creacion del espectrograma
+            char_ener = []
+            tiempo = []
+            frecuencia = []
+            date = []
+            espec = []
 
-        if len(espectro)!=0:
-            for esp in espectro:
-                X = esp["espectro"]
-                fecha = esp["fecha"]
-                X = numpy.asarray(X)
-                #promedio de los espectros por cada tiempo escogido
-                X = promedio(espectro=X, nfft=nfft)
-                char_ener.append(numpy.sum(10**(X/10)))
-                #variables espectrograma
-                tiempo.append(fecha.strftime('%m-%d %H:%M:%S'))
-                f = numpy.arange(-int(nfft/2),int(nfft/2),1)*frec_muestreo/(nfft*2) + frec_central
+            if len(espectro)==0:
+                logs("critical", "No hay datos suficientes de espectro para analisis temporal", False)
+            if len(espectro)!=0:
+                for esp in espectro:
+                    X = esp["espectro"]
+                    fecha = esp["fecha"]
+                    X = numpy.asarray(X)
+                    #promedio de los espectros por cada tiempo escogido
+                    X = promedio(espectro=X, nfft=nfft)
+                    char_ener.append(numpy.sum(10**(X/10)))
+                    #variables espectrograma
+                    tiempo.append(fecha.strftime('%m-%d %H:%M:%S'))
+                    f = numpy.arange(-int(nfft/2),int(nfft/2),1)*frec_muestreo/(nfft*2) + frec_central
 
-                for i in range(nfft):
-                    frecuencia.append(f[i]/1e6)
-                    date.append(fecha.strftime('%m-%d %H:%M:%S'))
-                    espec.append(X[i])
+                    for i in range(nfft):
+                        frecuencia.append(f[i]/1e6)
+                        date.append(fecha.strftime('%m-%d %H:%M:%S'))
+                        espec.append(X[i])
 
-            df = pd.DataFrame(data={"Frecuencia":frecuencia, "Tiempo":date, "espectro": espec})
-            df = df.pivot("Tiempo", "Frecuencia", "espectro")
-            # # espacio para la grafica del espectrograma
+                df = pd.DataFrame(data={"Frecuencia":frecuencia, "Tiempo":date, "espectro": espec})
+                df = df.pivot("Tiempo", "Frecuencia", "espectro")
+                # # espacio para la grafica del espectrograma
 
-            fig, ax = plt.subplots()
-            sns.distplot(10*numpy.log10(char_ener), kde_kws={"color": "k", "lw": 3, "label": "KDE"},
-                hist_kws={"lw": 3, "label": "Histograma"}, ax=ax)
-            ax.set(xlabel='Energia dBm', ylabel='',
-            title='Histograma del comportamiento de la energia')
-            ax.grid()
-            histograma = mpld3.fig_to_html(fig)
+                fig, ax = plt.subplots()
+                sns.distplot(10*numpy.log10(char_ener), kde_kws={"color": "k", "lw": 3, "label": "KDE"},
+                    hist_kws={"lw": 3, "label": "Histograma"}, ax=ax)
+                ax.set(xlabel='Energia dBm', ylabel='',
+                title='Histograma del comportamiento de la energia')
+                ax.grid()
+                histograma = mpld3.fig_to_html(fig)
 
-            fig1, ax1 = plt.subplots()
-            ax1.plot(tiempo, 10*numpy.log10(char_ener))
-            ax1.set(xlabel="Tiempo DD H:M:s", ylabel="Energia dBm", title="Energia banda en funcion del tiempo")
-            ax1.grid()
-            tiempo_energia = mpld3.fig_to_html(fig1)
+                fig1, ax1 = plt.subplots()
+                ax1.plot(tiempo, 10*numpy.log10(char_ener))
+                ax1.set(xlabel="Tiempo DD H:M:s", ylabel="Energia dBm", title="Energia banda en funcion del tiempo")
+                ax1.grid()
+                tiempo_energia = mpld3.fig_to_html(fig1)
 
-            fig2, ax2 = plt.subplots()
-            sns.heatmap(df, yticklabels=5, xticklabels=120, cmap="coolwarm", ax=ax2)
-            ax2.set(xlabel="Frecuencia MHz", ylabel="Tiempo", title="Espectrograma")
-            ax2.grid()
-            espectrograma = mpld3.fig_to_html(fig2)
+                fig2, ax2 = plt.subplots()
+                sns.heatmap(df, yticklabels=5, xticklabels=120, cmap="coolwarm", ax=ax2)
+                ax2.set(xlabel="Frecuencia MHz", ylabel="Tiempo", title="Espectrograma")
+                ax2.grid()
+                espectrograma = mpld3.fig_to_html(fig2)
 
-            respuesta.update({"grafica": histograma,
-                            "enetiempo":tiempo_energia,
-                            "espectrograma": espectrograma,
-                            "frec_central": frec_central/1e6,
-                            "frec_muestreo": frec_muestreo,
-                            "services": services, 
-                            "canvaSize": canvaSize})
-
+                respuesta.update({"grafica": histograma,
+                                "enetiempo":tiempo_energia,
+                                "espectrograma": espectrograma,
+                                "frec_central": frec_central/1e6,
+                                "frec_muestreo": frec_muestreo,
+                                "services": services, 
+                                "canvaSize": canvaSize})
+        logs("info", f"Analisis temporal para {frec_central}", False)
+    except:
+        logs("error", "Falta de datos", True)
     return render(request,"radioastronomia/analisis_tiempo.html", respuesta)
 
 
@@ -311,6 +348,7 @@ def espectro_angulos(request):
             #datos para javascript
             angular = list(map(lambda elevacion, energia: [elevacion, energia], elevacion, energia))
             respuesta.update({"pos":"elevacion"})
+            logs("info", f"analisis por azimut en frecuencia {frec_central}", False)
             
         elif "elevacion" in cliente.keys():
             #variables de entrada
@@ -368,8 +406,10 @@ def espectro_angulos(request):
             #datos para javascript
             angular = list(map(lambda elevacion, energia: [elevacion, energia], elevacion, energia))
             respuesta.update({"pos":"azimut"})
+            logs("info", "analisis por elevacion de {frec_central}", False)
     else:
         angular = []
+        logs("warning", "ninguna respuesta angular seleccionada", False)
     respuesta.update({"angular": angular})
     return JsonResponse(respuesta)
 
@@ -442,6 +482,7 @@ def barrido_json(request):
                             "data": data, "data_energia": data_energia,
                             "frec_muestreo": frec_muestreo,
                             "nfft": nfft})
+    logs("info", f"barrido de frecuencias exitoso para region {cliente['region']}", False)
     return JsonResponse(respuesta)
 
 
@@ -484,9 +525,11 @@ def json_spectro(request):
             respuesta.append([frec[i], x[i]])
     except:
         respuesta = {}
+        logs("error", "no hay datos del espectro", True)
     return JsonResponse({"espectro":respuesta})
 
 #modo 4 de operacion
+#aun no tiene logs
 def comparacion_zonas(request):
 
     regiones = RegionCampana.objects.all()
@@ -608,12 +651,14 @@ def control_manual(request):
             topico = "radioastronomia/RFI"
             #envio de la instruccion al subsistema RFI
             publishMQTT(topico, json.dumps(msg))
+            logs("info", f"operacion manual activada para la frecuencia {cliente['frequency']} MHz", False)
             respuesta.update({"imagenes": album, "form": form, "antenna": antena})
         else:
             respuesta.update({"imagenes": album, "form": form, "antenna": antena})
     except:
         form = RegionForm()   
-        respuesta = {"form": form, "antenna": antena}             
+        respuesta = {"form": form, "antenna": antena}
+        logs("error", "falta de videos", True)             
     return render(request, "radioastronomia/control_manual.html", respuesta)
 
 @csrf_exempt
@@ -640,6 +685,7 @@ def control_automatico(request):
         topico = "radioastronomia/RFI"
         # #envio de la instruccion al subsistema RFI
         publishMQTT(topico, json.dumps(msg))
+        logs("info", f"Modo automatico activo para {cliente['finicial']}~{cliente['ffinal']} MHz", False)
     respuesta.update({"form": form, "antenna": antena})
 
     return render(request, "radioastronomia/control_automatico.html", respuesta)
@@ -655,18 +701,21 @@ class CaracteristicasAntenaCreateView(CreateView):
     template_name = "radioastronomia/caracteristicasantena_create.html"
     fields = "__all__"
     success_url = reverse_lazy("radioastronomia:antenas")
+    logs("info", "Ha creado una antena", False)
 
 class CaracteristicasAntenaUpdateView(UpdateView):
     model = CaracteristicasAntena
     template_name = "radioastronomia/caracteristicasantena_update.html"
     fields = "__all__"
     success_url = reverse_lazy("radioastronomia:antenas")
+    logs("warning", "Actualizacion de antenas", True)
 
 class CaracteristicasAntenaDeleteView(DeleteView):
     model = CaracteristicasAntena
     template_name = "radioastronomia/caracteristicasantena_delete.html"
     success_url = reverse_lazy("radioastronomia:antenas")
     context_object_name = "caracteristicasantena"
+    logs("warning","Ha borrado una antena", True)
 
 #informacion adicional de la estacion de monitoreo
 class CaracteristicasEstacionListView(ListView):
@@ -679,18 +728,21 @@ class CaracteristicasEstacionCreateView(CreateView):
     template_name = "radioastronomia/caracteristicasestacion_create.html"
     fields = "__all__"
     success_url = reverse_lazy("radioastronomia:subsistema-estacion")
+    logs("info", "Caracteristicas de la estacion creada", False)
 
 class CaracteristicasEstacionUpdateView(UpdateView):
     model = CaracteristicasEstacion
     template_name = "radioastronomia/caracteristicasestacion_update.html"
     fields = "__all__"
     success_url = reverse_lazy("radioastronomia:subsistema-estacion")
+    logs("warning", "Actualizacion de la estacion", False)
 
 class CaracteristicasEstacionDeleteView(DeleteView):
     model = CaracteristicasEstacion
     template_name = "radioastronomia/caracteristicasestacion_delete.html"
     context_object_name = "caracterstacion"
     success_url = reverse_lazy("radioastronomia:subsistema-estacion")
+    logs("warning", "Ha borrado de la estacion metereologica", False)
 
 ## informacion sobre las resoluciones espectrales
 class RBWListView(ListView):
@@ -703,6 +755,7 @@ class RBWDeleteView(DeleteView):
     template_name = "radioastronomia/rbw_delete.html"
     context_object_name = "rbw"
     success_url = reverse_lazy("radioastronomia:rbw")
+    logs("warning", "Ha borrado un RBW", False)
 
 def RBWcreate(request):
     if request.POST:
@@ -712,6 +765,7 @@ def RBWcreate(request):
         rbw = float(frecuencia_muestreo)/float(nfft)
         rbwmodel = RBW(frecuencia_muestreo=frecuencia_muestreo, nfft=nfft, rbw=rbw)
         rbwmodel.save()
+        logs("info", "Ha creado un RBW", False)
         return HttpResponseRedirect(reverse_lazy("radioastronomia:rbw"))
     return render(request, "radioastronomia/rbw_create.html")
 
@@ -732,6 +786,7 @@ class RegionCreateView(CreateView):
     template_name = "radioastronomia/region_create.html"
     fields = "__all__"
     success_url = reverse_lazy("radioastronomia:index")
+    logs("info", "Region Creada", False)
 
 def subsistemacielo(request):
     respuesta = dict()
@@ -750,9 +805,10 @@ def subsistemacielo(request):
             elif cliente["day"]=="noche":
                 videos = AlbumImagenes.objects.filter(fecha__gte= cliente["fechaini"], fecha__lte = cliente["fechafin"]).filter(region=cliente["region"]).filter(region=cliente["region"]).filter(fecha__hour__range=["18", "06"])
             respuesta.update({"videos": videos})
+            logs("info", "consulta de videos", False)
 
     except:
-        pass
+        logs("error", "Consulta de videos", True)
     return render(request, "radioastronomia/subsistema_camara.html", respuesta)
 
 def reproduccionvideos(request, pk):
@@ -808,4 +864,5 @@ def reproduccionvideos(request, pk):
                       "radiacion": radiacion,
                       "vel_viento": vel_viento,
                       "precipitacion": precipitacion})
+    logs("info", "Video consultado y en reproduccion", False)
     return render(request, "radioastronomia/reproduccionvideos.html", respuesta)
