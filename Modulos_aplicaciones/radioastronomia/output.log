@@ -1,0 +1,11 @@
+2019-10-03 09:13:20,119 - INFO- consulta exitosa
+2019-10-03 09:13:20,119 - WARNING- Ha actualizado un valor
+2019-10-03 09:13:20,120 - WARNING- ha borrado un valor
+2019-10-03 09:13:20,121 - INFO- Operacion del sistema exitosa
+2019-10-03 09:13:20,121 - CRITICAL- no se puede hacer la operacion matemmatica
+2019-10-03 09:13:20,121 - ERROR- ha entrado a la exepcion
+2019-10-03 09:13:21,712 - ERROR- un error ni el mas ...
+Traceback (most recent call last):
+  File "<ipython-input-5-625a9bfa8f4d>", line 2, in <module>
+    a = 20/0
+ZeroDivisionError: division by zero

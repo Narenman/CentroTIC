@@ -8,21 +8,20 @@ def index(request):
 
 def json_pmsA(request):
     try:
-        pmsa = PMS5003A.objects.last()
-        print(pmsa.muestra)
-        respuesta = {"pmsA": pmsa.muestra, "dato1": pmsa.dato1,
-                    "dato2": pmsa.dato2, "dato3": pmsa.dato3, "id":pmsa.id}
+        pmsa = PMS5003A.objects.all()
+        pmsa = pmsa.values("muestra", "dato1", "dato2", "dato3", "id")
+        pmsa = list(map(lambda datos: [datos["muestra"], datos["dato1"], datos["dato2"],datos["dato3"],datos["id"]], pmsa))
+        respuesta = {"pmsA": pmsa}
     except:
         respuesta = {}
     return JsonResponse(respuesta)
 
 def json_pmsB(request):
     try:
-        pmsa = PMS5003B.objects.last()
-        print(pmsa.muestra)
-        respuesta = {"pmsA": pmsa.muestra, "dato1": pmsa.dato1,
-                    "dato2": pmsa.dato2, "dato3": pmsa.dato3, "id":pmsa.id,
-                    "temp": pmsa.temp, "hum":pmsa.hum}
+        pmsa = PMS5003B.objects.all()
+        pmsa = pmsa.values("muestra", "dato1", "dato2", "dato3","temp","hum", "id")
+        pmsa = list(map(lambda datos: [datos["muestra"], datos["dato1"], datos["dato2"],datos["dato3"],datos["temp"],datos["hum"],datos["id"]], pmsa))
+        respuesta = {"pmsB": pmsa}
     except:
         respuesta = {}
     return JsonResponse(respuesta)

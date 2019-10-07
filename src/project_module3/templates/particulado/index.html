@@ -91,7 +91,7 @@
           </div>
         </div>
 
-        <!-- Mobile Menu Start -->
+        <!-- Mobile Menu Start -->9
         <ul class="mobile-menu navbar-nav">
           <li>
             <a class="page-scroll" href="#hero-area">
@@ -131,7 +131,7 @@
           <div class="row">
             <div class="col-md-12 col-sm-12">
               <div class="contents text-center">
-                <h2 class="head-title wow fadeInUp">Monitoreo En Tiempo Real De Material Particulado.<br> Pm10, Pm2.5</h2>
+                <h2 class="head-title wow fadeInUp">Estación de Monitoreo de Material Particulado.<br> PM 10, PM 2.5</h2>
               </div>
               <div class="img-thumb text-center wow fadeInUp" data-wow-delay="0.6s">
                 <img class="img-fluid" src={% static "particulado/assets/img/hero-1.png" %} alt="">
@@ -198,7 +198,7 @@
                           Confiable
                         </h4>
                         <p>
-                          La caracterización y calibración realizada ofrece aproximadamente un 95% de precisión.
+                          La caracterización y calibración realizada ofrece aproximadamente un 70% de precisión.
                         </p>
                       </div>
                     </div>
@@ -224,7 +224,7 @@
           </div>
           <div class="col-lg-6 col-md-12 col-sm-12 padding-none">
             <div class="feature-thumb wow fadeInRight" data-wow-delay="0.3s">
-              <img src={% static "particulado/assets/img/feature/img-1.jpg" %} alt="">
+              <img src={% static "particulado/assets/img/feature/img3.jpg" %} alt="">
             </div>
           </div>
         </div>
@@ -239,24 +239,27 @@
         <div class="row">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="slider-center slider">
+
+              <div>
+                   <img class="img-fluid" src={% static "particulado/assets/img/slide/img2.jpg" %} alt="">
+                  </div>
+
               <div>
                 <img class="img-fluid" src= {% static "particulado/assets/img/slide/img1.jpg" %} alt="">
               </div>
+              
               <div>
-                <img class="img-fluid" src={% static "particulado/assets/img/slide/img2.jpg" %} alt="">
-              </div>
-              <div>
-                <img class="img-fluid" src={% static "particulado/assets/img/slide/img3.jpg" %} alt="">
+                <img class="img-fluid" src={% static "particulado/assets/img/slide/img3.png" %} alt="">
               </div>
               <div>
                 <img class="img-fluid" src={% static "particulado/assets/img/slide/img4.jpg" %} alt="">
               </div>
+
               <div>
-                <img class="img-fluid" src= {% static "particulado/assets/img/slide/img5.jpg" %} alt="">
-              </div>
-              <div>
-                <img  class="img-fluid" src={% static "particulado/assets/img/slide/img6.jpg" %} alt="">
-              </div>
+                  <img class="img-fluid" src={% static "particulado/assets/img/slide/img14.png" %} alt="">
+                </div>
+              
+
             </div>
           </div>
         </div>
@@ -278,7 +281,7 @@
         <div class="row">
           <div class="col-12">
             
-             <h3 class="section-title wow fadeInDown" data-wow-delay="0.3s">MONITOREO.</h3>
+             <h3 class="section-title wow fadeInDown" data-wow-delay="0.3s">MONITOREO EN TIEMPO REAL.</h3>
         <center><body onLoad="muestraReloj()">
           
         <script language="javascript" type="text/javascript">
@@ -331,8 +334,9 @@
              
              <footer>
               <iframe src={% url 'particulado:grafica-pms' %} width="1000" height="450" ></iframe>
-              <center><iframe src= {% url 'particulado:tabla' %} width="800" height="350" ></iframe></center>     
               <iframe src= {% url 'particulado:grafica-opc' %} width="1000" height="450" ></iframe>
+              <center><iframe src= {% url 'particulado:tabla' %} width="1000" height="450" ></iframe></center>     
+              
               </footer>
         </div>
         </div>
@@ -349,23 +353,29 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="slider-center slider">
               <div>
-                <img class="img-fluid" src={% static "particulado/assets/img/slide/img1.jpg" %} alt="">
+                <img class="img-fluid" src= {% static "particulado/assets/img/slide/img9.jpg" %} alt="">
               </div>
               <div>
-                <img class="img-fluid" src={% static "particulado/assets/img/slide/img2.jpg" %}  alt="">
+                <img class="img-fluid" src={% static "particulado/assets/img/slide/img10.jpg" %} alt="">
               </div>
               <div>
-                <img class="img-fluid" src={% static "particulado/assets/img/slide/img3.jpg" %} alt="">
+                <img class="img-fluid" src={% static "particulado/assets/img/slide/img12.jpg" %} alt="">
               </div>
               <div>
-                <img class="img-fluid" src={% static "particulado/assets/img/slide/img4.jpg" %} alt="">
+                <img class="img-fluid" src={% static "particulado/assets/img/slide/img11.jpg" %} alt="">
               </div>
+
+
               <div>
-                <img class="img-fluid" src={% static "particulado/assets/img/slide/img5.jpg" %} alt="">
-              </div>
+                  <img class="img-fluid" src={% static "particulado/assets/img/slide/img13.jpg" %} alt="">
+                </div>
+
+
+
               <div>
-                <img  class="img-fluid" src={% static "particulado/assets/img/slide/img6.jpg" %} alt="">
-              </div>
+                 <img class="img-fluid" src={% static "particulado/assets/img/slide/img15.jpg" %} alt="">
+               </div>
+
             </div>
           </div>
         </div>
