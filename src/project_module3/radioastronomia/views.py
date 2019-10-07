@@ -326,29 +326,34 @@ def espectro_angulos(request):
             
             ele = []
             ener = []
-            for row in rows:
-                espectro = row[0]
-                elevacion = row[2]
-                espectro = promedio(espectro, nfft)
-                ener.append(numpy.sum(10**(espectro/10)))
-                ele.append(elevacion)
-            angular = {"elevacion": ele, "energia": ener}
-            df = pd.DataFrame(data=angular)
-            df = df.groupby("elevacion")
-            dfm = df.mean()
-            print(dfm)
-            elevacion = dfm.index.tolist()
-            elevacion = numpy.asarray(elevacion)
-            # elevacion = elevacion*numpy.pi/180
-            energia = dfm["energia"].tolist()
-            energia = numpy.asarray(energia)
-            energia = 1000*energia
-            # energia = 10*numpy.log10(energia)
+            if len(rows)>0:
+                for row in rows:
+                    espectro = row[0]
+                    elevacion = row[2]
+                    espectro = promedio(espectro, nfft)
+                    ener.append(numpy.sum(10**(espectro/10)))
+                    ele.append(elevacion)
+                angular = {"elevacion": ele, "energia": ener}
+                df = pd.DataFrame(data=angular)
+                df = df.groupby("elevacion")
+                dfm = df.mean()
+                print(dfm)
+                elevacion = dfm.index.tolist()
+                elevacion = numpy.asarray(elevacion)
+                # elevacion = elevacion*numpy.pi/180
+                energia = dfm["energia"].tolist()
+                energia = numpy.asarray(energia)
+                energia = 1000*energia
+                # energia = 10*numpy.log10(energia)
 
-            #datos para javascript
-            angular = list(map(lambda elevacion, energia: [elevacion, energia], elevacion, energia))
-            respuesta.update({"pos":"elevacion"})
-            logs("info", f"analisis por azimut en frecuencia {frec_central}", False)
+                #datos para javascript
+                angular = list(map(lambda elevacion, energia: [elevacion, energia], elevacion, energia))
+                respuesta.update({"pos":"elevacion"})
+                logs("info", f"analisis por azimut en frecuencia {frec_central}", False)
+            else:
+                logs("critical", "No hay datos para realizar el analisis angular solicitado", False)
+                angular = []
+                respuesta.update({"pos": "La region {} no posee datos para la frecuencia {} Hz".format(region_id, frec_central)})
             
         elif "elevacion" in cliente.keys():
             #variables de entrada
@@ -384,29 +389,34 @@ def espectro_angulos(request):
             
             ele = []
             ener = []
-            for row in rows:
-                espectro = row[0]
-                elevacion = row[2]
-                espectro = promedio(espectro, nfft)
-                ener.append(numpy.sum(10**(espectro/10)))
-                ele.append(elevacion)
-            angular = {"elevacion": ele, "energia": ener}
-            df = pd.DataFrame(data=angular)
-            df = df.groupby("elevacion")
-            dfm = df.mean()
-            print(dfm)
-            elevacion = dfm.index.tolist()
-            elevacion = numpy.asarray(elevacion)
-            # elevacion = elevacion*numpy.pi/180
-            energia = dfm["energia"].tolist()
-            energia = numpy.asarray(energia)
-            energia = 1000*energia
-            # energia = 10*numpy.log10(energia)
+            if len(rows)>0:
+                for row in rows:
+                    espectro = row[0]
+                    elevacion = row[2]
+                    espectro = promedio(espectro, nfft)
+                    ener.append(numpy.sum(10**(espectro/10)))
+                    ele.append(elevacion)
+                angular = {"elevacion": ele, "energia": ener}
+                df = pd.DataFrame(data=angular)
+                df = df.groupby("elevacion")
+                dfm = df.mean()
+                print(dfm)
+                elevacion = dfm.index.tolist()
+                elevacion = numpy.asarray(elevacion)
+                # elevacion = elevacion*numpy.pi/180
+                energia = dfm["energia"].tolist()
+                energia = numpy.asarray(energia)
+                energia = 1000*energia
+                # energia = 10*numpy.log10(energia)
 
-            #datos para javascript
-            angular = list(map(lambda elevacion, energia: [elevacion, energia], elevacion, energia))
-            respuesta.update({"pos":"azimut"})
-            logs("info", "analisis por elevacion de {frec_central}", False)
+                #datos para javascript
+                angular = list(map(lambda elevacion, energia: [elevacion, energia], elevacion, energia))
+                respuesta.update({"pos":"azimut"})
+                logs("info", "analisis por elevacion de {frec_central}", False)
+            else:
+                logs("critical", "No hay datos para realizar el analisis angular solicitado", False)
+                angular = []
+                respuesta.update({"pos": "La region {} no posee datos para la frecuencia {} Hz".format(region_id, frec_central)})
     else:
         angular = []
         logs("warning", "ninguna respuesta angular seleccionada", False)
@@ -544,6 +554,7 @@ def comparacion_zonas(request):
 
     columns = ["ener", "media", "mediana", "std", "max", "min"]
     target = []
+    respuesta = dict()
     if request.POST:
         cliente = request.POST
         print(cliente)
@@ -552,78 +563,93 @@ def comparacion_zonas(request):
         nfft = rbw.nfft
         samp_rate = rbw.frecuencia_muestreo
         fig1, ax1 = plt.subplots()
-        for reg in regiones:
-            frecuencias = Espectro.objects.filter(region=reg["id"]).values("frec_central").distinct().order_by("frec_central")
-            y = numpy.array([])
-            freq_ = numpy.array([])
-            target.append(reg["id"])
+        if cliente["fechaini"]!= "" or cliente["fechafin"]!="":
+            for reg in regiones:
+                frecuencias = Espectro.objects.filter(region=reg["id"]).values("frec_central").distinct().order_by("frec_central")
+                y = numpy.array([])
+                freq_ = numpy.array([])
+                target.append(reg["id"])
 
-            if len(frecuencias)>0:
-                for freq in frecuencias[:3]:
-                    print(freq)
-                    espectro = Espectro.objects.filter(region=reg["id"]).values("espectro").filter(frec_central=freq["frec_central"]).filter(frec_muestreo=samp_rate).order_by("fecha")
-                    print(len(espectro))
-                    x_ = numpy.zeros(nfft)
-                    for row in espectro:
-                        x = numpy.asarray(row["espectro"])
-                        x = promedio(x,nfft)
-                        x_ = x_ + x
-                    x_ = x_/len(espectro)
-                    freq_ = numpy.append(freq_, numpy.arange(-int(nfft/2),int(nfft/2),1)*samp_rate/(nfft*2) + freq["frec_central"])
-                    y = numpy.append(y,x_)
-                
-                freq_ = freq_/1e6 #escala de la frecuencia
-                #analisis de caracteristicas
+                if len(frecuencias)>0:
+                    for freq in frecuencias[:3]:
+                        print(freq)
+                        espectro = Espectro.objects.filter(region=reg["id"]).values("espectro").filter(frec_central=freq["frec_central"]).filter(frec_muestreo=samp_rate).filter(fecha__range=[cliente["fechaini"], cliente["fechafin"]]).order_by("fecha")
+                        if len(espectro)>0:
+                            x_ = numpy.zeros(nfft)
+                            for row in espectro:
+                                x = numpy.asarray(row["espectro"])
+                                x = promedio(x,nfft)
+                                x_ = x_ + x
+                            x_ = x_/len(espectro)
+                            freq_ = numpy.append(freq_, numpy.arange(-int(nfft/2),int(nfft/2),1)*samp_rate/(nfft*2) + freq["frec_central"])
+                            y = numpy.append(y,x_)
+                            flag = True
+                        else:
+                            y = 0
+                            freq_ = 0
+                            flag = False
+                    
+                    if flag==True:
+                        freq_ = freq_/1e6 #escala de la frecuencia
+                        #analisis de caracteristicas
 
-                ## aca van las graficas
-                ax1.plot(freq_, y, label=reg["zona"])
-                ax1.set(xlabel="Frecuencia MHz", ylabel="Espectro dBm", title="Espectro por region",)
-                ax1.legend()
-                ax1.grid(True)
-                espectros = mpld3.fig_to_html(fig1)
+                        ## aca van las graficas
+                        ax1.plot(freq_, y, label=reg["zona"])
+                        ax1.set(xlabel="Frecuencia MHz", ylabel="Espectro dBm", title="Espectro por region",)
+                        ax1.legend()
+                        ax1.grid(True)
+                        espectros = mpld3.fig_to_html(fig1)
 
-                y = 10**(y/10)
-                ener = numpy.append(ener,numpy.sum(y))
-                media = numpy.append(media, numpy.mean(y))
-                mediana = numpy.append(mediana, numpy.median(y))
-                std = numpy.append(std, numpy.std(y))
-                max_ = numpy.append(max_,numpy.max(y))
-                min_ = numpy.append(min_, numpy.min(y))
+                        y = 10**(y/10)
+                        ener = numpy.append(ener,numpy.sum(y))
+                        media = numpy.append(media, numpy.mean(y))
+                        mediana = numpy.append(mediana, numpy.median(y))
+                        std = numpy.append(std, numpy.std(y))
+                        max_ = numpy.append(max_,numpy.max(y))
+                        min_ = numpy.append(min_, numpy.min(y))
+                    else:
+                        respuesta.update({"info": "No hay datos registrados para {} Hz".format(rbw)})
+                        logs("critical", "No hay datos registrados en ese RBW", False)
+                else:
+                    logs("error", "No hay datos registrados para esa region", False)
+            
+            if len(ener)>1:
+                #analisis caracteristicas
+                X = numpy.vstack([ener, media, mediana, std, max_, min_])
+                df = pd.DataFrame(data=X.T, columns=columns)
+                print(df.head())
+                #escalado de los datos
+                from sklearn.preprocessing import StandardScaler
+                scaler = StandardScaler()
+                scaler.fit(df)
+                scaled_data = scaler.transform(df)
+                #aplicacion de PCA
+                from sklearn.decomposition import PCA
+                pca = PCA(n_components=2)
+                pca.fit(scaled_data)
+                x_pca = pca.transform(scaled_data)
+
+                fig2, ax2 = plt.subplots()
+                ax2.scatter(x_pca[:,0], x_pca[:,1], c=target, cmap="plasma")
+                ax2.set(xlabel="pc1", ylabel="pc2", title="Zonas registradas")
+                ax2.legend(title="Regiones")
+                ax2.grid()
+                caracteristicas = mpld3.fig_to_html(fig2)
+                logs("info", "analisis PCA correcto", False)
             else:
-                pass
-        
-        if len(ener)>1:
-            #analisis caracteristicas
-            X = numpy.vstack([ener, media, mediana, std, max_, min_])
-            df = pd.DataFrame(data=X.T, columns=columns)
-            print(df.head())
-            #escalado de los datos
-            from sklearn.preprocessing import StandardScaler
-            scaler = StandardScaler()
-            scaler.fit(df)
-            scaled_data = scaler.transform(df)
-            #aplicacion de PCA
-            from sklearn.decomposition import PCA
-            pca = PCA(n_components=2)
-            pca.fit(scaled_data)
-            x_pca = pca.transform(scaled_data)
+                logs("critical", "No hay suficientes datos para realizar el PCA", False)
+                caracteristicas  = []
 
-            fig2, ax2 = plt.subplots()
-            ax2.scatter(x_pca[:,0], x_pca[:,1], c=target, cmap="plasma")
-            ax2.set(xlabel="pc1", ylabel="pc2", title="Zonas registradas")
-            ax2.legend(title="Regiones")
-            ax2.grid()
-            caracteristicas = mpld3.fig_to_html(fig2)
+            rbw = RBW.objects.all()
+            respuesta.update({"espectros": espectros,
+                        "caracteristicas": caracteristicas,
+                        "rbws": rbw})
         else:
-            caracteristicas  = []
-
-        rbw = RBW.objects.all()
-        respuesta = {"espectros": espectros,
-                    "caracteristicas": caracteristicas,
-                    "rbws": rbw}
+            rbw = RBW.objects.all()
+            respuesta.update({"rbws":rbw})
     else:
         rbw = RBW.objects.all()
-        respuesta = {"rbws":rbw}
+        respuesta.update({"rbws": rbw})
     return render(request, "radioastronomia/comparacion_zonas.html", respuesta)
 
 
@@ -701,21 +727,18 @@ class CaracteristicasAntenaCreateView(CreateView):
     template_name = "radioastronomia/caracteristicasantena_create.html"
     fields = "__all__"
     success_url = reverse_lazy("radioastronomia:antenas")
-    logs("info", "Ha creado una antena", False)
 
 class CaracteristicasAntenaUpdateView(UpdateView):
     model = CaracteristicasAntena
     template_name = "radioastronomia/caracteristicasantena_update.html"
     fields = "__all__"
     success_url = reverse_lazy("radioastronomia:antenas")
-    logs("warning", "Actualizacion de antenas", True)
 
 class CaracteristicasAntenaDeleteView(DeleteView):
     model = CaracteristicasAntena
     template_name = "radioastronomia/caracteristicasantena_delete.html"
     success_url = reverse_lazy("radioastronomia:antenas")
     context_object_name = "caracteristicasantena"
-    logs("warning","Ha borrado una antena", True)
 
 #informacion adicional de la estacion de monitoreo
 class CaracteristicasEstacionListView(ListView):
@@ -728,7 +751,6 @@ class CaracteristicasEstacionCreateView(CreateView):
     template_name = "radioastronomia/caracteristicasestacion_create.html"
     fields = "__all__"
     success_url = reverse_lazy("radioastronomia:subsistema-estacion")
-    logs("info", "Caracteristicas de la estacion creada", False)
 
 class CaracteristicasEstacionUpdateView(UpdateView):
     model = CaracteristicasEstacion
@@ -742,7 +764,6 @@ class CaracteristicasEstacionDeleteView(DeleteView):
     template_name = "radioastronomia/caracteristicasestacion_delete.html"
     context_object_name = "caracterstacion"
     success_url = reverse_lazy("radioastronomia:subsistema-estacion")
-    logs("warning", "Ha borrado de la estacion metereologica", False)
 
 ## informacion sobre las resoluciones espectrales
 class RBWListView(ListView):
@@ -755,7 +776,6 @@ class RBWDeleteView(DeleteView):
     template_name = "radioastronomia/rbw_delete.html"
     context_object_name = "rbw"
     success_url = reverse_lazy("radioastronomia:rbw")
-    logs("warning", "Ha borrado un RBW", False)
 
 def RBWcreate(request):
     if request.POST:
@@ -786,7 +806,6 @@ class RegionCreateView(CreateView):
     template_name = "radioastronomia/region_create.html"
     fields = "__all__"
     success_url = reverse_lazy("radioastronomia:index")
-    logs("info", "Region Creada", False)
 
 def subsistemacielo(request):
     respuesta = dict()
@@ -841,6 +860,10 @@ def reproduccionvideos(request, pk):
     dir_viento = numpy.array([])
     precipitacion = numpy.array([])
     print(len(rows), "tamano de la base consultada")
+    if len(rows)>0:
+        logs("info", "Condiciones ambientales enlazadas con el video", False)
+    else:
+        logs("warning", "No se pudo enlazar la medida ambiental con el video seleccionado", False)
     for row in rows:
         temperatura = numpy.append(temperatura, row[0])
         humedad = numpy.append(humedad, row[1])

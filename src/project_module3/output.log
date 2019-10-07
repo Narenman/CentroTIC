@@ -1,8 +1,6 @@
-2019-10-04 10:18:49,664 - INFO- Ha creado una antena
-2019-10-04 10:18:49,664 - WARNING- Actualizacion de antenas
-2019-10-04 10:18:49,664 - WARNING- Ha borrado una antena
-2019-10-04 10:18:49,664 - INFO- Caracteristicas de la estacion creada
-2019-10-04 10:18:49,664 - WARNING- Actualizacion de la estacion
-2019-10-04 10:18:49,664 - WARNING- Ha borrado de la estacion metereologica
-2019-10-04 10:18:49,664 - WARNING- Ha borrado un RBW
-2019-10-04 10:18:49,665 - INFO- Region Creada
+2019-10-07 16:04:38,166 - CRITICAL- No hay datos registrados en ese RBW
+2019-10-07 16:04:38,171 - CRITICAL- No hay datos registrados en ese RBW
+2019-10-07 16:04:38,175 - CRITICAL- No hay datos registrados en ese RBW
+2019-10-07 16:04:38,176 - CRITICAL- No hay suficientes datos para realizar el PCA
+2019-10-07 16:05:17,866 - WARNING- No handles with labels found to put in legend.
+2019-10-07 16:05:17,964 - INFO- analisis PCA correcto

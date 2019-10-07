@@ -9,6 +9,11 @@
         <div class="col">
 
             <h3> Comparación de las zonas de medición </h3>
+            {% if info %}
+            
+            <h4 style="color: red"> {{info}} </h4>
+            {% else %}
+
             {% autoescape off %}
             {{ espectros }}
             {% endautoescape %}
@@ -17,6 +22,8 @@
             {% autoescape off %}
             {{ caracteristicas }}
             {% endautoescape %}
+
+            {% endif %}
         </div>
         <div class="col">
         <p> Este análisis compara las zonas donde se toman los datos, para ello
@@ -41,6 +48,16 @@
                     {% endfor %}
                 </select>
                 <br>
+                  <h5> Seleccione rango de tiempo</h5>
+                    <label for="start">Fecha inicial</label>
+                    <input type="datetime-local" id="start_A" name="fechaini"
+                    value="2019-07-19"
+                    min="2019-01-01" max="2019-12-31">
+                    <br>
+                    <label for="end">Fecha final</label>
+                    <input type="datetime-local" id="end_A" name="fechafin"
+                    value="2019-11-19"
+                    min="2019-01-01" max="2019-12-31">
                     {% buttons %}
                     <button type="submit" class="btn btn-primary">
                     {% bootstrap_icon "star" %} Realizar análisis

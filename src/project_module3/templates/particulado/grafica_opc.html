@@ -1,136 +1,120 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src= {% static 'particulado/assets/js/jquery.js' %}></script> <!-- para llamar un estatico -->
   <link rel="shortcut icon" href="icono.png" type="png"/>
 
   <head runat="server">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-  
-  
-  <!--<link rel="shortcut icon" href="icono.png" type="image/png"/>-->
-    <script type="text/javascript">
+        
+      <script type="text/javascript">
+      var variableglobal;
+      var muestrafinal = [];
+      var data2final = [];
+      var data3final = [];
+      
+      //setInterval(function(){
 
+        
+         
       google.charts.load('current', {'packages':['line']});
       google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
 
-      var data = new google.visualization.DataTable();
-      data.addColumn('number', 'Muestra.');
-      data.addColumn('number', 'Pm2.5');
-      data.addColumn('number', 'Pm10');
-      
-      
-
-      data.addRows([
-        [0,  0, 0]
-        
-      ]);
-
-      var options = {
-        chart: {
-          title: 'Concentracion de Material Particulado.',
-          subtitle: 'Concentracion en [ug]: PMS'
-        },
-        width: 900,
-        height: 400,
-        axes: {
-          x: {
-            0: {side: 'down'}
-          }
-        }
-      };
-      
-      var chart = new google.charts.Line(document.getElementById('line_top_x'));
-
-      chart.draw(data, google.charts.Line.convertOptions(options));
-      
-      //var i = 5;
-      var JSON= $.ajax({
-          url:"datos_sensor_opc.php",
-          dataType: 'json',
-          async: false}).responseText;
-
-      var Respuesta = jQuery.parseJSON(JSON);
-      //var Respuesta =JSON.stringify(JSON);
-      var long = Respuesta.length; 
-      //console.log(long);
-
-      if (long > 0) {
-        var n = 0
-        while (n < long) {
-          n ++;
-          //var i = 1;
-          var v1 = n;
-          var v2 = Respuesta[n-1].Dato2;
-          var v3 = Respuesta[n-1].Dato3;
-          var v2def = v2.replace(/['"]+/g, '');
-          var v3def = v3.replace(/['"]+/g, '');
-
-          data.addRows([
-                [v1,v2def-1+1,v3def-1+1],
-              ]);
-          console.log(v1,v2def-1,v3);
-            
-          }
-        }
-        chart.draw(data,options); 
-
-        setInterval(function(){
-        var JSON= $.ajax({
-            url:"datos_sensor_opc.php",
-            dataType: 'json',
-            async: false}).responseText;
-
-        var Respuesta = jQuery.parseJSON(JSON);
-          //data.setValue(6,1, Respuesta[7].Dato1);
-          //data.setValue(0,1, 5);
-        var long = Respuesta.length; 
-        //console.log(long);
-
-        if (long > 0) {
-          var v1 = long;
-          var v2 = Respuesta[long-1].Dato2;
-          var v3 = Respuesta[long-1].Dato3;
-          var v2def = v2.replace(/['"]+/g, '');
-          var v3def = v3.replace(/['"]+/g, '')
-
-          data.addRows([
-              [long,v2def-1+1,v3def-1+1],
-             ]);
-
-          //var hola = 1;
-          //var hola = Respuesta[long-1].Dato1;
-          //var hola = Respuesta[long-1].Dato1;
+      function drawChart() {
+                        $.ajax({
+                      type: "GET",
+                      url: "/particulado/jsonB",
+                      async: false,
+                      //data: {},
+                      dataType: 'json',
+                      success: function (data){
+                      variableglobal= data;
+                      } //fin success
           
-          //console.log(v2.replace(/['"]+/g, ''));
-        }
+                       }); // fin ajax
 
-        else {
-            window.location.reload(true);
-          //console.log("hola");
-          //while( data.length > 0){
-            //data.pop(); 
-            //console.log("hola");
-          //}
-
-          //data.addRows([
-            //[0,  0, 0]
-            
-          //]);
-              
-        }
-
-        chart.draw(data,options); 
-      },1300);
+                  
 
 
-        
-  }
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('number', 'Muestra.');
+                    data.addColumn('number', 'PM 2.5');
+                    data.addColumn('number', 'PM 10');
 
-  </script>
+                    data.addRows([
+                      [0,  0, 0]
+                      
+                    ]);
+
+                    var options = {
+                      chart: {
+                        title: 'Concentracion de Material Particulado.',
+                        subtitle: 'Concentracion en [ug/m³]: OPC-N2'
+                      },
+                      width: 900,
+                      height: 400,
+                      axes: {
+                        x: {
+                          0: {side: 'down'}
+                        }
+                      }
+                    };
+                    var chart = new google.charts.Line(document.getElementById('line_top_x'));
+
+                    long = variableglobal.pmsB.length;
+                    
+                    //console.log(variableglobal.pmsA[0][1])
+                    //console.log(variableglobal.pmsA[1][2])
+                    //console.log(variableglobal.pmsA[0][4]);
+
+
+
+                    if (long > 0) {
+                    var n = 0
+                    while (n < long) {
+                      n ++;
+                      //var i = 1;
+                      var v1 = variableglobal.pmsB[n-1][6];
+                      //var v1 = n;
+                      var v2 = variableglobal.pmsB[n-1][2];
+                      var v3 =  variableglobal.pmsB[n-1][3];
+                      //console.log(v1)
+                       data.addRows([
+                             [v1,v2-1+1,v3-1+1],
+                           ]);
+                     
+                        
+                      }
+                    }
+                    chart.draw(data,options); 
+
+
+
+                  }
+
+             
+
+
+
+setInterval(function(){drawChart()}, 9900);
+               
+
+ 
+
+
+      
+
+      
+
+       
+
+      
+      </script> 
+  
+ 
 
 </head>
 
