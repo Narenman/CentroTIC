@@ -449,13 +449,18 @@ def json_estacion(request):
     respuesta = dict()
 
     estacion = EstacionAmbiental.objects.last()
-    respuesta.update({"temp": estacion.temperatura,
-                "hum": estacion.humedad_relativa,
-                "pres": estacion.presion_atomosferica,
-                "rad": estacion.radiacion_solar,
-                "vel_vien": estacion.vel_viento,
-                "dir_vien": estacion.dir_viento,
-                "pres": estacion.precipitacion})
+    respuesta.update({"wheather": {"Temperatura": estacion.temperatura,
+                                    "Humedad": estacion.humedad_relativa,
+                                    "Presión": estacion.presion_atomosferica,
+                                    "Rad Solar": estacion.radiacion_solar,
+                                    "Vel. Viento": estacion.vel_viento,
+                                    "Dir. Viento": estacion.dir_viento,
+                                    "Precipitación": estacion.precipitacion},
+                      "units": ["K","%","hPa","W/m2","MPH","º","mm/hr"],
+                      "colors": ["#9a5b3d", "#525b9a", "#1349ad", "#e4843f", "#aeacb3", "#777777", "#3d7e9a"],
+                      "Date": str(estacion.fecha).split(" ")})
+
+
     return JsonResponse(respuesta)
 
 def json_spectro(request):

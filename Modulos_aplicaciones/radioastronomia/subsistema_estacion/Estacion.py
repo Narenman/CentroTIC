@@ -1,8 +1,8 @@
 import requests
 import random
 import json
-
-
+from Davis import Davis_6162C
+import time
 class Estacion():
 
     def __init__(self,direccionIP, APIusername, APIpassword):
@@ -20,7 +20,10 @@ class Estacion():
                 "dir_viento": "N-S",
                 "precipitacion": 50}
                 """
-        pass
+        
+
+        values = Davis_6162C.read()
+        return values 
 
     #comunicacion con la API
     def getToken(self):
@@ -31,7 +34,7 @@ class Estacion():
         "password": self.APIpassword}
         URL = "http://"+self.direccionIP+"/app_praes/token/"
         r = requests.post(URL, data=data)
-        print("HTTP status token {}".format(r.status_code))
+        #print("HTTP status token {}".format(r.status_code))
         token = json.loads(r.content)
         # print(token["token"])
         return token["token"]
@@ -58,10 +61,11 @@ class Estacion():
         r = requests.post(URL, data=data, headers=headers)
 
         if r.status_code==200:
-            print("HTTP status ok. {}".format(r.status_code))
+            #print("HTTP status ok. {}".format(r.status_code))
             r.close()
         else:
-            print("HTTP status {}".format(r.status_code))
+            #print("HTTP status {}".format(r.status_code))
+            pass
     
     def comunicacionAPI(self, region):
         """ las funciones a ejecuar son:
@@ -70,8 +74,9 @@ class Estacion():
         """
         pass
 
+
 if __name__ == "__main__":
-    direccionIP = "192.168.0.102:8000"
+    direccionIP = "127.0.0.1:8000"
     APIusername = "mario"
     APIpassword = "mario"
     valores = {"temperatura": random.random(),
@@ -81,8 +86,23 @@ if __name__ == "__main__":
                 "vel_viento": random.random(),
                 "dir_viento": "N-S",
                 "precipitacion": random.random()}
-    region = 8
+
+    region = 1
 
     estacion = Estacion(direccionIP, APIusername, APIpassword)
-    for i in range(10):
+    def updater():
+   
+        
+        for k, v in estacion.serialRS232().items():
+
+            if k in valores:
+                valores[k] = v
+            else:
+                pass
+
         estacion.estacionAPI(valores, region)
+
+    for i in range(100):
+        time.sleep(3)
+        updater()
+        #print(estacion.serialRS232())

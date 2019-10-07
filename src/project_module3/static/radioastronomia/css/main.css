@@ -7,3 +7,9 @@
     display: grid;
     grid-template: auto auto / 50% 50%;
 }
+
+.cwheatherValues{
+    width: 150%;
+    display: grid;
+    grid-template: auto auto auto / 25% 25% 25%;
+}
