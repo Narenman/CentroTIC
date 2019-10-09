@@ -27,6 +27,7 @@ urlpatterns = [
     path('subsistema/estacion-monitoreo',views.CaracteristicasEstacionListView.as_view(), name="subsistema-estacion"),
     path('subsistema/camara', views.subsistemacielo, name="subsistema-camara"),
     path('subsistema/camara/videos/<int:pk>', views.reproduccionvideos, name="repro-videos"),
+    path('subsistema/estados/camara-estacion', views.conf_estados, name="conf-estados"),
     #urls para operacion del sistema
     path('control-manual', views.control_manual, name="control-manual"),
     path("control-automatico", views.control_automatico, name="control-automatico"),

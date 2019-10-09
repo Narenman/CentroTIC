@@ -33,7 +33,10 @@
         </div>
 
         <div class="col-sm">
-        {% lorem 1 b random %}
+        <p> Este formulario registra la Resolución de Ancho de Banda (RBW por sus siglas en inglés), es decir, 
+        la separación en frecuencia que tendrá cada muestra discreta del espectro. </p>
+        <img src="{% static 'radioastronomia/img/rbw.jpg' %} " class="rounded-circle" alt="Cinque Terre">
+        <br>
         <button type="button" class="btn btn-light"><a href="{% url 'radioastronomia:rbw' %}">Lista de RBW </a></button>
 
         </div>

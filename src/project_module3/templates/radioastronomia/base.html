@@ -72,17 +72,53 @@
         <a class="dropdown-item" href="{% url 'radioastronomia:crear-antena' %}">Registrar antena</a>
         <a class="dropdown-item" href="{% url 'radioastronomia:crear-sensor' %}">Registrar sensor</a>
         <a class="dropdown-item" href="{% url 'radioastronomia:crear-region' %}">Registrar zona de campaña</a>
+        <a class="dropdown-item" href="{% url 'radioastronomia:conf-estados' %}">Registrar Estados</a>
 
- 
       </div>
     </li>
-  
+  {% if user.is_authenticated %}
+    <li class="nav-item"> <a class="nav-link" href="{% url 'logout' %}">SALIR</a> </li>
+    {% else %}
+    <li class="nav-item"> <a class="nav-link" href="{% url 'login' %}"> <span class="glyphicon glyphicon-log-in"> INGRESAR</a></li>
+    
+    {% endif %}
  </ul>
 
     {% block body_block %}
         
     {% endblock  %}
     </div>
+   <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-6 footerleft ">
+            <h4> <b>Sistema RFI para estudios de radioastronomía</b></h4>
+            <p><i class="fa fa-map-pin"></i> Bucaramanga, Santander, Colombia</p>
+            <p><i class="fa fa-phone"></i> PBX : (57) (7) 6344000 ext. 2373</p>
+            <p><i class="fa fa-envelope"></i> E-mail : luismiguel@radiogis.uis.edu.co</p>
+               {% if user.is_authenticated %}
+               <h4> Solo Usuario Administrador </h4>
+               <ul>
+                 <li> <a href="{% url 'app_praes:login' %}">Usuarios API</a>                 </li>
+                 <li> <a href="{% url 'app_praes:crear-usuario' %}">Crear Usuario</a>        </li>
+                 <li> <a href="{% url 'app_praes:documentacion' %}">Documentacion API</a>        </li>
+                 <li> <a href="{% url 'admin:index' %}">Administrador</a></li>
+
+               </ul>
+                
+             {% else %}
+              <a href="{% url 'admin:index' %}">Ingresar al sitio Administrador</a>
+    
+              {% endif %}
+
+
+          </div>
+          </div>
+
+        </div>
+      </div>
+</footer>
+
     <script src="{% static 'radioastronomia/js/main.js'%}"></script>
 
 </body>

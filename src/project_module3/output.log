@@ -1,6 +1,22 @@
-2019-10-07 16:04:38,166 - CRITICAL- No hay datos registrados en ese RBW
-2019-10-07 16:04:38,171 - CRITICAL- No hay datos registrados en ese RBW
-2019-10-07 16:04:38,175 - CRITICAL- No hay datos registrados en ese RBW
-2019-10-07 16:04:38,176 - CRITICAL- No hay suficientes datos para realizar el PCA
-2019-10-07 16:05:17,866 - WARNING- No handles with labels found to put in legend.
-2019-10-07 16:05:17,964 - INFO- analisis PCA correcto
+2019-10-08 18:36:21,013 - INFO- consulta de videos
+2019-10-08 18:36:23,106 - WARNING- No se pudo enlazar la medida ambiental con el video seleccionado
+2019-10-08 18:36:23,136 - INFO- Video consultado y en reproduccion
+2019-10-08 18:36:31,701 - ERROR- Consulta de videos
+Traceback (most recent call last):
+  File "/home/uis-e3t/back_centrotic/env_centrotic/lib/python3.6/site-packages/django/utils/datastructures.py", line 77, in __getitem__
+    list_ = super().__getitem__(key)
+KeyError: 'day'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/uis-e3t/back_centrotic/CentroTIC/src/project_module3/radioastronomia/views.py", line 832, in subsistemacielo
+    if cliente["day"]=="dia":
+  File "/home/uis-e3t/back_centrotic/env_centrotic/lib/python3.6/site-packages/django/utils/datastructures.py", line 79, in __getitem__
+    raise MultiValueDictKeyError(key)
+django.utils.datastructures.MultiValueDictKeyError: 'day'
+2019-10-08 18:36:37,064 - INFO- consulta de videos
+2019-10-08 18:37:11,422 - WARNING- No se pudo enlazar la medida ambiental con el video seleccionado
+2019-10-08 18:37:11,423 - INFO- Video consultado y en reproduccion
+2019-10-08 18:37:21,243 - WARNING- No se pudo enlazar la medida ambiental con el video seleccionado
+2019-10-08 18:37:21,244 - INFO- Video consultado y en reproduccion
