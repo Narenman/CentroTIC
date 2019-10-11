@@ -76,7 +76,7 @@ class Estacion():
 
 
 if __name__ == "__main__":
-    direccionIP = "127.0.0.1:8000"
+    direccionIP = "35.243.199.245"
     APIusername = "mario"
     APIpassword = "mario"
     valores = {"temperatura": random.random(),
@@ -91,8 +91,7 @@ if __name__ == "__main__":
 
     estacion = Estacion(direccionIP, APIusername, APIpassword)
     def updater():
-   
-        
+ 
         for k, v in estacion.serialRS232().items():
 
             if k in valores:
@@ -105,4 +104,6 @@ if __name__ == "__main__":
     for i in range(100):
         time.sleep(3)
         updater()
-        #print(estacion.serialRS232())
+        print(estacion.serialRS232())
+
+

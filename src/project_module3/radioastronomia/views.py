@@ -1,7 +1,7 @@
 import paho.mqtt.publish as publish
 import json
 import numpy
-import time
+import time, datetime
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -149,6 +149,68 @@ def detener(request):
         respuesta = {"form": form, "antenna": antena}             
     return render(request, "radioastronomia/control_manual.html", respuesta)
 
+
+@csrf_exempt
+def weatherhistory(request):
+
+    respuesta = {}
+    if request.POST:
+
+        client = request.POST
+        client = json.dumps(client)
+        client = json.loads(client)
+        today = datetime.datetime.today()
+        
+        if client["History"]=="Hour":
+            var = EstacionAmbiental.objects.filter(fecha__month=today.month).filter(fecha__day=today.day).filter(fecha__hour=today.hour)
+            
+        elif client["History"]=="Day":
+            var = EstacionAmbiental.objects.filter(fecha__month=today.month).filter(fecha__day=today.day)
+            
+        elif client["History"]=="Week":
+            var = EstacionAmbiental.objects.filter(fecha__week=today.isocalendar()[1])
+            
+        elif client["History"]=="Dates":
+            var = EstacionAmbiental.objects.filter(fecha__range=[client["estation-initialdate"], client["estation-finalldate"]])
+        else:
+           
+            pass
+        
+        packet = var.values("temperatura",
+                    "humedad_relativa",
+                    "presion_atomosferica",
+                    "radiacion_solar",
+                    "vel_viento",
+                    "dir_viento",
+                    "precipitacion")
+        
+        # date = var.values("fecha")
+
+        packet = [index for index in packet]
+        packet = json.loads(json.dumps(packet, cls=DjangoJSONEncoder))
+        date   = json.loads(json.dumps([i for i in var.values("fecha")], cls=DjangoJSONEncoder))
+        colors = ["#9a5b3d", "#525b9a", "#1349ad", "#e4843f", "#aeacb3", "#777777", "#3d7e9a"]
+        
+        message_time = {"Hour":"ÚLTIMA HORA",
+                        "Day": "ÚLTIMO DÍA",
+                        "Week": "ULTIMA SEMANA",
+                        "Dates": "Rango de fechas"}
+
+        if packet:
+            message = "Visualizando datos de: " + message_time[client["History"]]
+
+        else:
+            message = "Upps! Nada por aquí aún"
+
+        respuesta = {"respuesta": packet, "colors": colors, "fecha": date, "mensaje": message}
+    
+
+        print("client:  ", client)
+
+
+    return JsonResponse(respuesta)
+    
+
 ##############################################################
 def analisis_tiempo(request):
     """Este es el modo 2 de analisis de datos para realizar 
@@ -185,6 +247,7 @@ def analisis_tiempo(request):
                 cnabf.append(ser)
                 if ser["frecuencia_final"]>=(frec_central+frec_muestreo/2)/1e6:
                     break
+
             print(cnabf)
 
             services = json.dumps(cnabf, cls=DjangoJSONEncoder)
@@ -192,7 +255,7 @@ def analisis_tiempo(request):
             boxWidth    = len(cnabf)*160*2
             boxHeight   = max_col*(50+1)
             canvaSize   = {"Width": boxWidth,
-                        "Height": boxHeight}
+                           "Height": boxHeight}
 
             # consulta del espectro
             espectro = Espectro.objects.filter(region=region).filter(frec_central=frec_central).filter(frec_muestreo=frec_muestreo).filter(nfft=nfft).filter(fecha__range=[cliente["fechaini"], cliente["fechafin"]])
@@ -746,10 +809,20 @@ class CaracteristicasAntenaDeleteView(DeleteView):
     context_object_name = "caracteristicasantena"
 
 #informacion adicional de la estacion de monitoreo
-class CaracteristicasEstacionListView(ListView):
-    model = CaracteristicasEstacion
-    template_name = "radioastronomia/caracteristicasestacion_list.html"
-    context_object_name="caractestacion"
+# class CaracteristicasEstacionListView(ListView):
+#     model = CaracteristicasEstacion
+#     template_name = "radioastronomia/caracteristicasestacion_list.html"
+#     context_object_name="caractestacion"
+
+def CaracteristicasEstacionListView(request):
+    respuesta = dict()
+    sensores = CaracteristicasEstacion.objects.all()
+    sensores = sensores.values("id","sensor", "variable", "rango", "resolucion")
+    print(sensores)
+    region = RegionForm()
+
+    respuesta.update({"caractestacion": sensores, "region": region})
+    return render(request, "radioastronomia/caracteristicasestacion_list.html", respuesta)
 
 class CaracteristicasEstacionCreateView(CreateView):
     model = CaracteristicasEstacion

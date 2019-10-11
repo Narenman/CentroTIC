@@ -80,7 +80,7 @@
             <h3>CNABF Gráfico</h3>
             <div id="boxset" class="boxsetC" height="{{canvaSize.Height}}">
                 <canvas id="BoxesCanvas" class="BcanvasC" width="{{canvaSize.Width}}" 
-                height="{{canvaSize.Height}}"></canvas>
+                height="306px"></canvas>
             </div>
             
         </div>
@@ -95,7 +95,7 @@
  //sirve para capturar variables desde django y enviarlas a javascript
  var csrftoken =  '{% csrf_token %}';
  var servicios = '{{services}}';
- var cnvsH     = '{{canvaSize.Height}}'
+ var cnvsH     = 306;//'{{canvaSize.Height}}'
  var cnvsW     =  '{{canvaSize.Width}}'
 
 </script> 

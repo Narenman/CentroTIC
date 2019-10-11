@@ -100,9 +100,6 @@ function pusher(response){
         MainChart.data.labels.shift();
     }
     MainChart.update()
-
-
-
 }
 
 // MainChart.defaults.line.spanGaps = true;
