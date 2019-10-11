@@ -58,7 +58,7 @@ def automatico(**accion):
     #configuracion de las resoluciones angulares y frecuenciales
     angazimut = numpy.arange(azinicial, azfinal, rbazimut)
     angelevacion = numpy.arange(eleninicial, elefinal, rbelevacion)
-    frec_central = numpy.arange(start_freq, stop_freq, int(samp_rate/2))
+    frec_central = numpy.arange(start_freq, stop_freq, int(samp_rate))
     """El sistema realiza primero el barrido por frecuencias
     a un angulo de elevacion determinado, luego, el barrido
     por angulo azimut, sin embargo, cuando cambia al azimut
@@ -209,9 +209,10 @@ class MQTTSuscriptor():
         self.client.disconnect()
 
 
-def adquisicionRFI():
+def adquisicionRFI(**conf):
     #aca iba un while
-    objmqtt = MQTTSuscriptor()
+    objmqtt = MQTTSuscriptor(broker_address=conf["IP"], port=conf["port"], usuario_broker=conf["username"],
+                            contrasena_broker=conf["password"])
     objmqtt.comunicacionMQTT()
 
 if __name__ == "__main__":
@@ -220,11 +221,19 @@ if __name__ == "__main__":
     stop_thread2 = False
     stop_thread3 = False
 
-    # IP = "192.168.0.101:8000"
+    # conexion servidor web
     IP = "35.243.199.245"
-    IPbroker = "35.243.199.245"
     usernameAPI  = "mario"
     passwordAPI = "mario"
-    hilo1 = threading.Thread(target=adquisicionRFI)
+    # conexion broker
+    broker_address ="35.243.199.245"
+    port = 1883
+    usuario_broker = "pi"
+    contrasena_broker = "raspberry"
+
+    
+    kwargs_conf = {"IP": broker_address, "port": port,
+                   "username": usuario_broker, "password": contrasena_broker}
+    hilo1 = threading.Thread(target=adquisicionRFI, kwargs=kwargs_conf)
     hilo1.start()
     

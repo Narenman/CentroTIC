@@ -332,6 +332,7 @@ def espectro_angulos(request):
                 for row in rows:
                     espectro = row[0]
                     elevacion = row[2]
+                    espectro = numpy.asarray(espectro)
                     espectro = promedio(espectro, nfft)
                     ener.append(numpy.sum(10**(espectro/10)))
                     ele.append(elevacion)
@@ -395,6 +396,7 @@ def espectro_angulos(request):
                 for row in rows:
                     espectro = row[0]
                     elevacion = row[2]
+                    espectro = numpy.asarray(espectro)
                     espectro = promedio(espectro, nfft)
                     ener.append(numpy.sum(10**(espectro/10)))
                     ele.append(elevacion)
@@ -460,7 +462,7 @@ def barrido_json(request):
                 fechas.append(row["fecha"])
             x_ = x_/len(rows)    
             y = numpy.append(y, x_)
-            freq_prueba = numpy.append(freq_prueba, numpy.arange(-int(nfft/2),int(nfft/2),1)*frec_muestreo/(nfft*2) + f["frec_central"]) 
+            freq_prueba = numpy.append(freq_prueba, numpy.arange(-int(nfft/2),int(nfft/2),1)*frec_muestreo/nfft + f["frec_central"]) 
             
             freq.append(f["frec_central"])
             #analsis caracteristicas de la energia
