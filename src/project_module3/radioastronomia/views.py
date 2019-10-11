@@ -752,10 +752,15 @@ class CaracteristicasAntenaDeleteView(LoginRequiredMixin, DeleteView):
     context_object_name = "caracteristicasantena"
 
 #informacion adicional de la estacion de monitoreo
-class CaracteristicasEstacionListView(LoginRequiredMixin, ListView):
-    model = CaracteristicasEstacion
-    template_name = "radioastronomia/caracteristicasestacion_list.html"
-    context_object_name="caractestacion"
+def CaracteristicasEstacionListView(request):
+    respuesta = dict()
+    sensores = CaracteristicasEstacion.objects.all()
+    sensores = sensores.values("id","sensor", "variable", "rango", "resolucion")
+    print(sensores)
+    region = RegionForm()
+
+    respuesta.update({"caractestacion": sensores, "region": region})
+    return render(request, "radioastronomia/caracteristicasestacion_list.html", respuesta)
 
 class CaracteristicasEstacionCreateView(LoginRequiredMixin,CreateView):
     model = CaracteristicasEstacion
