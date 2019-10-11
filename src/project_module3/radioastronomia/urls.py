@@ -24,7 +24,7 @@ urlpatterns = [
     path('borrar/rbw/<int:pk>', views.RBWDeleteView.as_view(), name="borrar-rbw"),
     # subsistemas
     path('subsistema/RFI', TemplateView.as_view(template_name="radioastronomia/subsistema_RFI.html"), name="subsistema-RFI"),
-    path('subsistema/estacion-monitoreo',views.CaracteristicasEstacionListView.as_view(), name="subsistema-estacion"),
+    path('subsistema/estacion-monitoreo',views.CaracteristicasEstacionListView, name="subsistema-estacion"),
     path('subsistema/camara', views.subsistemacielo, name="subsistema-camara"),
     path('subsistema/camara/videos/<int:pk>', views.reproduccionvideos, name="repro-videos"),
     path('subsistema/estados/camara-estacion', views.conf_estados, name="conf-estados"),
@@ -39,6 +39,9 @@ urlpatterns = [
     path('barrido-espectro', views.barrido_json, name="barrido-espectro"),
     path('posiciones-angulares', views.espectro_angulos, name="posiciones-angulares"),
     path('monitoreo-ambiental', views.json_estacion, name="monitor-ambiental"),
+
+    path('weatherhistory', views.weatherhistory, name="whatherhistory" ),
+
     # APIs para la adquisicion de datos
     path('album-imagenes', apiviews.AlbumAPI.as_view()),
     path('subsistema-RFI', apiviews.EspectroAPI.as_view()),
@@ -48,6 +51,8 @@ urlpatterns = [
     path('estado/<int:pk>', apiviews.EstadoAPI.as_view()),
     path('estado/camara/<int:pk>', apiviews.EstadoCamaraAPI.as_view()),
     path('estado/estacion/<int:pk>', apiviews.EstadoEstacionAPI.as_view()),
+
+    
     # modos de procesamiento del espectro
     path('modo/bandas-espectrales', views.bandas_espectrales, name="modo1"),
     path('modo/analisis-tiempo',views.analisis_tiempo, name="modo2"),
