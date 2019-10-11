@@ -18,6 +18,11 @@
         <p>Estación de monitoreo DAVIS </p>
         <br><br>
         </div>
+        <div class="col">
+         <img src="{% static 'radioastronomia/img/LimeSDR.jpg'%}" class="rounded" alt="Cinque Terre" width="450px" hight="450px">
+         <p>Subsistema RFI </p>
+         <br><br>       
+        </div>
     </div>
         <form action="{% url 'radioastronomia:conf-estados' %}" method="POST">
         {% csrf_token %}

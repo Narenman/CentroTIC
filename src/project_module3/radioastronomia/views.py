@@ -590,7 +590,7 @@ def comparacion_zonas(request):
                                 x = promedio(x,nfft)
                                 x_ = x_ + x
                             x_ = x_/len(espectro)
-                            freq_ = numpy.append(freq_, numpy.arange(-int(nfft/2),int(nfft/2),1)*samp_rate/(nfft*2) + freq["frec_central"])
+                            freq_ = numpy.append(freq_, numpy.arange(-int(nfft/2),int(nfft/2),1)*samp_rate/nfft + freq["frec_central"])
                             y = numpy.append(y,x_)
                             flag = True
                         else:
@@ -908,5 +908,7 @@ def conf_estados(request):
         estado1.save()
         estado2 = Estadoestacion(id=1, estacion=False)
         estado2.save()
+        estado3 = Estado(id=1, activo=False, frecuencia=0, elevacion=0, azimut=0)
+        estado3.save()
         return HttpResponseRedirect(reverse_lazy("radioastronomia:index"))
     return render(request, "radioastronomia/conf_estados.html", {})
