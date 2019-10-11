@@ -248,7 +248,7 @@ def analisis_tiempo(request):
                 if ser["frecuencia_final"]>=(frec_central+frec_muestreo/2)/1e6:
                     break
 
-            print(cnabf)
+            # print(cnabf)
 
             services = json.dumps(cnabf, cls=DjangoJSONEncoder)
             max_col     = max([len(m['servicio'].split('-')) for m in json.loads(services)])
