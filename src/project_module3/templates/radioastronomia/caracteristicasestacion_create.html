@@ -22,7 +22,8 @@
         </div>
 
         <div class="col-sm">
-        {% lorem 1 b random %}
+        <p>Este formulario se encarga de registrar los valores de los sensores que tiene la estación de monitoreo Davis.</p>
+        <img src="{% static 'radioastronomia/img/estacion.jpg'%}" class="rounded" alt="Cinque Terre" width="250px" hight="250px">
         <button type="button" class="btn btn-light"><a href="{% url 'radioastronomia:subsistema-estacion' %}">Lista de sensores </a></button>
 
         </div>

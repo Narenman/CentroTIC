@@ -9,7 +9,7 @@ import mpld3
 import logging
 from .models import AlbumImagenes, Espectro, Estado, CaracteristicasAntena, \
                     CaracteristicasEstacion, RBW, CaracteristicasEspectro, RegionCampana, \
-                        PosicionAntena, Servicios, Bandas, EstacionAmbiental
+                        PosicionAntena, Servicios, Bandas, EstacionAmbiental, Estadocamara, Estadoestacion
 from .forms import EspectroForm, RFIForm, RegionForm
 from django.core import serializers
 from django.urls import reverse_lazy
@@ -19,6 +19,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, DeleteView, CreateView, UpdateView
 from django.db import connection
 from django.core.serializers.json import DjangoJSONEncoder
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 # funciones auxiliares
 def publishMQTT(topico, msg):
@@ -393,6 +395,7 @@ def espectro_angulos(request):
                 for row in rows:
                     espectro = row[0]
                     elevacion = row[2]
+                    espectro = numpy.asarray(espectro)
                     espectro = promedio(espectro, nfft)
                     ener.append(numpy.sum(10**(espectro/10)))
                     ele.append(elevacion)
@@ -456,6 +459,7 @@ def espectro_angulos(request):
                 for row in rows:
                     espectro = row[0]
                     elevacion = row[2]
+                    espectro = numpy.asarray(espectro)
                     espectro = promedio(espectro, nfft)
                     ener.append(numpy.sum(10**(espectro/10)))
                     ele.append(elevacion)
@@ -521,7 +525,7 @@ def barrido_json(request):
                 fechas.append(row["fecha"])
             x_ = x_/len(rows)    
             y = numpy.append(y, x_)
-            freq_prueba = numpy.append(freq_prueba, numpy.arange(-int(nfft/2),int(nfft/2),1)*frec_muestreo/(nfft*2) + f["frec_central"]) 
+            freq_prueba = numpy.append(freq_prueba, numpy.arange(-int(nfft/2),int(nfft/2),1)*frec_muestreo/nfft + f["frec_central"]) 
             
             freq.append(f["frec_central"])
             #analsis caracteristicas de la energia
@@ -649,7 +653,7 @@ def comparacion_zonas(request):
                                 x = promedio(x,nfft)
                                 x_ = x_ + x
                             x_ = x_/len(espectro)
-                            freq_ = numpy.append(freq_, numpy.arange(-int(nfft/2),int(nfft/2),1)*samp_rate/(nfft*2) + freq["frec_central"])
+                            freq_ = numpy.append(freq_, numpy.arange(-int(nfft/2),int(nfft/2),1)*samp_rate/nfft + freq["frec_central"])
                             y = numpy.append(y,x_)
                             flag = True
                         else:
@@ -790,29 +794,27 @@ class CaracteristicasAntenaListView(ListView):
     template_name = "radioastronomia/caracteristicasantena_list.html"
     context_object_name = "caracteristicasantena"
 
-class CaracteristicasAntenaCreateView(CreateView):
+class CaracteristicasAntenaCreateView(LoginRequiredMixin, CreateView):
     model = CaracteristicasAntena
     template_name = "radioastronomia/caracteristicasantena_create.html"
     fields = "__all__"
     success_url = reverse_lazy("radioastronomia:antenas")
 
-class CaracteristicasAntenaUpdateView(UpdateView):
+class CaracteristicasAntenaUpdateView(LoginRequiredMixin, UpdateView):
     model = CaracteristicasAntena
     template_name = "radioastronomia/caracteristicasantena_update.html"
     fields = "__all__"
     success_url = reverse_lazy("radioastronomia:antenas")
+    context_object_name="antena"
 
-class CaracteristicasAntenaDeleteView(DeleteView):
+
+class CaracteristicasAntenaDeleteView(LoginRequiredMixin, DeleteView):
     model = CaracteristicasAntena
     template_name = "radioastronomia/caracteristicasantena_delete.html"
     success_url = reverse_lazy("radioastronomia:antenas")
     context_object_name = "caracteristicasantena"
 
 #informacion adicional de la estacion de monitoreo
-# class CaracteristicasEstacionListView(ListView):
-#     model = CaracteristicasEstacion
-#     template_name = "radioastronomia/caracteristicasestacion_list.html"
-#     context_object_name="caractestacion"
 
 def CaracteristicasEstacionListView(request):
     respuesta = dict()
@@ -820,24 +822,23 @@ def CaracteristicasEstacionListView(request):
     sensores = sensores.values("id","sensor", "variable", "rango", "resolucion")
     print(sensores)
     region = RegionForm()
-
     respuesta.update({"caractestacion": sensores, "region": region})
     return render(request, "radioastronomia/caracteristicasestacion_list.html", respuesta)
 
-class CaracteristicasEstacionCreateView(CreateView):
+class CaracteristicasEstacionCreateView(LoginRequiredMixin,CreateView):
     model = CaracteristicasEstacion
     template_name = "radioastronomia/caracteristicasestacion_create.html"
     fields = "__all__"
     success_url = reverse_lazy("radioastronomia:subsistema-estacion")
 
-class CaracteristicasEstacionUpdateView(UpdateView):
+class CaracteristicasEstacionUpdateView(LoginRequiredMixin, UpdateView):
     model = CaracteristicasEstacion
     template_name = "radioastronomia/caracteristicasestacion_update.html"
     fields = "__all__"
     success_url = reverse_lazy("radioastronomia:subsistema-estacion")
     logs("warning", "Actualizacion de la estacion", False)
 
-class CaracteristicasEstacionDeleteView(DeleteView):
+class CaracteristicasEstacionDeleteView(LoginRequiredMixin, DeleteView):
     model = CaracteristicasEstacion
     template_name = "radioastronomia/caracteristicasestacion_delete.html"
     context_object_name = "caracterstacion"
@@ -849,12 +850,13 @@ class RBWListView(ListView):
     template_name = "radioastronomia/rbw_list.html"
     context_object_name="rbw"
 
-class RBWDeleteView(DeleteView):
+class RBWDeleteView(LoginRequiredMixin, DeleteView):
     model = RBW
     template_name = "radioastronomia/rbw_delete.html"
     context_object_name = "rbw"
     success_url = reverse_lazy("radioastronomia:rbw")
 
+@login_required
 def RBWcreate(request):
     if request.POST:
         cliente = request.POST
@@ -867,7 +869,7 @@ def RBWcreate(request):
         return HttpResponseRedirect(reverse_lazy("radioastronomia:rbw"))
     return render(request, "radioastronomia/rbw_create.html")
 
-class RBWUpdateView(UpdateView):
+class RBWUpdateView(LoginRequiredMixin, UpdateView):
     model = RBW
     template_name = "radioastronomia/rbw_update.html"
     fields = "__all__"
@@ -879,7 +881,7 @@ class RegionCampanaListView(ListView):
     template_name = "radioastronomia/index.html"
     context_object_name ="region"
 
-class RegionCreateView(CreateView):
+class RegionCreateView(LoginRequiredMixin, CreateView):
     model = RegionCampana
     template_name = "radioastronomia/region_create.html"
     fields = "__all__"
@@ -967,3 +969,14 @@ def reproduccionvideos(request, pk):
                       "precipitacion": precipitacion})
     logs("info", "Video consultado y en reproduccion", False)
     return render(request, "radioastronomia/reproduccionvideos.html", respuesta)
+
+def conf_estados(request):
+    if request.POST:
+        estado1 = Estadocamara(id=1, camara=False)
+        estado1.save()
+        estado2 = Estadoestacion(id=1, estacion=False)
+        estado2.save()
+        estado3 = Estado(id=1, activo=False, frecuencia=0, elevacion=0, azimut=0)
+        estado3.save()
+        return HttpResponseRedirect(reverse_lazy("radioastronomia:index"))
+    return render(request, "radioastronomia/conf_estados.html", {})

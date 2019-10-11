@@ -22,7 +22,9 @@
         </div>
 
         <div class="col-sm">
-        {% lorem 1 b random %}
+        <img src="{{antena.imagen.url}}" alt="no encontrado" class="img-thumbnail">
+        <img src="{{antena.vswr.url}}" alt="no encontrado" class="img-thumbnail">
+
         <button type="button" class="btn btn-light"><a href="{% url 'radioastronomia:antenas' %}">Lista de Antenas </a></button>
         </div>
     </div>
