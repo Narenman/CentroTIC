@@ -204,7 +204,7 @@ def weatherhistory(request):
             message = "Visualizando datos de: " + message_time[client["History"]]
 
         else:
-            message = "Upps! Nada por aquí aún"
+            message = "No existen datos en: " + message_time[client["History"]]
 
         respuesta = {"respuesta": packet, "colors": colors, "fecha": date, "mensaje": message}
     
@@ -569,6 +569,7 @@ def json_estacion(request):
     respuesta = dict()
 
     estacion = EstacionAmbiental.objects.last()
+    print("soy el tipo de estacion", type(estacion), estacion.id)
     respuesta.update({"wheather": {"Temperatura": estacion.temperatura,
                                     "Humedad": estacion.humedad_relativa,
                                     "Presión": estacion.presion_atomosferica,
@@ -578,7 +579,8 @@ def json_estacion(request):
                                     "Precipitación": estacion.precipitacion},
                       "units": ["K","%","hPa","W/m2","MPH","º","mm/hr"],
                       "colors": ["#9a5b3d", "#525b9a", "#1349ad", "#e4843f", "#aeacb3", "#777777", "#3d7e9a"],
-                      "Date": str(estacion.fecha).split(" ")})
+                      "id": estacion.id,
+                      "Date": estacion.fecha})
 
 
     return JsonResponse(respuesta)
