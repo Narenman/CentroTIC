@@ -108,9 +108,9 @@ WSGI_APPLICATION = 'project_module3.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'centrotic',
+        'NAME': 'radio',
         'USER': 'postgres',
-        'PASSWORD': 'raspberry',
+        'PASSWORD': 'radio',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }

@@ -61,10 +61,10 @@ class Estacion():
         r = requests.post(URL, data=data, headers=headers)
 
         if r.status_code==200:
-            #print("HTTP status ok. {}".format(r.status_code))
+            print("HTTP status ok. {}".format(r.status_code))
             r.close()
         else:
-            #print("HTTP status {}".format(r.status_code))
+            print("HTTP status {}".format(r.status_code))
             pass
     
     def comunicacionAPI(self, region):
@@ -87,7 +87,7 @@ if __name__ == "__main__":
                 "dir_viento": "N-S",
                 "precipitacion": random.random()}
 
-    region = 1
+    region = 6
 
     estacion = Estacion(direccionIP, APIusername, APIpassword)
     def updater():

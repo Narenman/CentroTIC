@@ -3,7 +3,7 @@ function requestData() {
     $.ajax({
         url: '/app_praes/json-aire/',
         success: function(point) {
-
+            
             var year = point.temperatura[0].slice(0, 4)
             var month = parseInt(point.temperatura[0].slice(5, 7))-1
             var day = point.temperatura[0].slice(8, 10)

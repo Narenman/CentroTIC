@@ -16,15 +16,6 @@ xhttp.onreadystatechange = function() {
 };
 
 
-function getRandomColor() {
-  var letters = '0123456789ABCDEF';
-  var color = '#';
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
-
 xhttp.open("GET", "/radioastronomia/monitoreo-ambiental", true);
 xhttp.send(); 
 
@@ -52,15 +43,19 @@ function constructor(response){
     var colors   = response["colors"]
     var units    = response["units"]
     var response = response["wheather"]
+    var id       = response["id"]
 
     for(i=0; i<= Object.keys(response).length-1; i++){
         var color = "#000";
         
         idatasets.push({data: [],
-                  backgroundColor: colors[i],
-                  borderColor: colors[i],
-                  borderWidth:1,
-                  fill: false,
+                        backgroundColor:colors[i],
+                        borderColor: colors[i],
+                        borderWidth: 2,
+                        pointRadius: 1.5,
+                        hoverRadius: 2,
+                        pointHitRadius: 10,
+                        fill: false,
                   label: Object.keys(response)[i]})
 
         var nodevalue = document.createElement("div");
@@ -75,29 +70,33 @@ function constructor(response){
 
 var ll = [];
 
-var pp = 1 
+var pp = 0 
 function pusher(response){
-    
+    var id       = response["id"]
     var fulldate = response["Date"]
     var units    = response["units"]
     var response = response["wheather"]
+    
+    
 
-    document.getElementById("winfo").innerHTML = "Mediciones Actuales "+fulldate[0]+" "+fulldate[1];
-    var count = pp++
-    ll.push(count);
+    var c = pp++
     for(i=0; i<=Object.keys(response).length-1; i++){
-
-        MainChart.data.datasets[i].data.push({x: count,y:Object.values(response)[i]})
+        
+        MainChart.data.datasets[i].data.push({x: new Date(),y:Object.values(response)[i]})
         var currentdata = document.createTextNode(Object.keys(response)[i] +": "+ Object.values(response)[i]+" "+units[i])
         item = document.getElementById("cvalues").childNodes[i]
         item.replaceChild(currentdata, item.childNodes[0])
+        var muestra = MainChart.data.datasets[i].data.length;
+        document.getElementById("winfo").innerHTML = " Muestras totales: "+ id +"<br>"+ " Muestras Actuales: " + c + "<br>"+"Tiempo de muestra: "+fulldate;
     }
+    
 
-    if(pp>31){
+    if(pp>51){
         for(i=0; i<=Object.keys(response).length-1; i++){
             MainChart.data.datasets[i].data.shift()
+
         }
-        MainChart.data.labels.shift();
+
     }
     MainChart.update()
 }
@@ -111,19 +110,40 @@ function pusher(response){
         datasets: idatasets
            },
     options: {
+        responsive: true,
+        title: {
+            display: false,
+            text: '',
+        },
         scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }],
-            xAxes: [{
-                scaleLabel:{
+             xAxes: [{
+                type: 'time',
+                time: {
+                    parser: 'MM/DD/YYYY HH:mm',
+                    // round: 'day'
+                    tooltipFormat: 'll HH:mm'
+                },
+                scaleLabel: {
                     display: true,
+                    labelString: 'Fecha'
                 }
-            }]
+			 	}],
+
+            yAxes: [{
+                type: 'linear',
+                display: 'true',
+                gridLines:{
+                    display: true
+                    },
+                ticks:{
+                    fontColor: '#000',
+                    autoSkip: true
+                    },
+                position: 'left',
+                id: 'y-axis-1'}
+                ]
+            }
         }
-    }
 });
 
 

@@ -6,6 +6,8 @@ import time
 import random
 import json
 from Estacion import Estacion
+from Davis import Davis_6162C
+
 
 def estadoestacion(estado):
     """esta funcion se encarga de actualizar el estado
@@ -23,6 +25,7 @@ def consultaestados():
     r = requests.get(url=URL)
     dato = r.text
     dato = json.loads(dato)
+    print("consulta estados", r.status_code)
     return dato
 
 def manual(**accion):
@@ -40,6 +43,13 @@ def manual(**accion):
 
     estacion = Estacion(IP, usernameAPI, passwordAPI)
     while True:
+        time.sleep(3)
+        for k, v in estacion.serialRS232().items():
+
+            if k in valores:
+                valores[k] = v
+            else:
+                pass
         estacion.estacionAPI(valores, region)
         if stop_thread2:
             estadoestacion(False)
@@ -60,8 +70,17 @@ def automatico(**accion):
                 "precipitacion": random.random()}
 
     estacion = Estacion(IP, usernameAPI, passwordAPI)
+
+
     while True:
+        time.sleep(3)
+        for k, v in estacion.serialRS232().items():
+            if k in valores:
+                valores[k] = v
+            else:
+                pass
         estacion.estacionAPI(valores, region)
+        print(valores)
         if stop_thread3:
             estadoestacion(False)
             break
@@ -119,7 +138,7 @@ class MQTTSuscriptor():
             else:
                 print("El hilo de la estacion ya esta corriendo")
         
-        if accion["accion"] == "detener" or accion["accion"]=="detener-estacion":
+        if accion["accion"]=="detener-estacion" or accion["accion"] =="detener":
             stop_thread3 = True
             stop_thread2 = True
 
@@ -144,7 +163,7 @@ if __name__ == "__main__":
     stop_thread3 = False
 
     # IP = "192.168.0.101:8000"
-    IP = "192.168.0.104:8000"
+    IP = "10.1.50.216:8000"
     IPbroker = "35.243.199.245"
     usernameAPI  = "mario"
     passwordAPI = "mario"

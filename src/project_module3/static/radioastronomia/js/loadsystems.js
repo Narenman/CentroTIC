@@ -99,25 +99,70 @@ document.getElementById("bot_camara").addEventListener("click", detener_camara);
 // concept ex       : history
 // concept value ex : day
 // url ex           : "/radioastronomia/detener/subsistemas"
-gctx = document.getElementById("graphcanvas").getContext('2d');
+
+// gctx = document.getElementById("graphcanvas").getContext('2d');
 var fdates = document.getElementById("form-filter-dates");
 var DATAS = []
 var ll = []
-var HChart = new Chart(gctx, {
-    type: 'line',
-    data: { labels: ll,
-            datasets: DATAS
-           },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});
+
+var timeFormat = 'MM/DD/YYYY HH:mm';
+// var HChart = new Chart(gctx, {
+//     type: 'line',
+//     data: { labels: ll,
+//             datasets: DATAS
+//            },
+//     options: {
+//         responsive: true,
+//         title: {
+//             display: false,
+//             text: '',
+//         },
+//         scales: {
+//             xAxes: [{
+//                 gridLines:{
+//                     display: true
+//                     },
+//                 type: 'time',
+//                 time: {
+//                     parser: timeFormat,
+//                     // minUnit: 'hour',
+//                     // round: 'month',
+//                     tooltipFormat: 'll HH:mm'},
+//                 // distribution: 'series',
+//                 scaleLabel: {
+// 							display: true,
+// 							labelString: 'Date'
+// 						}
+//                 }],
+//             yAxes: [{
+//                 type: 'linear',
+//                 display: 'true',
+//                 gridLines:{
+//                     display: true
+//                     },
+//                 ticks:{
+//                     fontColor: '#000',
+//                     autoSkip: true
+//                     },
+//                 position: 'left',
+//                 id: 'y-axis-1'}
+//                 ]
+//             }
+//         }
+// });
+
+function dateformat(datestr){
+
+    var year = datestr.slice(0, 4)
+    var month = parseInt(datestr.slice(5, 7))-1
+    var day = datestr.slice(8, 10);
+    var hour = datestr.slice(11,13)
+    var minute = datestr.slice(14,16)
+    var second = datestr.slice(17,18)
+
+    return Date.UTC(year,month,day,hour,minute, second); 
+
+}
 
 
 function sendconcept(concept, concept_value, url){
@@ -142,16 +187,14 @@ function sendconcept(concept, concept_value, url){
         
         var list    = JSON.parse(xhr.response).respuesta;
         var colors  = JSON.parse(xhr.response).colors;
-        var fecha   = JSON.parse(xhr.response).fecha
-        var message = JSON.parse(xhr.response).mensaje
-
-        console.log(list)
-
+        var fecha   = JSON.parse(xhr.response).fecha;
+        var message = JSON.parse(xhr.response).mensaje;
+  
         ll = []
         DATAS = [];
-        HChart.data.labels = ll;
-        HChart.data.datasets = DATAS;
-        HChart.update();
+        // HChart.data.labels = ll;
+        // HChart.data.datasets = DATAS;
+        // HChart.update();
         
         divmessage = document.getElementById("message");
         divmessage.innerHTML = message;
@@ -159,41 +202,74 @@ function sendconcept(concept, concept_value, url){
         divmessage.style.width = "100%";
         divmessage.style.textAlign = "center";
         
-        if(HChart.data.datasets.length == 0 && list.length>0){
+
+        var adseries = [];
+
+        // if(HChart.data.datasets.length == 0 && list.length>0){
+        if(list.length>0){
             for(i=0; i<=Object.keys(list[0]).length-1; i++){
-            
+                // console.log("fecha: ", dateformat(fecha[i].fecha))
                 // console.log("Empty list", DATAS.length, DATAS)
-                DATAS.push({
-                            label: Object.keys(list[0])[i],
-                            data: [],
-                            backgroundColor:colors[i],
-                            borderColor: colors[i],
-                            borderWidth: 0.1,
-                            fill: false})
+                // DATAS.push({
+                //             label: Object.keys(list[0])[i],
+                //             data: [],
+                //             backgroundColor:colors[i],
+                //             borderColor: colors[i],
+                //             borderWidth: 2,
+                //             pointRadius: 0,
+                //             hoverRadius: 2,
+                //             pointHitRadius: 10,
+                //             fill: false})
+                
+                adseries.push({name: Object.keys(list[0])[i],
+                               data: [],
+                               color: colors[i]
+                        })
+
                 }
+                
 
 
             var counter = 1;
+            
+           
             for(i=0; i<=list.length-1; i++){
-                HChart.data.labels.push(counter++);
-
+                counter++
+                // HChart.data.labels.push(dateformat(fecha[i].fecha));
+                // HChart.data.labels.push(dateformat(fecha[i].fecha));
                 for(index=0; index<=Object.keys(list[i]).length-1; index++){
-                    HChart.data.datasets[index].data.push(Object.values(list[i])[index])
-                 
+                    var met__array = {x:new Date(fecha[i].fecha),y:parseFloat(Object.values(list[i])[index])};
+
+                    // HChart.data.datasets[index].data.push(met__array)
+                    
+                    // adseries[index].data.push(parseFloat(Object.values(list[i])[index]))
+                    adseries[index].data.push([dateformat(fecha[i].fecha), parseFloat(Object.values(list[i])[index])])
+                    // adseries[index].data.push(parseFloat(Object.values(list[i])[index]))
+                    
                 }
+
+                
 
             }
         }
-        HChart.update()
+        hchartploter(adseries)
+        // HChart.update()
     }
 }
 
 
 var URL_C = "/radioastronomia/weatherhistory"  // O date para solicitar info por fechas
+sendconcept("History", "Hour", URL_C)
 
-document.getElementById("Hour").addEventListener("click", sendconcept.bind(null,  "History", "Hour", URL_C))
-document.getElementById("Day").addEventListener("click", sendconcept.bind(null, "History", "Day", URL_C))
-document.getElementById("Week").addEventListener("click", sendconcept.bind(null, "History", "Week", URL_C))
+document.getElementById("Hour").addEventListener("click", function(){
+    sendconcept("History", "Hour", URL_C)
+});
+document.getElementById("Day").addEventListener("click", function(){
+    sendconcept("History", "Day", URL_C)
+});
+document.getElementById("Week").addEventListener("click", function(){
+    sendconcept("History", "Week", URL_C)
+});
 
 
 document.getElementById("plot").addEventListener("click", function(event){
@@ -203,10 +279,84 @@ document.getElementById("plot").addEventListener("click", function(event){
 
 
 
-
-
-
-
 // document.getElementById("Month").addEventListener("click", sendconcept.bind(null, "History", "Month", URL_C))
 
-// FIN MANEJO GRAFICA DE PETICIONES PARA HISTORIAL - SUBSISTEMA ESTACION
+// FIN MANEJO DE PETICIONES PARA HISTORIAL GRAFICA- SUBSISTEMA ESTACION
+
+function hchartploter(adseries){
+
+Highcharts.chart('historyplot', {
+    chart: {
+        zoomType: 'x'
+    },
+    title: {
+        text: 'Variables meteorológicas'
+    },
+
+    subtitle: {
+        text: 'Historial: mediciones ambientales'
+    },
+    xAxis:{
+        type: 'datetime',
+        tickPixelInterval: 100
+        // maxZoom: 20 * 1000
+    },
+    yAxis: {
+        title: {
+            text: 'Variable física medida'
+        }
+    },
+    legend: {
+        layout: 'horizontal',
+        align: 'center'
+    },
+
+    plotOptions: {
+        series: {
+            label: {
+                connectorAllowed: false
+            },
+            pointStart: 2010
+        }
+    },
+
+    series: adseries,
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 500
+            },
+            chartOptions: {
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    horizontalAlign: 'top'
+                }
+            }
+        }]
+    }
+
+});
+
+}
+
+
+
+
+// ads = [{
+//             name: 'Installation',
+//             data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+//         }, {
+//             name: 'Manufacturing',
+//             data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+//         }, {
+//             name: 'Sales & Distribution',
+//             data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
+//         }, {
+//             name: 'Project Development',
+//             data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
+//         }, {
+//             name: 'Other',
+//             data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
+//         }]
+
