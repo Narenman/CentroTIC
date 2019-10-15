@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 from .models import AlbumImagenes, RegionCampana, Estado, CaracteristicasAntena, Espectro, \
-    PosicionAntena, Estadocamara, Estadoestacion
+    PosicionAntena, Estadocamara, Estadoestacion, EstacionAmbiental
 
 admin.site.register(AlbumImagenes)
 admin.site.register(RegionCampana)
@@ -12,3 +12,4 @@ admin.site.register(Espectro)
 admin.site.register(PosicionAntena)
 admin.site.register(Estadocamara)
 admin.site.register(Estadoestacion)
+admin.site.register(EstacionAmbiental)

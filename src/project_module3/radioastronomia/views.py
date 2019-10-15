@@ -1,4 +1,6 @@
 import paho.mqtt.publish as publish
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
 import json
 import numpy
 import time, datetime
@@ -614,6 +616,7 @@ def json_spectro(request):
 #aun no tiene logs
 def comparacion_zonas(request):
 
+    respuesta = dict()
     regiones = RegionCampana.objects.all()
     regiones = regiones.values("id", "zona")
     ener = numpy.array([])
@@ -623,105 +626,104 @@ def comparacion_zonas(request):
     max_ = numpy.array([])
     min_ = numpy.array([])
     espectros = []
+    rbw = RBW.objects.all()
+    respuesta.update({"rbws": rbw})
 
-    columns = ["ener", "media", "mediana", "std", "max", "min"]
-    target = []
-    respuesta = dict()
+    columns = ["ener", "media", "mediana", "std", "max", "min", "target"]
     if request.POST:
         cliente = request.POST
         print(cliente)
         rbw = RBW.objects.get(rbw=cliente["RBW"])
-        print(rbw)
         nfft = rbw.nfft
         samp_rate = rbw.frecuencia_muestreo
         fig1, ax1 = plt.subplots()
         if cliente["fechaini"]!= "" or cliente["fechafin"]!="":
+            df = pd.DataFrame(columns=columns)
+            df1 = pd.DataFrame(columns=["media", "energia", "target"])
+            k = 0
+            l = 0
             for reg in regiones:
-                frecuencias = Espectro.objects.filter(region=reg["id"]).values("frec_central").distinct().order_by("frec_central")
+                frecuencias = Espectro.objects.filter(region=reg["id"], frec_muestreo=samp_rate).values("frec_central").distinct().order_by("frec_central")
                 y = numpy.array([])
                 freq_ = numpy.array([])
-                target.append(reg["id"])
 
                 if len(frecuencias)>0:
-                    for freq in frecuencias[:3]:
-                        print(freq)
+                    for freq in frecuencias:
                         espectro = Espectro.objects.filter(region=reg["id"]).values("espectro").filter(frec_central=freq["frec_central"]).filter(frec_muestreo=samp_rate).filter(fecha__range=[cliente["fechaini"], cliente["fechafin"]]).order_by("fecha")
-                        if len(espectro)>0:
-                            x_ = numpy.zeros(nfft)
-                            for row in espectro:
-                                x = numpy.asarray(row["espectro"])
-                                x = promedio(x,nfft)
-                                x_ = x_ + x
-                            x_ = x_/len(espectro)
-                            freq_ = numpy.append(freq_, numpy.arange(-int(nfft/2),int(nfft/2),1)*samp_rate/nfft + freq["frec_central"])
-                            y = numpy.append(y,x_)
-                            flag = True
-                        else:
-                            y = 0
-                            freq_ = 0
-                            flag = False
+                        x_ = numpy.zeros(nfft)
+                        for row in espectro:
+                            x = numpy.asarray(row["espectro"])
+                            x = promedio(x,nfft)
+                            x_ = x_ + x
+                            ener_ = numpy.sum(10**(x_/10))
+                            media_ = numpy.mean(10**(x_/10))
+                            mediana_ = numpy.median(10**(x_/10))
+                            std_ =  numpy.std(10**(x_/10))
+                            max_ = numpy.max(10**(x_/10))
+                            min_ =  numpy.min(10**(x_/10))
+                            df.loc[k] = [ener_, media_, mediana_, std_, max_, min_,reg["id"]]
+                            k+=1
+                        x_ = x_/len(espectro)
+                        freq_ = numpy.append(freq_, numpy.arange(-int(nfft/2),int(nfft/2),1)*samp_rate/nfft + freq["frec_central"])
+                        y = numpy.append(y,x_)
+                        flag = True
                     
                     if flag==True:
                         freq_ = freq_/1e6 #escala de la frecuencia
                         #analisis de caracteristicas
 
                         ## aca van las graficas
-                        ax1.plot(freq_, y, label=reg["zona"])
+                        ax1.plot(freq_, y, label=str(reg["id"])+" "+reg["zona"])
                         ax1.set(xlabel="Frecuencia MHz", ylabel="Espectro dBm", title="Espectro por region",)
                         ax1.legend()
                         ax1.grid(True)
                         espectros = mpld3.fig_to_html(fig1)
 
                         y = 10**(y/10)
-                        ener = numpy.append(ener,numpy.sum(y))
-                        media = numpy.append(media, numpy.mean(y))
-                        mediana = numpy.append(mediana, numpy.median(y))
-                        std = numpy.append(std, numpy.std(y))
-                        max_ = numpy.append(max_,numpy.max(y))
-                        min_ = numpy.append(min_, numpy.min(y))
+                        df1.loc[l] = [10*numpy.log10(numpy.mean(y)), 10*numpy.log10(numpy.sum(y)), reg["id"]]
+                        l+=1
+                        respuesta.update({"espectros": espectros, "condiciones": "Analisis realizado con el RBW {} Hz".format(cliente["RBW"])})
                     else:
-                        respuesta.update({"info": "No hay datos registrados para {} Hz".format(rbw)})
+                        respuesta.update({"info": "No hay datos registrados para {} Hz".format(cliente["RBW"])})
                         logs("critical", "No hay datos registrados en ese RBW", False)
                 else:
                     logs("error", "No hay datos registrados para esa region", False)
             
-            if len(ener)>1:
-                #analisis caracteristicas
-                X = numpy.vstack([ener, media, mediana, std, max_, min_])
-                df = pd.DataFrame(data=X.T, columns=columns)
-                print(df.head())
-                #escalado de los datos
-                from sklearn.preprocessing import StandardScaler
+        
+            if df["ener"].count()>1:
+                fig2, ax2 = plt.subplots()
+                scatter =  ax2.scatter(df1["media"], df1["energia"], c=df1["target"], cmap="plasma")         
+                legend1 = ax2.legend(*scatter.legend_elements(), title="Lugares")
+                ax2.add_artist(legend1)
+                ax2.set(xlabel="Media dBm", ylabel="Energia dBm", title="Comparacion algunas caracteristicas")
+                # ax2.legend(title="Regiones")
+                ax2.grid()
+                caracteristicas = mpld3.fig_to_html(fig2)
+                
+               
+                #analisis PCA para mayor informacion
                 scaler = StandardScaler()
                 scaler.fit(df)
                 scaled_data = scaler.transform(df)
-                #aplicacion de PCA
-                from sklearn.decomposition import PCA
                 pca = PCA(n_components=2)
                 pca.fit(scaled_data)
                 x_pca = pca.transform(scaled_data)
 
-                fig2, ax2 = plt.subplots()
-                ax2.scatter(x_pca[:,0], x_pca[:,1], c=target, cmap="plasma")
-                ax2.set(xlabel="pc1", ylabel="pc2", title="Zonas registradas")
-                ax2.legend(title="Regiones")
-                ax2.grid()
-                caracteristicas = mpld3.fig_to_html(fig2)
+                fig3, ax3 = plt.subplots()
+                scatter2 = ax3.scatter(x_pca[:,0], x_pca[:,1], c=df["target"],cmap="plasma")
+                legend3 = ax3.legend(*scatter2.legend_elements(), title="Lugares")
+                ax3.add_artist(legend3)
+                ax3.set(xlabel='PC_1', ylabel="PC_2", title="Analisis PCA de las regiones")
+                ax3.grid()
+                analisis_pca = mpld3.fig_to_html(fig3)
+                respuesta.update({"pca": analisis_pca})
+
+                respuesta.update({"caracteristicas": caracteristicas,})
                 logs("info", "analisis PCA correcto", False)
             else:
-                logs("critical", "No hay suficientes datos para realizar el PCA", False)
-                caracteristicas  = []
+                respuesta.update({"info": "No hay suficientes zonas con datos registrados"})
+                logs("error", "No hay suficientes datos para comparar zonas", False)
 
-            rbw = RBW.objects.all()
-            respuesta.update({"espectros": espectros,
-                        "caracteristicas": caracteristicas,
-                        "rbws": rbw})
-        else:
-            rbw = RBW.objects.all()
-            respuesta.update({"rbws":rbw})
-    else:
-        rbw = RBW.objects.all()
-        respuesta.update({"rbws": rbw})
     return render(request, "radioastronomia/comparacion_zonas.html", respuesta)
 
 
@@ -730,7 +732,9 @@ def control_manual(request):
     """ Es para mostrar la interfaz del control manual del espectro """
     form = RegionForm()
     antena = CaracteristicasAntena.objects.all()
-    antena = antena.values("id","referencia")     
+    antena = antena.values("id","referencia")
+    configuraciones = RBW.objects.all()
+    configuraciones = configuraciones.values("rbw")     
     respuesta = dict()
     try:
         album = AlbumImagenes.objects.last()
@@ -750,12 +754,12 @@ def control_manual(request):
             #envio de la instruccion al subsistema RFI
             publishMQTT(topico, json.dumps(msg))
             logs("info", f"operacion manual activada para la frecuencia {cliente['frequency']} MHz", False)
-            respuesta.update({"imagenes": album, "form": form, "antenna": antena})
+            respuesta.update({"imagenes": album, "form": form, "antenna": antena, "conf": configuraciones})
         else:
-            respuesta.update({"imagenes": album, "form": form, "antenna": antena})
+            respuesta.update({"imagenes": album, "form": form, "antenna": antena, "conf": configuraciones})
     except:
         form = RegionForm()   
-        respuesta = {"form": form, "antenna": antena}
+        respuesta = {"form": form, "antenna": antena, "conf": configuraciones}
         logs("error", "falta de videos", True)             
     return render(request, "radioastronomia/control_manual.html", respuesta)
 
@@ -764,7 +768,11 @@ def control_automatico(request):
     form = RFIForm()
     respuesta = dict()
     antena = CaracteristicasAntena.objects.all()
-    antena = antena.values("id","referencia")  
+    antena = antena.values("id","referencia")
+    configuraciones = RBW.objects.all()
+    configuraciones = configuraciones.values("rbw")
+    print(configuraciones)
+    respuesta.update({"conf":configuraciones})   
 
     if request.POST:
         cliente = request.POST

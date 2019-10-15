@@ -159,5 +159,5 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL  = '/'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = '/home/radiogis/media'
+MEDIA_ROOT = '/home/uis-e3t/back_centrotic/media'
 # MEDIA_ROOT = '/home/luismiguel/back_centrotic/media' #para el servidor google

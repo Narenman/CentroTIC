@@ -18,9 +18,14 @@
             {{ espectros }}
             {% endautoescape %}
             
-            <h3>Análisis de carácteristicas para diferencias zonas </h3>
+            <h3>Comparacion de la energia de las zonas </h3>
             {% autoescape off %}
             {{ caracteristicas }}
+            {% endautoescape %}
+
+             <h3>Análisis usando PCA</h3>
+            {% autoescape off %}
+            {{ pca }}
             {% endautoescape %}
 
             {% endif %}

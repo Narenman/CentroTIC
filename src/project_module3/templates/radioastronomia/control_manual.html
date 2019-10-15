@@ -131,15 +131,21 @@
                 <div>
                     <label>Frecuencia (MHZ)</label><br>
                     <input type="number" name="frequency" min="0" value="50"><br><br>
-                    <label>nFFT: </label><br>
-                    <select name="nFFT" id="nFFT_LIST_M" onchange="rbwlistM()" required>
+                    {% comment %} <label>nFFT: </label><br> {% endcomment %}
+                    {% comment %} <select name="nFFT" id="nFFT_LIST_M" onchange="rbwlistM()" required>
                             <option value="" selected disabled hidden>nFFT</option>
                             <option value="1024">1024</option>
                             <option value="2048">2048</option>
-                    </select><br><br>
+                    </select><br><br> {% endcomment %}
                     <label>RBW [Hz]: </label><br>
-                    <select name="RBW" id="RBW_LIST_M"></select><br><br>
-                    <label>Ubicación: </label><br>
+                    <select name="RBW" > 
+                    {% for r in conf %}
+                    <option value="{{r.rbw}}">{{r.rbw}}</option>
+                    {% endfor %}
+                    </select>
+                    <br>
+                    {% comment %} <select name="RBW" id="RBW_LIST_M"></select><br><br> {% endcomment %}
+                    <label></label><br>
                     {{form}}
                 </div>
                 <div>
@@ -191,7 +197,7 @@
                             <input type="number" name="finicial" min="0" value="50" required><br><br>
                             <label>Frecuencia Final (MHz): </label><br>
                             <input type="number" name="ffinal" min="0" value="250" required><br><br>
-                            <label>nFFT: </label><br>
+                            {% comment %} <label>nFFT: </label><br>
                             <select name="nFFT" id="nFFT_LIST" onchange="rbwlist()" required>
                                 <option value="" selected disabled hidden>nFFT</option>
                                 <option value="1024">1024</option>
@@ -201,7 +207,15 @@
                             <label>RBW [Hz]: </label><br>
                             <select name="RBW" id="RBW_LIST">
                                     <!-- <option value="" selected disabled hidden>RBW</option> -->
-                            </select><br><br>
+                            </select><br><br> {% endcomment %}
+
+                            <label>RBW [Hz]: </label><br>
+                            <select name="RBW" > 
+                            {% for r in conf %}
+                            <option value="{{r.rbw}}">{{r.rbw}}</option>
+                            {% endfor %}
+                            </select>
+                            <br><br>
 
                             {% comment %} ubicacion {% endcomment %}
                             {{form}}
