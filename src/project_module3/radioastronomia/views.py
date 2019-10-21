@@ -694,7 +694,7 @@ def comparacion_zonas(request):
         
             if df["ener"].count()>1:
                 fig2, ax2 = plt.subplots()
-                scatter =  ax2.scatter(df1["media"], df1["energia"], c=df1["target"], cmap="plasma")         
+                scatter =  ax2.scatter(df1["media"], df1["energia"], c=df1["target"], cmap="Dark2")         
                 legend1 = ax2.legend(*scatter.legend_elements(), title="Lugares")
                 ax2.add_artist(legend1)
                 ax2.set(xlabel="Media dBm", ylabel="Energia dBm", title="Comparacion algunas caracteristicas")
@@ -712,7 +712,7 @@ def comparacion_zonas(request):
                 x_pca = pca.transform(scaled_data)
 
                 fig3, ax3 = plt.subplots()
-                scatter2 = ax3.scatter(x_pca[:,0], x_pca[:,1], c=df["target"],cmap="plasma")
+                scatter2 = ax3.scatter(x_pca[:,0], x_pca[:,1], c=df["target"], cmap="Dark2")
                 legend3 = ax3.legend(*scatter2.legend_elements(), title="Lugares")
                 ax3.add_artist(legend3)
                 ax3.set(xlabel='PC_1', ylabel="PC_2", title="Analisis PCA de las regiones")
