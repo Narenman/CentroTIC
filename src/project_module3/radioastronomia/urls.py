@@ -52,11 +52,12 @@ urlpatterns = [
     path('estado/camara/<int:pk>', apiviews.EstadoCamaraAPI.as_view()),
     path('estado/estacion/<int:pk>', apiviews.EstadoEstacionAPI.as_view()),
 
-    
     # modos de procesamiento del espectro
     path('modo/bandas-espectrales', views.bandas_espectrales, name="modo1"),
     path('modo/analisis-tiempo',views.analisis_tiempo, name="modo2"),
     path('modo/analisis-angular', views.analisis_angular, name="modo3"),
     path('modo/comparacion-zonas', views.comparacion_zonas, name="modo4"),
+
+    path('test/prueba', views.plota,name="as"),
 ]
 

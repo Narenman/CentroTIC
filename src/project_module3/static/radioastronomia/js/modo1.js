@@ -12,8 +12,17 @@ function validatedSendForm(){
 
 }
 
+var cargando = document.getElementById("loading-data");
+function cargar(){
+    console.log("evento")
+    cargando.style.display = "block";
+}
 function sendForm(){
     
+    
+
+    document.getElementById("enviar").addEventListener("click", cargar);
+
     var formElement = document.getElementById("form_id")
     var informacion = document.getElementById("informacion")
     var fecha_min = document.getElementById("fecha_min")
@@ -23,11 +32,12 @@ function sendForm(){
     // formData.append("region",1); //esto es informacion extra
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST","/radioastronomia/barrido-espectro", false)
+    xhr.open("POST","/radioastronomia/barrido-espectro", false);
     xhr.send(new FormData(formElement))
+    
 
     if (xhr.status==200){
-        
+        cargando.style.display = "none";
         //esta variable lee lo que viene del servidor
         stateobject = xhr.response;
         stateobject = JSON.parse(stateobject);

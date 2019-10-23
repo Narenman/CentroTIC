@@ -4,3 +4,6 @@ temporal por cada banda espectral */
 // console.log(csrftoken)
 // var x = JSON.parse(csrftoken)
 // console.log(x)
+
+
+

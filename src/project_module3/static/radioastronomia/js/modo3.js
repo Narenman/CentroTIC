@@ -1,6 +1,14 @@
 /*Este archivo se encarga de administrar el el analisis 
 temporal por cada banda espectral */
 
+var cargando = document.getElementById("loading-data")
+
+function cargar(){
+    console.log("evento");
+    cargando.style.display = "block";
+}
+
+
 function validatedSendForm_A(){
     var BSE_DI = document.getElementById('start_A').value;
     var BSE_DF = document.getElementById('end_A').value;
@@ -26,7 +34,8 @@ function validatedSendForm_E(){
 
 
 function sendForm(formElement){
- 
+    
+    document.getElementById("enviar_E").addEventListener("click", cargar);
     // alert(formElement.id)
     // en caso de querer agregar informacion extra
     formData = new FormData(formElement)
@@ -38,7 +47,8 @@ function sendForm(formElement){
     xhr.send(formData)
 
     if (xhr.status==200){
-        
+        cargando.style.display = "none";
+
         //esta variable lee lo que viene del servidor
         stateobject = xhr.response;
         stateobject = JSON.parse(stateobject);
