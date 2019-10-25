@@ -5,7 +5,7 @@
 		<!-- Mobile Specific Meta -->
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<!-- Favicon-->
-		<link rel="shortcut icon" href="img/fav.png">
+		<link rel="shortcut icon" href="{% static 'pulsioximetria/img/fav.png' %}">
 		<!-- Author Meta -->
 		<meta name="author" content="colorlib">
 		<!-- Meta Description -->
@@ -15,7 +15,7 @@
 		<!-- meta character set -->
 		<meta charset="UTF-8">
 		<!-- Site Title -->
-		<title>Pulsioximetría-Pacientes</title>
+		<title>Pulsioximetría-Patología</title>
 
 		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
 			<!--
@@ -30,6 +30,7 @@
 			<link rel="stylesheet" href=" {% static 'pulsioximetria/css/animate.min.css' %}">
 			<link rel="stylesheet" href=" {% static 'pulsioximetria/css/owl.carousel.css' %}">				
 			<link rel="stylesheet" href=" {% static 'pulsioximetria/css/main.css' %}">
+			<link rel="stylesheet" href=" {% static 'pulsioximetria/css/monitorpacientes.css' %}">
 		</head>
 		<body>	
 			<header id="header">
@@ -37,18 +38,7 @@
 					<div class="container">
 			  		<div class="row align-items-center">
 			  			<div class="col-lg-6 col-sm-6 col-6 header-top-left">
-			  				<!-- <ul>
-			  					<li><a href="#">Visit Us</a></li>
-			  					<li><a href="#">Buy Tickets</a></li>
-			  				</ul>			
-			  			</div>
-			  			<div class="col-lg-6 col-sm-6 col-6 header-top-right">
-							<div class="header-social">
-								<a href="#"><i class="fa fa-facebook"></i></a>
-								<a href="#"><i class="fa fa-twitter"></i></a>
-								<a href="#"><i class="fa fa-dribbble"></i></a>
-								<a href="#"><i class="fa fa-behance"></i></a>
-							</div> -->
+			  				
 			  			</div>
 			  		</div>			  					
 					</div>
@@ -60,10 +50,10 @@
 				      </div>
 				      <nav id="nav-menu-container">
 				        <ul class="nav-menu">
-						<li><a href="{% url 'pulsioximetria:index' %}">Inicio</a></li>
+				          <li><a href="{% url 'pulsioximetria:index' %}">Inicio</a></li>
 				          <li><a href="{% url 'pulsioximetria:patologias' %}">Patologías</a></li>
-				          <li><a href="{% url 'pulsioximetria:pacientes' %}">Pacientes</a></li>				          		    
-				        </ul>
+				          <li><a href="{% url 'pulsioximetria:pacientes' %}">Pacientes</a></li> 
+				          
 				      </nav><!-- #nav-menu-container -->					      		  
 					</div>
 				</div>
@@ -76,9 +66,9 @@
 					<div class="row d-flex align-items-center justify-content-center">
 						<div class="about-content col-lg-12">
 							<h1 class="text-white">
-								PACIENTES			
+								PACIENTES				
 							</h1>	
-							<p class="text-white link-nav"><a href="{% url 'pulsioximetria:index' %}">INICIO </a>  <span class="lnr lnr-arrow-right"></span>  <a href="insurance.html"> Pacientes</a></p>
+							<p class="text-white link-nav"><a href="{% url 'pulsioximetria:index' %}">INICIO </a>  <span class="lnr lnr-arrow-right"></span>  <a href="{% url 'pulsioximetria:pacientes' %}"> Pacientes</a></p>
 						</div>	
 					</div>
 				</div>
@@ -87,60 +77,158 @@
 
 			<!-- Start insurence-one Area -->
 			<section class="insurence-one-area section-gap">
-				<div class="container">
-					<div class="row align-items-center">
-						<div class="col-lg-6 insurence-left">
-							<img class="img-fluid img-one" src="{% static 'pulsioximetria/img/insurence/i1.jpg' %}" alt="">
-						</div>
-						<div class="col-lg-6 insurence-right">
-							
+				<body>
 
-							<h1>Apnea e Hipopnea</h1>
-							<p>
-								Here, I focus on a range of items and features that we use in life without giving them a second thought. such as Coca Cola. Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
-							</p>
-							<div class="list-wrap">
-								<ul>
-									<li>Strategic approach towards redesigning brand.</li>
-									<li>logo design strategy ensures a perfectly crafted
-									logo for your business.</li>
-									<li>Branding that stands out in the crowd.</li>
-									<li>Modern and evergreen logo for your business.</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>	
-			</section>
-			<!-- End insurence-one Area -->
+				<button class="tablink" onclick="openPage('Home', this, '#F08080')">MONITOREO DE PULSIOXIMETRIA</button>
+				<!-- <button class="tablink" onclick="openPage('News', this, '#FA8072')" id="defaultOpen">Paciente 2</button>
+				<button class="tablink" onclick="openPage('Contact', this, '#E9967A')">Paciente 3</button> -->
 
-			<!-- Start insurence-two Area -->
-			<section class="insurence-two-area pb-120">
-				<div class="container">
-					<div class="row align-items-center">
-						<div class="col-lg-6 insurence-left">
+				<div id="Home" class="tabcontent1">
+					<div id="bory">
+
+						<div id="de">
+
+							<h1 class="div-title">Gráfica Pulsioximetro</h1>
+
 							
-							<h1>Taquicardía y bradicardía</h1>
-							<p>
-								Here, I focus on a range of items and features that we use in life without giving them a second thought. such as Coca Cola. Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
-							</p>
-							<div class="list-wrap">
-								<ul>
-									<li>Strategic approach towards redesigning brand.</li>
-									<li>logo design strategy ensures a perfectly crafted
-									logo for your business.</li>
-									<li>Branding that stands out in the crowd.</li>
-									<li>Modern and evergreen logo for your business.</li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-lg-6 insurence-right">
-							<img class="img-fluid img-two" src="{% static 'pulsioximetria/img/insurence/i2.jpg' %}" alt="">
-						</div>						
-					</div>
-				</div>	
+    						<canvas id="myChart" height="12vw" width="50vw"></canvas>
+    						
+							
+							
+				  		</div>
+
+
+						<div id="iz">
+
+						
+
+						<h1 class="div-title">Variables del Pulsioximetro</h1>
+                        
+                        <div id="table1" class="wa_tab">
+                            <table>
+                                <tr class="nombre_variables">
+                                    <th id="n_v1">SPO2</th>
+                                    <th id="n_v2">HR</th>
+                                    <th id="n_v3">BATERIA </th>
+                                    
+                                </tr>
+                                <tr>
+                                    <td><br><img class="icon_spo2" src="/static/pulsioximetria/img/spo.png"></td>
+                                    <td><br><img  class="icon_hr" src="/static/pulsioximetria/img/cora.png"></td>
+                                    <td><br><img class="icon_bateria" src="/static/pulsioximetria/img/bate.png"></td> 
+                                </tr>
+                                <tr class="valores">        
+                                    <td id="v_spo2"><br>99%</td>            
+                                    <td id="v_hr"><br>65</td>
+                                    <td id="v_bateria"><br>3.8V</td>                                                
+                                </tr>
+                            </table>
+                        </div>
+                        <hr>
+                         <a id="descarga" href= "http://127.0.0.1:8000/pulsioximetria/datos-json-all"  target="_blank">Vista de datos del pulsioxímetro en formato JSON</a> 
+		
+				  		</div>
+
+
+
+				  	</div>
+
+
+				</div>
+
+
+				<!-- <div id="News" class="tabcontent1">
+				  <div id="bory">
+
+				  			<div id="de">
+				  				<h1 class="div-title">Gráfica Pulsioximetro</h1>
+
+							
+    						<canvas id="myChart2" height="12vw" width="50vw"></canvas>
+				  			
+
+				  			</div>
+
+
+						<div id="iz">
+						<h3 class="div-title">Variables Pulsioximetro</h3>
+                        <hr>
+                        <div id="table1" class="wa_tab">
+                            <table>
+                                <tr class="nombre_variables">
+                                    <th id="n_v1">SPO2</th>
+                                    <th id="n_v2">HR</th>
+                                    <th id="n_v3">BATERIA </th>
+                                    
+                                </tr>
+                                <tr>
+                                    <td><br><img class="icon_spo2" src="/static/pulsioximetria/img/spo.png"></td>
+                                    <td><br><img  class="icon_hr" src="/static/pulsioximetria/img/HR.png"></td>
+                                    <td><br><img class="icon_bat" src="/static/pulsioximetria/img/BAT.png"></td> 
+                                </tr>
+                                <tr class="valores">        
+                                    <td id="v_spo2"><br>99%</td>            
+                                    <td id="v_hr"><br>65</td>
+                                    <td id="v_bateria"><br>3.8V</td>                                                
+                                </tr>
+
+
+                            </table>
+                            
+                        </div>
+
+		
+				  		</div>
+				  	</div>
+				</div>
+
+				<div id="Contact" class="tabcontent1">
+				  	<div id="bory">
+
+				  		<div id="de">
+				  			<h1 class="div-title">Gráfica Pulsioximetro</h1>
+
+							
+    						<canvas id="myChart" height="12vw" width="50vw"></canvas>
+				  		</div>
+
+
+						<div id="iz">
+						<h3 class="div-title">Variables Pulsioximetro</h3>
+                        <hr>
+                        <div id="table1" class="wa_tab">
+                            <table>
+                                <tr class="nombre_variables">
+                                    <th id="n_v1">SPO2</th>
+                                    <th id="n_v2">HR</th>
+                                    <th id="n_v3">BATERIA </th>
+                                    
+                                </tr>
+                                <tr>
+                                    <td><br><img class="icon_spo2" src="/static/pulsioximetria/img/spo.png"></td>
+                                    <td><br><img  class="icon_hr" src="/static/pulsioximetria/img/HR.png"></td>
+                                    <td><br><img class="icon_bateria" src="/static/pulsioximetria/img/BAT.png"></td> 
+                                </tr>
+                                <tr class="valores">        
+                                    <td id="v_spo2"><br>99%</td>            
+                                    <td id="v_hr"><br>65</td>
+                                    <td id="v_bateria"><br>3.8V</td>                                                
+                                </tr>
+                            </table>
+                            
+                        </div>
+		
+				  		</div>
+				  	</div>
+				    
+				</div> -->
+				
 			</section>
-			<!-- End insurence-two Area -->			
+			<canvas id="myChart2" height="12vw" width="50vw"></canvas>
+			<!-- End insurence-one Area -->				
+
+							
+	
 			
 
 			<!-- start footer Area -->		
@@ -200,6 +288,30 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				</div>
 			</footer>
 			<!-- End footer Area -->	
+			<script>
+			function openPage(pageName,elmnt,color) {
+  				var i, tabcontent1, tablinks;
+  				tabcontent1 = document.getElementsByClassName("tabcontent1");
+  				for (i = 0; i < tabcontent1.length; i++) {
+   				 tabcontent1[i].style.display = "none";
+  				}
+  				tablinks = document.getElementsByClassName("tablink");
+ 				for (i = 0; i < tablinks.length; i++) {
+   			 	tablinks[i].style.backgroundColor = "";
+  				}
+  				document.getElementById(pageName).style.display = "block";
+  				elmnt.style.backgroundColor = color;
+			}
+
+				// Get the element with id="defaultOpen" and click on it
+				
+			</script>
+
+
+
+
+
+
 
 			<script src="{% static 'pulsioximetria/js/vendor/jquery-2.2.4.min.js' %} "></script>
 			<script src="{% static 'pulsioximetria/js/popper.min.js' %} "></script>
@@ -214,6 +326,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			<script src="{% static 'pulsioximetria/js/jquery.nice-select.min.js' %}"></script>					
 			<script src="{% static 'pulsioximetria/js/owl.carousel.min.js' %} "></script>							
 			<script src="{% static 'pulsioximetria/js/mail-script.js' %}"></script>	
-			<script src="{% static 'pulsioximetria/js/main.js' %}"></script>	
+			<script src="{% static 'pulsioximetria/js/main.js' %}"></script>
+			<script type="application/javascript" src="{% static 'pulsioximetria/js/chartjs.js' %}"></script>
+			<script src="{% static 'pulsioximetria/js/myget.js' %}"></script>
+
+			<script src="{% static 'pulsioximetria/js/chart.js' %}"></script>
+			<!-- <script src="{% static 'pulsioximetria/js/chart2.js' %}"></script>
+ -->
+
 		</body>
 	</html>

@@ -59,7 +59,7 @@
 							
 							<h1 class="text-white">PULSIOXIMETRO</h1>
 							<p class="text-white">
-								Se realizó el diseño e implementación de un prototipo de pulsioximetría con el cual se hará la medición no invasiva de la saturación de oxígeno de la sangre y la frecuencia cardíaca. Este dispositivo cuenta con conexión a internet, por lo que será posible monitorear el estado de salud del paciente desde cualquier lugar remoto, ofreciendo un diagnostico por parte del médico tratante y de ser necesario un tratamiento inmediato.
+								Se realizó el diseño e implementación de un prototipo de pulsioximetría con el cual se hará la medición no invasiva de la saturación de oxígeno de la sangre y la frecuencia cardíaca. Este dispositivo cuenta con conexión a internet, por lo que será posible monitorear el estado de salud del paciente, ofreciendo un diagnóstico por parte del médico tratante y de ser necesario un tratamiento inmediato.
 							</p>
 							<a href="{% url 'main-index' %}" class="primary-btn text-uppercase">CentroTic</a>
 						</div>
@@ -77,7 +77,7 @@
 		                <div class="menu-content pb-70 col-lg-8">
 		                    <div class="title text-center">
 		                        <h1 class="mb-10">Variables de medición</h1>
-		                        <p>Estas variables serán monitorizadas en el transcurso del tiempo.</p>
+		                        <p> Las variables que serán monitorzadas en el transcurso del tiempo por el prototipo de pulsioximetría son los siguientes. </p>
 		                    </div>
 		                </div>
 		            </div>						
@@ -99,7 +99,7 @@
 									<img class="img-fluid" src="{% static 'pulsioximetria/img/d2.jpg' %}" alt="">
 								</div>
 								<h4>Fecuencia cardíaca</h4>
-									<p>Es el número de contracciones del corazón o pulsaciones por unidad de tiempo. los niveles óptimos se encuentran en el rango de 60 y 100 latidos por minuto mientras se está en reposo</p>
+									<p>Es el número de contracciones del corazón o pulsaciones por unidad de tiempo. los niveles óptimos se encuentran en el rango de 60 y 100 latidos por minuto mientras se está en reposo.</p>
 							</div>
 						</div>
 						<div class="col-lg-4">
@@ -110,7 +110,7 @@
 								</div>
 								
 								<h4>Batería</h4>
-									<p>Este prototipo es de tamaño reducido y portátil por lo tanto se hará uso de una batería recargable, por esta razón se estará monitoreando el nivel de carga de la misma. </p>
+									<p>Este prototipo es de tamaño reducido y portátil por lo tanto se hará uso de una batería de litio-polimero recargable, por esta razón se estará monitoreando el nivel de carga. </p>
 							</div>
 						</div>												
 					</div>
@@ -126,8 +126,8 @@
 					<div class="row d-flex justify-content-center">
 						<div class="menu-content pb-60 col-lg-9">
 							<div class="title text-center">
-								<h1 class="mb-10">Instrumentos de medición</h1>
-								<p> Para la construcción del oxímetro de pulso hace uso de los sigientes sensores y microcontrolador.</p>
+								<h1 class="mb-10">Elementos del prototipo</h1>
+								<p> Para la construcción del oxímetro de pulso se hace uso de los sigientes componentes.</p>
 							</div>
 						</div>
 					</div>							
@@ -135,7 +135,7 @@
 						<div class="active-recent-blog-carusel">
 							<div class="single-recent-blog-post item">
 								<div class="thumb">
-									<img class="img-fluid" src="{% static 'pulsioximetria/img/b1.jpg' %} " alt="">
+									<img class="img-fluid" src="{% static 'pulsioximetria/img/t1.jpg' %} " alt="">
 								</div>
 								<div class="details">
 									<div class="tags">
@@ -150,12 +150,14 @@
 									<p> Este sensor es la solución integrada del sensor de oximetría de pulso y monitor de frecuencia cardíaca. Cuenta con una combinacion de led rojo e infrarrojo y un fotodectector.
 										
 									</p>
+									<p> A partir de este sensor se obtienen las señales pletismograficas, realizando el tratamiento de estas se logra adquirir el valor de HR y SPO2 del prototipo.
+									</p>
 									
 								</div>	
 							</div>
 							<div class="single-recent-blog-post item">
 								<div class="thumb">
-									<img class="img-fluid" src="{% static 'pulsioximetria/img/b2.jpg' %} " alt="">
+									<img class="img-fluid" src="{% static 'pulsioximetria/img/imu.jpg' %} " alt="">
 								</div>
 								<div class="details">
 									<div class="tags">
@@ -168,47 +170,55 @@
 									<h4 class="title">MPU6050</h4>
 									<p>
 										Es un dispositivo que integra 3 ejes de aceleración y 3 ejes de giroscopio, acepta directamente entradas de una brújula externa de 3 ejes.
+
 									</p>
+
+										<p> Se hace uso de este sensor, para condicionar el movimiento del paciente, considerando que el sensor es sensible a movimientos bruscos que pueden generar variación en las medidas, debido a que éste es de tipo óptico. Otra finalidad de su uso es la aplicación del dispositivo en trabajos futuros sobre detección de caídas en personas de la tercera edad.
+
+										</p>
 									
 								</div>	
 							</div>
 
 							<div class="single-recent-blog-post item">
 								<div class="thumb">
-									<img class="img-fluid" src="{% static 'pulsioximetria/img/b1.jpg' %}" alt="">
+									<img class="img-fluid" src="{% static 'pulsioximetria/img/esp.jpg' %}" alt="">
 								</div>
 								<div class="details">
 									<div class="tags">
 										<ul>
 											<li>
-												<a href="https://pdf1.alldatasheet.com/datasheet-pdf/view/879178/MAXIM/MAX30100.html">link</a>
+												<a href="https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32_datasheet_en.pdf">link</a>
 											</li>
 																						
 										</ul>
 									</div>
-									<a ><h4 class="title">MAX30100</h4></a>
-									<p> Este sensor es la solución integrada del sensor de oximetría de pulso y monitor de frecuencia cardíaca. Cuenta con una combinacion de led rojo e infrarrojo y un fotodectector.
-										
+									<a ><h4 class="title">ESP32-WROOM</h4></a>
+									<p> Es una serie de sistemas de bajo costo y bajo consumo de energía en un microcontrolador de chip con Wi-Fi integrado y Bluetooth.
+									</p>
+									<p> Se hace uso de este microcontrolador por sus características para la transmisión de datos. Teniendo en cuenta que el prototipo es portátil es de vital importancia que este sea de tamaño reducido, por lo que el módulo del ESP32 cumple con este objetivo, además de su bajo costo y sus modos de ahorro de energía lo convierten en una buena elección.
 									</p>
 									
 								</div>	
 							</div>
 							<div class="single-recent-blog-post item">
 								<div class="thumb">
-									<img class="img-fluid" src="{% static 'pulsioximetria/img/b2.jpg' %}" alt="">
+									<img class="img-fluid" src="{% static 'pulsioximetria/img/bat.jpg' %}" alt="">
 								</div>
 								<div class="details">
 									<div class="tags">
 										<ul>
 											<li>
-												<a href="https://pdf1.alldatasheet.com/datasheet-pdf/view/517744/ETC1/MPU-6050.html">Link</a>
+												<a href="https://download.mikroe.com/documents/datasheets/battery-datasheet.pdf">Link</a>
 											</li>											
 										</ul>
 									</div>
-									<h4 class="title">MPU6050</h4>
+									<h4 class="title">Bateria de li-po</h4>
 									<p>
-										Es un dispositivo que integra 3 ejes de aceleración y 3 ejes de giroscopio, acepta directamente entradas de una brújula externa de 3 ejes.
+										 son un tipo de bateria recargables que suelen utilizar los sistemas eléctricos. 
 									</p>
+									<p> La alimentacion requerida en el prototipo se encuentra en el rango de 3.1V a 3.7V a 500mAh. Este tipo de baterias cumplen con estas especificaciones, además de su bajo costo y reducido tamaño.
+										</p>
 									
 								</div>	
 							</div>
