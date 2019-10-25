@@ -300,7 +300,7 @@ def analisis_tiempo(request):
                 ax.set(xlabel='Energia dBm', ylabel='',
                 title='Histograma del comportamiento de la energia')
                 ax.grid()
-                histograma = mpld3.fig_to_html(fig,mpld3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/d3.v3.min.js")
+                histograma = mpld3.fig_to_html(fig,mpld3_url="http://127.0.0.1/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/d3.v3.min.js")
 
                 # histograma = mpld3.fig_to_html(fig,)
 
@@ -310,13 +310,13 @@ def analisis_tiempo(request):
                 ax1.plot(tiempo, 10*numpy.log10(char_ener))
                 ax1.set(xlabel="Tiempo DD H:M:s", ylabel="Energia dBm", title="Energia banda en funcion del tiempo")
                 ax1.grid()
-                tiempo_energia = mpld3.fig_to_html(fig1, mpld3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/d3.v3.min.js")
+                tiempo_energia = mpld3.fig_to_html(fig1, mpld3_url="http://127.0.0.1/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/d3.v3.min.js")
 
                 fig2, ax2 = plt.subplots()
                 sns.heatmap(df, yticklabels=5, xticklabels=120, cmap="coolwarm", ax=ax2)
                 ax2.set(xlabel="Frecuencia MHz", ylabel="Tiempo", title="Espectrograma")
                 ax2.grid()
-                espectrograma = mpld3.fig_to_html(fig2, mpld3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/d3.v3.min.js")
+                espectrograma = mpld3.fig_to_html(fig2, mpld3_url="http://127.0.0.1/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/d3.v3.min.js")
                 
 
                 # """Probar esto """
@@ -688,7 +688,7 @@ def comparacion_zonas(request):
                         ax1.set(xlabel="Frecuencia MHz", ylabel="Espectro dBm", title="Espectro por region",)
                         ax1.legend()
                         ax1.grid(True)
-                        espectros = mpld3.fig_to_html(fig1, mpld3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/d3.v3.min.js")
+                        espectros = mpld3.fig_to_html(fig1, mpld3_url="http://127.0.0.1/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/d3.v3.min.js")
 
                         y = 10**(y/10)
                         df1.loc[l] = [10*numpy.log10(numpy.mean(y)), 10*numpy.log10(numpy.sum(y)), reg["id"]]
@@ -709,7 +709,7 @@ def comparacion_zonas(request):
                 ax2.set(xlabel="Media dBm", ylabel="Energia dBm", title="Comparacion algunas caracteristicas")
                 # ax2.legend(title="Regiones")
                 ax2.grid()
-                caracteristicas = mpld3.fig_to_html(fig2, mpld3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/d3.v3.min.js")
+                caracteristicas = mpld3.fig_to_html(fig2, mpld3_url="http://127.0.0.1/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/d3.v3.min.js")
                 
                
                 #analisis PCA para mayor informacion
@@ -726,7 +726,7 @@ def comparacion_zonas(request):
                 ax3.add_artist(legend3)
                 ax3.set(xlabel='PC_1', ylabel="PC_2", title="Analisis PCA de las regiones")
                 ax3.grid()
-                analisis_pca = mpld3.fig_to_html(fig3, mpld3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/d3.v3.min.js")
+                analisis_pca = mpld3.fig_to_html(fig3, mpld3_url="http://127.0.0.1/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/d3.v3.min.js")
                 respuesta.update({"pca": analisis_pca})
 
                 respuesta.update({"caracteristicas": caracteristicas,})
@@ -895,7 +895,7 @@ class RBWUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy("radioastronomia:rbw")
 
 ## informacion sobre los lugares de medicion
-class RegionCampanaListView(ListView):
+class RegionCampanaListView(LoginRequiredMixin, ListView):
     model = RegionCampana
     template_name = "radioastronomia/index.html"
     context_object_name ="region"
@@ -999,40 +999,3 @@ def conf_estados(request):
         estado3.save()
         return HttpResponseRedirect(reverse_lazy("radioastronomia:index"))
     return render(request, "radioastronomia/conf_estados.html", {})
-
-import io
-from matplotlib.backends.backend_agg import FigureCanvasAgg
-from random import sample
-from django.http import HttpResponse
-
-def plota(request):
-    x = range(1,11)
-    y = sample(range(20), len(x))
-
-    # Creamos una figura y le dibujamos el gráfico
-    f = plt.figure()
-
-    # Creamos los ejes
-    axes = f.add_axes([0.15, 0.15, 0.75, 0.75]) # [left, bottom, width, height]
-    axes.plot(x, y)
-    axes.set_xlabel("Eje X")
-    axes.set_ylabel("Eje Y")
-    axes.set_title("Mi gráfico dinámico")
-
-    # Como enviaremos la imagen en bytes la guardaremos en un buffer
-    buf = io.BytesIO()
-    canvas = FigureCanvasAgg(f)
-    canvas.print_png(buf)
-
-    # Creamos la respuesta enviando los bytes en tipo imagen png
-    response = HttpResponse(buf.getvalue(), content_type='image/png')
-
-    # Limpiamos la figura para liberar memoria
-    f.clear()
-
-    # Añadimos la cabecera de longitud de fichero para más estabilidad
-    response['Content-Length'] = str(len(response.content))
-
-    # Devolvemos la response
-    return response
-    # return render(request, "radioastronomia/test.html", {"response": response})
