@@ -11,7 +11,7 @@ import mpld3
 import logging
 from .models import AlbumImagenes, Espectro, Estado, CaracteristicasAntena, \
                     CaracteristicasEstacion, RBW, CaracteristicasEspectro, RegionCampana, \
-                        PosicionAntena, Servicios, Bandas, EstacionAmbiental, Estadocamara, Estadoestacion
+                        PosicionAntena, Servicios, Bandas, EstacionAmbiental, Estadocamara, Estadoestacion, EstadoPosicionAntena
 from .forms import EspectroForm, RFIForm, RegionForm
 from django.core import serializers
 from django.urls import reverse_lazy
@@ -129,8 +129,13 @@ def detener(request):
     """ Es para detener todos los subsistemas """
     form = RegionForm()
     antena = CaracteristicasAntena.objects.all()
-    antena = antena.values("id","referencia")     
+    antena = antena.values("id","referencia")
+    
+    configuraciones = RBW.objects.all()
+    configuraciones = configuraciones.values("rbw")
+    print(configuraciones)
     respuesta = dict()
+    respuesta.update({"conf":configuraciones})   
     try:
         album = AlbumImagenes.objects.last()
         album = album.imagen
@@ -756,15 +761,39 @@ def control_manual(request):
             rbw = RBW.objects.get(rbw=cliente["RBW"])
             nfft = rbw.nfft
             frecuencia_muestreo = rbw.frecuencia_muestreo
+            #parametros de la antena escogida por el usuario
+            ant = CaracteristicasAntena.objects.get(pk=cliente["antena"])
+            path_caracterizacion = ant.caracterizacion_csv
+            caract = pd.read_csv(path_caracterizacion, sep=';')
+            #preparacion de los datos
+            caract["Return Loss(dB)"] = list(map(lambda rloss: float(rloss.replace(',','.')), caract["Return Loss(dB)"]))
+            caract["SWR"] = list(map(lambda rloss: float(rloss.replace(',','.')), caract["SWR"]))
+            caract["Phase(deg)"] = list(map(lambda rloss: float(rloss.replace(',','.')), caract["Phase(deg)"]))
+            caract["Rs"] = list(map(lambda rloss: float(rloss.replace(',','.')), caract["Rs"]))
+            caract["Xs"] = list(map(lambda rloss: float(rloss.replace(',','.')), caract["Xs"]))
+            caract["|Z|"] = list(map(lambda rloss: float(rloss.replace(',','.')), caract["|Z|"]))
+            caract["Theta"] = list(map(lambda rloss: float(rloss.replace(',','.')), caract["Theta"]))
+            print(caract.head())
+            #frecuencias del analisis
+            f = numpy.arange(-int(nfft/2),int(nfft/2),1)*frecuencia_muestreo/(int(nfft)) + float(cliente["frequency"])*1e6
+            #parametros de caracterizacion 
+            x1 = numpy.asarray(caract["Frequency(Hz)"])
+            y1 = numpy.asarray(caract["Return Loss(dB)"])
+            y1 = 10**(y1/20)
+            #perdidas del sistema
+            """Interpolacion necesaria para ajustar los valores a 
+            las frecuencias dadas """
+            gamma = numpy.interp(f, x1, y1)
+
             #preparacion de los mensajes para enviar a los dispositivos
-            msg = {"nfft": nfft, "sample_rate": frecuencia_muestreo,
+            msg = {"gamma":list(gamma), "nfft": nfft, "sample_rate": frecuencia_muestreo,
             "ganancia": 50, "duracion": 5, "frec_central": int(float(cliente["frequency"])*1e6),
             "accion": "modo manual", "region": int(cliente["region"]), "elevacion":int(cliente["elevacion"]),
             "azimut":int(cliente["azimut"]), "antena":int(cliente["antena"])}
             topico = "radioastronomia/RFI"
             #envio de la instruccion al subsistema RFI
             publishMQTT(topico, json.dumps(msg))
-            logs("info", f"operacion manual activada para la frecuencia {cliente['frequency']} MHz", False)
+            logs("info", "operacion manual activada para la frecuencia {cliente['frequency']} MHz", False)
             respuesta.update({"imagenes": album, "form": form, "antenna": antena, "conf": configuraciones})
         else:
             respuesta.update({"imagenes": album, "form": form, "antenna": antena, "conf": configuraciones})
@@ -791,7 +820,29 @@ def control_automatico(request):
         rbw = RBW.objects.get(rbw=cliente["RBW"])
         nfft = rbw.nfft
         frecuencia_muestreo = rbw.frecuencia_muestreo
-        msg = {"nfft": nfft, "sample_rate": frecuencia_muestreo,
+
+        ant = CaracteristicasAntena.objects.get(pk=cliente["antena"])
+        path_caracterizacion = ant.caracterizacion_csv
+        caract = pd.read_csv(path_caracterizacion, sep=';')
+        #preparacion de los datos
+        caract["Return Loss(dB)"] = list(map(lambda rloss: float(rloss.replace(',','.')), caract["Return Loss(dB)"]))
+        caract["SWR"] = list(map(lambda rloss: float(rloss.replace(',','.')), caract["SWR"]))
+        caract["Phase(deg)"] = list(map(lambda rloss: float(rloss.replace(',','.')), caract["Phase(deg)"]))
+        caract["Rs"] = list(map(lambda rloss: float(rloss.replace(',','.')), caract["Rs"]))
+        caract["Xs"] = list(map(lambda rloss: float(rloss.replace(',','.')), caract["Xs"]))
+        caract["|Z|"] = list(map(lambda rloss: float(rloss.replace(',','.')), caract["|Z|"]))
+        caract["Theta"] = list(map(lambda rloss: float(rloss.replace(',','.')), caract["Theta"]))
+        print(caract.head())
+        #frecuencias del analisis
+        #f = numpy.arange(-int(nfft/2),int(nfft/2),1)*frecuencia_muestreo/(int(nfft)) + float(cliente["frequency"])*1e6
+        #parametros de caracterizacion 
+        x1 = numpy.asarray(caract["Frequency(Hz)"])
+        x1 = numpy.float32(x1)
+        y1 = numpy.asarray(caract["Return Loss(dB)"])
+        y1 = 10**(y1/20)
+
+
+        msg = {"gamma": {"x1": x1.tolist(), "y1":y1.tolist()}, "nfft": nfft, "sample_rate": frecuencia_muestreo,
         "ganancia": 50, "duracion": 2, "frecuencia_inicial": int(float(cliente["finicial"])*1e6),
         "accion": "modo automatico",
         "region": int(cliente["region"]), "frecuencia_final": int(float(cliente["ffinal"])*1e6),
@@ -997,5 +1048,7 @@ def conf_estados(request):
         estado2.save()
         estado3 = Estado(id=1, activo=False, frecuencia=0, elevacion=0, azimut=0)
         estado3.save()
+        estado4 = EstadoPosicionAntena(id=1, activo=False, azimut=0, elevacion=0)
+        estado4.save()
         return HttpResponseRedirect(reverse_lazy("radioastronomia:index"))
     return render(request, "radioastronomia/conf_estados.html", {})

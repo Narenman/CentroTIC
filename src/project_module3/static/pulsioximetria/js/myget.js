@@ -39,7 +39,7 @@ function loadDoc() {
     
   };
 
-  xhttp.open("GET", "http://127.0.0.1:8000/pulsioximetria/datosgraf-json", true);
+  xhttp.open("GET", "/pulsioximetria/datosgraf-json", true);
   xhttp.overrideMimeType('text/xml; charset=iso-8859-1');
   xhttp.send(); 
 
@@ -67,7 +67,7 @@ function downloadall(){
     }
   };
 
-  xhttp.open("GET", "http://127.0.0.1:8000/pulsioximetria/datos-json-all", true);
+  xhttp.open("GET", "/pulsioximetria/datos-json-all", true);
   xhttp.overrideMimeType('text/xml; charset=iso-8859-1');
   xhttp.send(); 
 

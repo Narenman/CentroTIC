@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from .models import AlbumImagenes, Espectro, EstacionAmbiental, CaracteristicasEspectro ,\
-    Estado, PosicionAntena, Estadocamara, Estadoestacion
+    Estado, PosicionAntena, Estadocamara, Estadoestacion, EstadoPosicionAntena
 
 
 class AlbumSerializer(serializers.ModelSerializer):
@@ -42,4 +42,9 @@ class EstadoEstacionSerializer(serializers.ModelSerializer):
 class PosicionAntenaSerializer(serializers.ModelSerializer):
     class Meta:
         model = PosicionAntena
+        fields = "__all__"
+
+class EstadoPosicionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EstadoPosicionAntena
         fields = "__all__"

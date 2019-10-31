@@ -58,10 +58,11 @@ class CaracteristicasAntena(models.Model):
     referencia = models.CharField(max_length=50)
     rango_frecuencias = models.CharField(max_length=50)
     polarizacion = models.CharField(max_length=50, blank=True)
-    vswr = models.ImageField(upload_to="album/vswr", height_field=None, width_field=None, max_length=None)
     conector = models.CharField(max_length=50, blank=True)
-    directividad = models.CharField(max_length=50)
+    # directividad = models.CharField(max_length=50)
     imagen = models.ImageField(upload_to="album/antenas", height_field=None, width_field=None, max_length=None)
+    vswr = models.ImageField(upload_to="album/vswr", height_field=None, width_field=None, max_length=None)
+    caracterizacion_csv = models.FileField(upload_to='caracterizacion', max_length=100)
     def __str__(self):
         return self.referencia
 
@@ -225,3 +226,18 @@ class Servicios(models.Model):
         managed = True
         verbose_name = 'Servicios'
         verbose_name_plural = 'Servicioss'
+
+class EstadoPosicionAntena(models.Model):
+
+    azimut = models.IntegerField()
+    elevacion = models.IntegerField()
+    activo = models.BooleanField()
+
+    def __str__(self):
+        return "azimut: {} elevacion: {}".format(str(self.azimut), str(self.elevacion))
+
+    class Meta:
+        db_table = ''
+        managed = True
+        verbose_name = 'EstadoPosicionAntena'
+        verbose_name_plural = 'EstadoPosicionAntenas'

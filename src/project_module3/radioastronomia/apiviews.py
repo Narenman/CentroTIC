@@ -6,10 +6,10 @@ from rest_framework import status
 from django.http import Http404
 
 from .models import AlbumImagenes, Espectro, EstacionAmbiental, CaracteristicasEspectro, Estado ,\
-    PosicionAntena, Estadocamara, Estadoestacion
+    PosicionAntena, Estadocamara, Estadoestacion, EstadoPosicionAntena
 from .serializers import AlbumSerializer, EstacionAmbientalSerializer, EspectroSerializer ,\
     CaractEspectroSerializer, EstadoSerializer, PosicionAntenaSerializer ,\
-        EstadoCamaraSerializer, EstadoEstacionSerializer
+        EstadoCamaraSerializer, EstadoEstacionSerializer, EstadoPosicionSerializer
 
 class AlbumAPI(generics.CreateAPIView):
     """ Esta API se encarga de las imagenes recolectadas por la camara startlight 
@@ -139,4 +139,33 @@ class PosicionAntenaAPI(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class EstadoPosicionAntenaAPI(APIView):
+    """Esta API se encarga de monitorear el estado 
+    del sistema RFI, es decir, si esta activo o 
+    inactivo """
+    authetication_classes = ()
+    permission_classes = ()
+
+    def get_object(self, pk):
+        try:
+            return EstadoPosicionAntena.objects.get(pk=pk)
+        except Estado.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        estado = self.get_object(pk=pk)
+        respuesta = {"activo": estado.activo,
+                    "azimut": estado.azimut,
+                    "elevacion":estado.elevacion}
+        return Response(respuesta)
+
+    def put(self, request, pk, format=None):
+        estado = self.get_object(pk=pk)
+        serializer = EstadoPosicionSerializer(estado, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

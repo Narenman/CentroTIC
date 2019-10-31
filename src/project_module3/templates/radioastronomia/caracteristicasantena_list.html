@@ -16,7 +16,6 @@
         <th scope="col">Imagen </th>
         <th scope="col">Rango frecuencias</th>
         <th scope="col">Polarizacion</th>
-        <th scope="col">Directividad</th>
         <th scope="col">VSWR </th>
         <th scope="col">Borrar </th>
         </tr>
@@ -28,7 +27,6 @@
         <td><img src="{{antena.imagen.url}}" alt="no encontrado" class="img-thumbnail" height="200px" width="300px"></td>
         <td>{{antena.rango_frecuencias}}</td>
         <td>{{antena.polarizacion}}</td>
-        <td>{{antena.directividad}}</td>
         <td><img src="{{antena.vswr.url}}" alt="no encontrado" class="img-thumbnail" height="200px" width="300px"></td>
         <td><a href="{% url 'radioastronomia:borrar-antena' antena.id %}"> Sí </a> </td>
         </tr>
