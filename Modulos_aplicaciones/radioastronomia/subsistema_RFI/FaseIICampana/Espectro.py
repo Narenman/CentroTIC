@@ -93,9 +93,27 @@ class Espectro():
 		r.close()
 		return dato["id"]
 
-	def envio_API(self, region, frec_central, samp_rate, fft_size, duracion, azimut, elevacion, antena):
+	def envio_API(self, region, frec_central, samp_rate, fft_size, duracion, azimut, elevacion, antena, gamma):
 		# objeto para leer el archivo del espectro
 		x = numpy.fromfile('/home/root/radioastronomia/espectro', dtype=numpy.float32, count=-1, sep='')
+		x = 10**(x/10)
+		#aca va la caracterizacion del espectro
+		if len(gamma["x1"])>0:
+			print("modo automatico compensando medidas RF con las perdidas...")
+			f = numpy.arange(-int(fft_size/2),int(fft_size/2),1)*samp_rate/fft_size + frec_central
+			y1 = numpy.asarray(gamma["y1"])
+			x1 = numpy.asarray(gamma["x1"])
+			y1 = numpy.interp(f, x1, y1)
+			for i in range(len(x)/fft_size):
+				x[i*fft_size:(i+1)*fft_size] = x[i*fft_size:(i+1)*fft_size]/(1-y1**2)
+			x = 10*numpy.log10(x)
+		else:
+			print("modo manual compensando medidas RF con las perdidas...")
+			y1 = numpy.asarray(gamma["y1"])
+			for i in range(len(x)/fft_size):
+				x[i*fft_size:(i+1)*fft_size] = x[i*fft_size:(i+1)*fft_size]/(1-y1**2)
+			x = 10*numpy.log10(x)
+
 		print("len(x)=", len(x))
 		min_v, max_v, energia = self.caracteristicas(x, fft_size)
 

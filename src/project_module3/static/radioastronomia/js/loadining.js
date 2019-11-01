@@ -20,7 +20,7 @@ var elevacion;
  loaderloader();
 
  function gettingstate(){
-    
+
      var xhttp = new XMLHttpRequest();
      //xhttp.responseType = "application/json";
 
@@ -65,4 +65,26 @@ var elevacion;
 
  //document.getElementById('aplotinfo').style.display = "none"
  gettingstate();
-//  console.log(sstate, frequency)
+
+//  function rotor(){
+     
+//      var xhttp1 = new XMLHttpRequest();
+//      xhttp1.open("GET", "/radioastronomia/estado/posicion/1", true);
+//      xhttp1.send();
+//      xhttp1.onreadystatechange = function() {
+         
+//          if (this.readyState == 4 && this.status == 200) {
+             
+//             stateobject = this.response;
+//             stateobject = JSON.parse(stateobject);
+//             sstate       = stateobject.activo;
+//             console.log("estado", sstate);
+//             }
+//         };
+//      if(sstate==true){
+//         rotor.style.display = "block";
+//     };
+//  }
+//  document.getElementById("Afsubmit").addEventListener("click", rotor);
+//  document.getElementById("AMsubmit").addEventListener("click", rotor);
+

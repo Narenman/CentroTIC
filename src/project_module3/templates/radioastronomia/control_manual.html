@@ -160,7 +160,7 @@
                     {% endfor %}
                     </select>
                     <br><br>
-                    <input type="submit" id="AMsubmit" value="Adquirir datos">
+                    <input type="submit" id="AMsubmit" value="ADQUIRIR">
                 </div>
                 </form>
             </div>
@@ -179,15 +179,18 @@
                         <div></div><div></div><div></div><div></div><div></div>
                         <div></div><div></div><div></div><div></div><div></div>
                         <div></div><div></div></div>
-                    </center>
+                    </center>                 
+
                 <form id="stop" action= "{% url 'radioastronomia:detener' %}" method="POST">
                 {% csrf_token %}
                 <input type="hidden" name="stop" value="detener">
-                 <button type="submit" class="btn btn-danger">
+                 <button id="bot_detener" type="submit" class="btn btn-danger">
                  {% bootstrap_icon "star" %} Detener
                 </button>
                 </form>
             </div>
+
+
             <div id="aform">
                     <form class="NAform" id="Af" action= "{% url 'radioastronomia:control-automatico' %}" method="POST">
                         {% comment %}{% csrf_token %}{% endcomment %}
