@@ -20,14 +20,20 @@ eventos luminosos y procesamiento de imágenes en tres zonas geográficas de Col
 
 <div class="row">
     
+    <ul>
     {% for reg in region %}    
-    <div class="col">
-    <h2>{{reg.zona}}</h2>
-    <img src="{{reg.imagen.url}}" alt="no encontrado" class="img-thumbnail" height="300px" width="400px">
-    </div>
+    
+    <li>
+    <h3>Departamento: {{reg.departamento}}</h3>
+    <h3>Region: {{reg.zona}} </h3>
+    <img src="{{reg.imagen.url}}" alt="no encontrado" class="img-thumbnail">
 
+    <h5>Latitud: {{reg.latitud}}</h5>
+    <h5>Longitud: {{reg.longitud}}</h5>
+
+    </li>
     {% endfor %}
-
+    <ul>
 
 </div>
 {% endblock  %}
