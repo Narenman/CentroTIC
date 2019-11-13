@@ -1,3 +1,6 @@
 *.pyc
 *.ipynb
 output.log
+*.fit
+*.mp4
+*.jpg

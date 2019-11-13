@@ -28,7 +28,7 @@ from django.contrib.auth.decorators import login_required
 def publishMQTT(topico, msg):
     """ Se encarga de establecer comunicacion
     MQTT con los dispositivos """
-    IP_broker = "10.42.0.1"
+    IP_broker = "35.243.199.245"
     usuario_broker = "pi"
     password_broker = "raspberry"
     publish.single(topico, msg, port=1883, hostname=IP_broker,
@@ -961,6 +961,7 @@ def subsistemacielo(request):
     respuesta = dict()
     try:
         album = AlbumImagenes.objects.last()
+        print(album.imagen)
         region = RegionForm()
         respuesta.update({"imagen": album.imagen,
                     "fecha": album.fecha,

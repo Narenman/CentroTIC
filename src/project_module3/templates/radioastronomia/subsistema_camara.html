@@ -54,7 +54,6 @@
             <source src="{{ imagen.url }}" type="video/mp4" > </source>
             Su navegador no soporta este video
         </video>
-
         <form id="form_camara" action= "{% url 'radioastronomia:subsistema-camara' %}" method="POST">
             {% csrf_token %}
             <label for="dia">Dia <img src={% static 'radioastronomia/img/dia.gif' %} class="img-fluid" alt="Responsive image" width="100 px" hight="100 px"></label>

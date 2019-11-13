@@ -38,7 +38,7 @@ class CamaraAllsky():
             size = (width, height)
             img_array.append(img)
         path_file = datetime.now()
-        writer = cv2.VideoWriter("timelapses/"+str(path_file)+".mp4",cv2.VideoWriter_fourcc(*'mp4v'), 10, size)
+        writer = cv2.VideoWriter("timelapses/"+str(path_file)+".mp4",cv2.VideoWriter_fourcc(*'X264'), 10, size)
         for i in range(len(img_array)):
             writer.write(img_array[i])
         writer.release()
@@ -81,6 +81,17 @@ class CamaraAllsky():
             r.close()
         else:
             print(r.status_code)
+    
+    def estadocamara(self, dat):
+        """esta funcion se encarga de actualizar el estado
+        de la estacion metereologica """
+        URL = "http://"+self.IP+"/radioastronomia/estado/camara/1"
+        pyload = {"camara": dat}
+        r = requests.put(URL, data=pyload)
+        dato = r.text
+        print("Estacion {}".format(dato))
+        print("HTTP status code {} consulta estado SDR".format(r.status_code))
+        r.close()
     
 
 if __name__ == "__main__":

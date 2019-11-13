@@ -142,7 +142,7 @@ class AlbumImagenes(models.Model):
         managed = True
         verbose_name = 'AlbumImagenes'
         verbose_name_plural = 'AlbumImageness'
-        ordering = ["-fecha"]
+        ordering = ["fecha"]
 
 
 class Estado(models.Model):
