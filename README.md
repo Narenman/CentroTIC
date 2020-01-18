@@ -63,3 +63,5 @@ Para acceder a la base de datos desde windows por dbeaver es necesario activar a
 * ``sudo nano /etc/postgresql/9.5/main/postgresql.conf`` y cambiar la linea **listen_addresses = 'localhost'** por **listen_addresses = '*'** 
 * ``sudo nano /etc/postgresql/9.5/main/pg_hba.conf ``	y buscar el comentario **# IPv4 local connections:** y cambiar la linea del localhost por 0.0.0.0/0 como se muestra a continuación **host all all 0.0.0.0/0 md5**
 * Reiniciar el servidor de base de datos ``sudo systemctl restart postgresql``
+
+
