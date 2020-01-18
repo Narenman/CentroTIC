@@ -154,10 +154,10 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS =[os.path.join(BASE_DIR, 'static'),]
-#STATIC_ROOT = '/home/luismiguel/back_centrotic/staticfiles' #para el servidor google
+STATIC_ROOT = '/home/comdiguis/back_radioastronomia/staticfiles' #para el servidor google
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL  = '/'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = '/home/uis-e3t/back_centrotic/media'
+MEDIA_ROOT = '/home/comdiguis/back_radioastronomia/media'
 # MEDIA_ROOT = '/home/luismiguel/back_centrotic/media' #para el servidor google

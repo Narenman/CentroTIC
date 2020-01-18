@@ -66,7 +66,7 @@ function sendForm(){
             },
             yAxis: {
                 title: {
-                    text: 'Espectro'
+                    text: 'Espectro dBm'
                 }
             },
             legend: {
@@ -101,7 +101,7 @@ function sendForm(){
 
             series: [{
                 type: 'area',
-                name: 'Espectro',
+                name: 'Espectro dBm',
                 data: stateobject.data,
                 connectNulls: false // by default
             }],
@@ -138,7 +138,7 @@ function sendForm(){
             },
             yAxis: {
                 title: {
-                    text: 'Energia'
+                    text: 'Energia dBm'
                 }
             },
             legend: {
@@ -180,7 +180,7 @@ function sendForm(){
 
             series: [{
                 type: 'column',
-                name: 'Espectro',
+                name: 'Espectro dBm',
                 data: stateobject.data_energia
             }]
         });

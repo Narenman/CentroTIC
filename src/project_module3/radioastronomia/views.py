@@ -85,9 +85,10 @@ def smooth(x,window_len=11,window='hanning'):
 def publishMQTT(topico, msg):
     """ Se encarga de establecer comunicacion
     MQTT con los dispositivos """
-    IP_broker = "35.243.199.245"
+    IP_broker = "10.42.0.1"
     usuario_broker = "pi"
     password_broker = "raspberry"
+    # time.sleep(60)
     publish.single(topico, msg, port=1883, hostname=IP_broker,
      auth={"username": usuario_broker, "password":password_broker})
 
@@ -586,9 +587,9 @@ def barrido_json(request):
         char_energia = []
         freq_prueba = numpy.array([])
         for f in frec_central:
-            rows = Espectro.objects.filter(nfft=nfft).filter(frec_muestreo=frec_muestreo).filter(frec_central__exact=f["frec_central"]).order_by("frec_central")
+            rows = Espectro.objects.filter(nfft=nfft).filter(frec_muestreo=frec_muestreo).filter(frec_central__exact=f["frec_central"]).filter(region=cliente["region"]).order_by("frec_central")
             rows = rows.values("fecha", "espectro")
-            muestras = int(1e6/resBW.rbw)
+            muestras = int(0.5e6/resBW.rbw)+4
             x_ = numpy.zeros(nfft)
             #este ciclo promedia todos los espectros asociados a la banda
             for row in rows:
@@ -599,8 +600,12 @@ def barrido_json(request):
                 x = promedio(espectro, nfft)
                 x_ = x_ + x
                 fechas.append(row["fecha"])
-            x_ = x_/len(rows)    
-            y = numpy.append(y, x_[muestras:-muestras])
+            x_ = x_/len(rows)
+            x_ = x_[muestras:-muestras]
+            #x_[int(len(x_)/2-4):int(len(x_)/2+4)]=x_[int(len(x_)/2-4):int(len(x_)/2+4)]-7
+            x_[int(len(x_)/2-10):int(len(x_)/2)] = x_[int(len(x_)/2-20):int(len(x_)/2-10)]
+            x_[int(len(x_)/2):int(len(x_)/2+10)] = x_[int(len(x_)/2+10):int(len(x_)/2+20)]    
+            y = numpy.append(y, x_)
             fins = numpy.arange(-int(nfft/2),int(nfft/2),1)*frec_muestreo/(nfft) + f["frec_central"]
             freq_prueba = numpy.append(freq_prueba, fins[muestras:-muestras]) 
             
@@ -626,7 +631,7 @@ def barrido_json(request):
             data_energia.append([freq[i]/1000000, char_energia[i]])
 
         data = []
-        y = smooth(y, window_len=20)
+        y = smooth(y, window_len=8)
         for j in range(len(freq_prueba)):
             data.append([freq_prueba[j]/1000000.0, y[j]])
         
@@ -751,7 +756,7 @@ def comparacion_zonas(request):
                         ax1.set(xlabel="Frecuencia MHz", ylabel="Espectro dBm", title="Espectro por region",)
                         ax1.legend()
                         ax1.grid(True)
-                        espectros = mpld3.fig_to_html(fig1, mpld3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/d3.v3.min.js")
+                        espectros = mpld3.fig_to_html(fig1, mpld3_url="http://127.0.0.1/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1/static/radioastronomia/js/librerias/d3.v3.min.js")
 
                         y = 10**(y/10)
                         df1.loc[l] = [10*numpy.log10(numpy.mean(y)), 10*numpy.log10(numpy.sum(y)), reg["id"]]
@@ -766,13 +771,14 @@ def comparacion_zonas(request):
         
             if df["ener"].count()>1:
                 fig2, ax2 = plt.subplots()
-                scatter =  ax2.scatter(df1["media"], df1["energia"], c=df1["target"], cmap="Dark2")         
-                legend1 = ax2.legend(*scatter.legend_elements(), title="Lugares")
+                for i in range(len(df1["target"])):         
+                    scatter =  ax2.scatter(df1["media"], df1["energia"], c=df1["target"], cmap="Dark2", label=df1["target"][i])
+                legend1 = ax2.legend(title="Lugares")
                 ax2.add_artist(legend1)
                 ax2.set(xlabel="Media dBm", ylabel="Energia dBm", title="Comparacion algunas caracteristicas")
                 # ax2.legend(title="Regiones")
                 ax2.grid()
-                caracteristicas = mpld3.fig_to_html(fig2, mpld3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/d3.v3.min.js")
+                caracteristicas = mpld3.fig_to_html(fig2, mpld3_url="http://127.0.0.1/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1/static/radioastronomia/js/librerias/d3.v3.min.js")
                 
                
                 #analisis PCA para mayor informacion
@@ -785,11 +791,11 @@ def comparacion_zonas(request):
 
                 fig3, ax3 = plt.subplots()
                 scatter2 = ax3.scatter(x_pca[:,0], x_pca[:,1], c=df["target"], cmap="Dark2")
-                legend3 = ax3.legend(*scatter2.legend_elements(), title="Lugares")
+                legend3 = ax3.legend(title="Lugares")
                 ax3.add_artist(legend3)
                 ax3.set(xlabel='PC_1', ylabel="PC_2", title="Analisis PCA de las regiones")
                 ax3.grid()
-                analisis_pca = mpld3.fig_to_html(fig3, mpld3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/d3.v3.min.js")
+                analisis_pca = mpld3.fig_to_html(fig3, mpld3_url="http://127.0.0.1/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1/static/radioastronomia/js/librerias/d3.v3.min.js")
                 respuesta.update({"pca": analisis_pca})
 
                 respuesta.update({"caracteristicas": caracteristicas,})
@@ -901,7 +907,7 @@ def control_automatico(request):
 
 
         msg = {"gamma": {"x1": x1.tolist(), "y1":y1.tolist()}, "nfft": nfft, "sample_rate": frecuencia_muestreo,
-        "ganancia": 50, "duracion": 2, "frecuencia_inicial": int(float(cliente["finicial"])*1e6),
+        "ganancia":40, "duracion": 2, "frecuencia_inicial": int(float(cliente["finicial"])*1e6),
         "accion": "modo automatico",
         "region": int(cliente["region"]), "frecuencia_final": int(float(cliente["ffinal"])*1e6),
         "azinicial": float(cliente["azinicial"]), "azfinal":float(cliente["azfinal"]),
@@ -910,6 +916,7 @@ def control_automatico(request):
         "RBazimut":float(cliente["RBazimut"])}
         topico = "radioastronomia/RFI"
         # #envio de la instruccion al subsistema RFI
+        # time.sleep(60)
         publishMQTT(topico, json.dumps(msg))
         logs("info", "Modo automatico activo para {cliente['finicial']}~{cliente['ffinal']} MHz", False)
     respuesta.update({"form": form, "antenna": antena})
