@@ -51,8 +51,16 @@
                     {% for r in rbws %}
                     <option value="{{r.rbw}}"> {{r.rbw}} </option>
                     {% endfor %}
+        
                 </select>
+                <br><br>
+                <h2> Seleccione los sitios que desea comparar </h2>
                 <br>
+                    <ul class="list-group">
+                    {% for reg in regiones %}
+                     <li class="list-group-item"><input type="checkbox" name="id" value={{reg.id}}> {{reg.zona}}</li>
+                    </ul>
+                    {% endfor %}
                   <h5> Seleccione rango de tiempo</h5>
                     <label for="start">Fecha inicial</label>
                     <input type="datetime-local" id="start_A" name="fechaini"

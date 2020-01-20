@@ -95,7 +95,7 @@ class Espectro():
 
 	def envio_API(self, region, frec_central, samp_rate, fft_size, duracion, azimut, elevacion, antena, gamma):
 		# objeto para leer el archivo del espectro
-		x = numpy.fromfile('/home/root/radioastronomia/espectro', dtype=numpy.float32, count=-1, sep='')
+		x = numpy.fromfile('/home/uis-e3t/Documentos/tmp_plataforma/espectro', dtype=numpy.float32, count=-1, sep='')
 		x = 10**(x/10)
 		#aca va la caracterizacion del espectro
 		if len(gamma["x1"])>0:

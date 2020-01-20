@@ -85,7 +85,7 @@ def smooth(x,window_len=11,window='hanning'):
 def publishMQTT(topico, msg):
     """ Se encarga de establecer comunicacion
     MQTT con los dispositivos """
-    IP_broker = "10.42.0.1"
+    IP_broker = "127.0.0.1"
     usuario_broker = "pi"
     password_broker = "raspberry"
     # time.sleep(60)
@@ -124,7 +124,7 @@ def logs(level, msg, st):
     st: por defecto es False, cuando es True es cuando exclusivamente queremos 
     capturar los errores de las exepciones de los errores
     """
-    logging.basicConfig(filename="output.log", filemode="w", format='%(asctime)s - %(levelname)s- %(message)s', level=logging.INFO)
+    logging.basicConfig(filename="/var/www/output.log", filemode="w", format='%(asctime)s - %(levelname)s- %(message)s', level=logging.INFO)
     
     if level=="error" and st==False:
         """cuando entra en las exepciones """
@@ -589,7 +589,7 @@ def barrido_json(request):
         for f in frec_central:
             rows = Espectro.objects.filter(nfft=nfft).filter(frec_muestreo=frec_muestreo).filter(frec_central__exact=f["frec_central"]).filter(region=cliente["region"]).order_by("frec_central")
             rows = rows.values("fecha", "espectro")
-            muestras = int(0.5e6/resBW.rbw)+4
+            muestras = int(3e6/resBW.rbw)+4
             x_ = numpy.zeros(nfft)
             #este ciclo promedia todos los espectros asociados a la banda
             for row in rows:
@@ -603,8 +603,10 @@ def barrido_json(request):
             x_ = x_/len(rows)
             x_ = x_[muestras:-muestras]
             #x_[int(len(x_)/2-4):int(len(x_)/2+4)]=x_[int(len(x_)/2-4):int(len(x_)/2+4)]-7
+            #actua como un filtro para eliminar las componentes en DC
             x_[int(len(x_)/2-10):int(len(x_)/2)] = x_[int(len(x_)/2-20):int(len(x_)/2-10)]
             x_[int(len(x_)/2):int(len(x_)/2+10)] = x_[int(len(x_)/2+10):int(len(x_)/2+20)]    
+            
             y = numpy.append(y, x_)
             fins = numpy.arange(-int(nfft/2),int(nfft/2),1)*frec_muestreo/(nfft) + f["frec_central"]
             freq_prueba = numpy.append(freq_prueba, fins[muestras:-muestras]) 
@@ -704,30 +706,33 @@ def comparacion_zonas(request):
     min_ = numpy.array([])
     espectros = []
     rbw = RBW.objects.all()
-    respuesta.update({"rbws": rbw})
+    respuesta.update({"rbws": rbw, "regiones": regiones })
+
 
     columns = ["ener", "media", "mediana", "std", "max", "min", "target"]
     if request.POST:
         cliente = request.POST
         print(cliente)
+        ids = request.POST.getlist("id")
         rbw = RBW.objects.get(rbw=cliente["RBW"])
-        muestras = int(0.5e6/rbw.rbw)
+        muestras = int(3e6/rbw.rbw)
         nfft = rbw.nfft
         samp_rate = rbw.frecuencia_muestreo
         fig1, ax1 = plt.subplots()
+        
         if cliente["fechaini"]!= "" or cliente["fechafin"]!="":
             df = pd.DataFrame(columns=columns)
             df1 = pd.DataFrame(columns=["media", "energia", "target"])
             k = 0
             l = 0
-            for reg in regiones:
-                frecuencias = Espectro.objects.filter(region=reg["id"], frec_muestreo=samp_rate).values("frec_central").distinct().order_by("frec_central")
+            for reg in ids:
+                frecuencias = Espectro.objects.filter(region=int(reg), frec_muestreo=samp_rate).values("frec_central").distinct().order_by("frec_central")
                 y = numpy.array([])
                 freq_ = numpy.array([])
 
                 if len(frecuencias)>0:
                     for freq in frecuencias:
-                        espectro = Espectro.objects.filter(region=reg["id"]).values("espectro").filter(frec_central=freq["frec_central"]).filter(frec_muestreo=samp_rate).filter(fecha__range=[cliente["fechaini"], cliente["fechafin"]]).order_by("fecha")
+                        espectro = Espectro.objects.filter(region=int(reg)).values("espectro").filter(frec_central=freq["frec_central"]).filter(frec_muestreo=samp_rate).filter(fecha__range=[cliente["fechaini"], cliente["fechafin"]]).order_by("fecha")
                         x_ = numpy.zeros(nfft)
                         for row in espectro:
                             x = numpy.asarray(row["espectro"])
@@ -739,7 +744,7 @@ def comparacion_zonas(request):
                             std_ =  numpy.std(10**(x_/10))
                             max_ = numpy.max(10**(x_/10))
                             min_ =  numpy.min(10**(x_/10))
-                            df.loc[k] = [ener_, media_, mediana_, std_, max_, min_,reg["id"]]
+                            df.loc[k] = [ener_, media_, mediana_, std_, max_, min_,int(reg)]
                             k+=1
                         x_ = x_/len(espectro)
                         fins = numpy.arange(-int(nfft/2),int(nfft/2),1)*samp_rate/nfft + freq["frec_central"]
@@ -752,14 +757,15 @@ def comparacion_zonas(request):
                         #analisis de caracteristicas
 
                         ## aca van las graficas
-                        ax1.plot(freq_, y, label=str(reg["id"])+" "+reg["zona"])
+                        region = RegionCampana.objects.get(pk=int(reg))
+                        ax1.plot(freq_, y, label=reg+" "+region.zona)
                         ax1.set(xlabel="Frecuencia MHz", ylabel="Espectro dBm", title="Espectro por region",)
                         ax1.legend()
                         ax1.grid(True)
                         espectros = mpld3.fig_to_html(fig1, mpld3_url="http://127.0.0.1/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1/static/radioastronomia/js/librerias/d3.v3.min.js")
 
                         y = 10**(y/10)
-                        df1.loc[l] = [10*numpy.log10(numpy.mean(y)), 10*numpy.log10(numpy.sum(y)), reg["id"]]
+                        df1.loc[l] = [10*numpy.log10(numpy.mean(y)), 10*numpy.log10(numpy.sum(y)), int(reg)]
                         l+=1
                         respuesta.update({"espectros": espectros, "condiciones": "Analisis realizado con el RBW {} Hz".format(cliente["RBW"])})
                     else:
@@ -907,7 +913,7 @@ def control_automatico(request):
 
 
         msg = {"gamma": {"x1": x1.tolist(), "y1":y1.tolist()}, "nfft": nfft, "sample_rate": frecuencia_muestreo,
-        "ganancia":40, "duracion": 2, "frecuencia_inicial": int(float(cliente["finicial"])*1e6),
+        "ganancia":30, "duracion": 5, "frecuencia_inicial": int(float(cliente["finicial"])*1e6),
         "accion": "modo automatico",
         "region": int(cliente["region"]), "frecuencia_final": int(float(cliente["ffinal"])*1e6),
         "azinicial": float(cliente["azinicial"]), "azfinal":float(cliente["azfinal"]),
