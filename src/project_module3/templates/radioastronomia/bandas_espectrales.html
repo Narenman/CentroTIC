@@ -3,64 +3,70 @@
 {% load bootstrap3 %}
 
 {% block body_block %}
+<style>
+
+</style>
+
 <div class="container">
-    <div class="row">
-        <div class="col-3">
-            <h1> Análisis de bandas espectrales </h1>
-            <p>Este modo de operación se encarga de recopilar y filtar los datos 
-            de todas las bandas espectrales para generar un reporte del espectro 
-            por cada sitio de medición de acuerdo a la resolución de ancho de banda seleccionada para el análisis.</p>
-        <h4> Seleccione los parámetros para generar el reporte </h4>
-
-         <form id="form_id"  action= "" method="POST">
-            {% csrf_token %}
-            {% bootstrap_form region %}
-            <h5> RBW Hz</h5>
-            <select name="RBW">
-            {% for r in rbw %}
-            <option value="{{r.rbw}}">{{r.rbw}}</option> 
-            {% endfor %}                          
-            </select>
-            <br><br>
-            <h5> Seleccione rango de fechas </h5>
-            <label for="start">Fecha inicial</label>
-            <input type="datetime-local" id="start" name="fechaini"
-            value="2019-07-19"
-            min="2019-01-01" max="2019-12-31">
-
-            <label for="end">Fecha final</label>
-            <input type="datetime-local" id="end" name="fechafin"
-            value="2019-11-19"
-            min="2019-01-01" max="2019-12-31">
+    <div class="BErow">
+        <div class="BEForm">
+            <h3> Análisis de bandas espectrales </h3>
+                <p>Este modo de operación se encarga de recopilar y filtar los datos 
+                 de todas las bandas espectrales para generar un reporte del espectro 
+                 por cada sitio de medición de acuerdo a la resolución de ancho de banda seleccionada para el análisis.</p>
+            <h4> Seleccione los parámetros para generar el reporte: </h4>
             <br>
-            <button id="enviar" class="btn btn-warning"><a href="javascript:validatedSendForm()"> Realizar análisis </a></button>
-            </form>
-
-            <h5 id="fmuestreo"> </h5>
-            <h5 id="nfft"> </h5>
-            <h5 id="output"></h5>
-
-            <h5 id="informacion"> </h5>
-            <p id="fecha_min"> </p>
-            <br>
-            <p id="fecha_max"></p>
-
-
-            <div id="loading-data">
-             <center><div class="lds-ring">
-                <div class="lds-spinner">
-                    <div></div><div></div><div></div><div></div><div></div>
-                    <div></div><div></div><div></div><div></div><div></div>
-                    <div></div><div></div></div>
+            <form id="form_id"  action= "" method="POST">
+                {% csrf_token %}
+                {% bootstrap_form region %}
+                <label> RBW Hz</label>
+                <select class="form-control" name="RBW">
+                {% for r in rbw %}
+                <option  value="{{r.rbw}}">{{r.rbw}}</option> 
+                {% endfor %}                          
+                </select>
+                <br>
+                <!-- <h5> Seleccione rango de fechas: </h5>
+                <br> -->
+                <label for="start">Fecha inicial</label><br>
+                <input class="form-control" type="datetime-local" id="start" name="fechaini"
+                value="2019-07-19"
+                min="2019-01-01" max="2019-12-31">
+                <br>
+                <label for="end">Fecha final</label><br>
+                <input class="form-control" type="datetime-local" id="end" name="fechafin"
+                value="2019-12-20"
+                min="2019-01-01" max="2019-12-31">
+                <br><br><br>
+                <center>
+                <button id="enviar" class="btn btn-warning"><a href="javascript:validatedSendForm()"> Realizar análisis </a></button>
                 </center>
-            </div>
+                </form>
+                <br><br>
+                <h5 id="fmuestreo"> </h5>
+                <h5 id="nfft"> </h5>
+                <h5 id="output"></h5>
+
+                <h5 id="informacion"> </h5>
+                <p id="fecha_min"> </p>
+                <br>
+                <p id="fecha_max"></p>
+
+
+                <div id="loading-data">
+                <!-- <center><div class="lds-ring">
+                    <div class="lds-spinner">
+                        <div></div><div></div><div></div><div></div><div></div>
+                        <div></div><div></div><div></div><div></div><div></div>
+                        <div></div><div></div></div>
+                    </center> -->
+                </div>
         </div>
 
 
-        <div class="col-4">
-        <div id="grafica" style="min-width: 500px; height: 400px; margin: 0 auto"></div>
-        <div id="grafica_energia" style="min-width: 500px; height: 400px; margin: 0 auto"></div>
-
+        <div class="BEGraficas">
+            <div id="grafica" style="min-width: 500px; height: 400px; margin: 0 auto"></div>
+            <div id="grafica_energia" style="min-width: 500px; height: 400px; margin: 0 auto"></div>
         </div>
     </div>
 

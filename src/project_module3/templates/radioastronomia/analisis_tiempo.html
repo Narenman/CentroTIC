@@ -3,55 +3,59 @@
 
 {% block body_block %}
 <div class="container">
-    <div class="row">
-        <div class="col-3">
+    <div class="ATrow">
+        <div class="ATform">
         <h2>Análisis temporal por bandas espectrales </h2>
             <br><br>
             <form id="form_modo2"  action= "" method="POST">
                 {% csrf_token %}
                 {% comment %} {% bootstrap_form region %} {% endcomment %}
-                <h5> Seleccionar banda de frecuencia MHz </h5>
-                <select name="bandas">
+                <label> Seleccionar banda de frecuencia MHz </label>
+                <select class="form-control" name="bandas">
                 {% for band in bandas %}
                 <option value="{{ band}}">{{band}}</option>
                 {% endfor %}                     
                 </select>
                 <br>
-                <h5> Seleccionar Frecuencia de muestreo kHz </h5>
-                <select name="frecmuestreo">
+                <label> Seleccionar Frecuencia de muestreo kHz </label>
+                <select class="form-control" name="frecmuestreo">
                 {% for frec in frecmuestreo %}
                 <option value="{{frec}}">{{frec}}</option>
                 {% endfor %}
                 </select>
                 <br>
-                <h5> Seleccion tamaño FFT </h5>
-                <select name="nfft">
+                <label> Seleccionar tamaño FFT </label>
+                <select class="form-control" name="nfft">
                 {% for n in nfft %}
                 <option value="{{n.nfft}}"> {{n.nfft}} </option>
                 {% endfor %}
                 </select>
-                <h5> Seleccione region </h5>
-                <select name="region">
+                <br>
+                <label> Seleccionar región </label>
+                <select class="form-control" name="region">
                 {% for reg in region %}
                 <option value="{{reg.id}}"> {{reg.zona}} </option>
                 {% endfor %}
                 </select>
-                <br><br>
-                <h5> Seleccione rango de fechas </h5>
+                <br>
+                <!-- <h5> Seleccione rango de fechas </h5> -->
                 <label for="start">Fecha inicial</label>
-                <input type="datetime-local" id="start" name="fechaini"
+                <br>
+                <input class="form-control" type="datetime-local" id="start" name="fechaini"
                 value="2019-07-19"
                 min="2019-01-01" max="2019-12-31">
-
+                <br>
                 <label for="end">Fecha final</label>
-                <input type="datetime-local" id="end" name="fechafin"
-                value="2019-11-19"
+                <input class="form-control" type="datetime-local" id="end" name="fechafin"
+                value="2019-12-20"
                 min="2019-01-01" max="2019-12-31">
-
-                <input id="analizar-datos" type="submit" value="Realizar análisis"> 
+                <br>
+                <center>
+                    <input class="btn btn-warning" id="analizar-datos" type="submit" value="Realizar análisis"> 
+                </center>
                 {% comment %} <button id="enviar" class="btn btn-warning"><a href="javascript:sendForm()"> Realizar análisis </a></button> {% endcomment %}
             </form>
-
+            <br><br>
             <h4 id="output"> </h4>
 
         <h3> La frecuencia analizada es {{frec_central}} MHz</h3>
@@ -64,7 +68,7 @@
 
         </div>
 
-        <div class="col-5">
+        <div class="ATGraficas">
             {% autoescape off %}
             <div>{{ espectrograma }}</div>
             {% endautoescape %}
@@ -82,6 +86,7 @@
                 <canvas id="BoxesCanvas" class="BcanvasC" width="{{canvaSize.Width}}" 
                 height="306px"></canvas>
             </div>
+            <br><br><br>
             
         </div>
 

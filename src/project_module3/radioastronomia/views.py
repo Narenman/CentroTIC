@@ -24,13 +24,71 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
+
+def smooth(x,window_len=11,window='hanning'):
+    """smooth the data using a window with requested size.
+    
+    This method is based on the convolution of a scaled window with the signal.
+    The signal is prepared by introducing reflected copies of the signal 
+    (with the window size) in both ends so that transient parts are minimized
+    in the begining and end part of the output signal.
+    
+    input:
+        x: the input signal 
+        window_len: the dimension of the smoothing window; should be an odd integer
+        window: the type of window from 'flat', 'hanning', 'hamming', 'bartlett', 'blackman'
+            flat window will produce a moving average smoothing.
+
+    output:
+        the smoothed signal
+        
+    example:
+
+    t=linspace(-2,2,0.1)
+    x=sin(t)+randn(len(t))*0.1
+    y=smooth(x)
+    
+    see also: 
+    
+    numpy.hanning, numpy.hamming, numpy.bartlett, numpy.blackman, numpy.convolve
+    scipy.signal.lfilter
+ 
+    TODO: the window parameter could be the window itself if an array instead of a string
+    NOTE: length(output) != length(input), to correct this: return y[(window_len/2-1):-(window_len/2)] instead of just y.
+    """
+    if x.ndim != 1:
+        raise (ValueError, "smooth only accepts 1 dimension arrays.")
+
+    if x.size < window_len:
+        raise (ValueError, "Input vector needs to be bigger than window size.")
+
+
+    if window_len<3:
+        return x
+
+
+    if not window in ['flat', 'hanning', 'hamming', 'bartlett', 'blackman']:
+        raise (ValueError, "Window is on of 'flat', 'hanning', 'hamming', 'bartlett', 'blackman'")
+
+
+    s=numpy.r_[x[window_len-1:0:-1],x,x[-2:-window_len-1:-1]]
+    #print(len(s))
+    if window == 'flat': #moving average
+        w=numpy.ones(window_len,'d')
+    else:
+        w=eval('numpy.'+window+'(window_len)')
+
+    y=numpy.convolve(w/w.sum(),s,mode='valid')
+    return y
+
 # funciones auxiliares
 def publishMQTT(topico, msg):
     """ Se encarga de establecer comunicacion
     MQTT con los dispositivos """
-    IP_broker = "35.243.199.245"
+    IP_broker = "127.0.0.1"
     usuario_broker = "pi"
     password_broker = "raspberry"
+    # time.sleep(60)
     publish.single(topico, msg, port=1883, hostname=IP_broker,
      auth={"username": usuario_broker, "password":password_broker})
 
@@ -66,7 +124,7 @@ def logs(level, msg, st):
     st: por defecto es False, cuando es True es cuando exclusivamente queremos 
     capturar los errores de las exepciones de los errores
     """
-    logging.basicConfig(filename="output.log", filemode="w", format='%(asctime)s - %(levelname)s- %(message)s', level=logging.INFO)
+    logging.basicConfig(filename="/var/www/output.log", filemode="w", format='%(asctime)s - %(levelname)s- %(message)s', level=logging.INFO)
     
     if level=="error" and st==False:
         """cuando entra en las exepciones """
@@ -305,7 +363,7 @@ def analisis_tiempo(request):
                 ax.set(xlabel='Energia dBm', ylabel='',
                 title='Histograma del comportamiento de la energia')
                 ax.grid()
-                histograma = mpld3.fig_to_html(fig,mpld3_url="http://127.0.0.1/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/d3.v3.min.js")
+                histograma = mpld3.fig_to_html(fig,mpld3_url="http://127.0.0.1/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1/static/radioastronomia/js/librerias/d3.v3.min.js")
 
                 # histograma = mpld3.fig_to_html(fig,)
 
@@ -315,13 +373,13 @@ def analisis_tiempo(request):
                 ax1.plot(tiempo, 10*numpy.log10(char_ener))
                 ax1.set(xlabel="Tiempo DD H:M:s", ylabel="Energia dBm", title="Energia banda en funcion del tiempo")
                 ax1.grid()
-                tiempo_energia = mpld3.fig_to_html(fig1, mpld3_url="http://127.0.0.1/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/d3.v3.min.js")
+                tiempo_energia = mpld3.fig_to_html(fig1, mpld3_url="http://127.0.0.1/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1/static/radioastronomia/js/librerias/d3.v3.min.js")
 
                 fig2, ax2 = plt.subplots()
                 sns.heatmap(df, yticklabels=5, xticklabels=120, cmap="coolwarm", ax=ax2)
                 ax2.set(xlabel="Frecuencia MHz", ylabel="Tiempo", title="Espectrograma")
                 ax2.grid()
-                espectrograma = mpld3.fig_to_html(fig2, mpld3_url="http://127.0.0.1/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/d3.v3.min.js")
+                espectrograma = mpld3.fig_to_html(fig2, mpld3_url="http://127.0.0.1/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1/static/radioastronomia/js/librerias/d3.v3.min.js")
                 
 
                 # """Probar esto """
@@ -335,7 +393,7 @@ def analisis_tiempo(request):
                                 "frec_muestreo": frec_muestreo,
                                 "services": services, 
                                 "canvaSize": canvaSize})
-        logs("info", f"Analisis temporal para {frec_central}", False)
+        logs("info", "Analisis temporal para {frec_central}", False)
     except:
         logs("error", "Falta de datos", True)
     return render(request,"radioastronomia/analisis_tiempo.html", respuesta)
@@ -431,7 +489,7 @@ def espectro_angulos(request):
                 #datos para javascript
                 angular = list(map(lambda elevacion, energia: [elevacion, energia], elevacion, energia))
                 respuesta.update({"pos":"elevacion"})
-                logs("info", f"analisis por azimut en frecuencia {frec_central}", False)
+                logs("info", "analisis por azimut en frecuencia {frec_central}", False)
             else:
                 logs("critical", "No hay datos para realizar el analisis angular solicitado", False)
                 angular = []
@@ -529,19 +587,29 @@ def barrido_json(request):
         char_energia = []
         freq_prueba = numpy.array([])
         for f in frec_central:
-            rows = Espectro.objects.filter(nfft=nfft).filter(frec_muestreo=frec_muestreo).filter(frec_central__exact=f["frec_central"]).order_by("frec_central")
+            rows = Espectro.objects.filter(nfft=nfft).filter(frec_muestreo=frec_muestreo).filter(frec_central__exact=f["frec_central"]).filter(region=cliente["region"]).order_by("frec_central")
             rows = rows.values("fecha", "espectro")
+            muestras = int(3e6/resBW.rbw)+4
             x_ = numpy.zeros(nfft)
             #este ciclo promedia todos los espectros asociados a la banda
             for row in rows:
                 espectro = row["espectro"]
                 espectro = numpy.asarray(espectro)
+                
+                #x = promedio(espectro[muestras:-muestras], nfft)
                 x = promedio(espectro, nfft)
                 x_ = x_ + x
                 fechas.append(row["fecha"])
-            x_ = x_/len(rows)    
+            x_ = x_/len(rows)
+            x_ = x_[muestras:-muestras]
+            #x_[int(len(x_)/2-4):int(len(x_)/2+4)]=x_[int(len(x_)/2-4):int(len(x_)/2+4)]-7
+            #actua como un filtro para eliminar las componentes en DC
+            x_[int(len(x_)/2-10):int(len(x_)/2)] = x_[int(len(x_)/2-20):int(len(x_)/2-10)]
+            x_[int(len(x_)/2):int(len(x_)/2+10)] = x_[int(len(x_)/2+10):int(len(x_)/2+20)]    
+            
             y = numpy.append(y, x_)
-            freq_prueba = numpy.append(freq_prueba, numpy.arange(-int(nfft/2),int(nfft/2),1)*frec_muestreo/nfft + f["frec_central"]) 
+            fins = numpy.arange(-int(nfft/2),int(nfft/2),1)*frec_muestreo/(nfft) + f["frec_central"]
+            freq_prueba = numpy.append(freq_prueba, fins[muestras:-muestras]) 
             
             freq.append(f["frec_central"])
             #analsis caracteristicas de la energia
@@ -565,6 +633,7 @@ def barrido_json(request):
             data_energia.append([freq[i]/1000000, char_energia[i]])
 
         data = []
+        y = smooth(y, window_len=8)
         for j in range(len(freq_prueba)):
             data.append([freq_prueba[j]/1000000.0, y[j]])
         
@@ -575,7 +644,7 @@ def barrido_json(request):
                             "data": data, "data_energia": data_energia,
                             "frec_muestreo": frec_muestreo,
                             "nfft": nfft})
-    logs("info", f"barrido de frecuencias exitoso para region {cliente['region']}", False)
+    logs("info", "barrido de frecuencias exitoso para region {cliente['region']}", False)
     return JsonResponse(respuesta)
 
 
@@ -610,13 +679,7 @@ def json_spectro(request):
         print(frec_muestreo)
         espectro = espectro.espectro
         espectro = numpy.asarray(espectro)
-        # promediado del espectro
-        K = int(len(espectro)*2/(nfft*3))
-        print(K, "K")
-        x = numpy.zeros(nfft)
-        for i in range(K):
-            x = x + espectro[i*nfft:(i+1)*nfft]
-        x = x/K
+        x = promedio(espectro, nfft)
         frec = (numpy.arange(-int(nfft/2),int(nfft/2),1)*frec_muestreo/nfft + frec_central)/1e6 #puntos espectrales
         
         #organizacion de los datos para que javascript los pueda interpretar
@@ -643,29 +706,33 @@ def comparacion_zonas(request):
     min_ = numpy.array([])
     espectros = []
     rbw = RBW.objects.all()
-    respuesta.update({"rbws": rbw})
+    respuesta.update({"rbws": rbw, "regiones": regiones })
+
 
     columns = ["ener", "media", "mediana", "std", "max", "min", "target"]
     if request.POST:
         cliente = request.POST
         print(cliente)
+        ids = request.POST.getlist("id")
         rbw = RBW.objects.get(rbw=cliente["RBW"])
+        muestras = int(3e6/rbw.rbw)
         nfft = rbw.nfft
         samp_rate = rbw.frecuencia_muestreo
         fig1, ax1 = plt.subplots()
+        
         if cliente["fechaini"]!= "" or cliente["fechafin"]!="":
             df = pd.DataFrame(columns=columns)
             df1 = pd.DataFrame(columns=["media", "energia", "target"])
             k = 0
             l = 0
-            for reg in regiones:
-                frecuencias = Espectro.objects.filter(region=reg["id"], frec_muestreo=samp_rate).values("frec_central").distinct().order_by("frec_central")
+            for reg in ids:
+                frecuencias = Espectro.objects.filter(region=int(reg), frec_muestreo=samp_rate).values("frec_central").distinct().order_by("frec_central")
                 y = numpy.array([])
                 freq_ = numpy.array([])
 
                 if len(frecuencias)>0:
                     for freq in frecuencias:
-                        espectro = Espectro.objects.filter(region=reg["id"]).values("espectro").filter(frec_central=freq["frec_central"]).filter(frec_muestreo=samp_rate).filter(fecha__range=[cliente["fechaini"], cliente["fechafin"]]).order_by("fecha")
+                        espectro = Espectro.objects.filter(region=int(reg)).values("espectro").filter(frec_central=freq["frec_central"]).filter(frec_muestreo=samp_rate).filter(fecha__range=[cliente["fechaini"], cliente["fechafin"]]).order_by("fecha")
                         x_ = numpy.zeros(nfft)
                         for row in espectro:
                             x = numpy.asarray(row["espectro"])
@@ -677,11 +744,12 @@ def comparacion_zonas(request):
                             std_ =  numpy.std(10**(x_/10))
                             max_ = numpy.max(10**(x_/10))
                             min_ =  numpy.min(10**(x_/10))
-                            df.loc[k] = [ener_, media_, mediana_, std_, max_, min_,reg["id"]]
+                            df.loc[k] = [ener_, media_, mediana_, std_, max_, min_,int(reg)]
                             k+=1
                         x_ = x_/len(espectro)
-                        freq_ = numpy.append(freq_, numpy.arange(-int(nfft/2),int(nfft/2),1)*samp_rate/nfft + freq["frec_central"])
-                        y = numpy.append(y,x_)
+                        fins = numpy.arange(-int(nfft/2),int(nfft/2),1)*samp_rate/nfft + freq["frec_central"]
+                        freq_ = numpy.append(freq_, fins[muestras:-muestras])
+                        y = numpy.append(y,x_[muestras:-muestras])
                         flag = True
                     
                     if flag==True:
@@ -689,14 +757,15 @@ def comparacion_zonas(request):
                         #analisis de caracteristicas
 
                         ## aca van las graficas
-                        ax1.plot(freq_, y, label=str(reg["id"])+" "+reg["zona"])
+                        region = RegionCampana.objects.get(pk=int(reg))
+                        ax1.plot(freq_, y, label=reg+" "+region.zona)
                         ax1.set(xlabel="Frecuencia MHz", ylabel="Espectro dBm", title="Espectro por region",)
                         ax1.legend()
                         ax1.grid(True)
-                        espectros = mpld3.fig_to_html(fig1, mpld3_url="http://127.0.0.1/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/d3.v3.min.js")
+                        espectros = mpld3.fig_to_html(fig1, mpld3_url="http://127.0.0.1/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1/static/radioastronomia/js/librerias/d3.v3.min.js")
 
                         y = 10**(y/10)
-                        df1.loc[l] = [10*numpy.log10(numpy.mean(y)), 10*numpy.log10(numpy.sum(y)), reg["id"]]
+                        df1.loc[l] = [10*numpy.log10(numpy.mean(y)), 10*numpy.log10(numpy.sum(y)), int(reg)]
                         l+=1
                         respuesta.update({"espectros": espectros, "condiciones": "Analisis realizado con el RBW {} Hz".format(cliente["RBW"])})
                     else:
@@ -708,13 +777,14 @@ def comparacion_zonas(request):
         
             if df["ener"].count()>1:
                 fig2, ax2 = plt.subplots()
-                scatter =  ax2.scatter(df1["media"], df1["energia"], c=df1["target"], cmap="Dark2")         
-                legend1 = ax2.legend(*scatter.legend_elements(), title="Lugares")
+                for i in range(len(df1["target"])):         
+                    scatter =  ax2.scatter(df1["media"], df1["energia"], c=df1["target"], cmap="Dark2", label=df1["target"][i])
+                legend1 = ax2.legend(title="Lugares")
                 ax2.add_artist(legend1)
                 ax2.set(xlabel="Media dBm", ylabel="Energia dBm", title="Comparacion algunas caracteristicas")
                 # ax2.legend(title="Regiones")
                 ax2.grid()
-                caracteristicas = mpld3.fig_to_html(fig2, mpld3_url="http://127.0.0.1/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/d3.v3.min.js")
+                caracteristicas = mpld3.fig_to_html(fig2, mpld3_url="http://127.0.0.1/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1/static/radioastronomia/js/librerias/d3.v3.min.js")
                 
                
                 #analisis PCA para mayor informacion
@@ -727,11 +797,11 @@ def comparacion_zonas(request):
 
                 fig3, ax3 = plt.subplots()
                 scatter2 = ax3.scatter(x_pca[:,0], x_pca[:,1], c=df["target"], cmap="Dark2")
-                legend3 = ax3.legend(*scatter2.legend_elements(), title="Lugares")
+                legend3 = ax3.legend(title="Lugares")
                 ax3.add_artist(legend3)
                 ax3.set(xlabel='PC_1', ylabel="PC_2", title="Analisis PCA de las regiones")
                 ax3.grid()
-                analisis_pca = mpld3.fig_to_html(fig3, mpld3_url="http://127.0.0.1/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/d3.v3.min.js")
+                analisis_pca = mpld3.fig_to_html(fig3, mpld3_url="http://127.0.0.1/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1/static/radioastronomia/js/librerias/d3.v3.min.js")
                 respuesta.update({"pca": analisis_pca})
 
                 respuesta.update({"caracteristicas": caracteristicas,})
@@ -843,7 +913,7 @@ def control_automatico(request):
 
 
         msg = {"gamma": {"x1": x1.tolist(), "y1":y1.tolist()}, "nfft": nfft, "sample_rate": frecuencia_muestreo,
-        "ganancia": 50, "duracion": 2, "frecuencia_inicial": int(float(cliente["finicial"])*1e6),
+        "ganancia":30, "duracion": 5, "frecuencia_inicial": int(float(cliente["finicial"])*1e6),
         "accion": "modo automatico",
         "region": int(cliente["region"]), "frecuencia_final": int(float(cliente["ffinal"])*1e6),
         "azinicial": float(cliente["azinicial"]), "azfinal":float(cliente["azfinal"]),
@@ -852,8 +922,9 @@ def control_automatico(request):
         "RBazimut":float(cliente["RBazimut"])}
         topico = "radioastronomia/RFI"
         # #envio de la instruccion al subsistema RFI
+        # time.sleep(60)
         publishMQTT(topico, json.dumps(msg))
-        logs("info", f"Modo automatico activo para {cliente['finicial']}~{cliente['ffinal']} MHz", False)
+        logs("info", "Modo automatico activo para {cliente['finicial']}~{cliente['ffinal']} MHz", False)
     respuesta.update({"form": form, "antenna": antena})
 
     return render(request, "radioastronomia/control_automatico.html", respuesta)
@@ -961,6 +1032,7 @@ def subsistemacielo(request):
     respuesta = dict()
     try:
         album = AlbumImagenes.objects.last()
+        print(album.imagen)
         region = RegionForm()
         respuesta.update({"imagen": album.imagen,
                     "fecha": album.fecha,

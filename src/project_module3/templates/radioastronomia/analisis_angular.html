@@ -3,8 +3,8 @@
 
 {% block body_block %}
 <div class="container">
-    <div class="row">
-        <div class="col-3">
+    <div class="AArow">
+        <div class="AAForm">
         <h2>Análisis angular </h2>
         <p>Este modo se encarga analizar la energia por banda de frecuencia, 
         primero escoge un ángulo puede ser azimut o elevacion y realiza un barrido
@@ -21,42 +21,44 @@
                 <form id="form_modo3_A"  action= "" method="POST">
                     {% csrf_token %}
                     {% comment %} {% bootstrap_form region %} {% endcomment %}
-                    <h5> Seleccionar banda de frecuencia MHz </h5>
-                    <select name="bandas">
+                    <label> Seleccionar banda de frecuencia MHz </label>
+                    <select class="form-control" name="bandas">
                     {% for band in bandas %}
                     <option value="{{ band }}">{{ band }}</option>
                     {% endfor %}                     
                     </select>
-                    <br><br>
-                    <h5> Seleccione región </h5>
+                    <br>
+                    <!-- <label> Seleccione región </label> -->
                     {{region}}
                     <br><br>
-                    <h5> Seleccione RBW Hz</h5>
-                    <select name="RBW">
+                    <label> Seleccione RBW Hz</label>
+                    <select class="form-control" name="RBW">
                     {% for rbwa in rbw %}
                     <option value="{{rbwa.rbw}}"> {{rbwa.rbw}} </option>
                     {% endfor %}
                     </select>
-                    <br><br>                    
-                    <h5>Angulo Azimut °</h5>
-                    <select name="azimut">
+                    <br>                   
+                    <label>Angulo Azimut °</label>
+                    <select class="form-control" name="azimut">
                     {% for az in azimut %}
                     <option value="{{az.azimut}}"> {{az.azimut}} </option>
                     {% endfor %}
                     </select>
-                    <br><br>
-                    <h5> Seleccione rango de tiempo</h5>
-                    <label for="start">Fecha inicial</label>
-                    <input type="datetime-local" id="start_A" name="fechaini"
+                    <br>
+                    <!-- <label> Seleccione rango de tiempo</label> -->
+                    <label for="start">Fecha inicial</label><br>
+                    <input class="form-control" type="datetime-local" id="start_A" name="fechaini"
                     value="2019-07-19"
                     min="2019-01-01" max="2019-12-31">
-
+                    <br>
                     <label for="end">Fecha final</label>
-                    <input type="datetime-local" id="end_A" name="fechafin"
+                    <input class="form-control" type="datetime-local" id="end_A" name="fechafin"
                     value="2019-11-19"
                     min="2019-01-01" max="2019-12-31">
-
-                    <button id="enviar_A" class="btn btn-warning"><a href="javascript:validatedSendForm_A()"> Realizar análisis </a></button>
+                    <br>
+                    <center>
+                        <button id="enviar_A" class="btn btn-warning"><a href="javascript:validatedSendForm_A()"> Realizar análisis </a></button>
+                    </center>
                 </form>
             </div>
 
@@ -64,60 +66,63 @@
                 <form id="form_modo3_E"  action= "" method="POST">
                     {% csrf_token %}
                     {% comment %} {% bootstrap_form region %} {% endcomment %}
-                    <h5> Seleccionar banda de frecuencia MHz </h5>
-                    <select name="bandas">
+                    <label> Seleccionar banda de frecuencia MHz </label>
+                    <select class="form-control" name="bandas">
                     {% for band in bandas %}
                     <option value="{{ band }}">{{ band }}</option>
                     {% endfor %}                     
                     </select>
-                    <br><br>
-                    <h5> Seleccione región </h5>
+                    <br>
+                    <!-- <label> Seleccione región </label> -->
                     {{region}}
                     <br><br>
-                    <h5> Seleccione RBW Hz</h5>
-                    <select name="RBW">
+                    <label> Seleccione RBW Hz</label>
+                    <select class="form-control" name="RBW">
                     {% for rbwa in rbw %}
                     <option value="{{rbwa.rbw}}"> {{rbwa.rbw}} </option>
                     {% endfor %}
                     </select>
-                    <br><br>
+                    <br>
 
-                    <h5>Angulo Elevacion °</h5>
-                    <select name="elevacion">
+                    <label>Angulo Elevacion °</label>
+                    <select class="form-control" name="elevacion">
                     {% for el in elevacion %}
                     <option value="{{el.elevacion}}"> {{el.elevacion}} </option>
                     {% endfor %}
                     </select>
-                    <br><br>
+                    <!-- <br><br>
 
-                    <h5> Seleccione rango de tiempo</h5>
+                    <label> Seleccione rango de tiempo</label> -->
+                    <br>
                     <label for="start">Fecha inicial</label>
-                    <input type="datetime-local" id="start_A" name="fechaini"
+                    <input class="form-control" type="datetime-local" id="start_A" name="fechaini"
                     value="2019-07-19"
                     min="2019-01-01" max="2019-12-31">
-
+                    <br>
                     <label for="end">Fecha final</label>
-                    <input type="datetime-local" id="end_A" name="fechafin"
+                    <input class="form-control" type="datetime-local" id="end_A" name="fechafin"
                     value="2019-11-19"
                     min="2019-01-01" max="2019-12-31">
-
-                    <button id="enviar_E" class="btn btn-warning"><a id="href_a" href="javascript:validatedSendForm_E()"> Realizar análisis </a></button>
+                    <br>
+                    <center>
+                        <button id="enviar_E" class="btn btn-warning"><a id="href_a" href="javascript:validatedSendForm_E()"> Realizar análisis </a></button>
+                    </center>
                 </form>
             </div>
 
             <h4 id="output"> </h4>
 
             <div id="loading-data">
-             <center><div class="lds-ring">
+             <!-- <center><div class="lds-ring">
                 <div class="lds-spinner">
                     <div></div><div></div><div></div><div></div><div></div>
                     <div></div><div></div><div></div><div></div><div></div>
                     <div></div><div></div></div>
-                </center>
+                </center> -->
             </div>
         </div>
 
-        <div class="col-5">
+        <div class="AAGraf">
         <div id="polar" style="min-width: 310px; max-width: 400px; height: 400px; margin: 0 auto"></div>
         <h3 id="posiciones"> </h3>
         </div>
