@@ -43,7 +43,7 @@ gs232b.flushInput()
 
 
 gs232b.write(b'C2\r')
-l = gs232b.read(14)
+l = gs232b.read(14) 
 ll = str(l)[1:]
 print(l, len(l), type(l), ll, type(ll))
 
@@ -53,3 +53,4 @@ print(l, len(l), type(l), ll, type(ll))
 gs232b.close()
 print("Serial Closed")
 
+            
