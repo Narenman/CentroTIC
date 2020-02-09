@@ -1,0 +1,305 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>E3TRATOS MONITOR</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, height=device-height">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="theme-color" content="#22282d">
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,700" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'E3Tratos/assets/css/gui.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'E3Tratos/assets/css/switch_gui.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'E3Tratos/assets/css/variables.css' %}">
+</head>
+
+<body>
+
+	<div id="root-container">
+
+
+		<div id="title" class="title">
+
+			<div class="line"></div>
+			<div id="text" class="text"> monitor e3tratos</div>
+			<div class="line"></div>
+			
+
+			<!--<div id="switchs-container" class="switchs-container">
+				<label class="switch">
+					<input id="checkbox" type="checkbox" onclick="myswitch()">
+					<span class="slider round"></span>
+				</label>
+			</div>	-->
+
+		</div>
+
+		<div class="data-container">
+
+			<div class="data-container-top">
+				<div class="telemetry box">
+					<h5> e3tratósfera</h5>
+					<div class="telemetry-tables" >
+						<div id="table-1" class="variable-table-1">
+							<table>
+								<tr class="t-name">
+									<th></th>	
+									<th id="n_v1">1. Temperatura</th>
+									<th id="n_v2">2. Presión</th>
+									<th id="n_v3">3. Metano</th>
+									<th id="n_v4">4. Co2</th>
+								</tr>
+								<tr class="t-val">
+									<th></th>
+									<th id="v_temp">000.00</th>
+									<th id="v_pres">000.00</th>
+									<th id="v_met">000.00</th>
+									<th id="v_co2">000.00</th>
+								</tr>
+								<tr>
+									<td class="bor">Máx</td>
+									<td id="v_tempma">000.00</td>			
+									<td id="v_prema">000.00</td>			
+									<td id="v_metma">000.00</td>
+									<td id="v_co2ma">000.00</td>												
+								</tr>
+
+								<tr>
+									<td class="bor">Mín</td>
+									<td id="v_tempmi">200.00</td>	
+									<td id="v_premi">000.00</td>	
+									<td id="v_metmi">000.00</td>	
+									<td id="v_co2mi">000.00</td>								
+								</tr>
+
+
+								<tr>
+									<td class="bor">Media</td>
+									<td id="v_tempme">000.00</td>	
+									<td id="v_preme">000.00</td>	
+									<td id="v_metme">000.00</td>
+									<td id="v_co2me">000.00</td>	
+								</tr>
+
+
+
+							</table>
+						</div>
+
+						<div id="table-2" class="variable-table-1">
+							<table>
+								<tr class="t-name">
+									<th></th>
+									<th id="n_v5">5. Mat. Part. </th>
+									<th id="n_v6">6. Var 6</th>
+									<th id="n_v7">7. Var 7</th>
+									<th id="n_v8">8. Var 8</th>
+								</tr>
+								<tr class="t-val">
+									<th></th>
+									<th id="v_pm25">000.00</th>
+									<th id="v_var6">000.00</th>
+									<th id="v_var7">000.00</th>
+									<th id="v_var8">000.00</th>
+								</tr>
+								<tr >
+									<td class="bor">Máx</td>
+									<td id="v_pm25ma">000.00</td>
+									<td id="v_var6ma">000.00</td>							
+									<td id="v_var7ma">000.00</td>						
+									<td id="v_var8ma">000.00</td>												
+								</tr >
+
+								<tr >
+									<td class="bor">Mín</td>
+									<td id="v_pm25mi">000.00</td>
+									<td id="v_var6mi">000.00</td>						
+									<td id="v_var7mi">000.00</td>					
+									<td id="v_var8mi">000.00</td>	
+								</tr>
+
+
+
+								<tr>
+									<td class="bor">Media</td>
+									<td id="v_pm25me">000.00</td>
+									<td id="v_var6me">000.00</td>	
+									<td id="v_var7me">000.00</td>							
+									<td id="v_var8me">000.00</td>								
+								</tr>
+
+							</table>
+						</div>	
+						
+					</div>
+				</div>
+
+				<div class="payload box">
+					<h5> carga útil info</h5>
+					<div >
+						<table class="table-3">
+							<tr class="t-name-2">
+								<th>[°C] Temp. Interna</th>
+								<td id="v_tempINS">000.00</td>
+								
+							</tr>
+							<!--<tr>
+								<th>[%] Humed. Interna</th>
+								<td id="v_humINS">000.00</td>
+							</tr>-->
+
+							<tr>
+								<th>[DD] Longitud</th>
+								<td id="v_lng">000.00</td>
+							</tr>
+							<tr>
+								<th>[DD] Latitud</th>
+								<td id="v_lat">000.00</td>
+							</tr>
+							<tr>
+								<th>Disitancia</th>
+								<td id="v_distancia">00.00.00</td>
+							</tr>
+							<tr>
+								<th id="_altura">[m] Altura</th>
+								<td  id="v_altura">000.00</td>
+								
+							</tr>
+							<tr>
+								<th id="_altitud">[m] Altitud</th>
+								<td  id="v_altitud">000.00</td>
+							</tr>
+							<tr>
+								<th colspan="2" id="_tvuelo">Tiempo de vuelo</th>
+							</tr>
+							<tr>
+								<td colspan="2" id="v_tvuelo">00:00:00</td>
+							</tr>
+						</table>
+						
+					</div>
+				</div>
+				
+				<div class="plot box">
+				
+					<h5>gráficas</h5>
+					
+					<div class="ptemp">
+    					<canvas id="myChart"></canvas>
+    				</div>
+    				
+				</div>
+
+			<!--</div>
+
+			<div class="data-container-bottom">-->
+				
+				<div class="maps-container box">
+					<h5>geolocalización</h5>
+					<div id="map"></div>
+				</div>
+
+
+				<div class="gstation box">
+					<h5>Actitud</h5>
+					<div>
+						<table class="table-3">
+							<!--<tr class="t3">
+								<th colspan="6" class="_angulos">[°] ángulos</th>
+							</tr>-->
+							<tr>
+								<td id='_X'>X:</td>
+								<td id='v_X'>00</td>
+								<td id='_Y'>Y:</td>
+								<td id='v_Y'>00</td>
+								<td id='_Z'>Z:</td>
+								<td id='v_Z'>00</td>
+							</tr>
+						</table>
+
+						<div id='attitude'></div>
+						
+					</div>
+				</div>
+
+				<div class="videostrm box">
+					<h5>transmisión de imagenes</h5>
+					<div class="videoframe"><label style="color: #717171; font-size: 12px; margin: 0px 33% 10px 30%; width: 100%">Módulo en desarrollo</label></div>
+					
+				</div>
+
+				<div class="box">
+					<table class="table-4 table-3">
+						<tr class="t4">
+							<th>[mA] Corriente</th>
+							<td id='v_corriente'>00.00.00</td>
+							<th>[ V] Voltaje</th>
+							<td id='v_voltaje'>00.00.00</td>
+						</tr>
+						<tr>
+							<th>[ %] Carga</th>
+							<td id='v_carga'>00.00.00</td>
+						</tr>
+					</table>
+				</div>
+
+				<div class="box">
+					<table class="table-4 table-3">
+						<tr class="t4">
+							<th>Hora Local</th>
+							<td id='v_horalocal'>00.00.00</td>
+						</tr>
+					</table>
+				</div>
+				
+				<div class="box">
+
+					<div class='download'>
+						<p>Descargar:</p>
+						<a href="http://34.74.6.16/E3Tratos/datos-json-all" target="_blank">JSON</a>
+					</div>
+				</div>
+
+			</div>
+
+						
+		</div>
+
+
+	</div>
+
+
+</body>
+
+<!--<script src="{% static 'E3Tratos/assets/js/jslib/three.js' %}"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/103/three.js"></script>
+<script src="{% static 'E3Tratos/assets/js/jslib/DDSLoader.js' %}"></script>
+<script src="{% static 'E3Tratos/assets/js/jslib/MTLLoader.js' %}"></script>
+<script src="{% static 'E3Tratos/assets/js/jslib/OBJLoader.js' %}"></script>
+<script src="{% static 'E3Tratos/assets/js/switch_gui.js' %}"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeAmVudOtIX9_du7kSu3kLY6z07IgeqpI&callback=initMap"> </script>
+
+
+<script type="application/javascript" src="{% static 'E3Tratos/assets/js/chartjs.js' %}"></script>
+<script src="{% static 'E3Tratos/assets/js/myget.js' %}"></script>
+
+<script src="{% static 'E3Tratos/assets/js/apimaps.js' %}"></script>
+
+
+<script src="{% static 'E3Tratos/assets/js/myrender.js' %}"></script>
+
+
+<script src="{% static 'E3Tratos/assets/js/chart.js' %}"></script>
+
+
+
+</html>
+
+
+
+
+
+

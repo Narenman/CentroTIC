@@ -1,0 +1,85 @@
+{% extends 'radioastronomia/base.html' %}
+{% load static %}
+{% load bootstrap3 %}
+
+
+{% block body_block %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            <h3> Comparación de las zonas de medición </h3>
+            {% if info %}
+            
+            <h4 style="color: red"> {{info}} </h4>
+            {% else %}
+
+            {% autoescape off %}
+            {{ espectros }}
+            {% endautoescape %}
+            
+            <h3>Comparacion de la energia de las zonas </h3>
+            {% autoescape off %}
+            {{ caracteristicas }}
+            {% endautoescape %}
+
+             <h3>Análisis usando PCA</h3>
+            {% autoescape off %}
+            {{ pca }}
+            {% endautoescape %}
+
+            {% endif %}
+        </div>
+        <div class="col">
+        <p> Este análisis compara las zonas donde se toman los datos, para ello
+        es necesario utilizar un RBW para que todos los datos comparados tengan las mismas
+        características de adquisición.</p>
+        <br>
+        <p>Del espectro se extraen las siguientes características y se comparan entre sí:</p>
+        <ul>
+        <li> Energía </li>
+        <li> Desviación estándar </li>
+        <li> Promedio </li>
+        <li> Valor máximo </li>
+        <li> Valor mínimo </li>
+        <li> Mediana </li>
+        </ul>
+            <form action="" method="post">
+                {% csrf_token %}
+                <label> <h4>RBW Hz</h4> </label><br>
+                <select name="RBW">
+                    {% for r in rbws %}
+                    <option value="{{r.rbw}}"> {{r.rbw}} </option>
+                    {% endfor %}
+        
+                </select>
+                <br><br>
+                <h2> Seleccione los sitios que desea comparar </h2>
+                <br>
+                    <ul class="list-group">
+                    {% for reg in regiones %}
+                     <li class="list-group-item"><input type="checkbox" name="id" value={{reg.id}}> {{reg.zona}}</li>
+                    </ul>
+                    {% endfor %}
+                  <h5> Seleccione rango de tiempo</h5>
+                    <label for="start">Fecha inicial</label>
+                    <input type="datetime-local" id="start_A" name="fechaini"
+                    value="2019-07-19"
+                    min="2019-01-01" max="2019-12-31">
+                    <br>
+                    <label for="end">Fecha final</label>
+                    <input type="datetime-local" id="end_A" name="fechafin"
+                    value="2019-12-20"
+                    min="2019-01-01" max="2019-12-31">
+                    {% buttons %}
+                    <button type="submit" class="btn btn-primary">
+                    {% bootstrap_icon "star" %} Realizar análisis
+                    </button>
+                    {% endbuttons %}
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock body_block %}

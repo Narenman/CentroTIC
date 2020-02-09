@@ -1,0 +1,44 @@
+{% extends "nariz_electronica/baseV1.html" %}
+{% load static %}
+
+{% block body_block %}
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>Toma de datos</h1>
+      </div>
+
+<p> {{ analisis_confirmacion }} </p>
+<div class="row">
+
+    <div class="col-sm">
+    <h2> Toma datos por grupo </h2>   
+    
+    <p> En esta sección se describe el grupo del experimento general, por ejemplo: </p>
+ <ul class="list-group">
+  <li class="list-group-item">Maderas</li>
+  <li class="list-group-item">Triatominos</li>
+  <li class="list-group-item">Aceites escenciales</li>
+  <li class="list-group-item">Entre otros ...</li>
+</ul>
+    <p> </p>
+    <button type="button" class="btn btn-outline-info"> 
+    <a class="nav-link active" href="{% url 'nariz_electronica:entrenamiento'%}">Grupo</a>
+ 
+  </button> 
+    </div>
+
+    <div class="col-sm">
+    <h2> Toma de muestras </h2>    
+    <p> En esta etapa se envían los controles a la nariz electrónica para realizar los diferentes experimentos asociados
+    al entrenamiento, los datos son almacenados en la base de datos directamente desde la nariz electrónica, el formulario
+    sirve para discriminar las lecturas en la base de datos, es decir: como si tuviera el nombre del archivo.</p>
+    <p> </p>
+    <button type="button" class="btn btn-outline-info">  
+    <a class="nav-link active" href="{% url 'nariz_electronica:analisis_nariz'%}">Toma de muestras por grupo</a>
+  </button>
+    </div>
+
+</div>
+</div>
+{% endblock  %}

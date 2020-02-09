@@ -1,0 +1,23 @@
+{% extends 'radioastronomia/base.html' %}
+{% load static %}
+
+{% block body_block %}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <h2> ¿Desea borrar la resolución {{rbw.rbw}} ?</h2>
+            <button type="submit" class="btn btn-danger">Sí</button>
+            
+            <a href="{% url 'radioastronomia:rbw' %}"> Cancelar </a>
+        </div>
+
+        <div class="col">
+        {% lorem 1 b random %}
+        </div>
+    </div>
+</div>
+{% endblock body_block %}

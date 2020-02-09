@@ -1,0 +1,40 @@
+{% extends 'radioastronomia/base.html' %}
+{% load static %}
+
+{% block body_block %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+        <h5> Lista de las Resoluciones de Ancho de banda del sistema </h5>
+            <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">Frecuencia de muestreo [S/s]</th>
+                <th scope="col">NFFT</th>
+                <th scope="col">RBW [Hz]</th>
+                <th scope="col">Borrar</th>
+
+                </tr>
+            </thead>
+            <tbody>
+            {% for estacion in rbw %}
+                <tr>
+                {% comment %} <th scope="row"><a href="{% url 'radioastronomia:actualizar-sensor' estacion.id %}"> {{estacion.sensor}}</a></th> {% endcomment %}
+                <td>{{estacion.frecuencia_muestreo}}</td>
+                <td>{{estacion.nfft}}</td>
+                <td><a href="{% url 'radioastronomia:actualizar-rbw' estacion.id %}"> {{estacion.rbw}} </a></td>
+                <td><a href="{% url 'radioastronomia:borrar-rbw' estacion.id %}">Sí</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            </table>
+            <button type="button" class="btn btn-light"><a href="{% url 'radioastronomia:crear-rbw' %}">Registrar RBW </a></button>
+        
+        </div>
+
+        <div class="col">
+        <img src="{% static 'radioastronomia/img/rbw.jpg' %} " class="rounded-circle" alt="Cinque Terre">
+        </div>
+    </div>
+</div>
+{% endblock body_block %}

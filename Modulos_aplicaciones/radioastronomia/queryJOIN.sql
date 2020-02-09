@@ -1,0 +1,10 @@
+﻿SELECT radioastronomia_albumimagenes.fecha, radioastronomia_estacionambiental.temperatura, radioastronomia_estacionambiental.humedad_relativa, radioastronomia_estacionambiental.presion_atomosferica,
+radioastronomia_estacionambiental.radiacion_solar, radioastronomia_estacionambiental.vel_viento,
+radioastronomia_estacionambiental.dir_viento, radioastronomia_estacionambiental.precipitacion
+FROM radioastronomia_estacionambiental
+INNER JOIN radioastronomia_albumimagenes
+ON date_trunc('minute',radioastronomia_estacionambiental.fecha)=date_trunc('minute',radioastronomia_albumimagenes.fecha)
+WHERE radioastronomia_estacionambiental.region_id=8
+AND date_trunc('day',radioastronomia_albumimagenes.fecha)='2019-09-27'
+
+ORDER BY radioastronomia_estacionambiental.humedad_relativa;

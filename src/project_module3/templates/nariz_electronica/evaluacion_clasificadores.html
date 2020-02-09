@@ -1,0 +1,45 @@
+{% extends 'nariz_electronica/base.html' %}
+{% load static %}
+
+{% block body_block %}
+<div class="container">
+    <h1> Aplicaciones de la nariz electrónica </h1>
+    <br> <br>
+    <div class="row">
+
+        <div class="col-sm">
+        <a href="#" class="stretched-link">        <img src="{% static 'nariz_electronicaV1/cigarrillo.jpg'%}" class="rounded float-left" width="300px" height="250px" alt="...">
+            <h4> Detección de humo cigarrillo </h4>
+        </a><br><br>
+
+        </div>
+        <div class="col-sm">
+            <a href="{% url 'nariz_electronica:clasificacion-maderas'%}" class="stretched-link"> <img src="{% static 'nariz_electronicaV1/maderas.jpg'%}" class="rounded float-left" width="300px" height="250px" alt="...">
+                <h4> Detección de maderas</h4></a>
+           
+            <br><br>
+        </div>
+        <div class="col-sm">
+            <a href="#" class="stretched-link"><img src="{% static 'nariz_electronicaV1/marihuana.jpg'%}" class="rounded float-left" width="300px" height="250px" alt="...">
+                <h4> Detección de marihuana</h4></a>
+            
+            <br><br>
+             </div>
+
+        <div class="col-sm">
+            <a href="{% url 'nariz_electronica:clasificacion-rocas'%}" class="stretched-link"> <img src="{% static 'nariz_electronicaV1/rocas.jpg'%}" class="rounded float-left" width="300px" height="350px" alt="...">
+                <h4>Detección de rocas con petróleo</h4>   </a>
+            
+            <br><br>
+        </div>
+            
+        <div class="col">
+            <a href="{% url 'nariz_electronica:clasificacion-triatominos'%}" class="stretched-link">  <img src="{% static 'nariz_electronicaV1/triatominos.png'%}" class="rounded float-left" width="300px" height="250px" alt="...">
+            <h4>Detección de triatominos</h4></a>
+            <br>
+        </div>
+                    
+    </div>
+   
+</div>
+{% endblock  %}

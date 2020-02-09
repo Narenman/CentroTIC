@@ -1,0 +1,32 @@
+{% extends 'radioastronomia/base.html' %}
+{% load static %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+
+{% block body_block %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+        <h3> Registrar sensores de la estacion </h3>
+        <form  action= "{% url 'radioastronomia:crear-sensor' %}" method="POST">
+            {% csrf_token %}
+            {% bootstrap_form form %}                          
+            {% buttons %}
+            <button type="submit" class="btn btn-primary">
+            {% bootstrap_icon "star" %} Registrar sensor
+            </button>
+            {% endbuttons %}
+        </form>
+        </div>
+
+        <div class="col-sm">
+        <p>Este formulario se encarga de registrar los valores de los sensores que tiene la estación de monitoreo Davis.</p>
+        <img src="{% static 'radioastronomia/img/estacion.jpg'%}" class="rounded" alt="Cinque Terre" width="250px" hight="250px">
+        <button type="button" class="btn btn-light"><a href="{% url 'radioastronomia:subsistema-estacion' %}">Lista de sensores </a></button>
+
+        </div>
+    </div>
+</div>
+{% endblock body_block %}

@@ -1,0 +1,28 @@
+{% extends 'piscicultura/base.html' %}
+{% load static %}
+
+{% block body_block %}
+<div class="container">
+    <div class="jumbtron"> 
+        <h1> Piscicultura utilizando IoT </h1>
+        <h2> {{registro}} </h2>
+Desarrollo de un prototipo para el apoyo a un sistema de producción piscícola utilizando una arquitectura de internet de las cosas (IoT)
+
+La piscicultura es un grupo de actividades, técnicas y conocimientos para la crianza y reproducción de peces, se puede aplicar en los acuarios, ríos o en otros sitios que tengan el acceso al agua como medio primordial. Sin embargo, aplicar la piscicultura en estanques cerrados tiene grandes ventajas como reducir al mínimo el riesgo de contraer enfermedades, disminución de efectos secundarios en las especies, ciclos de crianza de mayor rendimiento, toma de decisiones más acertadas, entre otros beneficios que los sistemas acuáticos naturales no pueden controlar. Así mismo, mejorar los sistemas de gestión del estanque, los procesos de automatización y en particular, optimizar el suministro de alimento reduciendo los pesajes; constituyen problemas de investigación que en la medida que se atiendan en el contexto regional y nacional, permitirán nuevos conocimientos, técnicas y tecnologías para pequeños, medianos y grandes productores.
+
+Por tanto es importante garantizar las condiciones adecuadas para el optimo crecimiento de los peces por medio de técnicas exactas y que no requieran mucha intervención humana para no afectar la producción. El siguiente proyecto  aborda la construcción de un prototipo basado en el internet de las cosas (IoT) que permita el monitoreo de las variables importantes del proceso de la piscicultura para poder ejecutar acciones de control que corrijan las condiciones no deseadas. Este prototipo permitirá independencia del operario (humano)   orientándose a soluciones escalables  y la optimización del proceso.      
+
+  <img src="{% static 'piscicultura/sistema.jpeg'%}" alt="imagen no encontrada" class="img-thumbnail">
+
+  <h2> Sensores utilizados para medir</h2>
+  <ul>
+    <li> Temperatura en el agua</li>
+    <li> Oxigeno disuelto en el agua </li>
+    <li> PH en el agua </li>
+    <li> Temperatura ambiente </li>
+  </ul>
+    <img src="{% static 'piscicultura/sensores.jpeg'%}" alt="imagen no encontrada" class="img-thumbnail">
+
+  </div>
+</div>
+{% endblock  %}

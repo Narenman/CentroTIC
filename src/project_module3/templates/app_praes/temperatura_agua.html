@@ -1,0 +1,48 @@
+{% extends "app_praes/base1.html" %}
+{% load static %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+
+{% block body_block %}
+    <div class="col">
+        <h1> Variables del Agua </h1>
+            <div id="presion">
+            <h2>Temperatura del agua</h2>
+
+            <p> Los animales las plantas acuáticas son sensibles a los cambios de temperatura del agua y requieren que esta se mantenga dentro de un intervalo determinado para poder sobrevivir y reproducirse. Si la temperatura del agua permanece fuera de este intervalo durante mucho tiempo, los organismos quedarán expuestos a condiciones inadecuadas.  </p>
+            </br>
+            <h4> Efectos de la temperatura en el agua </h4>
+            <p> La temperatura afecta a la cantidad de oxígeno que puede transportar el agua. El agua a menor temperatura transporta más oxígeno y todos los animales acuáticos necesitan este para sobrevivir. También influye en la fotosíntesis de plantas y algas, y la sensibilidad de los organismos frente a los residuos tóxicos. </p>
+            <img class="img-responsive" src="{% static "praes/img/temperatura_agua.jpg" %}" height="300px" width="450px" alt="Chania"> 
+
+            <h3> Indicador de la temperatura en el agua </h3>
+            <p> La  temperatura  puede  afectar  a  los  indices  de  reproducción  de  algunas  especies  acuáticas; algunas especies podrían dejar de  reproducirse en aguas más calientes de  lo habitual. En aguas más calientes puede aumentar la susceptibilidad de los organismos acuáticos a las enfermedades porque bacterias y otros organismos que causan enfermedades crecen con más rapidez en aguas cálidas.  </p>
+            <p></p>
+            <h3>Seleccionar KIT y lugar de medición:</h3>
+            </div>
+
+        <form  action= "{% url 'app_praes:medicion-temp-agua' %}" method="POST">
+                {% csrf_token %}
+
+                    {% bootstrap_form sensores%}
+                            
+                    {% buttons %}
+                    <button type="submit" class="btn btn-primary">
+                    {% bootstrap_icon "star" %} Realizar toma de datos
+                    </button>
+
+                    {% endbuttons %}
+            </form>
+        </div>
+    </div>
+    <div id="grafica_temp_agua" style="min-width: 300px; height: 400px; margin: 0 auto"></div>
+       
+
+<script src= "{% static 'praes/js/grafica_temp_agua.js' %}" ></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+{% endblock  %}

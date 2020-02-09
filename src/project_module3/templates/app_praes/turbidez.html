@@ -1,0 +1,46 @@
+{% extends "app_praes/base1.html" %}
+{% load static %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+
+{% block body_block %}
+    <div class="col">
+        <h1> Variables del Agua </h1>
+            <div id="presion">
+            <h2>Turbidez</h2>
+
+            <p> La turbidez es una medida de la cantidad de partículas en suspensión en el agua. Las algas, los sedimentos en suspensión, la materia orgánica y los contaminantes pueden enturbiar el agua. </p>
+            </br>
+            <h4> ¿Por qué es importante? </h4>
+            <p> Las partículas en suspensión difunden la luz solar y absorben calor lo cual puede causar un aumento en la temperatura y una reducción de la luz para la fotosíntesis de las algas.   La turbidez debida a sedimentos en suspensión  puede indicar una  erosión natural o artificial.  Los sedimentos en suspensión  pueden obstruir las branquias de los peces.  Cuando el sedimento precipita,  puede dañar los lechos de grava y enterrar los huevos de los peces y s insectos béntícos.  El sedimento puede transportar contaminantes, patógenos y nutrientes. </p>
+            <img class="img-responsive" src="{% static "praes/img/turbidez.jpg" %}" height="200px" width="450px" alt="Chania"> 
+
+            <p></p>
+            <h3>Seleccionar KIT y lugar de medición:</h3>
+            </div>
+
+        <form  action= "{% url 'app_praes:medicion-turbidez' %}" method="POST">
+                {% csrf_token %}
+
+                    {% bootstrap_form sensores%}
+                            
+                    {% buttons %}
+                    <button type="submit" class="btn btn-primary">
+                    {% bootstrap_icon "star" %} Realizar toma de datos
+                    </button>
+
+                    {% endbuttons %}
+            </form>
+        </div>
+    </div>
+    <div id="grafica_turbidez" style="min-width: 300px; height: 400px; margin: 0 auto"></div>
+       
+
+<script src= "{% static 'praes/js/grafica_turbidez.js' %}" ></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+{% endblock  %}

@@ -1,0 +1,47 @@
+{% extends 'app_praes/base.html' %}
+{% load static %}
+
+{% block body_block %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            {% if colegio %}
+            <h3> Colegios Registrados participantes del diplomado PRAES </h3>
+                <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">Nombre colegio</th>
+                    <th scope="col">Rector</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Dirección</th>
+                    <th scope="col">Ciudad</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                {% for col in colegio %}
+                        <tr>
+                        <th scope="row"><a href="{% url 'app_praes:actualizar-colegio' col.id %}">{{col.nombre_colegio}}</a></th>
+                        <td>{{col.nombre_rector}}</td>
+                        <td>{{col.telefono}}</td>
+                        <td>{{col.correo_rector}}</td>
+                        <td>{{col.direccion_colegio}}</td>
+                        <td>{{col.ciudad}}</td>
+                        </tr>
+                    </tbody>
+                {% endfor %}
+                </table>
+            {% else %}
+            <h3> No hay Colegios registrados </h3>
+            {% endif %}
+        </div>
+
+        <div class="col-sm">
+    <img src="{% static 'praes/img/colegio.jpg' %}" class="img-fluid" alt="Responsive image">        
+    <button type="button" class="btn btn-light"><a href="{% url 'app_praes:registro-colegios' %}">Registrar colegio</a></button>
+    </div>
+    </div>
+
+</div>
+{% endblock body_block %}

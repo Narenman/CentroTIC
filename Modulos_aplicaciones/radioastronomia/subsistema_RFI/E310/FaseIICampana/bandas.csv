@@ -1,0 +1,9 @@
+id,banda,abreviatura,frecuencia_inicial,frecuencia_final
+1,Muy Baja Frecuencia,VLF,0.000003,0.03
+2,Baja Frecuencia,LF,0.03,0.3
+3,Frecuencia Media,MF,0.3,3
+4,Frecuencia Alta,HF,3,30
+5,Muy Alta Frecuencia,VHF,30,300
+6,Ultra Alta Frecuencia,UHF,300,3000
+7,Super Alta Frecuencia,SHF,3000,30000
+8,Frecuencia Extremadamente Alta,EHF,30000,300000

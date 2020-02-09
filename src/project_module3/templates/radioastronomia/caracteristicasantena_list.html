@@ -1,0 +1,42 @@
+{% extends 'radioastronomia/base.html' %}
+{% load static %}
+
+{% block body_block %}
+
+<div class="container">
+<h2> Lista de antenas utilizadas </h2>
+</br>
+<button type="button" class="btn btn-light"><a href="{% url 'radioastronomia:crear-antena' %}">Registrar antena </a></button>
+<div class="row">
+<div class="col-sm">
+    <table class="table">
+    <thead>
+        <tr>
+        <th scope="col">Referencia Antena</th>
+        <th scope="col">Imagen </th>
+        <th scope="col">Rango frecuencias</th>
+        <th scope="col">Polarizacion</th>
+        <th scope="col">VSWR </th>
+        <th scope="col">Borrar </th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for antena in caracteristicasantena %}
+        <tr>
+        <th scope="row"><a href="{% url 'radioastronomia:actualizar-antena' antena.id %}"> {{antena.referencia}}</a></th>
+        <td><img src="{{antena.imagen.url}}" alt="no encontrado" class="img-thumbnail" height="200px" width="300px"></td>
+        <td>{{antena.rango_frecuencias}}</td>
+        <td>{{antena.polarizacion}}</td>
+        <td><img src="{{antena.vswr.url}}" alt="no encontrado" class="img-thumbnail" height="200px" width="300px"></td>
+        <td><a href="{% url 'radioastronomia:borrar-antena' antena.id %}"> Sí </a> </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+</div>
+{% endblock body_block %}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>E3Tratos</title>
+    <meta name="theme-color" content="#4db3ff">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'E3Tratos/assets/css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'E3Tratos/assets/css/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'E3Tratos/assets/css/slick-theme.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'E3Tratos/assets/css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'E3Tratos/assets/css/menubar.css' %}">
+
+
+
+
+</head>
+<body>
+<div class="top-container">
+    <div class="logo">
+    <a href={% url 'main-index' %} class="navbar-brand"><img src={% static 'centrotic.png' %} heigth="250px" width="250px" alt=""></a>
+        <img src="{% static 'E3Tratos/assets/img/logo.png' %}" alt="Imagen no encontrada">
+        <div id="contador"></div>
+        <label>Días horas minutos segundos</label>
+    </div>
+
+    <div class="menubar">
+        <div class="topnav" id="myTopnav">
+            <a href="{% url 'E3Tratos:index-E3Tratos' %}" >inicio</a>
+            <!--<a href="{% url 'E3Tratos:tratosdocs' %}" >Documentación</a>-->
+            <a href="{% url 'E3Tratos:tratosgui' %}" >Monitor</a>
+            <!--<a href="{% url 'E3Tratos:tratosmedia' %}" >Media</a>-->
+            <a href="{% url 'E3Tratos:tratoscontact' %}" >Contacto</a>
+            <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+         <!--
+        <div class="dropdown">
+       
+        <button class="dropbtn">Dropdown <i class="fa fa-caret-down"></i></button>
+        <div class="dropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+        </div>
+        </div> -->
+
+
+    </div>
+
+
+    <div class="wrapper">
+        {% block body_block %}
+            {% include "index.html" %}
+        {% endblock  %}
+    </div>
+
+    <footer>
+        <div class="contain-footer">
+
+            <div class="footer-logo">
+
+                <img src= "{% static 'E3Tratos/assets/img/logouis.png' %}" alt="Imagen no encontrada" width=60px>
+                <img src= "{% static 'centrotic.png' %}" alt="Imagen no encontrada" width=50px>
+                <img src= "{% static 'E3Tratos/assets/img/logocemos.png' %}" alt="Imagen no encontrada" width= 30px >
+                <img src= "{% static 'E3Tratos/assets/img/logoe3t.png' %}" alt="Imagen no encontrada" width= 38px>
+                <img src= "{% static 'E3Tratos/assets/img/logoradio.png' %}" alt="Imagen no encontrada" width= 33px>
+                
+                <img src= "{% static 'E3Tratos/assets/img/logogiema.png' %}" alt="Imagen no encontrada" width=30px>
+                <img src= "{% static 'E3Tratos/assets/img/logomecanica.png' %}" alt="Imagen no encontrada" width=90px >
+
+            </div>
+            
+        </div>
+        
+
+    </footer>
+    
+</div>
+
+
+</body>
+    
+    
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="{% static 'E3Tratos/assets/js/slick.min.js' %}"></script>
+    <script src="{% static 'E3Tratos/assets/js/main.js' %}"></script>
+</html>

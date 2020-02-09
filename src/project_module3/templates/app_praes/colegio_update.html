@@ -1,0 +1,44 @@
+{% extends 'app_praes/base.html' %}
+{% load static %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+
+{% block body_block %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+        <h3> Actualizar campos del colegio Colegio </h3>
+        <form  action= "" method="POST">
+            {% csrf_token %}
+            {% bootstrap_form form%}                          
+            {% buttons %}
+            <button type="submit" class="btn btn-warning">
+            {% bootstrap_icon "star" %} Actualizar Colegio
+            </button>
+            {% endbuttons %}
+        </form>
+
+        <h5>Notas para registrar el colegio </h5>
+        <ul class="list-group">
+        <li class="list-group-item"><b> Nombre colegio </b>: es el nombre del colegio o el alias dado a éste</li>
+        <li class="list-group-item"><b> Nombre rector </b>: es la máxima autoridad en el colegio </li>
+        <li class="list-group-item"><b> Teléfono </b>: un teléfono donde se pueda comunicar con el colegio </li>
+        <li class="list-group-item"><b> Correo rector </b>: es requerido por si se desea contactar al rector para colaboración conjunta </li>
+        <li class="list-group-item"><b> Dirección colegio </b>: Para saber la ubicación del colegio </li>
+        <li class="list-group-item"><b> Ciudad </b>: Ciudad donde se encuentra el colegio, ya que hay colegios que están presentes en varias ciudades. </li>
+
+
+        </ul>
+
+        </div>
+
+        <div class="col-sm">
+        <img src="{% static 'praes/img/colegio.jpg' %}" class="img-fluid" alt="Responsive image">        
+        <button type="button" class="btn btn-light"><a href="{% url 'app_praes:colegios' %}">Consultar colegios </a></button>
+
+        </div>
+    </div>
+</div>
+{% endblock body_block %}

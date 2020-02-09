@@ -1,0 +1,51 @@
+{% extends "paws/base.html" %}
+{% load static %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+
+{% block body_block %}
+
+<div class="container">
+    <div class="jumbotron">
+    <h1>Registro de dispositivos esclavos</h1>
+    <a href="{% url 'paws:ayuda' %}"> Recomendaciones para el registro de esclavos </a>
+    
+
+    </div>
+      <form  action= "{% url 'paws:register' %}" method="POST">
+        {% csrf_token %}
+        
+        <div class="row">
+        
+          <div class="col-sm">
+            <h3> Descripción del dispositivo </h3>
+            {% bootstrap_form device_descriptor%}
+            
+          </div>
+          <div class="col-sm">
+            <h3> Información del responsable </h3>
+            {% bootstrap_form device_owner%}
+            <h3>¿Es válido el dispositivo?</h3>
+            {% bootstrap_form device_validity%}
+
+            
+          </div>
+
+          <div class="col-sm">  
+            <h3> Rango de frecuencias del dispositivo </h3>
+            {% bootstrap_form freq_range%}
+            
+            {% buttons %}
+              <button type="submit" class="btn btn-primary">
+              {% bootstrap_icon "star" %} Registrar Dispositivo
+              </button>
+            {% endbuttons %}
+          </div>
+
+        </div>
+      </form>
+</div>
+
+{% endblock  %}

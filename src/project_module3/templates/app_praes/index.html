@@ -1,0 +1,22 @@
+{% extends "app_praes/base.html" %}
+{% load static %}
+{% block body_block %}
+<div class="container">
+    <div class="jumbotron">
+        <h1>PRAES (Proyecto Ambiental Escolar)</h1>
+      </div>
+
+<div class="row">
+
+    <div class="col-sm">
+    <h3>Proyecto Ambiental Escolar</h3>
+    <p> Para el Ministerio de Educación Ambiental los PRAE son proyectos pedagógicos que promueven el análisis y la comprensióndelosproblemasylaspotencialidadesambientales locales, regionales y nacionales, y generan espacios de participación para implementar soluciones acordes con las dinámicas naturales y socioculturales. La óptica de su quehacer es la formación desde una concepción de desarrollo sostenible, entendido como el aprovechamiento de los recursos en el presente, sin desmedro de su utilización por las generaciones futuras, con referentes espacio-temporales y sobre la base del respeto a la diversidad y a la autonomía y que contempla no sólo aspectos económicos sino sociales, culturales, políticos, éticos y estéticos en pro de una gestión sostenible del entornoLos Ministerios de Educación Nacional y de Ambiente, Vivienda y Desarrollo Territorial adelantan estrategias para la inclusión de la dimensión ambiental en la educación formal a partir de las políticas nacionales educativa y ambiental, y la formación de una cultura ética en el manejo del ambiente, mediante la definición y puesta en marcha de los Proyectos Ambientales Escolares (PRAE).</p>
+    </div>
+
+    <div class="col-sm">
+    <img src="{% static 'praes/img/PRAES2.jpg'%}" class="img-fluid" alt="Responsive image">
+    <img src="{% static 'praes/img/PRAES1.jpg'%}" class="img-fluid" alt="Responsive image">
+
+    </div>
+</div>
+{% endblock  %}

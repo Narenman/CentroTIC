@@ -1,0 +1,44 @@
+{% extends "app_praes/base1.html" %}
+{% load static %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+
+{% block body_block %}
+    <div class="col">
+        <h1> Variables del clima </h1>
+            <div id="humedad">
+               <h2>Humedad</h2>
+            <img class="img-responsive" src="{% static "praes/img/humedad.jpg" %}" height="200px" width="200px" alt="Chania"> 
+                <h4> ¿Qué es la humedad relativa? </h4>
+                <p> El aire atmosférico está compuesto de aire seco y vapor de agua. La cantidad de vapor de agua contenido en el aire depende de las condiciones de presión y temperatura; dependiendo de esas condiciones, el aire puede incorporar vapor de agua o desprenderlo a través de la condensación </p>
+                <p> Una baja humedad relativa aumenta la evaporación desde las membranas de la nariz y garganta, secando las mucuosas del sistema respiratorio, además de resecar la piel y el cabello.</p>
+                <p> Los excesos de humedad limita los procesos de evaporación a través de la piel, condicionando la pérdida de calor, la sensación de calor debido a la capacidad del cuerpo para transpirar.</p>
+                <p></p>
+            <h3>Seleccionar KIT y lugar de medición:</h3>
+            </div>
+
+        <form  action= "{% url 'app_praes:medicion-humedad' %}" method="POST">
+                {% csrf_token %}
+
+                    {% bootstrap_form sensores%}
+                            
+                    {% buttons %}
+                    <button type="submit" class="btn btn-primary">
+                    {% bootstrap_icon "star" %} Realizar toma de datos
+                    </button>
+
+                    {% endbuttons %}
+            </form>
+        </div>
+    </div>
+    <div id="grafica_humedad" style="min-width: 300px; height: 400px; margin: 0 auto"></div>
+       
+
+<script src= "{% static 'praes/js/grafica_humedad.js' %}" ></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+{% endblock  %}

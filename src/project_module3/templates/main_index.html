@@ -1,0 +1,20 @@
+{% extends "main_base.html" %}
+{% load static %}
+{% block body_block %}
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm">
+        <h1> Bienvenidos a vivir una 
+        experiencia IoT!!</h1>
+        {% if user.is_authenticated %}
+        <h1>Hola {{user.username}} </h1>
+        {% else %}
+        {% endif %}
+        <p>El grupo de investigación RadioGis es parte de la Escuela de Ingenierías Eléctrica  Electrónica y Telecomunicaciones (E3T) de la Universidad Industrial de Santander (UIS) donde tiene el papel de apoyar todo tipo de actividades formativas, de investigación, desarrollo e innovación en el campo de las tecnologías de la información y las comunicaciones (TIC). Hoy el grupo RadioGis es líder en los temas de Software Defined Radio, Internet of Things (IoT), Sensor Information technology, Green Smart Environment, Radio propagation, Data Science, Cloud computing, Geographic Information Systems. Para ello trabaja con diversas herramientas como: gnuradio, Plataforma IoT para el desarrollo de servicios inteligentes de apoyo al monitoreo ambiental, diversas técnicas de sensado y de adquisición de datos, drones, imagenes de drones y satelitales. Para realizar su trabajo, el grupo RadioGis se considera como una interfaz entre la industria, los organismos de regulación de las comunicaciones con la academia en temas de TIC con aplicaciones en campos como el medio ambiente y todo lo relacionado con las radiofrecuencias. RadioGis fomenta la formación de estudiantes en pregrado, maestría y doctorado mediante el asesoramiento técnico y científico de trabajos de grado, presta servicios en temas relacionados con los temas de su dominio.
+</p>
+        </div>
+    </div>
+
+</div>
+{% endblock  %}
