@@ -1,0 +1,45 @@
+servicio,frecuencia_inicial,frecuencia_final,banda_id,id
+Aficionados,50,54,5,1
+Radio difusion TV,54,68,5,2
+Radio difusion TV,68,72,5,3
+Fijo-movil,72,73,5,4
+Radioastronomia-fijo-movil,73,74.6,5,5
+Fijo-movil,74.6,74.8,5,6
+Radio navegacion aeronautica,74.8,75.2,5,7
+Fijo-movil,75.2,76,5,8
+Radio difusion TV,76,88,5,9
+Radio difusion FM,88,108,5,10
+Radio navegacion aeronautica,108,117975,5,11
+Movil-aeronautico,117975,137,5,12
+Operaciones espaciales-meteorologia por satelite-movil por satelite-investigacion espacial-fijo-movil salvo movil aeronautico,137,138,5,13
+Fijo-movil-radiolocalizacion-investigacion espacial,138,144,5,14
+Aficionados-Aficionados por satelite,144,146,5,15
+Aficionados,146,148,5,16
+Fijo-movil-movil por satelite,148,149.9,5,17
+Movil por satelite,149.9,150.05,5,18
+Fijo-movil,150.05,156.4875,5,19
+Movil maritimo (socorro y llamada por LLSD),156.4875,156.5625,5,20
+Fijo-movil,156.5625,156.7625,5,21
+Movil maritimo-movil por satelite,156.7625,156.7875,5,22
+Movil maritimo ,156.7875,156.8125,5,23
+Movil maritimo-movil por satelite,156.8125,156.8375,5,24
+Fijo-movil-movil maritimo,156.8375,161.9375,5,25
+Fijo-movil-movil maritimo-movil maritimo por satelite,161.9375,161.9625,5,26
+movil aeronautico-movil maritimo-movil por satelite-fijo-movil,161.9625,161.9875,5,27
+Fijo-movil-movil maritimo-movil maritimo por satelite,161.9875,162.0125,5,28
+movil aeronautico-movil maritimo-movil por satelite-fijo-movil,162.0125,162.0375,5,29
+Fijo-movil-movil maritimo,162.0375,174,5,30
+Radio difusion TV,174,216,5,31
+Fijo-movil maritimo-Radiolocalizacion,216,220,5,32
+Aficionados-fijo-movil-radiolocalizacion,220,225,5,33
+Fijo-movil,225,227.5,5,34
+Movil,227.5,228.25,5,35
+Fijo-movil,228.25,232.5,5,36
+Movil,232.5,233.25,5,37
+Fijo-movil,233.25,235,5,38
+Fijo-movil,235,245.45,5,39
+Movil,245.45,246.95,5,40
+Fijo-movil,246.95,267,5,41
+Fijo-movil-operaciones espaciales,267,272,5,42
+Operaciones espaciales-Fijo-movil,272,273,5,43
+Fijo-movil,273,300,5,44

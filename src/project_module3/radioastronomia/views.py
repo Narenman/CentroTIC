@@ -589,7 +589,7 @@ def barrido_json(request):
         for f in frec_central:
             rows = Espectro.objects.filter(nfft=nfft).filter(frec_muestreo=frec_muestreo).filter(frec_central__exact=f["frec_central"]).filter(region=cliente["region"]).order_by("frec_central")
             rows = rows.values("fecha", "espectro")
-            muestras = int(3e6/resBW.rbw)+4
+            muestras = int(3e6/resBW.rbw)
             x_ = numpy.zeros(nfft)
             #este ciclo promedia todos los espectros asociados a la banda
             for row in rows:
@@ -715,7 +715,7 @@ def comparacion_zonas(request):
         print(cliente)
         ids = request.POST.getlist("id")
         rbw = RBW.objects.get(rbw=cliente["RBW"])
-        muestras = int(3e6/rbw.rbw)
+        muestras = int(1e6/rbw.rbw)
         nfft = rbw.nfft
         samp_rate = rbw.frecuencia_muestreo
         fig1, ax1 = plt.subplots()
@@ -857,7 +857,7 @@ def control_manual(request):
 
             #preparacion de los mensajes para enviar a los dispositivos
             msg = {"gamma":list(gamma), "nfft": nfft, "sample_rate": frecuencia_muestreo,
-            "ganancia": 50, "duracion": 5, "frec_central": int(float(cliente["frequency"])*1e6),
+            "ganancia": 10, "duracion": 5, "frec_central": int(float(cliente["frequency"])*1e6),
             "accion": "modo manual", "region": int(cliente["region"]), "elevacion":int(cliente["elevacion"]),
             "azimut":int(cliente["azimut"]), "antena":int(cliente["antena"])}
             topico = "radioastronomia/RFI"
@@ -913,7 +913,7 @@ def control_automatico(request):
 
 
         msg = {"gamma": {"x1": x1.tolist(), "y1":y1.tolist()}, "nfft": nfft, "sample_rate": frecuencia_muestreo,
-        "ganancia":30, "duracion": 5, "frecuencia_inicial": int(float(cliente["finicial"])*1e6),
+        "ganancia":10, "duracion": 5, "frecuencia_inicial": int(float(cliente["finicial"])*1e6),
         "accion": "modo automatico",
         "region": int(cliente["region"]), "frecuencia_final": int(float(cliente["ffinal"])*1e6),
         "azinicial": float(cliente["azinicial"]), "azfinal":float(cliente["azfinal"]),
