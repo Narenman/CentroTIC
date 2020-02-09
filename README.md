@@ -58,7 +58,7 @@ Estos comandos se ejecutan después de tener todo instalado
 ## Nota importante
 Para acceder a los archivos desde linux sólo requiere ingresar a la consola de git bash ``cd /vagrant/src/`` y encontrará el proyecto django que ejecutará
 
-para correr la consola usar los privilegios de super usuario
+para correr la
 
 Para acceder a la base de datos desde windows por dbeaver es necesario activar algunos permisos en nuestra máquina vagrant, realizaremos lo siguiente:
 
