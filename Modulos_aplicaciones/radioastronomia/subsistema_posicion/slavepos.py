@@ -18,18 +18,6 @@ def suscriptor_MQTT(**accion):
         msg = json.loads(message.payload.decode())
         print(msg)
 
-
-
-#        if msg["modo"]=="manual":
-#        azimut = msg["azimut"]
-#        elevacion = msg["elevacion"]
-#        region = msg["region"]
-#        antena = msg["antena"]
-#            controlador = YaetsuG5500()
-#            controlador.control(azimut, elevacion, region, antena)
-        
-#        elif msg["modo"]=="automatico":
-
         azimut = msg["azimut"]
         elevacion = msg["elevacion"]
         region = msg["region"]
@@ -52,8 +40,8 @@ def suscriptor_MQTT(**accion):
 
 if __name__ == "__main__":
     global IP_server, IP_broker, PORT_broker
-    IP_server = "192.168.0.113"
-    IP_broker = "192.168.0.113"
+    IP_server = "192.168.0.108:8000"
+    IP_broker = "35.243.199.245"
     PORT_broker = 1883
 
     kwargs = {"IP_server": IP_server, "IP_broker":IP_broker, "PORT_broker": PORT_broker}

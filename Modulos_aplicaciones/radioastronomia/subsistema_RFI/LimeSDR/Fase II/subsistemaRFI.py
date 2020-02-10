@@ -5,7 +5,7 @@
 # Title: Adquisicion de datos del espectro
 # Author: Luis Miguel Diaz
 # Description: Este modulo se encarga de adquirir las senales del espectro usando el LimeSDR
-# Generated: Tue Jan 21 11:51:29 2020
+# Generated: Mon Jan 20 10:36:59 2020
 ##################################################
 
 from gnuradio import blocks
@@ -28,7 +28,7 @@ class subsistemaRFI(gr.top_block):
         ##################################################
         self.samp_rate = samp_rate = 30e6
         self.nfft = nfft = 1024
-        self.ganancia = ganancia = 5
+        self.ganancia = ganancia = 30
         self.frec_central = frec_central = 470e6
 
         ##################################################
