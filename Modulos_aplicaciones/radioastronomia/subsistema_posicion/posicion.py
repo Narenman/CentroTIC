@@ -2,7 +2,6 @@ import requests
 import json
 import serial
 import time
-import sys
 
 """ este archivo contiene lo relacionado al RS232 y
 adquisicion de datos por el rotor
@@ -24,13 +23,13 @@ class YaetsuG5500():
         self.gs232b.flush()
         self.S = True
         self.IP = IP
-
+    
     def estadoposicion_put(self,activo, azimut, elevacion):
         """Actualiza la posicion actual del rotor en la base de datos """
         pyload = {"activo": activo,
                 "azimut": azimut,
-                "elevacion": elevacion}
-        url = "http://"+self.IP+"/radioastronomia/estado/posicion/1"
+                "elevacion": elevacion} 
+        url = "http://"+self.IP+"/radioastronomia/estado/posicion/1"          
         r = requests.put(url, data=pyload)
         print("HTTP status code {} actulizacion posicion PUT".format(r.status_code))
         r.close()
@@ -48,7 +47,7 @@ class YaetsuG5500():
             return str(P)
 
     def stop(self):
-        print("Posicionamiento Exitoso")
+        print("Antena en posicion")
         self.gs232b.flush()
         self.gs232b.close()
 
@@ -66,7 +65,7 @@ class YaetsuG5500():
 
     def control(self, azimut, elevacion, region, antena):
         """se encarga de enviarle las instrucciones al YAETSU 5500 """
-        self.gs232b.flush() 
+
         print("enviando control\nazimut: {}\televacion: {}".format(azimut, elevacion))
         AZ = self.paracons(azimut)
         EL = self.paracons(elevacion)
@@ -76,49 +75,33 @@ class YaetsuG5500():
 
         serial_angulos = self.consulta()
         print("Posicion Inicial", serial_angulos)
-        activo = False
+        activo = True
         azimut_s = serial_angulos[0]
         elevacion_s = serial_angulos[1]
         self.estadoposicion_put(activo, azimut_s, elevacion_s)
 
-        t0 = 0
-        t1 = 0
-
-
         while self.S:
+
             time.sleep(0.3)
             print(self.consulta())
             angles = self.consulta()
-            t0 += 1
-            varAZ = abs(int(angles[0])-int(AZ))
-            varEL = abs(int(angles[1])-int(EL))
-
-            o_k =(varAZ <= 0) and (varEL <= 0)
-            o_k_E = (varAZ <= 1) and (varEL <= 1)
-            azimut_s = angles[0]
-            elevacion_s = angles[1]
-            self.estadoposicion_put(activo, azimut_s, elevacion_s)
+            varAZ = abs(int(angles[0]) - int(AZ))
+            varEL = abs(int(angles[1]) - int(EL))
 
             if angles[2]>=14:
-                if o_k:
+                if (varAZ <=1) and (varEL <= 1):
 
                     print("Posicion Final: ", self.consulta())
                     serial_angulos = self.consulta()
+
                     activo = False
                     azimut_s = serial_angulos[0]
                     elevacion_s = serial_angulos[1]
                     self.estadoposicion_put(activo, azimut_s, elevacion_s)
                     self.S = False
-                    print("Antena en posicion por ubicacion angular")
-                elif o_k_E or o_k:
-                    if(t0>=15):
-                        self.S = False
-                        print("Antena en posicion por umbral de tiempo")
-
-                else:
-                    pass
             else:
                 pass
+
         self.stop()
 
 
@@ -126,4 +109,4 @@ if __name__ == "__main__":
     global IP
     IP = "192.168.0.108:8000"
     controlador = YaetsuG5500(IP)
-    controlador.control(sys.argv[1], sys.argv[2], 1, 1)
+    controlador.control(180, 0, 1, 1)

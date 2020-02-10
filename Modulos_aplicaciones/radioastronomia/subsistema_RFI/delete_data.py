@@ -1,7 +1,7 @@
 import psycopg2
 """Este script se encarga de borrar los datos registrados en la base de datos
 correspondientes a las regiones """
-conn = psycopg2.connect(database="centrotic1", user="postgres",
+conn = psycopg2.connect(database="centrotic", user="postgres",
                       password="raspberry", host="127.0.0.1",
                       port="5432")
 cur = conn.cursor()
