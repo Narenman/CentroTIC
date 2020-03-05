@@ -363,7 +363,7 @@ def analisis_tiempo(request):
                 ax.set(xlabel='Energia dBm', ylabel='',
                 title='Histograma del comportamiento de la energia')
                 ax.grid()
-                histograma = mpld3.fig_to_html(fig,mpld3_url="http://127.0.0.1/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1/static/radioastronomia/js/librerias/d3.v3.min.js")
+                histograma = mpld3.fig_to_html(fig,mpld3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/d3.v3.min.js")
 
                 # histograma = mpld3.fig_to_html(fig,)
 
@@ -373,13 +373,13 @@ def analisis_tiempo(request):
                 ax1.plot(tiempo, 10*numpy.log10(char_ener))
                 ax1.set(xlabel="Tiempo DD H:M:s", ylabel="Energia dBm", title="Energia banda en funcion del tiempo")
                 ax1.grid()
-                tiempo_energia = mpld3.fig_to_html(fig1, mpld3_url="http://127.0.0.1/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1/static/radioastronomia/js/librerias/d3.v3.min.js")
+                tiempo_energia = mpld3.fig_to_html(fig1, mpld3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/d3.v3.min.js")
 
                 fig2, ax2 = plt.subplots()
                 sns.heatmap(df, yticklabels=5, xticklabels=120, cmap="coolwarm", ax=ax2)
                 ax2.set(xlabel="Frecuencia MHz", ylabel="Tiempo", title="Espectrograma")
                 ax2.grid()
-                espectrograma = mpld3.fig_to_html(fig2, mpld3_url="http://127.0.0.1/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1/static/radioastronomia/js/librerias/d3.v3.min.js")
+                espectrograma = mpld3.fig_to_html(fig2, mpld3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/d3.v3.min.js")
                 
 
                 # """Probar esto """
@@ -449,7 +449,7 @@ def espectro_angulos(request):
             query.append("SELECT radioastronomia_espectro.espectro, radioastronomia_espectro.frec_central, radioastronomia_posicionantena.elevacion, radioastronomia_espectro.fecha ")
             query.append("FROM radioastronomia_espectro ")
             query.append("INNER JOIN radioastronomia_posicionantena ")
-            query.append("ON date_trunc('second',radioastronomia_espectro.fecha)=date_trunc('second',radioastronomia_posicionantena.fecha) ")
+            query.append("ON date_trunc('minute',radioastronomia_espectro.fecha)=date_trunc('minute',radioastronomia_posicionantena.fecha) ")
             query.append("WHERE radioastronomia_posicionantena.azimut= %s ")
             query.append("AND radioastronomia_espectro.frec_central=%s ")
             query.append("AND radioastronomia_espectro.frec_muestreo = %s ")
@@ -513,7 +513,7 @@ def espectro_angulos(request):
             query.append("SELECT radioastronomia_espectro.espectro, radioastronomia_espectro.frec_central, radioastronomia_posicionantena.azimut, radioastronomia_espectro.fecha ")
             query.append("FROM radioastronomia_espectro ")
             query.append("INNER JOIN radioastronomia_posicionantena ")
-            query.append("ON date_trunc('second',radioastronomia_espectro.fecha)=date_trunc('second',radioastronomia_posicionantena.fecha) ")
+            query.append("ON date_trunc('minute',radioastronomia_espectro.fecha)=date_trunc('minute',radioastronomia_posicionantena.fecha) ")
             query.append("WHERE radioastronomia_posicionantena.elevacion= %s ")
             query.append("AND radioastronomia_espectro.frec_central=%s ")
             query.append("AND radioastronomia_espectro.frec_muestreo = %s ")
@@ -589,7 +589,7 @@ def barrido_json(request):
         for f in frec_central:
             rows = Espectro.objects.filter(nfft=nfft).filter(frec_muestreo=frec_muestreo).filter(frec_central__exact=f["frec_central"]).filter(region=cliente["region"]).order_by("frec_central")
             rows = rows.values("fecha", "espectro")
-            muestras = int(3e6/resBW.rbw)+4
+            muestras = int(500e3/resBW.rbw)+4
             x_ = numpy.zeros(nfft)
             #este ciclo promedia todos los espectros asociados a la banda
             for row in rows:
@@ -633,7 +633,7 @@ def barrido_json(request):
             data_energia.append([freq[i]/1000000, char_energia[i]])
 
         data = []
-        y = smooth(y, window_len=8)
+        # y = smooth(y, window_len=8)
         for j in range(len(freq_prueba)):
             data.append([freq_prueba[j]/1000000.0, y[j]])
         
@@ -715,7 +715,7 @@ def comparacion_zonas(request):
         print(cliente)
         ids = request.POST.getlist("id")
         rbw = RBW.objects.get(rbw=cliente["RBW"])
-        muestras = int(3e6/rbw.rbw)
+        muestras = int(500e3/rbw.rbw)
         nfft = rbw.nfft
         samp_rate = rbw.frecuencia_muestreo
         fig1, ax1 = plt.subplots()
@@ -762,7 +762,7 @@ def comparacion_zonas(request):
                         ax1.set(xlabel="Frecuencia MHz", ylabel="Espectro dBm", title="Espectro por region",)
                         ax1.legend()
                         ax1.grid(True)
-                        espectros = mpld3.fig_to_html(fig1, mpld3_url="http://127.0.0.1/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1/static/radioastronomia/js/librerias/d3.v3.min.js")
+                        espectros = mpld3.fig_to_html(fig1, mpld3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/d3.v3.min.js")
 
                         y = 10**(y/10)
                         df1.loc[l] = [10*numpy.log10(numpy.mean(y)), 10*numpy.log10(numpy.sum(y)), int(reg)]
@@ -778,13 +778,14 @@ def comparacion_zonas(request):
             if df["ener"].count()>1:
                 fig2, ax2 = plt.subplots()
                 for i in range(len(df1["target"])):         
-                    scatter =  ax2.scatter(df1["media"], df1["energia"], c=df1["target"], cmap="Dark2", label=df1["target"][i])
+                    scatter =  ax2.scatter(df1["media"], df1["energia"],  c=df1["target"], cmap="Dark2", label=df1["target"][i])
+
                 legend1 = ax2.legend(title="Lugares")
                 ax2.add_artist(legend1)
                 ax2.set(xlabel="Media dBm", ylabel="Energia dBm", title="Comparacion algunas caracteristicas")
                 # ax2.legend(title="Regiones")
                 ax2.grid()
-                caracteristicas = mpld3.fig_to_html(fig2, mpld3_url="http://127.0.0.1/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1/static/radioastronomia/js/librerias/d3.v3.min.js")
+                caracteristicas = mpld3.fig_to_html(fig2, mpld3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/d3.v3.min.js")
                 
                
                 #analisis PCA para mayor informacion
@@ -801,7 +802,7 @@ def comparacion_zonas(request):
                 ax3.add_artist(legend3)
                 ax3.set(xlabel='PC_1', ylabel="PC_2", title="Analisis PCA de las regiones")
                 ax3.grid()
-                analisis_pca = mpld3.fig_to_html(fig3, mpld3_url="http://127.0.0.1/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1/static/radioastronomia/js/librerias/d3.v3.min.js")
+                analisis_pca = mpld3.fig_to_html(fig3, mpld3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/mpld3.v0.3.1.dev1.js", d3_url="http://127.0.0.1:8000/static/radioastronomia/js/librerias/d3.v3.min.js")
                 respuesta.update({"pca": analisis_pca})
 
                 respuesta.update({"caracteristicas": caracteristicas,})
@@ -1124,3 +1125,52 @@ def conf_estados(request):
         estado4.save()
         return HttpResponseRedirect(reverse_lazy("radioastronomia:index"))
     return render(request, "radioastronomia/conf_estados.html", {})
+
+def espectroAngular(request):
+    azimut = 0
+    elevacion = 0
+    region_id = 39
+    frec_muestreo = 16000000
+    nfft = 1024
+    rbw = 15620
+    cursor = connection.cursor()
+    query = []
+    query.append("SELECT radioastronomia_espectro.id, radioastronomia_espectro.frec_central ")
+    query.append("FROM radioastronomia_posicionantena INNER JOIN radioastronomia_espectro ")
+    query.append("ON date_trunc('minute',radioastronomia_espectro.fecha)=date_trunc('minute', radioastronomia_posicionantena.fecha) ")
+    query.append("WHERE radioastronomia_posicionantena.azimut = %s AND radioastronomia_posicionantena.elevacion=%s AND radioastronomia_espectro.region_id = %s ")
+    query.append("AND radioastronomia_espectro.frec_muestreo = %s ORDER BY radioastronomia_espectro.frec_central;")
+    query = "".join(query)
+    cursor.execute(query,[azimut, elevacion, region_id, frec_muestreo])
+    rows = cursor.fetchall()
+
+    frameIdsFrecCentral = pd.DataFrame(data=rows, columns=["ids", "frec_central"])
+    groupedFrameIds = frameIdsFrecCentral.groupby('frec_central')
+    y = []
+    frec_prueba = []
+    for fcentral, group in groupedFrameIds:
+        ids = group["ids"]
+        print(fcentral)
+        muestras = int(3e6/rbw)+4
+        x_ = numpy.zeros(nfft)
+        for i in ids:
+            espectro = Espectro.objects.get(pk=i)
+            espectro = espectro.espectro
+            espectro = numpy.asarray(espectro)
+            x = promedio(espectro, nfft)
+            x_ = x + x_
+        x_ = x_/len(ids)
+        x_ = x_[muestras:-muestras] 
+        x_[int(len(x_)/2-10):int(len(x_)/2)] = x_[int(len(x_)/2-20):int(len(x_)/2-10)]
+        x_[int(len(x_)/2):int(len(x_)/2+10)] = x_[int(len(x_)/2+10):int(len(x_)/2+20)]
+        y = numpy.append(y, x_)
+        fins = numpy.arange(-int(nfft/2),int(nfft/2),1)*frec_muestreo/(nfft) + fcentral
+        frec_prueba = numpy.append(frec_prueba, fins[muestras:-muestras])
+    
+    data = []
+    y = smooth(y, window_len=8)
+    for j in range(len(frec_prueba)):
+        data.append([frec_prueba[j]/1000000.0, y[j]]) 
+
+            
+    return JsonResponse({"data":data})

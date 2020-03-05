@@ -39,9 +39,8 @@ urlpatterns = [
     path('barrido-espectro', views.barrido_json, name="barrido-espectro"),
     path('posiciones-angulares', views.espectro_angulos, name="posiciones-angulares"),
     path('monitoreo-ambiental', views.json_estacion, name="monitor-ambiental"),
-
     path('weatherhistory', views.weatherhistory, name="whatherhistory" ),
-
+    path('espectro-angular', views.espectroAngular, name="espectroAngular"),
     # APIs para la adquisicion de datos
     path('album-imagenes', apiviews.AlbumAPI.as_view()),
     path('subsistema-RFI', apiviews.EspectroAPI.as_view()),
