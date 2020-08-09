@@ -28,6 +28,7 @@ urlpatterns = [
     path('subsistema/camara', views.subsistemacielo, name="subsistema-camara"),
     path('subsistema/camara/videos/<int:pk>', views.reproduccionvideos, name="repro-videos"),
     path('subsistema/estados/camara-estacion', views.conf_estados, name="conf-estados"),
+    path('subsistema/camara/phantom/camara-phantom', views.subsistemacieloPhantom, name="subsistema-phantom"),
     #urls para operacion del sistema
     path('control-manual', views.control_manual, name="control-manual"),
     path("control-automatico", views.control_automatico, name="control-automatico"),
@@ -51,6 +52,7 @@ urlpatterns = [
     path('estado/camara/<int:pk>', apiviews.EstadoCamaraAPI.as_view()),
     path('estado/estacion/<int:pk>', apiviews.EstadoEstacionAPI.as_view()),
     path('estado/posicion/<int:pk>', apiviews.EstadoPosicionAntenaAPI.as_view()),
+    path('videos-phantom', apiviews.AlbumAPIVideosPhantom.as_view()),
 
     # modos de procesamiento del espectro
     path('modo/bandas-espectrales', views.bandas_espectrales, name="modo1"),

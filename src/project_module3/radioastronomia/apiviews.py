@@ -6,10 +6,10 @@ from rest_framework import status
 from django.http import Http404
 
 from .models import AlbumImagenes, Espectro, EstacionAmbiental, CaracteristicasEspectro, Estado ,\
-    PosicionAntena, Estadocamara, Estadoestacion, EstadoPosicionAntena
+    PosicionAntena, Estadocamara, Estadoestacion, EstadoPosicionAntena, AlbumVideosPhantom
 from .serializers import AlbumSerializer, EstacionAmbientalSerializer, EspectroSerializer ,\
     CaractEspectroSerializer, EstadoSerializer, PosicionAntenaSerializer ,\
-        EstadoCamaraSerializer, EstadoEstacionSerializer, EstadoPosicionSerializer
+        EstadoCamaraSerializer, EstadoEstacionSerializer, EstadoPosicionSerializer, AlbumVideosPhantomSerializar
 
 class AlbumAPI(generics.CreateAPIView):
     """ Esta API se encarga de las imagenes recolectadas por la camara startlight 
@@ -19,6 +19,15 @@ class AlbumAPI(generics.CreateAPIView):
 
     queryset = AlbumImagenes.objects.all()
     serializer_class = AlbumSerializer
+
+class AlbumAPIVideosPhantom(generics.CreateAPIView):
+    """ Esta API se encarga de las imagenes recolectadas por la camara phantom
+    """
+    authentication_classes = ()
+    permission_classes = ()
+
+    queryset = AlbumVideosPhantom.objects.all()
+    serializer_class = AlbumVideosPhantomSerializar
 
 class EspectroAPI(APIView):
     """ Esta API se encarga de gestiornar el espectro para poder almacenarlo

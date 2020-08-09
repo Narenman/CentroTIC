@@ -11,7 +11,8 @@ import mpld3
 import logging
 from .models import AlbumImagenes, Espectro, Estado, CaracteristicasAntena, \
                     CaracteristicasEstacion, RBW, CaracteristicasEspectro, RegionCampana, \
-                        PosicionAntena, Servicios, Bandas, EstacionAmbiental, Estadocamara, Estadoestacion, EstadoPosicionAntena
+                        PosicionAntena, Servicios, Bandas, EstacionAmbiental, Estadocamara, Estadoestacion, EstadoPosicionAntena, \
+                    AlbumVideosPhantom
 from .forms import EspectroForm, RFIForm, RegionForm
 from django.core import serializers
 from django.urls import reverse_lazy
@@ -1052,6 +1053,30 @@ def subsistemacielo(request):
     except:
         logs("error", "Consulta de videos", True)
     return render(request, "radioastronomia/subsistema_camara.html", respuesta)
+
+def subsistemacieloPhantom(request):
+    respuesta = dict()
+    try:
+        album = AlbumVideosPhantom.objects.last()
+        print(album.imagen)
+        region = RegionForm()
+        respuesta.update({"imagen": album.imagen,
+                    "fecha": album.fecha,
+                    "zona": album.region,
+                    "region": region})
+        if request.POST:
+            cliente = request.POST
+            print(cliente)
+            if cliente["day"]=="dia":
+                videos = AlbumVideosPhantom.objects.filter(fecha__gte= cliente["fechaini"], fecha__lte = cliente["fechafin"]).filter(region=cliente["region"]).filter(fecha__hour__range=["06", "18"])
+            elif cliente["day"]=="noche":
+                videos = AlbumVideosPhantom.objects.filter(fecha__gte= cliente["fechaini"], fecha__lte = cliente["fechafin"]).filter(region=cliente["region"]).filter(region=cliente["region"]).filter(fecha__hour__range=["18", "06"])
+            respuesta.update({"videos": videos})
+            logs("info", "consulta de videos", False)
+
+    except:
+        logs("error", "Consulta de videos", True)
+    return render(request, "radioastronomia/susbsistema_camaraPhantom.html", respuesta)
 
 def reproduccionvideos(request, pk):
     respuesta = dict()

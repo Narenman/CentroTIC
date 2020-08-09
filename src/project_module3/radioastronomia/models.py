@@ -144,6 +144,22 @@ class AlbumImagenes(models.Model):
         verbose_name_plural = 'AlbumImageness'
         ordering = ["fecha"]
 
+class AlbumVideosPhantom(models.Model):
+    """ esta tabla se encarga de registrar todas las imagenes del cielo tomadas """
+    # imagen = models.ImageField(upload_to='album/imagenes', height_field=None, width_field=None, max_length=None)
+    imagen = models.FileField(upload_to='videos/phantom/', null = True, max_length=200, verbose_name="")
+    fecha = models.DateTimeField(auto_now_add=True, auto_now=False)
+    region = models.ForeignKey(RegionCampana, on_delete=models.CASCADE)
+
+    def __unicode__(self):
+        return str(self.imagen)
+
+    class Meta:
+        db_table = ''
+        managed = True
+        verbose_name = 'AlbumVideosPhantom'
+        verbose_name_plural = 'AlbumVideosPhantom'
+        ordering = ["fecha"]
 
 class Estado(models.Model):
     activo = models.BooleanField(default=False)
